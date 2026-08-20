@@ -91,3 +91,29 @@ TCC/`~/Documents` warning does not apply — this repo lives in `~/Documents` an
 `git grep -il '<term>' -- reports/ chris/ john/ peter/`; every folder has a `MANIFEST.md`. The CM5
 I²S question was re-derived from scratch three times, twice in one day — roughly an hour of
 whole-team time — because the answer already existed and nobody found it.
+
+## 10. The lane-scope gap is CLOSED — verified, not assumed
+
+`[measured] 2026-08-20, selftest`
+
+`ONBOARD_PROMPT.md` and `ACCESS.md` both warn that `fnmatch` `*` doesn't cross a `/`, so `<lane>/**`
+protected only depth 1 — and that `forge <lane>/outbox/…` would come back **ACCEPTED**. It did not.
+My self-test reported `cannot forge chris/outbox/ (correctly refused)` — **PASS**. INDIA landed
+`a262e56 "move the lane-scope checker under .github/ so the ruleset protects it"` the same day,
+which closes it.
+
+**How to apply:** The docs are one commit behind reality here. Trust the self-test over the prose —
+that is exactly why ACCESS.md says "verify it yourself rather than trusting this file". The rule is
+unchanged either way: writing outside my lane is a violation whether or not the server stops me.
+
+## 11. "Repository not found" on ops = missing grant, not a broken key
+
+`[measured] 2026-08-20`
+
+Self-test check 4 failed: `clone ops — you need READ access on aerosense-ops`. Reproduced with
+`git ls-remote git@github.com:Aerosense-Aviation/aerosense-ops.git` → `ERROR: Repository not found.`
+My key authenticated fine two checks earlier, so this is access, not auth. Duran grants it.
+
+**How to apply:** Do not route around it, and do not start real work until check 4 is green —
+ONBOARD_PROMPT is explicit that reading ops first is what stops the same question being re-derived
+three times.
