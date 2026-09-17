@@ -30,3 +30,19 @@ boundaries in `WHOAMI.md` are no longer guesses — they came from
 **Open thread:** `aerosense-ops` read access is unverified. If self-test check 4 returns
 `clone ops — Repository not found`, that is a missing grant from Duran, not a broken key — tell
 Stefan rather than trying to route around it.
+
+## 2026-09-17 — MAX86171 bring-up, repo switch, Chris/INDIA order
+
+**What I'd tell myself cold:** Stefan ruled kilo is the working repo (it had been left at 20 Aug; the Aug 24 →
+Sep 3 KILO memory is in `stefan4Aerosense/Aerosense`). Push over **HTTPS** on this machine — there is no SSH.
+Chris's order (via INDIA) is steps 1–5; 1 and 2 are answered, 3 is written in kilo and is being landed on the
+shelf, 4 (backlog) and 5 (H1) not started.
+
+**Half-made decisions:**
+- **No `record/stefan/` proposal to replace the MAX30101.** No comparison exists. Say so in the reply rather
+  than filing a thin proposal.
+- The report must lead with **finger only** and the ear-cup non-answer. That is the thing Chris asked hardest for.
+- The four-photodiode tool configuration has only been verified for data flow (no finger). Do not quote
+  physiological numbers from it.
+- MAX86171 datasheet Table 1 (driver mux) never fetched — analog.com timed out. The LED map in the doc is
+  measured by fingerprint; D1-vs-D2 designators are open.

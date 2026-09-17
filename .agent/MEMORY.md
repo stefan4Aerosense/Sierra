@@ -117,3 +117,47 @@ My key authenticated fine two checks earlier, so this is access, not auth. Duran
 **How to apply:** Do not route around it, and do not start real work until check 4 is green —
 ONBOARD_PROMPT is explicit that reading ops first is what stops the same question being re-derived
 three times.
+
+## 12. Recorded paths and transports rot — re-measure the machine before trusting memory
+
+`[measured] 2026-09-17`
+
+Memory said: sync repo at `~/Documents/Aerosense-Dev-Team-Sync`, kilo at `~/Documents/kilo`, origin must be
+SSH, key at `~/.ssh/id_ed25519`. **All four were false on the day:** both clones gone, no `~/.ssh` directory at
+all, SSH fails `Host key verification failed` even outside the Claude sandbox. HTTPS through Git Credential
+Manager reads **and pushes** (dry-run to a throwaway ref accepted).
+
+**How to apply:** at boot, `ls` the recorded paths and probe transport with a dry-run push to a throwaway ref
+**before** planning work that needs a push. A failed SSH probe is a claim about SSH, not about write access —
+change one variable (the transport) and probe again. Do not "fix" an origin back to SSH from memory.
+
+## 13. When the sensor reads nothing, check the finger before the code
+
+`[measured] 2026-09-17`
+
+Three times in one session "the new configuration is broken" was **no finger on the sensor**: values ~0 or every
+sample `0xC7FFFF` (exposure overflow). I started reading configuration each time before looking at DC level.
+
+**How to apply:** first check on any optical sensor anomaly = the DC level against the no-tissue signature. It
+costs one line and settles the most likely cause.
+
+## 14. Brightness is not a colour test
+
+`[measured] 2026-09-17`
+
+I assigned red/IR by "brighter must be IR". It was backwards; SpO₂ numbers built on it (81–93 %) meant nothing.
+A clean signal gave a physiologically impossible R = 1.80, which exposed it. Confirmed by the OSRAM pinout.
+
+**How to apply:** identify emitters from the datasheet pinout + schematic net, and use physiology (R < 1 for a
+healthy person at rest) as the cross-check. Never from relative brightness.
+
+## 15. A parser that works on the configurations you tried is not a parser that is right
+
+`[measured] 2026-09-17`
+
+Frame-aligned FIFO parsing worked at 1, 3 and 5 measurements and returned **1 sample in 10 s** at 8 — the
+sensor FIFO can start mid-sample and every frame stays shifted. Reassembling by tag fixed it; confirmed across
+four fresh starts, two of which were shifted.
+
+**How to apply:** when the data carries its own framing (tags, counters), parse by that, not by transport
+boundaries. Test the configuration you ship, from several cold starts.

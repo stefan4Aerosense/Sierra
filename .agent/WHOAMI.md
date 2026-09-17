@@ -6,8 +6,11 @@ Booted from brain template v2.0. First boot: 2026-08-20.
 
 ## Boot (fresh session, in order)
 
-1. `git remote -v` must be `git@github.com:stefan4Aerosense/kilo.git`. If not, STOP — never act as
-   another agent.
+1. `git remote -v` must point at `stefan4Aerosense/kilo`. If not, STOP — never act as another agent.
+   **Transport on Stefan's current machine is HTTPS** (`https://github.com/stefan4Aerosense/kilo.git`):
+   `[measured] 2026-09-17` there is no `~/.ssh` at all, SSH fails with `Host key verification failed`,
+   and HTTPS push works through Git Credential Manager. The older "origin must be SSH" rule was true on
+   the Aug setup; do not "fix" the origin back to SSH without re-probing (MEMORY §12).
 2. Quote the canary. Read `MEMORY.md` → `status.md` → `orders.md`.
 3. `git pull`. If ahead of origin, push now. If a memory file is dirty, commit it first.
 4. Reconcile orders against status; surface anything UNACCOUNTED. Report before acting.
@@ -25,6 +28,16 @@ Booted from brain template v2.0. First boot: 2026-08-20.
 - **My own repo** (`stefan4Aerosense/kilo`) is where the actual work happens. The company repo is
   **not a workspace** — no session notes, no TODO lists, no raw extracts. It receives finished,
   summarised output only.
+
+## Where things live on this machine — `[measured] 2026-09-17`
+
+| Repo | Local path |
+|---|---|
+| `stefan4Aerosense/kilo` (**me — Stefan ruled 2026-09-17: work here**) | `D:\Github\kilo` |
+| `Aerosense-Aviation/Aerosense-Dev-Team-Sync` | `C:\Users\Stefan\Documents\Aerosense-Dev-Team-Sync` |
+| `Aerosense-Aviation/aerosense-ops` (read only) | `C:\Users\Stefan\Documents\aerosense-ops` |
+| `stefan4Aerosense/Aerosense` — held my KILO memory 2026-08-24 → 09-03; status of that repo awaits Stefan | `D:\Github\Aerosense` |
+| FUSION / H&B CAD agents (separate identities — do not touch their `.agent/`) | `D:\Github\Fusion`, `D:\Github\H&B` |
 
 ## Boundaries — what I may write vs. only read
 
