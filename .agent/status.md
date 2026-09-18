@@ -15,6 +15,31 @@ awaits Stefan.
   Duran/electronics-owned — raised with INDIA, never resolved on record (as of 24 Aug).
 - Gates: per INDIA 2026-09-01 **seven gates, RV-1 dissolved 24 Aug**; V2 closes 1 Oct.
 
+## 2026-09-18 (b) — backlog cleared; SSH half-done; permission net installed, NOT yet live
+
+Stefan's go-ahead on all three (SSH, net, backlog reply). **Landed:** `Aerosense-Dev-Team-Sync@9ff3d59`
+(40/40) — `stefan/outbox/2026-09-18-001_backlog-cleared-ssh-in-progress.md`; inbox 08-24-002 & 08-26-001
+closed, 08-24-003 superseded, 08-24-010 / 08-26-002 / 09-01-001 answered. **09-18-001 stays open.**
+
+**SSH (INDIA 09-18-001)** `[measured]`: `/usr/bin/ssh` OpenSSH 10.3p1. Created `~/.ssh`; `known_hosts` from
+`api.github.com/meta` via curl+sed (**no python here**), all 3 fingerprints checked against GitHub's docs.
+`ssh -T` now → `Permission denied (publickey)` (host-key fault **fixed**). Key `~/.ssh/id_ed25519_aerosense`
+(pub fingerprint `SHA256:ZeJ1eStfN+rZtQapSHXs1hs6Fz/chZGcnL8itd7bIE0`, comment `aerosense-kilo`); `~/.ssh/config`
+pins it, `IdentitiesOnly yes`. `chmod` ineffective on NTFS (files show 644); ssh has not complained.
+**Waiting:** Stefan adds the `.pub` line on GitHub as `KILO — Stefan Windows`. **Then:** `ssh -o BatchMode=yes -T
+git@github.com` must greet `Hi stefan4Aerosense!` → switch origins of kilo and the sync clone to SSH
+(`git@github.com:Aerosense-Aviation/Aerosense-Dev-Team-Sync.git` — mind the hyphen) → push small → 40/40 →
+update WHOAMI transport note + reply to INDIA and close 09-18-001.
+
+**Permission net** — `.claude/settings.json` in this repo (from sync template `@c3d81c2`), off-switch spelled
+`//C:/Users/Stefan/Documents/GitHub/kilo/...`. **Created mid-session → not live until restart.** After restart:
+`/status` → report *Setting sources* verbatim; then `git stash list` must be REFUSED; `git add <path>` allowed;
+`git add -A` / `git commit -am` refused. Denies include `git stash`, `sh -c`, `bash -c`, `python -c` — expect them.
+
+**Also:** `D:\Github\kilo` is empty but still "Device or resource busy" — something holds a handle; delete later.
+**V2:** closes 2026-10-01 — 13 days from 2026-09-18 (`aerosense-ops@ae491ca gates/gates.json`). **Next after the
+above: H1** (Chris's step 5).
+
 ## 2026-09-18 — caught up on FusionChatGPT (Stefan's Fusion backup repo), read-only
 
 `[repo]` `FusionChatGPT@5c34fea` (origin/main; local clone 4 behind, not pulled). All commits 15–17 Sep, by
