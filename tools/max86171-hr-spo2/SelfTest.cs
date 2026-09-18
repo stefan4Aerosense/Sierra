@@ -70,7 +70,7 @@ static class SelfTest {
         double expected = SpO2Estimator.CurveSpO2(trueR);
         // Low noise: must be accurate. Realistic (high) noise: must be within 3%, or be withheld as unstable.
         bool accurate = res.Problem == null && Math.Abs(res.SpO2 - expected) <= (noiseRms < 100 ? 2 : 3);
-        bool flagged = res.Problem != null;
+        bool flagged = res.Problem != null || res.LowConfidence;
         bool pass = noiseRms < 100 ? accurate : (accurate || flagged);
         if (!pass) failures++;
         Console.WriteLine("SpO2: true R={0:F2} noise={1,3:F0} -> R={2:F2} SpO2={3:F1}% +-{4:F1} (expect {5:F1}%) {6} {7}",
@@ -113,14 +113,49 @@ static class SelfTest {
     var hr = new HeartRateEstimator(fs); var ox = new MultiPathOximeter(fs, "detector 1", "detector 2");
     int step = (int)Math.Round(fs);
     for (int i = 0; i < n; i++) {
-      hr.Add(-g[i]); ox.Add(0, r1[i], i1[i]); ox.Add(1, r2[i], i2[i]);
+      hr.Add(-g[i]); ox.Add(0, r1[i], i1[i], g[i]); ox.Add(1, r2[i], i2[i], g[i]);
       if (i > 0 && i % step == 0) {
         double bpm, q; bool ok = hr.Estimate(out bpm, out q);
         string s = "";
-        if (ok) { var res = ox.Estimate(bpm); s = res.Problem != null ? res.Path + ": " + res.Problem : string.Format("SpO2 {0:F0}% +-{1:F0} via {2} R={3:F2} SNR={4:F0}", res.SpO2, res.Spread, res.Path, res.R, res.Snr); }
+        if (ok) { var res = ox.Estimate(bpm); s = res.Problem != null ? res.Path + ": " + res.Problem : string.Format("SpO2 {0:F0}%{5} +-{1:F0} via {2} R={3:F2} SNR={4:F0}", res.SpO2, res.Spread, res.Path, res.R, res.Snr, res.LowConfidence ? " (LOW CONF)" : ""); }
         Console.WriteLine("t={0,2}s  {1}  {2}", i / step, ok ? bpm.ToString("F0") + " BPM" : "no HR", s);
       }
     }
+    return 0;
+  }
+
+  // Replays a recording made with the app's own 8-measurement layout through exactly the app's pipeline.
+  // Files: <prefix>M<m>_PD<o>.txt, m = 1..8, o = 1 (PPG1 = PD1 or PD3) / 2 (PPG2 = PD2 or PD4).
+  public static int ReplayRec(double fs, string prefix) {
+    Func<string, double[]> load = p => System.IO.File.ReadAllLines(p).Select(double.Parse).ToArray();
+    var v = new double[9, 2][];
+    for (int m = 1; m <= 8; m++) for (int o = 0; o < 2; o++) v[m, o] = load(prefix + "M" + m + "_PD" + (o + 1) + ".txt");
+    int n = int.MaxValue; for (int m = 1; m <= 8; m++) for (int o = 0; o < 2; o++) n = Math.Min(n, v[m, o].Length);
+    string[] det = { "detector 1", "detector 2", "detector 3", "detector 4" };
+    var hr = new MultiHeartRate(fs, det); var ox = new MultiPathOximeter(fs, det);
+    int step = (int)Math.Round(fs), shown = 0, low = 0, withheld = 0, noHr = 0;
+    for (int i = 0; i < n; i++) {
+      for (int pd = 0; pd < 4; pd++) {
+        int m0 = pd < 2 ? 1 : 5, o = pd % 2;
+        double g1 = v[m0, o][i], g2 = v[m0 + 1, o][i];
+        bool sat = Math.Abs(g1) >= 523287 || Math.Abs(g2) >= 523287;
+        hr.Add(pd, g1 + g2, sat);
+        ox.Add(pd, v[m0 + 2, o][i], v[m0 + 3, o][i], g1 + g2);
+      }
+      if (i > 0 && i % step == 0) {
+        MultiHeartRate.Placement p; double pi = hr.PerfusionIndex(out p);
+        double bpm, q; bool ok = hr.Estimate(out bpm, out q);
+        string s = "";
+        if (!ok) noHr++;
+        else {
+          var res = ox.Estimate(bpm);
+          if (res.Problem != null) { withheld++; s = res.Path + ": " + res.Problem; }
+          else { shown++; if (res.LowConfidence) low++; s = string.Format("SpO2 {0:F0}%{1} +-{2:F0} via {3} R={4:F2} SNR={5:F1}", res.SpO2, res.LowConfidence ? " (LOW CONF)" : "", res.Spread, res.Path, res.R, res.Snr); }
+        }
+        Console.WriteLine("t={0,2}s  signal {1,5:F2}% {2,-8} {3,-8} {4}", i / step, pi, p, ok ? bpm.ToString("F0") + " BPM" : "no HR", s);
+      }
+    }
+    Console.WriteLine("SUMMARY: SpO2 shown {0} s ({1} low-confidence), withheld {2} s, no heart rate {3} s", shown, low, withheld, noHr);
     return 0;
   }
 

@@ -112,12 +112,14 @@ class MultiHeartRate {
   readonly HeartRateEstimator[] ch;
   readonly string[] names;
   readonly int[] saturatedFor;
+  readonly double[] dc; // running light level per channel
   int best;
 
   public MultiHeartRate(double sampleRate, params string[] channelNames) {
     names = channelNames;
     ch = channelNames.Select(n => new HeartRateEstimator(sampleRate)).ToArray();
     saturatedFor = new int[ch.Length];
+    dc = new double[ch.Length];
   }
 
   public double SampleRate { get { return ch[0].SampleRate; } }
@@ -131,7 +133,34 @@ class MultiHeartRate {
   public void Add(int i, double raw, bool saturated) {
     if (saturated) saturatedFor[i] = (int)(SampleRate * 10);
     else if (saturatedFor[i] > 0) saturatedFor[i]--;
+    dc[i] = dc[i] == 0 ? raw : dc[i] + (raw - dc[i]) * (1.0 / SampleRate); // ~1 s average light level
     ch[i].Add(-raw); // invert so pulse peaks point up
+  }
+
+
+  public enum Placement { NoFinger, Saturated, Moving, Weak, Fair, Good, Settling }
+
+  // Pulse strength for placement feedback: amplitude of the band-passed green signal as % of the light level
+  // (the perfusion index), best unsaturated channel over the last 6 s. Measured on this board: a light warm
+  // finger gave ~2 %; a pressed or cold one 0.01-0.1 %.
+  public double PerfusionIndex(out Placement p) {
+    p = Placement.Settling;
+    double best = -1; bool anyLight = false, allSat = true;
+    int n = (int)(SampleRate * 6);
+    for (int i = 0; i < ch.Length; i++) {
+      if (dc[i] > FullScale * 0.02) anyLight = true;
+      if (saturatedFor[i] > 0) continue;
+      allSat = false;
+      if (dc[i] <= FullScale * 0.02 || ch[i].Count < n) continue;
+      var t = ch[i].Tail(n);
+      double m = t.Average(), rms = Math.Sqrt(t.Select(v => (v - m) * (v - m)).Average());
+      best = Math.Max(best, 100 * rms * Math.Sqrt(2) / dc[i]);
+    }
+    if (allSat) { p = Placement.Saturated; return 0; }
+    if (!anyLight) { p = Placement.NoFinger; return 0; }
+    if (best < 0) return 0;
+    p = best > 6 ? Placement.Moving : best < 0.3 ? Placement.Weak : best < 1 ? Placement.Fair : Placement.Good;
+    return best;
   }
 
   public bool Estimate(out double bpm, out double quality) {
