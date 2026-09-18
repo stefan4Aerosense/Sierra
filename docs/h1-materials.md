@@ -104,3 +104,21 @@ Same model as above, R = 73.8 mm, spread δ = 15 mm (`[assumed]` from `[S]`); mo
 - **Tolerance:** force ∝ t³, so ±5 % on thickness is ~±15 % on force.
 - **Head size:** force ∝ spread. At 9.6 × 1.0 mm (301): 10 mm spread → ~250 gf, 15 → ~375, 20 → ~500,
   25 → ~620 gf. 5th–95th %ile bitragion breadth spans ~25 mm `[S]`, so the relaxed opening sets who gets what.
+
+---
+
+## Annotation 2026-09-18 — Fusion mass audit (FusionChatGPT@203ddb2)
+
+`[repo]` `outputs/H1-Mass-Materials-Audit-2026-09-18.md`, by Stefan's Fusion agent, on *H1 - Master Skeleton -
+DEV-B*, compared against this file. **No geometry or materials were changed.** Findings:
+- **The 304 g figure cannot be reproduced from the current model.** Fusion root mass 2,682 g; all bodies 2,997 g;
+  visible-only subtotal 537 g — none accepted as product mass until the BOM is reconciled (314.89 g unexplained gap).
+- **Earcup bases are assigned steel** (≈124 g each, 248 g total). At PA12 density (~0.99 g/cm³) the same geometry
+  would be ≈31 g — a 217 g difference from one material assignment.
+- **Four cushion bodies are solid "Leather, weathered"** (143 g) — need layered foam/gel/cover or weighed parts.
+- Tension band in CAD: generic Steel, 37.3 g, skeleton thickness **1.0 mm** vs **0.8 mm** in this file — unresolved.
+- CG coordinates diagnostic only; the historical "CG 1.1 mm" has no stated datum to compare against.
+- Its recommended next step: reconcile earcup bases, cushion construction and the included BOM first.
+
+**Consequence for the record:** `dcf0733`'s "H1 304 g in CAD" (12 Aug) should now be treated as
+**unreproducible**, not current. V2 criterion (4) (< 400 g prototype) is unresolved in both directions.
