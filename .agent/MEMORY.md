@@ -350,3 +350,15 @@ file is live; creating one is invisible until reload.
   post-restart result is unambiguous; the probe order is written into that file's `_README`.
 - I twice reported a cause with more confidence than the evidence carried today. Breadth of failure is
   cheap to check and would have pointed at the right layer both times.
+
+## 16. "It's not the software" is a claim — test the software's weak-signal behaviour before saying it
+
+`[measured] 2026-09-18`
+
+Stefan reported HR 39 and no SpO2 and said the problem was the software. I twice pointed at contact/hardware
+(true: the pulse was ~20x weaker) and stopped there. But the green channel still had SNR 20-29 — plenty for heart
+rate — and my autocorrelation estimator was locking onto slow wander. He was right. Fix: spectral harmonic-sum HR.
+
+**How to apply:** when the input degrades, ask separately (1) is the signal worse, and (2) does my algorithm fail
+*worse than the signal justifies*. Both can be true. A human's "it worked yesterday, same pulse on my watch" is a
+reference measurement — use it.
