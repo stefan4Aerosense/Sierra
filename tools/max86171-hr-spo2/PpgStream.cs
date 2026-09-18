@@ -6,7 +6,7 @@ using Windows.Devices.Bluetooth.Advertisement;
 
 // Connects to the MAX86171 board and uses every LED and all four photodiodes.
 //
-// Sensor board (MAX86171_OSB): two single green LEDs in the middle and two OSRAM SFH 7013 packages
+// Sensor board (MAX86171_OSB): two single green LEDs in the middle (D3, D4) and two OSRAM SFH 7013 packages
 // (green/red/IR; pin 1 green, 2 IR, 4 red), one near PD1 and one near PD2. Driver-select codes mapped on this board:
 //   green: A:00 = D3, B:10 = D4, C:11 = package near PD1, B:11 = package near PD2
 //   red:   B:00 near PD1, C:10 near PD2        infrared: B:01 near PD1, A:11 near PD2
@@ -68,20 +68,28 @@ class PpgStream : IDisposable {
     byte part = board.ReadReg(0xFF);
     if (part != 0x2C) Log("Warning: unexpected part ID 0x" + part.ToString("X2") + " (MAX86171 is 0x2C)");
 
-    ConfigureAll();
+    // 25 Hz frame rate (32000 Hz / 1280): enough time for eight measurements with 8x averaging.
+    board.WriteBits(0x15, 5, 5, 0);
+    board.WriteBits(0x16, 7, 0, 0x05);
+    board.WriteBits(0x17, 7, 0, 0x00);
 
-    // Verify the configuration actually took. Measured 2026-09-18: reconfiguring right after a previous session
-    // closed once left the board running the OLD configuration (0x0D read back 0x07, not 0xFF) with no error.
-    string bad = VerifyConfig();
-    for (int attempt = 1; bad != null && attempt <= 2; attempt++) {
-      Log("Sensor settings did not apply (" + bad + ") - retrying " + attempt + "/2...");
-      Thread.Sleep(500);
-      board.WriteBits(0x0D, 7, 0, 0x00);
-      ConfigureAll();
-      bad = VerifyConfig();
+    for (int pair = 0; pair < 2; pair++) {
+      byte pds = pair == 0 ? PdPair12 : PdPair34;
+      int m0 = 1 + 4 * pair;
+      ConfigureMeas(m0,     0x38, pds, CurrentGreen, CurrentGreen, CurrentGreen); // A:00 D3, B:10 D4, C:11 package-1 green
+      ConfigureMeas(m0 + 1, 0x0C, pds, 0, CurrentGreen, 0);                        // B:11 package-2 green
+      ConfigureMeas(m0 + 2, 0x20, pds, 0, CurrentRed, CurrentRed);                 // B:00 + C:10 both red
+      ConfigureMeas(m0 + 3, 0x07, pds, CurrentIr, CurrentIr, 0);                   // B:01 + A:11 both infrared
     }
-    if (bad != null) throw new Exception("The sensor ignored its settings (" + bad + "). Switch the board off and on, wait 10 s, then press Start again.");
-    if ((board.ReadReg(0x01) & 0x04) != 0) throw new Exception("The sensor reports an invalid configuration. Switch the board off and on, then press Start again.");
+
+    // System config: MEAS9 off, both PPG channels on, not in shutdown; enable MEAS1-8.
+    board.WriteBits(0x0C, 3, 2, 0);
+    board.WriteBits(0x0C, 1, 1, 0);
+    board.WriteBits(0x0D, 7, 0, 0xFF);
+
+    byte sys1 = board.ReadReg(0x0C), sys2 = board.ReadReg(0x0D), st2 = board.ReadReg(0x01);
+    if ((sys1 & 0x8E) != 0 || sys2 != 0xFF) Log("Warning: sensor config did not stick (0x0C=0x" + sys1.ToString("X2") + ", 0x0D=0x" + sys2.ToString("X2") + ")");
+    if ((st2 & 0x04) != 0) Log("Warning: sensor reports an invalid configuration.");
 
     configuredFs = ReadFrameRate();
     Log("Frame rate from registers: " + configuredFs.ToString("F1") + " Hz");
@@ -97,47 +105,6 @@ class PpgStream : IDisposable {
   void CreateEstimators(double fs) {
     Estimator = new MultiHeartRate(fs, Detectors);
     Oximeter = new MultiPathOximeter(fs, Detectors);
-  }
-
-  // The whole measurement setup: frame rate, 8 measurements, both PPG channels on, MEAS1-8 enabled.
-  void ConfigureAll() {
-    // 25 Hz frame rate (32000 Hz / 1280): enough time for eight measurements with 8x averaging.
-    board.WriteBits(0x15, 5, 5, 0);
-    board.WriteBits(0x16, 7, 0, 0x05);
-    board.WriteBits(0x17, 7, 0, 0x00);
-    foreach (var m in Plan()) ConfigureMeas(m.Item1, m.Item2, m.Item3, m.Item4, m.Item5, m.Item6);
-    // System config: MEAS9 off, both PPG channels on, not in shutdown; enable MEAS1-8.
-    board.WriteBits(0x0C, 3, 2, 0);
-    board.WriteBits(0x0C, 1, 1, 0);
-    board.WriteBits(0x0D, 7, 0, 0xFF);
-  }
-
-  // (meas, selects, pdSelect, drvA, drvB, drvC) for MEAS1-8.
-  static List<Tuple<int, byte, byte, byte, byte, byte>> Plan() {
-    var p = new List<Tuple<int, byte, byte, byte, byte, byte>>();
-    for (int pair = 0; pair < 2; pair++) {
-      byte pds = pair == 0 ? PdPair12 : PdPair34;
-      int m0 = 1 + 4 * pair;
-      p.Add(Tuple.Create(m0,     (byte)0x38, pds, CurrentGreen, CurrentGreen, CurrentGreen)); // A:00 + B:10 single greens, C:11 package green
-      p.Add(Tuple.Create(m0 + 1, (byte)0x0C, pds, (byte)0, CurrentGreen, (byte)0));          // B:11 package-2 green
-      p.Add(Tuple.Create(m0 + 2, (byte)0x20, pds, (byte)0, CurrentRed, CurrentRed));          // B:00 + C:10 both red
-      p.Add(Tuple.Create(m0 + 3, (byte)0x07, pds, CurrentIr, CurrentIr, (byte)0));            // B:01 + A:11 both infrared
-    }
-    return p;
-  }
-
-  // Reads the key registers back; null if all match, else a short description of the first mismatch.
-  string VerifyConfig() {
-    byte en = board.ReadReg(0x0D), sys = board.ReadReg(0x0C), div = board.ReadReg(0x16);
-    if (en != 0xFF) return "measurements enabled 0x" + en.ToString("X2") + ", expected 0xFF";
-    if ((sys & 0x8E) != 0) return "system config 0x" + sys.ToString("X2");
-    if (div != 0x05) return "frame rate divider 0x" + div.ToString("X2");
-    foreach (var m in Plan()) {
-      byte bs = (byte)(0x18 + 8 * (m.Item1 - 1));
-      byte sel = board.ReadReg(bs), cfg = board.ReadReg((byte)(bs + 1));
-      if (sel != m.Item2 || cfg != (byte)(m.Item3 | Aver8)) return "MEAS" + m.Item1 + " settings";
-    }
-    return null;
   }
 
   void ConfigureMeas(int m, byte selects, byte pdSelect, byte drvA, byte drvB, byte drvC) {
@@ -208,7 +175,7 @@ class PpgStream : IDisposable {
       bool greenSat = Math.Abs(v[m0, occ]) >= 523287 || Math.Abs(v[m0 + 1, occ]) >= 523287;
       LastGreen[pd] = green; LastRed[pd] = red; LastIr[pd] = ir;
       Estimator.Add(pd, green, greenSat);
-      Oximeter.Add(pd, red, ir, green);
+      Oximeter.Add(pd, red, ir);
     }
     if (RawLog != null) RawLog.Add((int)LastGreen[0]);
     CheckRate();

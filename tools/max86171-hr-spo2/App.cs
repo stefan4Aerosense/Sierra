@@ -9,8 +9,6 @@ static class Program {
   static int Main(string[] args) {
     if (args.Length > 0 && args[0] == "--selftest") return SelfTest.Run();
     if (args.Length == 4 && args[0] == "--replay") return SelfTest.Replay(args[1], args[2], args[3]);
-    if (args.Length == 3 && args[0] == "--replayrec")
-      return SelfTest.ReplayRec(double.Parse(args[1], System.Globalization.CultureInfo.InvariantCulture), args[2]);
     if (args.Length == 7 && args[0] == "--replay2")
       return SelfTest.Replay2(double.Parse(args[1], System.Globalization.CultureInfo.InvariantCulture), args[2], args[3], args[4], args[5], args[6]);
     if (args.Length > 0 && args[0] == "--diag") {
@@ -61,8 +59,6 @@ class MainForm : Form {
   readonly Label infoLabel = new Label(), statusLabel = new Label();
   readonly Button startButton = new Button(), stopButton = new Button();
   readonly WavePanel wave = new WavePanel();
-  readonly SignalBar signalBar = new SignalBar();
-  readonly Label hintLabel = new Label();
   readonly System.Windows.Forms.Timer uiTimer = new System.Windows.Forms.Timer();
   PpgStream stream;
   DateTime lastEstimate;
@@ -89,15 +85,11 @@ class MainForm : Form {
     infoLabel.SetBounds(560, 64, 204, 120); infoLabel.ForeColor = Color.DimGray; infoLabel.Font = new Font("Segoe UI", 9);
     infoLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
-    signalBar.SetBounds(16, 196, 220, 22);
-    hintLabel.SetBounds(246, 196, 518, 24); hintLabel.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-    hintLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right; hintLabel.TextAlign = ContentAlignment.MiddleLeft;
-
-    wave.SetBounds(16, 226, 748, 240); wave.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+    wave.SetBounds(16, 196, 748, 270); wave.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
     statusLabel.SetBounds(16, 478, 748, 30); statusLabel.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
     statusLabel.ForeColor = Color.DimGray; statusLabel.Text = "Close the Maxim GUI, switch the board on, then press Start.";
 
-    Controls.AddRange(new Control[] { startButton, stopButton, bpmLabel, bpmUnit, spo2Label, spo2Unit, infoLabel, signalBar, hintLabel, wave, statusLabel });
+    Controls.AddRange(new Control[] { startButton, stopButton, bpmLabel, bpmUnit, spo2Label, spo2Unit, infoLabel, wave, statusLabel });
     uiTimer.Interval = 50; uiTimer.Tick += (s, e) => RefreshUi();
     FormClosing += (s, e) => StopStream();
   }
@@ -143,7 +135,6 @@ class MainForm : Form {
       if ((DateTime.Now - lastEstimate).TotalSeconds < 1) return;
       lastEstimate = DateTime.Now;
 
-      ShowPlacement(est);
       string counts = "Samples " + stream.Samples + " @ " + est.SampleRate.ToString("F1") + " Hz\nDropped packets " + stream.DroppedPackets;
       if (stream.Samples == 0) { infoLabel.Text = "Waiting for data...\n" + counts; return; }
       if (est.Count < est.SampleRate * 8) { infoLabel.Text = "Measuring... keep still\n" + counts; return; }
@@ -159,49 +150,14 @@ class MainForm : Form {
 
       var ox = stream.Oximeter.Estimate(bpm);
       if (ox.Problem == null) {
-        spo2Label.Text = ox.SpO2.ToString("F0") + (ox.LowConfidence ? "?" : "");
-        spo2Label.ForeColor = ox.LowConfidence ? Color.FromArgb(180, 120, 30) : Color.FromArgb(30, 90, 190);
-        spo2Unit.Text = ox.LowConfidence ? "SpO2 % - LOW CONFIDENCE" : "SpO2 % (uncalibrated estimate)";
-        info += "SpO2 +/-" + ox.Spread.ToString("F0") + "%, R " + ox.R.ToString("F2") + "\nvia " + ox.Path + ", signal/noise " + ox.Snr.ToString("F0") + "\n";
+        spo2Label.Text = ox.SpO2.ToString("F0");
+        info += (ox.Spread > 3 ? "SpO2 UNSTABLE" : "SpO2") + " +/-" + ox.Spread.ToString("F0") + "%, R " + ox.R.ToString("F2") + "\nvia " + ox.Path + ", signal/noise " + ox.Snr.ToString("F0") + "\n";
       } else {
-        spo2Label.Text = "--"; spo2Label.ForeColor = Color.FromArgb(30, 90, 190);
-        spo2Unit.Text = "SpO2 % (uncalibrated estimate)";
+        spo2Label.Text = "--";
         info += "SpO2: " + ox.Problem + "\n";
       }
       infoLabel.Text = info + counts;
     }
-  }
-
-  // Signal-strength bar + a plain instruction, so a weak reading is something the user can fix.
-  void ShowPlacement(MultiHeartRate est) {
-    MultiHeartRate.Placement p;
-    double pi = est.PerfusionIndex(out p);
-    signalBar.Level = pi; signalBar.Invalidate();
-    switch (p) {
-      case MultiHeartRate.Placement.NoFinger:  Hint("Place a fingertip over the sensor", Color.DimGray); break;
-      case MultiHeartRate.Placement.Saturated: Hint("Too much light - cover the sensor fully with your fingertip", Color.FromArgb(200, 30, 50)); break;
-      case MultiHeartRate.Placement.Moving:    Hint("Movement - keep your finger still", Color.FromArgb(200, 30, 50)); break;
-      case MultiHeartRate.Placement.Weak:      Hint("Weak pulse - press MORE LIGHTLY, warm your finger", Color.FromArgb(200, 30, 50)); break;
-      case MultiHeartRate.Placement.Fair:      Hint("Fair signal - rest lightly and hold still", Color.FromArgb(180, 120, 30)); break;
-      case MultiHeartRate.Placement.Good:      Hint("Good signal - hold still", Color.FromArgb(21, 128, 61)); break;
-      default:                                 Hint("Measuring signal strength...", Color.DimGray); break;
-    }
-  }
-
-  void Hint(string text, Color c) { hintLabel.Text = text; hintLabel.ForeColor = c; }
-}
-
-// Pulse strength (perfusion index, %) on a log scale 0.03 .. 5 %, red / amber / green zones.
-class SignalBar : Panel {
-  public double Level;
-  public SignalBar() { DoubleBuffered = true; BackColor = Color.FromArgb(235, 235, 238); BorderStyle = BorderStyle.FixedSingle; }
-  protected override void OnPaint(PaintEventArgs e) {
-    base.OnPaint(e);
-    double lo = Math.Log10(0.03), hi = Math.Log10(5);
-    double frac = Level <= 0 ? 0 : Math.Max(0, Math.Min(1, (Math.Log10(Level) - lo) / (hi - lo)));
-    var c = Level < 0.3 ? Color.FromArgb(200, 30, 50) : Level < 1 ? Color.FromArgb(217, 150, 30) : Color.FromArgb(21, 128, 61);
-    using (var b = new SolidBrush(c)) e.Graphics.FillRectangle(b, 0, 0, (float)(frac * (Width - 2)), Height - 2);
-    e.Graphics.DrawString("Signal " + (Level > 0 ? Level.ToString("F2") + " %" : "--"), Font, Brushes.Black, 4, 2);
   }
 }
 
