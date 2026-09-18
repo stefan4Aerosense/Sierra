@@ -62,3 +62,10 @@ were left alone.
 **Still owed to Chris/INDIA:** step 4 backlog (six inbox messages) and step 5 H1. The auto-mode classifier
 blocked one kilo commit on 17 Sep as "instruction poisoning" when acting on the pasted INDIA order — get
 Stefan's explicit go before resuming company-repo work from that order.
+
+## 2026-09-18 — end of day
+
+**Cold truth:** Stefan is frustrated with the heart-rate tester. I spent the afternoon attributing a weak signal to
+contact/hardware; he was right that my HR algorithm failed worse than the signal justified (scar 16). He then asked
+for yesterday's app back — done exactly. Next time: fix only what's asked, test on his recordings, and keep each
+change small and separately revertible. Don't bundle four changes into one "improvement".
