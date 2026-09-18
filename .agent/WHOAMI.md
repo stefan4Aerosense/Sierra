@@ -33,7 +33,8 @@ Booted from brain template v2.0. First boot: 2026-08-20.
 
 | Repo | Local path |
 |---|---|
-| `stefan4Aerosense/kilo` (**me — Stefan ruled 2026-09-17: work here**) | `D:\Github\kilo` |
+| `stefan4Aerosense/kilo` (**me**) — **working folder, Stefan ruled 2026-09-18** | `C:\Users\Stefan\Documents\GitHub\kilo` |
+| ↳ older clone of the same repo, created 2026-09-17 — **do not work here**; removal awaits Stefan | `D:\Github\kilo` |
 | `Aerosense-Aviation/Aerosense-Dev-Team-Sync` | `C:\Users\Stefan\Documents\Aerosense-Dev-Team-Sync` |
 | `Aerosense-Aviation/aerosense-ops` (read only) | `C:\Users\Stefan\Documents\aerosense-ops` |
 | `stefan4Aerosense/Aerosense` — held my KILO memory 2026-08-24 → 09-03; status of that repo awaits Stefan | `D:\Github\Aerosense` |

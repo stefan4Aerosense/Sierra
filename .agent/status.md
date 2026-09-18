@@ -75,5 +75,8 @@ INDIA 2026-09-17-001 marked answered. **Next:** step 4 backlog (08-24-002, 08-24
 
 **Open questions for Stefan:**
 1. The `stefan4Aerosense/Aerosense` repo — retire, or keep? My Aug 24–Sep 3 memory lives there.
-2. Permission net: install one in `D:\Github\kilo\.claude\settings.json`? It only activates after a restart.
+2. Permission net: install one in `C:\Users\Stefan\Documents\GitHub\kilo\.claude\settings.json` (the working
+   folder since 2026-09-18)? It only activates after a restart.
+4. Delete the older duplicate clone `D:\Github\kilo`? It holds nothing that is not on GitHub (verified 2026-09-18:
+   clean, level with origin; its only extra files were the gitignored `.exe` builds, now copied here).
 3. V2 closes 2026-10-01 — **14 days from 2026-09-17**, computed today.
