@@ -113,8 +113,8 @@ sensors off; accelerometer off
 0x0D = 0x00 ; 0x0C bit7 = 0          disable ALL measurements BEFORE reconfiguring (see trap 7)
 0x15 bit5 = 0 ; 0x16 = 0x05 ; 0x17 = 0x00      32000/1280 = 25 Hz
 for PD pair in (PD1/PD2 → cfg1 0x18, PD3/PD4 → cfg1 0x78):     cfg1 |= 0x03 (8× averaging)
-  MEAS n+1  selects 0x38  currents A=B=C=0x0A   green: A:00 (D3) + B:10 (D4) + C:11 (package-1 green)
-  MEAS n+2  selects 0x0C  current  B=0x0A       green: B:11 (package-2 green)
+  MEAS n+1  selects 0x38  currents A=B=C=0x0A   green: A:00 + B:10 (the two single greens) + C:11 (package near PD1)
+  MEAS n+2  selects 0x0C  current  B=0x0A       green: B:11 (package near PD2)
   MEAS n+3  selects 0x20  currents B=C=0x0A     red:   B:00 + C:10 (both packages)
   MEAS n+4  selects 0x07  currents A=B=0x10     IR:    B:01 + A:11 (both packages)
   each MEAS: cfg2 = 0x3A, cfg3 = 0x50
@@ -264,3 +264,24 @@ from 21 s onward, via the PD2 path.
 - OSRAM CT DBLP31.12 product page (ams-osram.com)
 - github.com/torvalds/linux/tree/master/drivers/iio/health
 - MAXREFDES280 GUI 1.3.0 install: `BleWristband.dll`, `MAXREFDES280Gui.exe`, `RegistersData/max86171_reg.csv`
+
+---
+
+## Annotation 2026-09-18 — CAD of this board now exists (FusionChatGPT)
+
+`[repo]` `stefan4Aerosense/FusionChatGPT@5c34fea`, work by Stefan's Fusion agent, 17 Sep:
+
+- `outputs/MAX86171-OSB-Mechanical-Reference.{f3d,step}` + `MAX86171-OSB-Component-Placement.json` — the
+  MAX86171_OSB# as 37 bodies on a 15 × 20.4 × 0.8 mm board. **Provisional**: outline and placements digitised
+  from the same kit PDF used here, thickness assumed. The optical side shows the two SFH 7013 packages at the
+  top and bottom edges, the two single greens at the centre and four photodiodes around them — consistent with
+  Stefan's photo. Lists a BMA280 accelerometer (U2) on the sensor board; this bring-up switched the
+  accelerometer off and never read it.
+- `outputs/Earcup-Integrated-Sensor-Fit-V2.f3d` (+ notes, validation JSON) — the board pocketed into the H1
+  ear-cup seal cushion behind an 18.2 × 23.6 mm surround with eight optical-window concept bodies. Validated
+  for **zero CAD interference only**; cushion deformation, optics, seal and skin contact are explicitly open.
+
+**Link to this document's findings:** the two SFH 7013 packages are the two red/IR paths whose quality differed
+tenfold at one instant on a fingertip (§5). In a cushion, contact pressure will vary around the ring, so the
+position of each package relative to the cushion's contact line matters. **Open:** map "package near PD1/PD2"
+from §3 onto the Fusion model's top/bottom packages — that would also settle which is D1 and which is D2.

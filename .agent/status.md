@@ -6,6 +6,37 @@ selftest 17/0/0, H1 304 g finding `dcf0733`, permission-net watcher finding, pop
 committed to `stefan4Aerosense/Aerosense`, not here. Read that repo's `.agent/status.md` + `MEMORY.md` before
 relying on any company-state belief. Not yet merged into this repo.
 
+## 2026-09-18 — caught up on FusionChatGPT (Stefan's Fusion backup repo), read-only
+
+`[repo]` `FusionChatGPT@5c34fea` (origin/main; local clone 4 behind, not pulled). All commits 15–17 Sep, by
+Stefan's Fusion agent. What landed, newest first:
+
+- **17 Sep 15:27 — Ear-cup integrated sensor fit** (concept + **V2 on Stefan's revised oval cushion**): the
+  MAX86171 sensor board sits in a pocket in the ear-cup seal cushion, in an 18.2 × 23.6 mm black surround with
+  eight optical-window concept bodies. Validation = **CAD interference only** (zero overlap sensor/surround/
+  cushion) — **not** a deformed cushion under headband load, not optics, not skin contact. Notes say so.
+- **17 Sep 11:52 — MAX86171_OSB# mechanical reference** (F3D + STEP, 37 components, board 15 × 20.4 × 0.8 mm).
+  **Provisional**: outline and positions digitised from the kit PDF, thickness assumed; "do not finalize
+  cushion tooling". The placement JSON lists a **BMA280 accelerometer (U2)** on the sensor board.
+- **17 Sep 10:55 — AeroNode PCB** colours/materials, exploded preview, photoreal renders; an H1 master
+  skeleton creation report PDF.
+- **17 Sep 09:19 — H1 Master Skeleton DEV-B**: separate document, original assembly untouched; skeleton
+  projections associative but detailed solids **not yet skeleton-driven**; band target radius 73.8 mm is a
+  target only; **band material baseline 17-7 PH, provisional per Stefan**; 44 linked occurrences, archive not
+  verified self-contained.
+- **17 Sep 08:49 — countersunk screw set** M1.6/M2/M2.5/M3 × 5 (F3D + STEP).
+- **16 Sep — renders**: AeroNode cinematic/wallpaper, H1 dark studio, H1 packaging concepts.
+- Stale line in its notes: "GitHub backup pending — git index.lock denied" — the commits did land.
+
+**Why it matters to my lane:** the ear-cup fit is the first CAD step on the **ear-cup PPG risk** Chris raised;
+it uses the same MAX86171_OSB# board I brought up on a finger. The fit is geometric; nothing optical has been
+tested in a cup. My two-path bench result (path quality varied 10× at one instant) is directly relevant to
+where that board sits in the cushion. **Not yet cross-checked:** which physical package is near which
+photodiode in the Fusion model vs my measured LED map — would settle the D1/D2 question.
+
+**Still open from 2026-09-17:** kilo status line recording the shelf landing (`sync@5abd8b2`) was blocked by
+the auto-mode classifier; this entry supersedes it. Backlog (step 4) and H1 (step 5) not started.
+
 ## 2026-09-17 — MAX86171EVSYS# brought up; Chris/INDIA order in progress
 
 **Order received (Chris via INDIA, pasted by Stefan):** 1 push check · 2 repo name · 3 MAX86171 write-up ·
@@ -28,8 +59,10 @@ HTTPS. **Permission net: NOT live** in a session rooted at `D:\Github\kilo` (no 
   PD2 path while the PD1 path was unusable on the same finger. No reference instrument. No ear cup.
 - **Proposal to replace MAX30101: none** — no MAX30101 was tested; nothing to compare.
 
-**Next:** land the report on the shelf (`reports/stefan/` + MANIFEST + banner) and a reply in
-`stefan/outbox/`, mark `inbox/stefan/2026-09-17-001` answered. Then step 4 backlog, then H1.
+**LANDED** `Aerosense-Dev-Team-Sync@5abd8b2` (verified 40/40): report
+`reports/stefan/KILO_max86171evsys_bringup.html` + MANIFEST row, reply `stefan/outbox/2026-09-17-001_…`,
+INDIA 2026-09-17-001 marked answered. **Next:** step 4 backlog (08-24-002, 08-24-003, 08-24-010, 08-26-001,
+08-26-002, 09-01-001), then step 5 H1.
 
 **Open questions for Stefan:**
 1. The `stefan4Aerosense/Aerosense` repo — retire, or keep? My Aug 24–Sep 3 memory lives there.

@@ -38,6 +38,7 @@ Booted from brain template v2.0. First boot: 2026-08-20.
 | `Aerosense-Aviation/aerosense-ops` (read only) | `C:\Users\Stefan\Documents\aerosense-ops` |
 | `stefan4Aerosense/Aerosense` — held my KILO memory 2026-08-24 → 09-03; status of that repo awaits Stefan | `D:\Github\Aerosense` |
 | FUSION / H&B CAD agents (separate identities — do not touch their `.agent/`) | `D:\Github\Fusion`, `D:\Github\H&B` |
+| `stefan4Aerosense/FusionChatGPT` — **Stefan's current Fusion 360 backup repo**, written by a separate Fusion agent (its `AGENTS.md` is that agent's rulebook, not mine). I **read only**; read `origin/main` without pulling into its clone | `C:\Users\Stefan\Documents\GitHub\FusionChatGPT` |
 
 ## Boundaries — what I may write vs. only read
 
