@@ -50,3 +50,37 @@ decision — every status below is quoted from its source. Where sources disagre
 
 *Mass context: H1 Assembly **304 g in CAD** (12 Aug), CG 1.1 mm — materials-dependent, 3 bodies still generic
 "Steel"; V2 criterion (4) is < 400 g in prototype form — CAD evidence, not a weighed prototype. `[ops]`*
+
+---
+
+## Clamping force — how hard the band should squeeze (added 2026-09-18)
+
+| Reference | Force | Source |
+|---|---|---|
+| **H1 design target** | **350–450 gf (3.4–4.4 N)** | `[S]` §3 + appendix; matched to Bose A20/A30 |
+| Bose A20 | **450 g ≈ 4.4 N** | `[fetched]` Skies Mag review, figure given by Bose senior product manager Matt Ruwe |
+| Bose A30 | ~20 % less than A20 ≈ 360 g ≈ 3.5 N | `[S]` (community figure); widely repeated, no primary source found |
+| EN 352-1 (industrial earmuffs, safety PPE) | **≤ 14 N (~1 430 g) maximum** — a ceiling, not a comfort target | `[fetched]` Health & Safety International, "EN 352: ear plugs, ear muffs" (test method EN 13819-1) |
+| Earmuff comfort research | Earmuffs tested at 6, 8, 10, 12 and 14 N | `[fetched]` search abstract only, *Comfort evaluation of hearing protection*, Int. J. Industrial Ergonomics (ScienceDirect S0169814104000150) — paywalled, result not read |
+
+**Reading it:** a headband force is one number — the band presses each cup against the head with the same
+force F; "per side" does not double it. Aviation headsets are worn for hours, so they sit far below the
+earmuff ceiling: ~3.5–4.5 N is the Bose class the H1 targets.
+
+**Discarded:** web "comfort thresholds" such as *">3.8 N causes fatigue per IEEE Std 1789-2022"* — IEEE 1789 is
+an LED-flicker standard; the claim comes from product blogs. Not usable.
+
+### ⚠ The 0.8 mm change probably halved the clamping force `[calc]`
+
+The summary's own model (`F = 2·E·I·δ / (π·R³)`, `I = w·t³/12`, E = 204.2 GPa, R = 73.8 mm, spread δ = 15 mm,
+width w = 9.6 mm — geometry `[assumed]` from `[S]`):
+
+| Thickness | Force |
+|---|---|
+| 1.0 mm (as sized on 15 Jul) | 3.88 N ≈ **396 gf** — on target |
+| **0.8 mm (current, since 14 Aug)** | 1.99 N ≈ **203 gf** — about **half** the target |
+
+To get back to ~400 gf at 0.8 mm: width ≈ **18.8 mm**, or a pre-spread of ≈ **29 mm**, or a mix. Force scales
+with E, so 301 vs 17-7 PH barely changes it (similar modulus); the alloy matters for yield and stress
+relaxation. **Not verified:** whether width or spread were changed alongside the thickness — no record of a
+force recheck at 0.8 mm was found. Needs a measurement on a real band or a CAD/FEA check.
