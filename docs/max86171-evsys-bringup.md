@@ -285,3 +285,13 @@ from 21 s onward, via the PD2 path.
 tenfold at one instant on a fingertip (§5). In a cushion, contact pressure will vary around the ring, so the
 position of each package relative to the cushion's contact line matters. **Open:** map "package near PD1/PD2"
 from §3 onto the Fusion model's top/bottom packages — that would also settle which is D1 and which is D2.
+
+## Annotation 2026-09-18 — "Board not found" was another device holding the connection
+
+`[measured]` After the kit spent a night with another developer, the tester reported *Board not found* for
+an hour. Laptop Bluetooth was fine; the board was not advertising at all. Cause: **another nearby device was
+still connected to the board** (the kit accepts one BLE connection and stops advertising while connected).
+Once Bluetooth was turned off on the nearby devices, `OS61 Demo` reappeared at once (-34 dBm) and streamed
+normally (153 samples / 6 s, 0 dropped). **First check next time: turn off Bluetooth on every phone/laptop
+near the board.** Also observed on the way (not explained by the kit guide): on USB the green LED was solid;
+on battery it blinked with a small red LED alongside.
