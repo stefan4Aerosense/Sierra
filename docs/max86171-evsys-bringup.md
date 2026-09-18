@@ -295,3 +295,14 @@ Once Bluetooth was turned off on the nearby devices, `OS61 Demo` reappeared at o
 normally (153 samples / 6 s, 0 dropped). **First check next time: turn off Bluetooth on every phone/laptop
 near the board.** Also observed on the way (not explained by the kit guide): on USB the green LED was solid;
 on battery it blinked with a small red LED alongside.
+
+## Annotation 2026-09-18 (b) — weak pulse is at the tissue, not the configuration; settings can silently not apply
+
+`[measured]` A/B on the same finger, back to back: with **yesterday's exact 3-measurement configuration** the
+green pulse was **0.1 % of DC (SNR 20–29)** against **2.2 % (SNR 57)** in yesterday's good session — ~20×
+weaker — while the light level was **higher** (161k vs 122k). More light but less pulse points at light reaching
+the photodiodes without passing through perfused tissue (housing window, crosstalk, lifted/blanched contact),
+not at the app. With a pulse that weak the heart-rate estimator locked onto **half the rate (42 BPM)**, which is
+what the app showed (39). **Also measured:** reconfiguring within ~1 s of the previous session closing once left
+the board on the **old** configuration (`0x0D` read back `0x07`, not `0xFF`) with no error. The app now reads
+its settings back, retries twice, and refuses to stream if they still do not match.
