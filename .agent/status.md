@@ -1,13 +1,13 @@
 # status — Agent KILO
 
-**Last updated:** 2026-09-17 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
+**Last updated:** 2026-09-18 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
 Older entries: `journal.md`. **Merged 2026-09-18:** my KILO memory from `stefan4Aerosense/Aerosense@679ce5e`
 (2026-07-28 → 09-03) is now in this repo — scars appended to `MEMORY.md`, status/handoffs/journal archived in
 `journal.md`, owned docs moved to `docs/` with provenance. The Aerosense repo is frozen at that SHA; its fate
 awaits Stefan.
 
 **Carried-forward beliefs, each with its date — re-read ops before publishing any of them:**
-- H1 Assembly **304 g in CAD**, CG 1.1 mm off-centre (12 Aug, `FUSION@8e4f828`); V2 MVP criterion 4 is
+- ~~H1 Assembly 304 g in CAD, CG 1.1 mm (12 Aug)~~ **UNREPRODUCIBLE per Fusion audit 18 Sep (FusionChatGPT@203ddb2)**; V2 criterion 4 is
   `<400 g in prototype form` → evidence, not satisfaction. Published `dcf0733`.
 - H1 band **0.8 mm** (not 1.0); CAD alloy 17-4 PH is a proxy; FusionChatGPT's DEV-B skeleton (17 Sep) records
   **17-7 PH as the provisional baseline per Stefan**; supplier talk was about 301 spring temper — unsettled.
