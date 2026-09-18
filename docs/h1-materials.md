@@ -84,3 +84,23 @@ To get back to ~400 gf at 0.8 mm: width ≈ **18.8 mm**, or a pre-spread of ≈ 
 with E, so 301 vs 17-7 PH barely changes it (similar modulus); the alloy matters for yield and stress
 relaxation. **Not verified:** whether width or spread were changed alongside the thickness — no record of a
 force recheck at 0.8 mm was found. Needs a measurement on a real band or a CAD/FEA check.
+
+### Required band thickness for 350–450 gf — stainless steel `[calc]` (2026-09-18)
+
+Same model as above, R = 73.8 mm, spread δ = 15 mm (`[assumed]` from `[S]`); model reproduces `[S]` exactly
+(396 gf → t = 1.000 mm, 179 MPa). Stainless 301/304 E = 193 GPa; 17-7 PH E = 204.2 GPa.
+
+| Width | 301/304 spring temper, 400 gf | 17-7 PH, 400 gf | Bending stress |
+|---|---|---|---|
+| 8 mm | 1.09 mm | 1.07 mm | ~185–190 MPa |
+| **9.6 mm (current)** | **1.02 mm** (0.98–1.06 for 350–450 gf) | **1.00 mm** | ~175–180 MPa |
+| 12 mm | 0.95 mm | 0.93 mm | ~160–165 MPa |
+| 15 mm | 0.88 mm | 0.87 mm | ~150–155 MPa |
+| **20 mm** | **0.80 mm** (0.77–0.83) | 0.79 mm | ~135–140 MPa |
+
+- **Temper matters more than grade:** stresses are ~135–190 MPa. Annealed 304 yields at roughly 200 MPa — too
+  close; a spring temper (301 full-hard, or 17-7 PH hardened after forming) sits far above. `[assumed]` typical
+  values — take real yield from the supplier's mill certificate.
+- **Tolerance:** force ∝ t³, so ±5 % on thickness is ~±15 % on force.
+- **Head size:** force ∝ spread. At 9.6 × 1.0 mm (301): 10 mm spread → ~250 gf, 15 → ~375, 20 → ~500,
+  25 → ~620 gf. 5th–95th %ile bitragion breadth spans ~25 mm `[S]`, so the relaxed opening sets who gets what.
