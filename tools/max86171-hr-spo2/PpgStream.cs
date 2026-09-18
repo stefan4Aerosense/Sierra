@@ -6,7 +6,7 @@ using Windows.Devices.Bluetooth.Advertisement;
 
 // Connects to the MAX86171 board and uses every LED and all four photodiodes.
 //
-// Sensor board (MAX86171_OSB): two single green LEDs in the middle (D3, D4) and two OSRAM SFH 7013 packages
+// Sensor board (MAX86171_OSB): two single green LEDs in the middle and two OSRAM SFH 7013 packages
 // (green/red/IR; pin 1 green, 2 IR, 4 red), one near PD1 and one near PD2. Driver-select codes mapped on this board:
 //   green: A:00 = D3, B:10 = D4, C:11 = package near PD1, B:11 = package near PD2
 //   red:   B:00 near PD1, C:10 near PD2        infrared: B:01 near PD1, A:11 near PD2

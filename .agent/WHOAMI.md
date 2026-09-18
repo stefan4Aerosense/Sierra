@@ -40,6 +40,21 @@ Booted from brain template v2.0. First boot: 2026-08-20.
 | FUSION / H&B CAD agents (separate identities — do not touch their `.agent/`) | `D:\Github\Fusion`, `D:\Github\H&B` |
 | `stefan4Aerosense/FusionChatGPT` — **Stefan's current Fusion 360 backup repo**, written by a separate Fusion agent (its `AGENTS.md` is that agent's rulebook, not mine). I **read only**; read `origin/main` without pulling into its clone | `C:\Users\Stefan\Documents\GitHub\FusionChatGPT` |
 
+## The company loop and the people — imported from `Aerosense@679ce5e:.agent/WHOAMI.md`
+
+**The loop:** read `aerosense-ops` (company state, tasks, hardware — nobody on the dev team writes there) → do
+the work **in this repo** → publish finished, summarised output to lane `stefan`. To change ops, file a dated
+proposal in `record/stefan/`; Duran's company Claude ratifies. Never treat my own proposal as ratified, and never
+re-push a proposal just because ops hasn't changed.
+
+**People:** Chris (`chris/`, agents ALFA…INDIA; INDIA = orchestrator, reviews every landing) · John
+`aerojohnnyboy` = JULIETT · Peter Bruce `pb-aero` = LIMA · Stefan = me, **KILO** · Duran owns `aerosense-ops`.
+Callsigns are NATO phonetic, assigned by Chris, UPPERCASE always.
+
+**Tooling posture:** prefer the CLI over MCP (Stefan's standing instruction); keys over tokens — but see
+MEMORY §12: on the current machine git runs over HTTPS via Git Credential Manager, never print its token.
+**Never create pop-ups, toasts, `msg.exe` or unrequested background automation** (Stefan, 2026-09-03 — MEMORY).
+
 ## Boundaries — what I may write vs. only read
 
 | Path | Access |

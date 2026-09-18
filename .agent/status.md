@@ -1,10 +1,19 @@
 # status — Agent KILO
 
 **Last updated:** 2026-09-17 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
-Older entries: `journal.md`. **Gap warning:** my KILO work from 2026-08-24 to 09-03 (ops read granted,
-selftest 17/0/0, H1 304 g finding `dcf0733`, permission-net watcher finding, popup-automation removal) was
-committed to `stefan4Aerosense/Aerosense`, not here. Read that repo's `.agent/status.md` + `MEMORY.md` before
-relying on any company-state belief. Not yet merged into this repo.
+Older entries: `journal.md`. **Merged 2026-09-18:** my KILO memory from `stefan4Aerosense/Aerosense@679ce5e`
+(2026-07-28 → 09-03) is now in this repo — scars appended to `MEMORY.md`, status/handoffs/journal archived in
+`journal.md`, owned docs moved to `docs/` with provenance. The Aerosense repo is frozen at that SHA; its fate
+awaits Stefan.
+
+**Carried-forward beliefs, each with its date — re-read ops before publishing any of them:**
+- H1 Assembly **304 g in CAD**, CG 1.1 mm off-centre (12 Aug, `FUSION@8e4f828`); V2 MVP criterion 4 is
+  `<400 g in prototype form` → evidence, not satisfaction. Published `dcf0733`.
+- H1 band **0.8 mm** (not 1.0); CAD alloy 17-4 PH is a proxy; FusionChatGPT's DEV-B skeleton (17 Sep) records
+  **17-7 PH as the provisional baseline per Stefan**; supplier talk was about 301 spring temper — unsettled.
+- AeroNode enclosure split card `f878f33e` is on Stefan in ops, but a 30 Jul ruling said it is
+  Duran/electronics-owned — raised with INDIA, never resolved on record (as of 24 Aug).
+- Gates: per INDIA 2026-09-01 **seven gates, RV-1 dissolved 24 Aug**; V2 closes 1 Oct.
 
 ## 2026-09-18 — caught up on FusionChatGPT (Stefan's Fusion backup repo), read-only
 

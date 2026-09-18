@@ -1,0 +1,224 @@
+<!-- Provenance: moved into kilo 2026-09-18 from stefan4Aerosense/Aerosense@679ce5e:docs/templates/aerosense-report.html. kilo is now canonical; the Aerosense copy is frozen at that SHA. -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>{{REPORT TITLE}} — Aerosense Internal · Confidential</title>
+<!--
+  AEROSENSE REPORT TEMPLATE — content-neutral house style (v1.0, 2026-07-30).
+  Design system captured from the "Bench Sensor Catalogue" internal report.
+  HOW TO USE: copy this file, fill every {{PLACEHOLDER}}, keep only the components you need
+  (they are a MENU — a simple report may be hero + summary + one table + Sources).
+  RULES: self-contained (CSS inline, images base64, NO external refs). Every claim provenance-tagged
+  + listed in the Sources section. See report-style-guide.md.
+-->
+<style>
+  :root{
+    --bg:#f6f8fb; --panel:#ffffff; --ink:#0f172a; --muted:#5b6b82;
+    --line:#e2e8f0; --sky:#0284c7; --skyhi:#0ea5e9; --indigo:#4338ca;
+    --green:#059669; --amber:#b45309; --red:#b91c1c; --chip:#eef4fb;
+  }
+  *{box-sizing:border-box} html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);color-scheme:light;
+    font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  code,pre,.mono,.mk{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .mk{overflow-wrap:anywhere;word-break:break-word;background:#eef3f9;border-radius:5px;padding:1px 5px;font-size:.86em}
+  .mk.big{font-size:1.05em;font-weight:700;background:#e8effa}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  a{color:var(--sky);text-decoration:none} a:hover{text-decoration:underline}
+  .cbar{background:repeating-linear-gradient(45deg,#0b3a5c,#0b3a5c 14px,#0e4a75 14px,#0e4a75 28px);
+    color:#fff;text-align:center;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:6px 0}
+  header.hero{background:linear-gradient(135deg,#0b1220,#15294a 60%,#1e3a5f);color:#eaf2fb;padding:40px 0 34px;border-bottom:4px solid var(--skyhi)}
+  .badge{display:inline-block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#a8d4fc;border:1px solid #1e3a5f;background:#0c1c30;padding:4px 10px;border-radius:999px}
+  .hero h1{font-size:1.85rem;margin:.5rem 0 .4rem;letter-spacing:-.3px;line-height:1.25}
+  .hero p.sub{font-size:1.0rem;color:#bcd3ea;margin:.3rem 0 0;max-width:880px}
+  .hero .meta{margin-top:16px;color:#9fc0e0;font-size:.86rem;line-height:1.7}
+  .hero .meta b{color:#eaf2fb}
+  main{padding:24px 0 64px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin:18px 0;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  section h2{margin:.1rem 0 .7rem;font-size:1.4rem;letter-spacing:-.2px;display:flex;align-items:baseline;gap:.55rem}
+  section h2 .n{font-size:.74rem;color:#fff;background:var(--indigo);border-radius:8px;padding:3px 9px;font-weight:700;position:relative;top:-2px}
+  section h2 .n.appx{background:#64748b}
+  section h3{margin:1.3rem 0 .4rem;font-size:1.08rem;color:#13233d}
+  p{color:#26374e;margin:.6rem 0} .lead{font-size:1.04rem;color:var(--muted)}
+  nav.toc{position:sticky;top:0;z-index:40;background:rgba(246,248,251,.93);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  nav.toc .wrap{display:flex;flex-wrap:wrap;gap:6px 13px;padding:10px 22px;font-size:.83rem}
+  nav.toc a{color:#33506f}
+  table{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.88rem}
+  th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f0f5fb;color:#1c3656;font-size:.74rem;text-transform:uppercase;letter-spacing:.04em}
+  tr:last-child td{border-bottom:none}
+  td code{background:#eef3f9;padding:1px 5px;border-radius:5px;font-size:.86em;overflow-wrap:anywhere}
+  ul,ol{margin:.5rem 0;padding-left:1.2rem} li{margin:.3rem 0;color:#26374e}
+  .callout{border-left:4px solid var(--sky);background:#f0f8ff;padding:10px 14px;border-radius:0 8px 8px 0;margin:.8rem 0;font-size:.94rem}
+  .callout.warn{border-color:var(--amber);background:#fffaf0}
+  .callout.real{border-color:var(--green);background:#f0fdf6}
+  .callout.ask{border-color:var(--indigo);background:#f5f3ff}
+  .tag{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:6px;white-space:nowrap}
+  .tag-ok{background:#dcfce7;color:#166534} .tag-med{background:#fef3c7;color:#92400e} .tag-un{background:#fee2e2;color:#991b1b}
+  .tag-lo2{background:#e2e8f0;color:#475569}
+  .flag{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff;white-space:nowrap}
+  .flag-a{background:#7c3aed} .flag-b{background:#0369a1} .flag-spare{background:#64748b} .flag-office{background:#0f766e}
+  .flagrow{margin:.5rem 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.82rem;color:var(--muted)}
+  .flagrow b{color:#13233d}
+  footer{color:var(--muted);font-size:.84rem;text-align:center;padding:26px 0 48px;line-height:1.7}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0 4px}
+  .tile{background:#f8fafc;border:1px solid var(--line);border-radius:11px;padding:12px 14px}
+  .tile .v{font-size:1.7rem;font-weight:650;color:#0b1220;line-height:1.15}
+  .tile .l{font-size:.78rem;color:var(--muted);margin-top:2px;line-height:1.35}
+  .ledger{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:860px){.ledger{grid-template-columns:1fr}}
+  .chipcard{border:1px solid var(--line);border-radius:11px;padding:14px 16px;background:#fbfdff;display:flex;flex-direction:column}
+  .chiphead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+  .pfig{display:flex;gap:12px;align-items:flex-start;margin:.5rem 0}
+  .pfig img{width:108px;height:108px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px;flex:0 0 auto}
+  .pfig .pcap{font-size:.74rem;color:var(--muted);line-height:1.4;padding-top:2px}
+  figure.diagfig{margin:.8rem 0;text-align:center;background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px}
+  figure.diagfig img{max-width:100%;height:auto;border-radius:6px}
+  figure.diagfig figcaption{font-size:.76rem;color:var(--muted);margin-top:.5rem;line-height:1.5;text-align:left}
+  .best{background:#f0fdf6!important}
+  .best td:first-child{border-left:3px solid var(--green)}
+  table td.win{font-weight:700;color:#166534}
+  .tablewrap{overflow-x:auto;margin:.6rem 0;-webkit-overflow-scrolling:touch}
+  .tablewrap table{margin:0;min-width:720px}
+  .tablewrap::-webkit-scrollbar{height:8px}
+  .tablewrap::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px}
+  .chipmeta{font-size:.8rem;color:var(--muted);margin:.35rem 0 .2rem}
+  .chiprole{font-size:.86rem;margin:.35rem 0;color:#26374e}
+  .chiprole.deep{background:#f5f9f4;border:1px solid #dcebd8;border-radius:8px;padding:7px 10px}
+  .chipspecs{font-size:.8rem;margin:.35rem 0;padding-left:1.1rem;color:#3b4d63}
+  .chipid{font-size:.78rem;margin:.4rem 0;padding:7px 10px;background:#f4f6fa;border-radius:8px;border:1px dashed #cdd9e8}
+  .chipsrc{font-size:.78rem;color:var(--muted);margin-top:auto;padding-top:.4rem}
+  .ctxnote{font-size:.78rem;background:#fef9ec;border:1px solid #f3e3b3;border-radius:7px;padding:5px 9px;margin:.4rem 0;color:#7a5a12}
+  details.vid{border:1px solid var(--line);border-radius:10px;margin:.6rem 0;background:#fbfdff}
+  details.vid summary{cursor:pointer;padding:10px 14px;font-size:.92rem;color:#13233d;list-style-position:inside}
+  details.vid[open] summary{border-bottom:1px solid var(--line)}
+  @media print{nav.toc{display:none}section{break-inside:avoid;box-shadow:none}header.hero,.cbar{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+
+<div class="cbar">Aerosense Internal · {{SHORT SUBJECT}} — Confidential</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">Internal · Rev {{A}} · {{YYYY-MM-DD}}</span>
+    <h1>{{REPORT TITLE}}</h1>
+    <p class="sub">{{One–three sentence subtitle: what this report is, the question it answers, and what
+      the newest revision adds.}}</p>
+    <div class="meta">
+      Prepared for: <b>{{Name — team}}</b> · Compiled {{YYYY-MM-DD}}<br>
+      Sources: {{list the exact inputs — files, measured runs, datasheets, chats — each named}}. Every
+      figure below is quoted from these and tagged the way the fleet tags claims
+      (<span class="tag tag-ok">MEASURED</span> / <span class="tag tag-med">FETCHED/SPEC</span> /
+      <span class="tag tag-un">ASSUMED / UNVERIFIED</span>).
+    </div>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#sec1">1. Summary</a>
+  <a href="#sec2">2. At a glance</a>
+  <a href="#sec3">3. Detail / ledger</a>
+  <a href="#sec4">4. Comparison</a>
+  <a href="#sec5">5. Open items</a>
+  <a href="#sec6">6. Sources</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- 1 · EXECUTIVE SUMMARY (always first: the whole story in one paragraph) -->
+<section id="sec1">
+  <h2><span class="n">1</span> Executive summary</h2>
+  <p class="lead">{{The broad, accurate overview in 2–4 sentences: what was done, what it means, and the
+    single most important finding — including the honest caveat.}}</p>
+  <div class="tiles">
+    <div class="tile"><div class="v">{{value}}</div><div class="l">{{what this number is}}</div></div>
+    <div class="tile"><div class="v">{{value}}</div><div class="l">{{label}}</div></div>
+    <div class="tile"><div class="v">{{value}}</div><div class="l">{{label}}</div></div>
+    <div class="tile"><div class="v">{{value}}</div><div class="l">{{label}}</div></div>
+  </div>
+  <div class="callout"><b>How to read this report.</b> {{Explain any pill/flag convention up front, and
+    the difference between "verification status" and the finding itself.}}</div>
+</section>
+
+<!-- 2 · AT A GLANCE (a table; highlight the winner/answer row) -->
+<section id="sec2">
+  <h2><span class="n">2</span> {{Section title}}</h2>
+  <p class="lead">{{One-line framing of the table.}}</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>{{Item}}</th><th>{{Col}}</th><th>{{Col}}</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr class="best"><td class="win">{{winning row}}</td><td>{{v}}</td><td>{{v}}</td><td><span class="tag tag-ok">MEASURED</span></td></tr>
+      <tr><td>{{row}}</td><td>{{v}}</td><td>{{v}}</td><td><span class="tag tag-med">SPEC</span></td></tr>
+      <tr><td>{{row}}</td><td>{{v}}</td><td>{{v}}</td><td><span class="tag tag-un">UNVERIFIED</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 3 · DETAIL — card grid (drop the card layout when a table is enough) -->
+<section id="sec3">
+  <h2><span class="n">3</span> {{Detail / ledger}}</h2>
+  <div class="ledger">
+    <div class="chipcard">
+      <div class="chiphead"><span class="mk big">{{Item name}}</span><span class="tag tag-med">{{STATUS}}</span></div>
+      <div class="chipmeta">{{vendor · part · key spec · qty}}</div>
+      <!-- optional product image: base64 ONLY (self-contained) -->
+      <!-- <div class="pfig"><img src="data:image/jpeg;base64,..." alt="..."><div class="pcap">{{caption + source}}</div></div> -->
+      <div class="flagrow"><b>{{Unit}}</b> <span class="flag flag-a">{{TAG A}}</span></div>
+      <div class="chiprole">{{what it is / its role}}</div>
+      <ul class="chipspecs"><li>{{spec}}</li><li>{{spec}}</li></ul>
+      <div class="chipid"><b>{{Verification}}</b> {{how identity/value is confirmed}} · status: <span class="tag tag-un">{{UNREAD}}</span> — {{"do not assume — verify against the source"}}</div>
+      <div class="chipsrc">Source: {{where each spec came from}}</div>
+    </div>
+    <div class="chipcard">
+      <div class="chiphead"><span class="mk big">{{Item 2}}</span><span class="tag tag-ok">{{CONFIRMED}}</span></div>
+      <div class="chipmeta">{{meta}}</div>
+      <div class="chiprole deep">{{a highlighted role note (green = confirmed/good)}}</div>
+      <div class="chiprole warn">{{an amber caution note}}</div>
+      <div class="chipsrc">Source: {{...}}</div>
+    </div>
+  </div>
+  <div class="callout warn"><b>Caution.</b> {{a warning callout — amber}}</div>
+  <div class="callout real"><b>Confirmed.</b> {{a measured/verified callout — green}}</div>
+  <div class="callout ask"><b>Open question for {{name}}.</b> {{something only the human can answer — indigo}}</div>
+</section>
+
+<!-- 4 · COMPARISON / diagram / collapsible detail (use as needed) -->
+<section id="sec4">
+  <h2><span class="n">4</span> {{Comparison / deep dive}}</h2>
+  <figure class="diagfig">
+    <!-- <img src="data:image/png;base64,..." alt="diagram"> -->
+    <figcaption>{{diagram caption — always cite the source of any image}}</figcaption>
+  </figure>
+  <details class="vid"><summary>{{Expandable detail — click to open}}</summary>
+    <div style="padding:0 14px 12px">{{longer supporting detail kept collapsed by default}}</div>
+  </details>
+</section>
+
+<!-- 5 · OPEN ITEMS + the honest "what didn't work / what's unverified" close -->
+<section id="sec5">
+  <h2><span class="n">5</span> Open items &amp; honest caveats</h2>
+  <ul>
+    <li>{{what is still unverified / assumed — and who owns closing it}}</li>
+    <li>{{what you tried that didn't work, and why}}</li>
+  </ul>
+</section>
+
+<!-- 6 · SOURCES (mandatory — every report ends here) -->
+<section id="sec6">
+  <h2><span class="n appx">6</span> Sources</h2>
+  <ul>
+    <li>{{source 1 — file / measured run / datasheet, with enough detail to re-find it}}</li>
+    <li>{{source 2}}</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">Aerosense Internal · Confidential · {{REPORT TITLE}} · Rev {{A}} · {{YYYY-MM-DD}}<br>
+  Generated for internal engineering use. Every figure is traceable to a source listed in §6.</div>
+</footer>
+
+</body></html>

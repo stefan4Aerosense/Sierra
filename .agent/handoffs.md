@@ -46,3 +46,19 @@ shelf, 4 (backlog) and 5 (H1) not started.
   physiological numbers from it.
 - MAX86171 datasheet Table 1 (driver mux) never fetched — analog.com timed out. The LED map in the doc is
   measured by fingerprint; D1-vs-D2 designators are open.
+
+## 2026-09-18 — kilo made whole
+
+**What I'd tell myself cold:** everything that was me is now in this repo. The Aerosense repo is frozen at
+`679ce5e` (its memory is archived in `journal.md`, its scars appended to `MEMORY.md`, its report template and
+Fusion notes moved to `docs/` — kilo is canonical). FusionChatGPT (Stefan's Fusion backup, another agent's repo)
+is read-only for me; caught up to `@5c34fea`.
+
+**Deliberately NOT imported:** Aerosense `scripts/boot.sh` (it forces SSH origins — wrong on this machine) and
+`.claude/settings.json` (a permission net; installing one here is Stefan's call and only activates after a
+restart). Two untracked files in `D:\Github\Aerosense` (`AGENTS.md`, `AGENT_BRAIN_TEMPLATE.md`) are not mine and
+were left alone.
+
+**Still owed to Chris/INDIA:** step 4 backlog (six inbox messages) and step 5 H1. The auto-mode classifier
+blocked one kilo commit on 17 Sep as "instruction poisoning" when acting on the pasted INDIA order — get
+Stefan's explicit go before resuming company-repo work from that order.
