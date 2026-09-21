@@ -90,6 +90,7 @@ class MainForm : Form {
   static readonly Color TextDim = Color.FromArgb(128, 145, 175);  // labels
   static readonly Color TextFaint = Color.FromArgb(96, 112, 140); // fine print
   static readonly Color Pulse = Color.FromArgb(255, 58, 70);      // luminous red for the heart rate
+  static readonly Color Oxygen = Color.FromArgb(159, 238, 254);   // pale cyan for the blood oxygen
   static readonly Color Held = Color.FromArgb(86, 104, 136);      // a reading being held through movement
 
   readonly CardPanel bpmCard = new CardPanel(), spo2Card = new CardPanel(), infoCard = new CardPanel();
@@ -117,7 +118,7 @@ class MainForm : Form {
     var small = new Font("Segoe UI", 9);
 
     bpmCard.Accent = Pulse; bpmCard.SetBounds(16, 68, 264, 132);
-    spo2Card.Accent = Accent; spo2Card.SetBounds(292, 68, 264, 132);
+    spo2Card.Accent = Oxygen; spo2Card.SetBounds(292, 68, 264, 132);
     infoCard.Accent = Color.FromArgb(48, 64, 96); infoCard.SetBounds(568, 68, 236, 132);
     infoCard.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 
@@ -126,7 +127,7 @@ class MainForm : Form {
     bpmUnit.Text = "HEART RATE  ·  BPM"; bpmUnit.SetBounds(18, 100, 240, 20);
     bpmUnit.ForeColor = TextDim; bpmUnit.Font = small;
 
-    spo2Label.Text = "--"; spo2Label.Font = big; spo2Label.ForeColor = Accent;
+    spo2Label.Text = "--"; spo2Label.Font = big; spo2Label.ForeColor = Oxygen;
     spo2Label.SetBounds(14, 6, 236, 92); spo2Label.TextAlign = ContentAlignment.MiddleLeft;
     spo2Unit.Text = "BLOOD OXYGEN  ·  %  (uncalibrated)"; spo2Unit.SetBounds(18, 100, 240, 20);
     spo2Unit.ForeColor = TextDim; spo2Unit.Font = small;
@@ -321,7 +322,7 @@ class MainForm : Form {
 
       var ox = stream.Oximeter.Estimate(bpm);
       if (ox.Problem == null) {
-        spo2Label.ForeColor = Accent; spo2Label.Text = ox.SpO2.ToString("F0"); lastGoodSpO2 = ox.SpO2;
+        spo2Label.ForeColor = Oxygen; spo2Label.Text = ox.SpO2.ToString("F0"); lastGoodSpO2 = ox.SpO2;
         info += (ox.Spread > 3 ? "SpO2 UNSTABLE" : "SpO2") + " +/-" + ox.Spread.ToString("F0") + "%, R " + ox.R.ToString("F2") + "\nvia " + ox.Path + ", signal/noise " + ox.Snr.ToString("F0") + "\n";
       } else {
         // SpO2 needs a longer clean stretch than the heart rate, so it is held for longer before blanking.
