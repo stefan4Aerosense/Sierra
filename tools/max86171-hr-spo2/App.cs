@@ -75,6 +75,10 @@ class MainForm : Form {
   readonly System.Windows.Forms.Timer uiTimer = new System.Windows.Forms.Timer();
   PpgStream stream;
   DateTime lastEstimate;
+  // Last accepted readings, kept so a second or two of movement does not blank the display.
+  const int HoldSeconds = 8;
+  double lastGoodBpm, lastGoodSpO2;
+  DateTime lastGoodAt;
 
   // Dark palette: near-black navy behind slightly lighter cards, with blue accents.
   static readonly Color Ink = Color.FromArgb(9, 12, 20);          // window background
@@ -84,6 +88,7 @@ class MainForm : Form {
   static readonly Color AccentSoft = Color.FromArgb(120, 190, 255); // lighter blue
   static readonly Color TextDim = Color.FromArgb(128, 145, 175);  // labels
   static readonly Color TextFaint = Color.FromArgb(96, 112, 140); // fine print
+  static readonly Color Held = Color.FromArgb(86, 104, 136);      // a reading being held through movement
 
   readonly CardPanel bpmCard = new CardPanel(), spo2Card = new CardPanel(), infoCard = new CardPanel();
 
@@ -179,6 +184,7 @@ class MainForm : Form {
   void StartStream() {
     startButton.Enabled = false;
     bpmLabel.Text = "--"; spo2Label.Text = "--"; infoLabel.Text = "Connecting...";
+    lastGoodBpm = lastGoodSpO2 = 0;
     var s = new PpgStream();
     s.Log = SetStatus;
     ThreadPool.QueueUserWorkItem(_ => {
@@ -218,19 +224,34 @@ class MainForm : Form {
 
       double bpm, q;
       if (!est.Estimate(out bpm, out q)) {
-        bpmLabel.Text = "--"; spo2Label.Text = "--";
-        infoLabel.Text = "No clear pulse.\nRest the sensor lightly against the skin and keep still.\n" + counts;
+        // Movement drowns the pulse for a second or two at a time. Blanking the screen each time makes the
+        // tool look broken, so the last good reading is held briefly and shown dimmed with its age.
+        int age = (int)(DateTime.Now - lastGoodAt).TotalSeconds;
+        if (lastGoodBpm > 0 && age <= HoldSeconds) {
+          bpmLabel.ForeColor = Held; bpmLabel.Text = lastGoodBpm.ToString("F0");
+          if (lastGoodSpO2 > 0 && age <= HoldSeconds) { spo2Label.ForeColor = Held; spo2Label.Text = lastGoodSpO2.ToString("F0"); }
+          infoLabel.Text = "Movement - no clear pulse.\nHolding the last reading\n(" + age + " s old).\n" + counts;
+        } else {
+          bpmLabel.ForeColor = Held; spo2Label.ForeColor = Held;
+          bpmLabel.Text = "--"; spo2Label.Text = "--";
+          lastGoodBpm = lastGoodSpO2 = 0;
+          infoLabel.Text = "No clear pulse.\nRest the sensor lightly against the skin and keep still.\n" + counts;
+        }
         return;
       }
-      bpmLabel.Text = bpm.ToString("F0");
+      bpmLabel.ForeColor = AccentSoft; bpmLabel.Text = bpm.ToString("F0");
+      lastGoodBpm = bpm; lastGoodAt = DateTime.Now;
       string info = "Pulse quality " + (q * 100).ToString("F0") + "% via " + est.BestChannel + "\n";
 
       var ox = stream.Oximeter.Estimate(bpm);
       if (ox.Problem == null) {
-        spo2Label.Text = ox.SpO2.ToString("F0");
+        spo2Label.ForeColor = Accent; spo2Label.Text = ox.SpO2.ToString("F0"); lastGoodSpO2 = ox.SpO2;
         info += (ox.Spread > 3 ? "SpO2 UNSTABLE" : "SpO2") + " +/-" + ox.Spread.ToString("F0") + "%, R " + ox.R.ToString("F2") + "\nvia " + ox.Path + ", signal/noise " + ox.Snr.ToString("F0") + "\n";
       } else {
-        spo2Label.Text = "--";
+        // SpO2 needs a longer clean stretch than the heart rate, so it is held for longer before blanking.
+        int oxAge = (int)(DateTime.Now - lastGoodAt).TotalSeconds;
+        if (lastGoodSpO2 > 0 && oxAge <= HoldSeconds) { spo2Label.ForeColor = Held; spo2Label.Text = lastGoodSpO2.ToString("F0"); }
+        else { spo2Label.ForeColor = Held; spo2Label.Text = "--"; lastGoodSpO2 = 0; }
         info += "SpO2: " + ox.Problem + "\n";
       }
       infoLabel.Text = info + counts;
