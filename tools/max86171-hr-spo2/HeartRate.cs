@@ -33,9 +33,11 @@ class HeartRateEstimator {
   readonly List<double> recent = new List<double>();
   int settle;
 
+  public static double HighPassHz = 0.5; // pulse band low edge; raised to reject breathing and slow drift
+
   public HeartRateEstimator(double sampleRate) {
     fs = sampleRate;
-    hp1 = Biquad.HighPass(fs, 0.5); hp2 = Biquad.HighPass(fs, 0.5);
+    hp1 = Biquad.HighPass(fs, HighPassHz); hp2 = Biquad.HighPass(fs, HighPassHz);
     lp1 = Biquad.LowPass(fs, Math.Min(4.0, fs * 0.45)); lp2 = Biquad.LowPass(fs, Math.Min(4.0, fs * 0.45));
     settle = (int)(fs * 2); // let the filters settle before using samples
   }

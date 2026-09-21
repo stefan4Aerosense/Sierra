@@ -125,7 +125,8 @@ export class SpO2Estimator {
     const keep = Math.round(this.fs * 20);
     if (this.red.length > keep * 2) { this.red.splice(0, this.red.length - keep); this.ir.splice(0, this.ir.length - keep); }
   }
-  static curve(r) { return Math.max(70, Math.min(100, -45.060 * r * r + 30.354 * r + 94.845)); }
+  static rawCurve(r) { return -45.060 * r * r + 30.354 * r + 94.845; }
+  static curve(r) { return Math.max(70, Math.min(100, SpO2Estimator.rawCurve(r))); }
 
   tone(v, f) {
     const n = v.length;
@@ -182,7 +183,11 @@ export class SpO2Estimator {
     res.phaseDeg = phase;
     if (Math.abs(phase) > 25) { this.recent = []; res.problem = "red/IR pulses out of step - keep still"; return res; }
     if (res.perfusionIr < 0.08) { this.recent = []; res.problem = "red/IR pulse too weak - keep still and warm"; return res; }
-    if (res.r < 0.2 || res.r > 2.0) { this.recent = []; res.problem = "ratio out of range (R=" + res.r.toFixed(2) + ")"; return res; }
+    // Outside roughly 0.3-1.2 the curve runs off its fitted range and just clamps, which would show a
+    // solid-looking 70% or 100%. Measured 21 Sep at the ear: R=1.48 was displayed as "70%", spread 0.
+    if (res.r < 0.3 || res.r > 1.2) { this.recent = []; res.problem = "ratio out of range (R=" + res.r.toFixed(2) + ") - not a reading"; return res; }
+    const raw = SpO2Estimator.rawCurve(res.r);
+    if (raw < 70.5 || raw > 100) { this.recent = []; res.problem = "outside the curve's range - not a reading"; return res; }
 
     this.recent.push(SpO2Estimator.curve(res.r));
     if (this.recent.length > 10) this.recent.shift();

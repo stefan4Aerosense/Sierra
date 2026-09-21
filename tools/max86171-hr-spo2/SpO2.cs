@@ -53,7 +53,12 @@ class SpO2Estimator {
     res.PhaseDeg = phase;
     if (Math.Abs(phase) > 25) { recent.Clear(); res.Problem = "red/IR pulses out of step - keep still"; return res; }
     if (res.PerfusionIr < 0.08) { recent.Clear(); res.Problem = "red/IR pulse too weak - rest finger lightly, keep warm and still"; return res; }
-    if (res.R < 0.2 || res.R > 2.0) { recent.Clear(); res.Problem = "ratio out of range (R=" + res.R.ToString("F2") + ")"; return res; }
+    // A ratio outside roughly 0.3-1.2 is not a blood-oxygen measurement: below 0.3 and above 1.2 the curve
+    // runs off the end of its fitted range and simply clamps, which would be displayed as a solid-looking
+    // 100% or 70%. Measured 21 Sep at the ear: R=1.48 was shown as "70%" with a spread of 0.
+    if (res.R < 0.3 || res.R > 1.2) { recent.Clear(); res.Problem = "ratio out of range (R=" + res.R.ToString("F2") + ") - not a reading"; return res; }
+    double raw = RawCurve(res.R);
+    if (raw < 70.5 || raw > 100) { recent.Clear(); res.Problem = "outside the curve's range - not a reading"; return res; }
 
     double s = CurveSpO2(res.R);
     recent.Add(s);
@@ -69,9 +74,12 @@ class SpO2Estimator {
     return res;
   }
 
-  // Widely used empirical curve (Maxim reference design); clamp to a plausible range.
+  // Widely used empirical curve (Maxim reference design), NOT fitted to this sensor.
+  // The curve before clamping, so callers can tell a real value from a clamped one.
+  public static double RawCurve(double r) { return -45.060 * r * r + 30.354 * r + 94.845; }
+
   public static double CurveSpO2(double r) {
-    double s = -45.060 * r * r + 30.354 * r + 94.845;
+    double s = RawCurve(r);
     return Math.Max(70, Math.Min(100, s));
   }
 
