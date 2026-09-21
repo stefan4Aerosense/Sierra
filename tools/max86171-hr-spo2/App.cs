@@ -67,7 +67,8 @@ static class Program {
 }
 
 class MainForm : Form {
-  readonly Label bpmLabel = new Label(), bpmUnit = new Label(), spo2Label = new Label(), spo2Unit = new Label();
+  readonly DigitLabel bpmLabel = new DigitLabel(), spo2Label = new DigitLabel();
+  readonly Label bpmUnit = new Label(), spo2Unit = new Label();
   readonly Label infoLabel = new Label(), statusLabel = new Label();
   readonly Button startButton = new Button(), stopButton = new Button();
   readonly WavePanel wave = new WavePanel();
@@ -99,7 +100,7 @@ class MainForm : Form {
     StyleButton(stopButton, "Stop", Color.FromArgb(28, 36, 54), AccentSoft);
     stopButton.SetBounds(146, 16, 118, 38); stopButton.Enabled = false; stopButton.Click += (s, e) => StopStream();
 
-    var big = new Font("Segoe UI Light", 58, FontStyle.Regular);
+    var big = DisplayFont.Digits(62);
     var small = new Font("Segoe UI", 9);
 
     bpmCard.Accent = AccentSoft; bpmCard.SetBounds(16, 68, 264, 132);
@@ -234,6 +235,50 @@ class MainForm : Form {
       }
       infoLabel.Text = info + counts;
     }
+  }
+}
+
+// The display font (Chakra Petch Bold Italic, SIL OFL - see assets/) is embedded in the exe and loaded from
+// memory, so nothing has to be installed on the machine. Falls back to a stock font if anything goes wrong.
+static class DisplayFont {
+  static readonly System.Drawing.Text.PrivateFontCollection Collection = new System.Drawing.Text.PrivateFontCollection();
+  static readonly FontFamily Family;
+
+  static DisplayFont() {
+    try {
+      using (var s = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("hrfont")) {
+        if (s != null) {
+          var bytes = new byte[s.Length];
+          s.Read(bytes, 0, bytes.Length);
+          IntPtr p = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(bytes.Length);
+          System.Runtime.InteropServices.Marshal.Copy(bytes, 0, p, bytes.Length);
+          Collection.AddMemoryFont(p, bytes.Length);
+          Family = Collection.Families[0];
+        }
+      }
+    } catch { }
+  }
+
+  public static Font Digits(float pixelSize) {
+    if (Family != null) return new Font(Family, pixelSize, FontStyle.Bold, GraphicsUnit.Pixel);
+    return new Font("Segoe UI Light", pixelSize, FontStyle.Regular, GraphicsUnit.Pixel);
+  }
+}
+
+// Draws its text stretched horizontally, which gives the wide slanted look of the reference numerals.
+class DigitLabel : Label {
+  public float Stretch = 1.3f;
+  public DigitLabel() { DoubleBuffered = true; }
+  protected override void OnPaint(PaintEventArgs e) {
+    var g = e.Graphics;
+    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+    g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+    var size = g.MeasureString(Text, Font);
+    var state = g.Save();
+    g.MultiplyTransform(new System.Drawing.Drawing2D.Matrix(Stretch, 0, 0, 1, 0, 0));
+    using (var br = new SolidBrush(ForeColor))
+      g.DrawString(Text, Font, br, 0, (Height - size.Height) / 2);
+    g.Restore(state);
   }
 }
 
