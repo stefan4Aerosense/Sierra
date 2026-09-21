@@ -362,3 +362,15 @@ rate — and my autocorrelation estimator was locking onto slow wander. He was r
 **How to apply:** when the input degrades, ask separately (1) is the signal worse, and (2) does my algorithm fail
 *worse than the signal justifies*. Both can be true. A human's "it worked yesterday, same pulse on my watch" is a
 reference measurement — use it.
+
+## Scar 17 — Windows Smart App Control blocks our own builds (2026-09-21)
+
+`[measured]` Stefan's machine has **Smart App Control in enforcement** (`HKLM\SYSTEM\CurrentControlSet\Control\CI\Policy`
+→ `VerifiedAndReputablePolicyState = 1`). First-ever block of `HeartRateTester.exe` was **21 Sep 08:57** — SAC began
+enforcing over the weekend; nothing about the app changed. Symptom: "Smart App Control blocked an app that may be
+unsafe ... could not verify its publisher".
+**It hits any locally compiled, unsigned exe** — every build from `csc.exe`, in any folder. Copying, unblocking
+(`Unblock-File`) or rebuilding does NOT help; SAC wants a *trusted publisher signature with reputation*, and a
+self-signed certificate does not qualify.
+**Do not touch the setting myself** (security setting = Stefan's call, and it cannot be re-enabled without
+reinstalling Windows). Evidence: `Get-WinEvent -LogName Microsoft-Windows-CodeIntegrity/Operational` events 3033/3077.
