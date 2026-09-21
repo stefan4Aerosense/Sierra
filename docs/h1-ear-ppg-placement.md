@@ -93,3 +93,25 @@ quiet, still windows.
 - **Chewing, head movement, walking, cold hands/ears, skin tone and hair were not tested.** Only speech was.
 - The front-of-tragus site sits over the jaw joint and was **not** speech-tested; it may fare worse than the lobe.
 - Long-term wear, sweat and sensor heating were not tested.
+
+---
+
+## Appendix — calibrating SpO2, for later (2026-09-21)
+
+Parked on Stefan's call; recorded so it need not be re-derived. The R -> SpO2 curve in the tester is Maxim's,
+for a different sensor: every reading is uncalibrated and the app says so.
+
+- **Route A, reference comparison** `[assumed cost: days]` — our sensor and a certified fingertip oximeter on
+  the same person at once, many people, fit our R to the reference. **Limit: healthy people at sea level sit at
+  96-100 %**, so the fit is anchored only there and says nothing about 85 %; the reference is itself +-2 %.
+- **Route B, controlled desaturation study** — a lab lowers inspired oxygen in stages with arterial blood drawn
+  and measured by CO-oximetry. FDA's 2025 draft guidance recommends **>= 24 participants across the full Monk
+  skin-tone scale, 480 paired data points, ARMS < 3 %** `[fetched]` (fda.gov/media/175828/download; Healio,
+  13 Jan 2025). Specialist labs, months, real money. Required for any clinical or safety claim.
+- **Middle option:** a hypobaric chamber / altitude training facility gives genuine low-saturation points under
+  supervision, and tests the cold-ear case. Not arterial ground truth, but far better than resting-healthy data.
+- **The H1-specific risk:** hypoxia awareness matters at 80-90 %, exactly the range Route A cannot validate, and
+  altitude brings cold ears and weak perfusion - our worst measured condition. A sensor fitted only on warm
+  resting subjects could read normal on a pilot who is going hypoxic.
+- **Build when resumed:** a reference-reading field in the session recorder (pairs collected automatically), a
+  fitting tool, and curve coefficients in a settings file rather than compiled in.
