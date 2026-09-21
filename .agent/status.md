@@ -67,3 +67,7 @@ update WHOAMI transport note + reply to INDIA and close 09-18-001.
 **V2:** closes 2026-10-01 — 13 days from 2026-09-18 (`aerosense-ops@ae491ca gates/gates.json`). **Next after the
 above: H1** (Chris's step 5).
 
+
+## 2026-09-21 — Fusion headset evidence handoff
+
+Codex added `docs/h1-fusion-update-2026-09-21.md` with supporting audit, skeleton report and sensor/cushion-fit evidence under `docs/h1-fusion-evidence/2026-09-21/`. This is documentation of prior work, not a new Fusion measurement. Band revision/alloy, full BOM mass and wearing-frame CG remain unresolved. Existing heart-rate tester software and other team repositories were not changed. Consult the handoff before presenting the initial skeleton or sensor fit as production-complete.

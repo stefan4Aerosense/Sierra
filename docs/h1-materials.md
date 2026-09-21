@@ -122,3 +122,7 @@ DEV-B*, compared against this file. **No geometry or materials were changed.** F
 
 **Consequence for the record:** `dcf0733`'s "H1 304 g in CAD" (12 Aug) should now be treated as
 **unreproducible**, not current. V2 criterion (4) (< 400 g prototype) is unresolved in both directions.
+
+## Fusion evidence handoff — 21 September 2026
+
+See [H1 Fusion update](h1-fusion-update-2026-09-21.md) for the master-skeleton scope, provisional sensor model/cushion fit, and full 18 September mass audit evidence. Current DEV-B band is generic Steel with a 1.0 mm skeleton thickness; the 0.8 mm materials specification and alloy selection remain unresolved. No band geometry or alloy was changed by this handoff. Supplier screenshot does not specify a manganese grade; do not infer 65Mn from that screenshot alone.

@@ -1,0 +1,7132 @@
+{
+  "document": "H1 - Master Skeleton - DEV-B",
+  "data_id": "urn:adsk.wipprod:dm.lineage:AN32bU4jQQmTEsK7yjcJRg",
+  "root_mass_g": 2682.1574565229657,
+  "root_cg_mm": [
+    3.1038392395587944,
+    -57.36804964613421,
+    -41.96145881611255
+  ],
+  "occurrence_count": 154,
+  "mesh_count": 1,
+  "parameters": [
+    [
+      "H1_Envelope_Min_X",
+      "-54.97161623880041 mm"
+    ],
+    [
+      "H1_Envelope_Max_X",
+      "54.96476481756899 mm"
+    ],
+    [
+      "H1_Envelope_Min_Y",
+      "-160.6429573723389 mm"
+    ],
+    [
+      "H1_Envelope_Max_Y",
+      "58.90438405354003 mm"
+    ],
+    [
+      "H1_Envelope_Min_Z",
+      "-214.7467627973231 mm"
+    ],
+    [
+      "H1_Envelope_Max_Z",
+      "107.17723133845674 mm"
+    ],
+    [
+      "H1_Band_Radius_Target",
+      "73.8 mm"
+    ],
+    [
+      "H1_Band_Thickness",
+      "1 mm"
+    ],
+    [
+      "H1_Band_Width_Target",
+      "9.5 mm"
+    ],
+    [
+      "H1_Pivot_Stop_Target",
+      "17.5 deg"
+    ],
+    [
+      "H1_Cable_Diameter_Allowance",
+      "3 mm"
+    ],
+    [
+      "H1_Cable_Clearance",
+      "1 mm"
+    ],
+    [
+      "H1_Cup_A_Centre_X",
+      "-0.003425710615507782 mm"
+    ],
+    [
+      "H1_Cup_A_Centre_Y",
+      "-86.30359944560611 mm"
+    ],
+    [
+      "H1_Cup_A_Centre_Z",
+      "-98.81841271217206 mm"
+    ],
+    [
+      "H1_Cup_A_Envelope_Width",
+      "102.25255895854175 mm"
+    ],
+    [
+      "H1_Cup_A_Envelope_Height",
+      "115.33286625352258 mm"
+    ],
+    [
+      "H1_Cup_B_Centre_X",
+      "-0.003425710615800881 mm"
+    ],
+    [
+      "H1_Cup_B_Centre_Y",
+      "-85.65891342279872 mm"
+    ],
+    [
+      "H1_Cup_B_Centre_Z",
+      "-1.0716346142235178 mm"
+    ],
+    [
+      "H1_Cup_B_Envelope_Width",
+      "102.25255895854191 mm"
+    ],
+    [
+      "H1_Cup_B_Envelope_Height",
+      "115.33286625352272 mm"
+    ]
+  ],
+  "rows": [
+    {
+      "path": "Component4 (1):1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 18.19086733781379,
+      "volume_cm3": 2.3173079411227757,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -0.003529519106411803,
+        -86.33785000637965,
+        -98.9726246885634
+      ],
+      "bbox_local_mm": [
+        [
+          -39.40000000000002,
+          -50.40000000000005,
+          -2.5
+        ],
+        [
+          39.40000000000002,
+          50.40000000000005,
+          -1.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component5:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Leather, weathered",
+      "mass_g": 17.491287837108544,
+      "volume_cm3": 19.43476426345394,
+      "density_g_cm3": 0.8999999999999999,
+      "center_world_mm": [
+        -0.0034237268093523917,
+        -84.68141505174631,
+        -91.52510467132129
+      ],
+      "bbox_local_mm": [
+        [
+          -40.000000000000014,
+          -51.00000000000004,
+          -1.0
+        ],
+        [
+          40.000000000000014,
+          51.00000000000004,
+          15.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component6:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Leather, weathered",
+      "mass_g": 54.09958149576993,
+      "volume_cm3": 60.11064610641104,
+      "density_g_cm3": 0.8999999999999999,
+      "center_world_mm": [
+        -0.0034257106156001145,
+        -84.17390444925461,
+        -89.24336337752814
+      ],
+      "bbox_local_mm": [
+        [
+          -42.5039017521562,
+          -53.50390175215622,
+          0.0
+        ],
+        [
+          42.50390175215618,
+          53.503901752156196,
+          17.028111326298788
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component7:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 18.19280986655104,
+      "volume_cm3": 2.3175553970128715,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -0.002129679273564316,
+        -85.69297114134359,
+        -0.9173982085769006
+      ],
+      "bbox_local_mm": [
+        [
+          -39.40000000000002,
+          -50.40000000000005,
+          -19.0
+        ],
+        [
+          39.40000000000002,
+          50.40000000000005,
+          -17.5
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component8:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Leather, weathered",
+      "mass_g": 54.108384930188805,
+      "volume_cm3": 60.12042770020978,
+      "density_g_cm3": 0.9,
+      "center_world_mm": [
+        -0.0034088706234145115,
+        -83.52913528199511,
+        -10.647036981246426
+      ],
+      "bbox_local_mm": [
+        [
+          -42.50390175215618,
+          -53.503901752156224,
+          -37.0281113262988
+        ],
+        [
+          42.5039017521562,
+          53.50390175215619,
+          -20.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component9:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Leather, weathered",
+      "mass_g": 17.491356888854124,
+      "volume_cm3": 19.434840987615694,
+      "density_g_cm3": 0.9,
+      "center_world_mm": [
+        -0.0034558409485291974,
+        -84.0366853156244,
+        -8.364942794542003
+      ],
+      "bbox_local_mm": [
+        [
+          -40.000000000000014,
+          -51.00000000000004,
+          -35.0
+        ],
+        [
+          40.000000000000014,
+          51.00000000000004,
+          -19.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component1:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 1.6375080467938772,
+      "volume_cm3": 1.2405363990862706,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        1.9966450034045438,
+        -91.15338146794616,
+        20.775979381438297
+      ],
+      "bbox_local_mm": [
+        [
+          -31.0,
+          -31.0,
+          0.0
+        ],
+        [
+          31.0,
+          31.0,
+          2.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component1 (1):1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 1.6375080467938772,
+      "volume_cm3": 1.2405363990862706,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        1.9966450034071368,
+        -91.19296108067347,
+        -120.80061526699097
+      ],
+      "bbox_local_mm": [
+        [
+          -31.0,
+          -31.0,
+          0.0
+        ],
+        [
+          31.0,
+          31.0,
+          2.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component3:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Polyester Webbing + Brushed Loop-Knit Lining",
+      "mass_g": 14.038182569536886,
+      "volume_cm3": 10.172596064881803,
+      "density_g_cm3": 1.3799999999999997,
+      "center_world_mm": [
+        -0.003041598414510162,
+        10.500139838117502,
+        -50.37347390132346
+      ],
+      "bbox_local_mm": [
+        [
+          -18.0,
+          57.59829220541151,
+          -66.33579189879568
+        ],
+        [
+          18.0,
+          139.0,
+          66.33579189879568
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component4 (2):1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.005404296049691602,
+      "volume_cm3": 0.0006755370062114502,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -3.1186512320519273,
+        -21.669813324240856,
+        -115.96127932434422
+      ],
+      "bbox_local_mm": [
+        [
+          -4.296951852828648,
+          67.69387736168383,
+          -65.89834651653925
+        ],
+        [
+          -1.9333785400692491,
+          70.69723244537771,
+          -65.35999636431602
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component5 (1):1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.0048872964690965,
+      "volume_cm3": 0.0006109120586370625,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        11.866707282960547,
+        -21.670658703102976,
+        -115.9613756506627
+      ],
+      "bbox_local_mm": [
+        [
+          10.488176979034753,
+          67.69387736168383,
+          -65.89834651653925
+        ],
+        [
+          12.726922072380395,
+          70.69723244537771,
+          -65.35999636431602
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component6 (1):1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004994606236008326,
+      "volume_cm3": 0.0006243257795010408,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        5.59190212398479,
+        -21.668492890553928,
+        -115.96112911413847
+      ],
+      "bbox_local_mm": [
+        [
+          4.164847768753383,
+          67.64304671319604,
+          -65.9041383921699
+        ],
+        [
+          7.033879794090602,
+          70.75009646193647,
+          -65.35397279746503
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component7 (1):1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.002224494853871417,
+      "volume_cm3": 0.00027806185673392715,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -15.690086838485247,
+        -21.509381402691787,
+        -115.94299849517736
+      ],
+      "bbox_local_mm": [
+        [
+          -15.983856283218055,
+          67.69387736168383,
+          -65.89834651653925
+        ],
+        [
+          -14.878807626754432,
+          70.70943176548192,
+          -65.35860631821345
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component8 (1):1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.005404296049691611,
+      "volume_cm3": 0.0006755370062114514,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        3.1119412388610006,
+        -21.66981332424087,
+        15.228638718568073
+      ],
+      "bbox_local_mm": [
+        [
+          1.933378540069265,
+          67.69387736168383,
+          65.2915638597442
+        ],
+        [
+          4.2969518528286645,
+          70.69723244537771,
+          65.82991401196743
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component9 (1):1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.0022244948538696543,
+      "volume_cm3": 0.0002780618567337068,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        15.683376845300554,
+        -21.509375361479286,
+        15.210357889401172
+      ],
+      "bbox_local_mm": [
+        [
+          14.878807626754448,
+          67.69387736168383,
+          65.29017381364162
+        ],
+        [
+          15.98385628321807,
+          70.70943176548192,
+          65.82991401196743
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component10:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004887296469096476,
+      "volume_cm3": 0.0006109120586370595,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -11.873417276151518,
+        -21.670658703102987,
+        15.228735044886541
+      ],
+      "bbox_local_mm": [
+        [
+          -12.726922072380379,
+          67.69387736168383,
+          65.2915638597442
+        ],
+        [
+          -10.488176979034737,
+          70.69723244537771,
+          65.82991401196743
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component11:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004994606236006197,
+      "volume_cm3": 0.0006243257795007746,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -5.598612117176719,
+        -21.668497557206354,
+        15.228488508362314
+      ],
+      "bbox_local_mm": [
+        [
+          -7.033879794090586,
+          67.64304671319604,
+          65.28554029289322
+        ],
+        [
+          -4.164847768753367,
+          70.75009646193647,
+          65.83570588759808
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component12:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004887297981574512,
+      "volume_cm3": 0.0006109122476968139,
+      "density_g_cm3": 8.000000000000002,
+      "center_world_mm": [
+        0.0037991510425433583,
+        -21.670658615515286,
+        15.228735034906329
+      ],
+      "bbox_local_mm": [
+        [
+          -0.8497053756411843,
+          67.69387736168383,
+          65.2915638597442
+        ],
+        [
+          1.38903912165801,
+          70.69723244537771,
+          65.82991401196743
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component13:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.0054586534809413995,
+      "volume_cm3": 0.0006823316851176749,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -8.8143051628901,
+        -21.526390521566938,
+        15.212296389780127
+      ],
+      "bbox_local_mm": [
+        [
+          -9.933607019394236,
+          67.69387736168383,
+          65.2915638597442
+        ],
+        [
+          -7.289677895515757,
+          70.69723244537771,
+          65.82991401196743
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component14:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004793297554252192,
+      "volume_cm3": 0.000599162194281524,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        2.5699357795073254,
+        -21.692702585187156,
+        -115.9638874440476
+      ],
+      "bbox_local_mm": [
+        [
+          1.4001816882785292,
+          67.64304671319604,
+          -65.9041383921699
+        ],
+        [
+          3.788313306778285,
+          70.7480630938655,
+          -65.35420448868537
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component15:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004694455106154226,
+      "volume_cm3": 0.0005868068882692783,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        12.904785983201887,
+        -21.65275588348291,
+        15.226695116068534
+      ],
+      "bbox_local_mm": [
+        [
+          11.731470190078422,
+          67.69387736168383,
+          65.2915638597442
+        ],
+        [
+          14.084811769515678,
+          70.69723244537771,
+          65.82991401196743
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component16:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.005458653480943616,
+      "volume_cm3": 0.000682331685117952,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        8.807595169697231,
+        -21.526388256013973,
+        -115.94493699555629
+      ],
+      "bbox_local_mm": [
+        [
+          7.289677895515773,
+          67.69387736168383,
+          -65.89834651653925
+        ],
+        [
+          9.933607019394252,
+          70.69723244537771,
+          -65.35999636431602
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component17:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004327986357660704,
+      "volume_cm3": 0.000540998294707588,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        14.459673686660148,
+        -21.802318867552533,
+        -115.97637759112698
+      ],
+      "bbox_local_mm": [
+        [
+          13.052297271698327,
+          67.69387736168383,
+          -65.89834651653925
+        ],
+        [
+          15.859936984981024,
+          70.69723244537771,
+          -65.35999636431602
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component18:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004887295627963653,
+      "volume_cm3": 0.0006109119534954566,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        8.621125876132771,
+        -21.67065878358777,
+        15.22873505405724
+      ],
+      "bbox_local_mm": [
+        [
+          7.767620645553274,
+          67.69387736168383,
+          65.2915638597442
+        ],
+        [
+          10.006366334945366,
+          70.69723244537771,
+          65.82991401196743
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component19:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004792943156086636,
+      "volume_cm3": 0.0005991178945108295,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        6.040805152049535,
+        -21.69266284409396,
+        15.2312420181139
+      ],
+      "bbox_local_mm": [
+        [
+          4.8290139065090845,
+          67.64304671319604,
+          65.28577198411355
+        ],
+        [
+          7.21714552500884,
+          70.7480630938655,
+          65.83570588759808
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component20:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004793297554253226,
+      "volume_cm3": 0.0005991621942816532,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -2.576645772698016,
+        -21.69270225922527,
+        15.231246838271435
+      ],
+      "bbox_local_mm": [
+        [
+          -3.788313306778269,
+          67.64304671319604,
+          65.28577198411355
+        ],
+        [
+          -1.4001816882785134,
+          70.7480630938655,
+          65.83570588759808
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component21:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004327986357661178,
+      "volume_cm3": 0.0005409982947076473,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -14.466383679850319,
+        -21.802318642524767,
+        15.243736985350793
+      ],
+      "bbox_local_mm": [
+        [
+          -15.859936984981008,
+          67.69387736168383,
+          65.2915638597442
+        ],
+        [
+          -13.052297271698311,
+          70.69723244537771,
+          65.82991401196743
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component22:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004792943156085508,
+      "volume_cm3": 0.0005991178945106885,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -6.0475151452414035,
+        -21.692658546560864,
+        -115.96388262389006
+      ],
+      "bbox_local_mm": [
+        [
+          -7.217145525008824,
+          67.64304671319604,
+          -65.9041383921699
+        ],
+        [
+          -4.8290139065090685,
+          70.7480630938655,
+          -65.35420448868537
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component23:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004887297981574516,
+      "volume_cm3": 0.0006109122476968145,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -0.01050914423347272,
+        -21.670658615515272,
+        -115.9613756406825
+      ],
+      "bbox_local_mm": [
+        [
+          -1.3890391216579943,
+          67.69387736168383,
+          -65.89834651653925
+        ],
+        [
+          0.8497053756412001,
+          70.69723244537771,
+          -65.35999636431602
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component24:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004694455106154677,
+      "volume_cm3": 0.0005868068882693347,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -12.911495976392137,
+        -21.652755883483046,
+        -115.95933572184467
+      ],
+      "bbox_local_mm": [
+        [
+          -14.084811769515662,
+          67.69387736168383,
+          -65.89834651653925
+        ],
+        [
+          -11.731470190078406,
+          70.69723244537771,
+          -65.35999636431602
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Component25:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.004887295627963632,
+      "volume_cm3": 0.000610911953495454,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -8.627835869323693,
+        -21.67065878358776,
+        -115.9613756598334
+      ],
+      "bbox_local_mm": [
+        [
+          -10.00636633494535,
+          67.69387736168383,
+          -65.89834651653925
+        ],
+        [
+          -7.767620645553258,
+          70.69723244537771,
+          -65.35999636431602
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "H1 - Headphone Steel Spring Washer:1+Steel Spring Washer (Wave):1",
+      "body": "Steel Spring Washer (Wave)",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel 17-4 PH",
+      "mass_g": 0.046966015677412806,
+      "volume_cm3": 0.0060212840612067706,
+      "density_g_cm3": 7.799999999999999,
+      "center_world_mm": [
+        21.47616480290465,
+        -109.23918535203862,
+        -123.9609506538907
+      ],
+      "bbox_local_mm": [
+        [
+          -5.5,
+          -5.5,
+          0.03406926844969321
+        ],
+        [
+          5.5,
+          5.5,
+          0.7504314192196935
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "H1 - Microphobe Nylon Washer:1+Component1:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Nylon 6",
+      "mass_g": 0.02506990937564763,
+      "volume_cm3": 0.022383847656828243,
+      "density_g_cm3": 1.1199999999999999,
+      "center_world_mm": [
+        21.32835379739371,
+        -108.91651182373124,
+        -123.4676015358683
+      ],
+      "bbox_local_mm": [
+        [
+          -5.5,
+          0.0,
+          -5.5
+        ],
+        [
+          5.5,
+          0.5,
+          5.5
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "H1 - Microphone Inner Rubber Friction Washer:1+Component1:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Rubber, Black",
+      "mass_g": 0.020816978320850263,
+      "volume_cm3": 0.022383847656828243,
+      "density_g_cm3": 0.9299999999999998,
+      "center_world_mm": [
+        21.620206213555658,
+        -109.55362979964475,
+        -124.44171798267952
+      ],
+      "bbox_local_mm": [
+        [
+          -5.5,
+          0.0,
+          -5.5
+        ],
+        [
+          5.5,
+          0.5,
+          5.5
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "H1 - Microphone Outside Friction Washer - 22 July 2026:1+Component1:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Rubber, Black",
+      "mass_g": 0.028509693935564153,
+      "volume_cm3": 0.030655584876950703,
+      "density_g_cm3": 0.9299999999999999,
+      "center_world_mm": [
+        22.418293511219968,
+        -110.10242323197737,
+        -127.29294786138789
+      ],
+      "bbox_local_mm": [
+        [
+          -7.500000000000001,
+          0.0,
+          -7.500000000000001
+        ],
+        [
+          7.500000000000001,
+          0.3,
+          7.500000000000001
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "H1 - Microphone Cable Housing - 22 July 2026:1+Component1:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "ABS Plastic",
+      "mass_g": 1.0028616421175287,
+      "volume_cm3": 0.9460958887901214,
+      "density_g_cm3": 1.06,
+      "center_world_mm": [
+        24.09097881835049,
+        -112.78116493876638,
+        -126.57704951410794
+      ],
+      "bbox_local_mm": [
+        [
+          -9.000000000000002,
+          -7.0,
+          -9.000000000000002
+        ],
+        [
+          20.000000298023224,
+          1.9999999999999996,
+          9.000000000000002
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "H1 - Microphone Cable Housing - 22 July 2026:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 5.531658826904637,
+      "volume_cm3": 0.6914573533630797,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        24.61510643618506,
+        -113.0283806871512,
+        -125.7958809030879
+      ],
+      "bbox_local_mm": [
+        [
+          -7.500000000000001,
+          -8.0,
+          -7.500000000000001
+        ],
+        [
+          20.000000298023224,
+          1.9999999999999996,
+          7.500000000000001
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "H1 - Microphone Cable Housing - 22 July 2026:1",
+      "body": "Body2",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.26138048001650843,
+      "volume_cm3": 0.032672560002063554,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        21.198329812878246,
+        -108.63266761971188,
+        -123.03362020920817
+      ],
+      "bbox_local_mm": [
+        [
+          -5.0,
+          -7.99999967813492,
+          -5.0
+        ],
+        [
+          5.0,
+          -5.6000000000000005,
+          5.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "H1 - Earcup Tension Band Connector:2+Component4:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Rubber",
+      "mass_g": 0.34576207113249025,
+      "volume_cm3": 0.37178717326074223,
+      "density_g_cm3": 0.9299999999999999,
+      "center_world_mm": [
+        1.8920673175203486,
+        -93.02252697705613,
+        33.91443988560407
+      ],
+      "bbox_local_mm": [
+        [
+          -7.50000011175871,
+          -7.500061038171914,
+          30.0
+        ],
+        [
+          7.50000011175871,
+          7.500000111758711,
+          40.00009144124401
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "H1 - Earcup Tension Band Connector:2+Component5:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "ABS Plastic",
+      "mass_g": 0.21048630031512677,
+      "volume_cm3": 0.19857198142936489,
+      "density_g_cm3": 1.06,
+      "center_world_mm": [
+        1.8423829330741492,
+        -93.99867261851676,
+        38.30719746759276
+      ],
+      "bbox_local_mm": [
+        [
+          -11.0,
+          -11.0,
+          39.0
+        ],
+        [
+          11.0,
+          11.0,
+          40.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "H1 - Earcup Tension Band Connector:2+Component6:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "ABS Plastic",
+      "mass_g": 0.1410875340654033,
+      "volume_cm3": 0.13310144723151257,
+      "density_g_cm3": 1.0599999999999998,
+      "center_world_mm": [
+        1.855043320908779,
+        -92.04537366521721,
+        29.52163012310246
+      ],
+      "bbox_local_mm": [
+        [
+          -10.000000149011601,
+          -10.000000149011601,
+          30.0
+        ],
+        [
+          10.000000149011601,
+          10.000000149011601,
+          31.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "H1 - Earcup Tension Band Connector:2+Component7:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "ABS Plastic",
+      "mass_g": 0.1410875339875364,
+      "volume_cm3": 0.13310144715805322,
+      "density_g_cm3": 1.0599999999999998,
+      "center_world_mm": [
+        1.8313991810035233,
+        -92.28977403439782,
+        -129.50070950805414
+      ],
+      "bbox_local_mm": [
+        [
+          -10.000000149011601,
+          -10.000000149011601,
+          -31.0
+        ],
+        [
+          10.000000149011601,
+          10.000000149011601,
+          -30.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "H1 - Earcup Tension Band Connector:2+Component8:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Rubber",
+      "mass_g": 0.34576207115556057,
+      "volume_cm3": 0.371787173285549,
+      "density_g_cm3": 0.93,
+      "center_world_mm": [
+        1.8684231762471928,
+        -93.26692269248974,
+        -133.89349834593585
+      ],
+      "bbox_local_mm": [
+        [
+          -7.50000011175871,
+          -7.500061038171914,
+          -40.00009144124401
+        ],
+        [
+          7.50000011175871,
+          7.500000111758711,
+          -30.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "H1 - Earcup Tension Band Connector:2+Component9:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "ABS Plastic",
+      "mass_g": 0.21048630017034864,
+      "volume_cm3": 0.19857198129278175,
+      "density_g_cm3": 1.0599999999999998,
+      "center_world_mm": [
+        1.8187387931930556,
+        -94.24307298771353,
+        -138.28627685258155
+      ],
+      "bbox_local_mm": [
+        [
+          -11.0,
+          -11.0,
+          -40.0
+        ],
+        [
+          11.0,
+          11.0,
+          -39.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "H1 - Earcup Tension Band Connector:2",
+      "body": "Body10",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.021485100830487398,
+      "volume_cm3": 0.002736955519807312,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        10.546747736882233,
+        -97.19634172572387,
+        38.10826871709622
+      ],
+      "bbox_local_mm": [
+        [
+          -9.352156934595243,
+          2.503686532581451,
+          39.0
+        ],
+        [
+          -8.032156934595243,
+          3.823686532581452,
+          41.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "H1 - Earcup Tension Band Connector:2",
+      "body": "Body11",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.021485100830487325,
+      "volume_cm3": 0.002736955519807303,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -5.019499106280638,
+        -100.14993628180778,
+        37.45132635288475
+      ],
+      "bbox_local_mm": [
+        [
+          6.214089908567633,
+          5.529458181537203,
+          39.0
+        ],
+        [
+          7.534089908567632,
+          6.849458181537202,
+          41.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "H1 - Earcup Tension Band Connector:2",
+      "body": "Body12",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.02148510083048736,
+      "volume_cm3": 0.002736955519807307,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        1.5317705775016814,
+        -85.08427283604662,
+        40.80225092108119
+      ],
+      "bbox_local_mm": [
+        [
+          -0.33717977521468295,
+          -9.90436540572357,
+          39.0
+        ],
+        [
+          0.982820224785317,
+          -8.58436540572357,
+          41.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Adjusting Screws:2+Component1:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Brass",
+      "mass_g": 0.029710210580028578,
+      "volume_cm3": 0.0034994358751505986,
+      "density_g_cm3": 8.489999999999998,
+      "center_world_mm": [
+        1.5046205632473064,
+        -85.27369887309385,
+        -140.6523713969279
+      ],
+      "bbox_local_mm": [
+        [
+          -0.677179775214682,
+          -10.244365405723581,
+          39.0
+        ],
+        [
+          1.3228202247853205,
+          -8.244365405723581,
+          41.00000000000001
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Adjusting Screws:2+Component2:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Brass",
+      "mass_g": 0.029697838403337444,
+      "volume_cm3": 0.0034979786105226677,
+      "density_g_cm3": 8.489999999999998,
+      "center_world_mm": [
+        10.487185668905205,
+        -97.38405669426962,
+        -137.9588394639111
+      ],
+      "bbox_local_mm": [
+        [
+          5.874089908567641,
+          5.189458181537211,
+          39.0
+        ],
+        [
+          7.87408990856764,
+          7.18945818153721,
+          41.00000000000001
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Adjusting Screws:2+Component3:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Brass",
+      "mass_g": 0.02969830366567412,
+      "volume_cm3": 0.003498033411740179,
+      "density_g_cm3": 8.49,
+      "center_world_mm": [
+        -5.0629884456395935,
+        -100.35270328415535,
+        -137.2988409013194
+      ],
+      "bbox_local_mm": [
+        [
+          -9.69215693459524,
+          2.16368653258145,
+          39.0
+        ],
+        [
+          -7.69215693459524,
+          4.16368653258145,
+          41.00000000000001
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Inner Screws:1+H1 - Heat Insert (Replica):1",
+      "body": "Heat Insert Body",
+      "visible": false,
+      "solid": true,
+      "material": "Brass",
+      "mass_g": 0.010776079115619246,
+      "volume_cm3": 0.0012692672692131033,
+      "density_g_cm3": 8.489999999999998,
+      "center_world_mm": [
+        1.9055261301822803,
+        -77.58264128442667,
+        -66.05329691999071
+      ],
+      "bbox_local_mm": [
+        [
+          -0.8999999999999999,
+          -0.8999999999999999,
+          0.0
+        ],
+        [
+          0.8999999999999999,
+          0.8999999999999999,
+          1.7199999999999998
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Inner Screws:1",
+      "body": "Body59",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.049703279774120174,
+      "volume_cm3": 0.006212909971765022,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -6.517315367386295,
+        -92.17463908481375,
+        -129.1210375839185
+      ],
+      "bbox_local_mm": [
+        [
+          -10.350000130385162,
+          -1.6000000000000003,
+          27.800000000000004
+        ],
+        [
+          -7.15000013038516,
+          1.6000000000000003,
+          31.200000000000003
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Inner Screws:1",
+      "body": "Body60",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.049714185542608424,
+      "volume_cm3": 0.006214273192826053,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        2.2335967900435003,
+        -100.71587991896962,
+        -127.2212919094134
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6000000000000003,
+          7.149999990686774,
+          27.800000000000004
+        ],
+        [
+          1.6000000000000003,
+          10.349999990686776,
+          31.200000000000006
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Inner Screws:1",
+      "body": "Body61",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.04972345715002803,
+      "volume_cm3": 0.006215432143753504,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        10.982685380110182,
+        -92.17451319692273,
+        -129.12102092535002
+      ],
+      "bbox_local_mm": [
+        [
+          7.14999980442226,
+          -1.5999999999999992,
+          27.800000000000004
+        ],
+        [
+          10.349999804422259,
+          1.5999999999999992,
+          31.199999999999996
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Inner Screws:1",
+      "body": "Body62",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.04971418554260833,
+      "volume_cm3": 0.006214273192826041,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        2.2335967900435056,
+        -83.63332706852941,
+        -131.02081565691614
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -10.349999804422259,
+          27.800000000000004
+        ],
+        [
+          1.6,
+          -7.149999804422259,
+          31.200000000000006
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Inner Screws:2+H1 - Heat Insert (Replica):1",
+      "body": "Heat Insert Body",
+      "visible": false,
+      "solid": true,
+      "material": "Brass",
+      "mass_g": 0.010776079115619246,
+      "volume_cm3": 0.0012692672692131033,
+      "density_g_cm3": 8.489999999999998,
+      "center_world_mm": [
+        1.7422663527922013,
+        -86.36223377271115,
+        0.8939306692708215
+      ],
+      "bbox_local_mm": [
+        [
+          -0.8999999999999999,
+          -0.8999999999999999,
+          0.0
+        ],
+        [
+          0.8999999999999999,
+          0.8999999999999999,
+          1.7199999999999998
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Inner Screws:2",
+      "body": "Body59",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.049703279774120174,
+      "volume_cm3": 0.006212909971765022,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -7.015266566666803,
+        -92.07688165626287,
+        28.347358349346678
+      ],
+      "bbox_local_mm": [
+        [
+          -10.350000130385162,
+          -1.6000000000000003,
+          27.800000000000004
+        ],
+        [
+          -7.15000013038516,
+          1.6000000000000003,
+          31.200000000000003
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Inner Screws:2",
+      "body": "Body60",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.049714185542608424,
+      "volume_cm3": 0.006214273192826053,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        1.7356455907629962,
+        -83.51812935748903,
+        30.16658557624411
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6000000000000003,
+          7.149999990686774,
+          27.800000000000004
+        ],
+        [
+          1.6000000000000003,
+          10.349999990686776,
+          31.200000000000006
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Inner Screws:2",
+      "body": "Body61",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.04972345715002803,
+      "volume_cm3": 0.006215432143753504,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        10.484734180829626,
+        -92.07698925449753,
+        28.34729091130905
+      ],
+      "bbox_local_mm": [
+        [
+          7.14999980442226,
+          -1.5999999999999992,
+          27.800000000000004
+        ],
+        [
+          10.349999804422259,
+          1.5999999999999992,
+          31.199999999999996
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Inner Screws:2",
+      "body": "Body62",
+      "visible": true,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.04971418554260833,
+      "volume_cm3": 0.006214273192826041,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        1.7356455907629467,
+        -100.63571216340817,
+        26.528131030915866
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -10.349999804422259,
+          27.800000000000004
+        ],
+        [
+          1.6,
+          -7.149999804422259,
+          31.200000000000006
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "RIGHT SHELL (9) (1):1+RIGHT SHELL (9) (2):1",
+      "body": "RIGHT SHELL (9)",
+      "visible": true,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 12.965162390211873,
+      "volume_cm3": 10.895094445556197,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        1.7582263322118663,
+        -91.14054795204956,
+        23.418054308834527
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          -39.2
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          -14.999999999999996
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel 17-4 PH",
+      "mass_g": 1.4484846516757415,
+      "volume_cm3": 0.1857031604712489,
+      "density_g_cm3": 7.8,
+      "center_world_mm": [
+        0.01702810094375451,
+        9.339757069707623,
+        -177.53857849931265
+      ],
+      "bbox_local_mm": [
+        [
+          21.40240454107594,
+          7.810982008659658,
+          73.59936757071954
+        ],
+        [
+          25.40240454107594,
+          55.502808480872034,
+          83.40897413625137
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body6",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel 17-4 PH",
+      "mass_g": 11.486448139687695,
+      "volume_cm3": 1.4726215563702174,
+      "density_g_cm3": 7.8,
+      "center_world_mm": [
+        1.8201499331622095,
+        -29.27324734743955,
+        -170.1365523003397
+      ],
+      "bbox_local_mm": [
+        [
+          9.055113750770978,
+          -21.06806787507609,
+          76.22925278409973
+        ],
+        [
+          34.143451667094325,
+          4.073070483229904,
+          83.60729562161839
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body5",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel 17-4 PH",
+      "mass_g": 3.8564162126361885,
+      "volume_cm3": 0.49441233495335757,
+      "density_g_cm3": 7.799999999999999,
+      "center_world_mm": [
+        -0.02599930441007814,
+        -0.9920161509638736,
+        -9.737984552426067
+      ],
+      "bbox_local_mm": [
+        [
+          10.938651105761007,
+          -20.877670004389152,
+          -85.55301992495943
+        ],
+        [
+          35.95220504914293,
+          3.938874809416477,
+          -80.320352900505
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body7",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 35.1507124449426,
+      "volume_cm3": 4.477797763686955,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        0.009783788624950773,
+        57.26324436577375,
+        -104.12986082658938
+      ],
+      "bbox_local_mm": [
+        [
+          10.938651136271877,
+          -20.878301716071487,
+          -86.40602586374862
+        ],
+        [
+          35.94037570559927,
+          138.22088075199346,
+          83.40897413625137
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body8",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 3.8554711068585026,
+      "volume_cm3": 0.49114281616031885,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        1.8190700606899357,
+        -29.284033448217883,
+        -170.166058827026
+      ],
+      "bbox_local_mm": [
+        [
+          9.075796119490198,
+          -20.903945005940237,
+          77.30901308467922
+        ],
+        [
+          34.12496310905384,
+          3.904808052937083,
+          82.55151222381102
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+H1 - V1 - Cap:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "PA 12 - PA 2200 - 120\u00b5m - Balance (with EOS 3D printers)",
+      "mass_g": 0.7086091880595026,
+      "volume_cm3": 0.7157668566257601,
+      "density_g_cm3": 0.9900000000000001,
+      "center_world_mm": [
+        -0.036441468735913266,
+        -0.9701046577385779,
+        -8.258216247496412
+      ],
+      "bbox_local_mm": [
+        [
+          -11.0,
+          -11.0,
+          0.0
+        ],
+        [
+          11.0,
+          11.0,
+          2.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "Polycarbonate, Clear",
+      "mass_g": 20.945559214010647,
+      "volume_cm3": 17.454632678342207,
+      "density_g_cm3": 1.2,
+      "center_world_mm": [
+        0.08586367520844419,
+        -0.8878987580219824,
+        -25.533815819052673
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          12.000000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.27692988681388
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (1) (1):1",
+      "body": "SHELL V1.2 (1) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.02691029045541314,
+      "volume_cm3": 0.022613689458330373,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        10.59581555062099,
+        -41.245047268454904,
+        -15.516315139288668
+      ],
+      "bbox_local_mm": [
+        [
+          -12.149133778495887,
+          -42.04523074205733,
+          10.8
+        ],
+        [
+          -9.149133778495887,
+          -39.04523074205733,
+          17.238088195296342
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (8) (1):1",
+      "body": "SHELL V1.2 (8) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.045187593458058256,
+      "volume_cm3": 0.03797276761181367,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        37.53496704785176,
+        -18.767392087179175,
+        -16.57943566226804
+      ],
+      "bbox_local_mm": [
+        [
+          -39.158445624448035,
+          -19.37475621483086,
+          10.8
+        ],
+        [
+          -36.158445624448035,
+          -16.374756214830864,
+          19.262741577639034
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (4) (1):1",
+      "body": "SHELL V1.2 (4) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.045929160409960174,
+      "volume_cm3": 0.0385959331176136,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        -37.82923447709504,
+        16.104687124882368,
+        -16.62156983610597
+      ],
+      "bbox_local_mm": [
+        [
+          36.48445176214481,
+          15.647680862269544,
+          10.8
+        ],
+        [
+          39.4844517621448,
+          18.647680862269542,
+          19.340330972868255
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (5) (1):1",
+      "body": "SHELL V1.2 (5) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.027676306565727997,
+      "volume_cm3": 0.02325740047540168,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -15.873350451324802,
+        37.49752744160114,
+        -15.56080571975879
+      ],
+      "bbox_local_mm": [
+        [
+          14.4916384113573,
+          37.21940541663314,
+          10.8
+        ],
+        [
+          17.491638411357297,
+          40.21940541663313,
+          17.32033582430922
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (2) (1):1",
+      "body": "SHELL V1.2 (2) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.03680772227070539,
+      "volume_cm3": 0.03093085905101294,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        -23.37766558273858,
+        -34.80885955606703,
+        -16.07770100061227
+      ],
+      "bbox_local_mm": [
+        [
+          22.000000350177295,
+          -35.500000506639495,
+          10.8
+        ],
+        [
+          25.00000035017729,
+          -32.5000005066395,
+          18.27760889148369
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (6) (1):1",
+      "body": "SHELL V1.2 (6) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.03278078812406977,
+      "volume_cm3": 0.02754688077652922,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        23.61048998699283,
+        33.07211294629328,
+        -15.852952442700827
+      ],
+      "bbox_local_mm": [
+        [
+          -25.2175477296647,
+          32.730616712166125,
+          10.8
+        ],
+        [
+          -22.2175477296647,
+          35.730616712166125,
+          17.87254628732168
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (9):1",
+      "body": "SHELL V1.2 (9)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 12.61098158048648,
+      "volume_cm3": 10.59746351301385,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -0.03264422558443593,
+        -0.9286276514882172,
+        -26.673090318153108
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.09426014061523
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (7) (1):1",
+      "body": "SHELL V1.2 (7) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.09255915840902139,
+      "volume_cm3": 0.07778080538573227,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        35.68415599071653,
+        9.878200075190255,
+        -19.353084827232852
+      ],
+      "bbox_local_mm": [
+        [
+          -37.2140337697587,
+          9.366125811647718,
+          10.8
+        ],
+        [
+          -34.2140337697587,
+          12.366125811647716,
+          24.196717162733513
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (3) (1):1",
+      "body": "SHELL V1.2 (3) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.09278066256512467,
+      "volume_cm3": 0.07796694333203755,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -35.936446349490566,
+        -10.953786832572568,
+        -19.366477958010787
+      ],
+      "bbox_local_mm": [
+        [
+          34.500000536441824,
+          -11.500000149011615,
+          10.8
+        ],
+        [
+          37.50000053644182,
+          -8.500000149011617,
+          24.22209244995411
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (1) (1) (1):1",
+      "body": "SHELL V1.2 (1) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 13.011769625256926,
+      "volume_cm3": 10.934260189291535,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -0.05571914946284614,
+        -0.9372263593940153,
+        -26.394468821671214
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.09426014061523
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1+Latest (1):1",
+      "body": "Latest (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 13.174353809948368,
+      "volume_cm3": 11.070885554578462,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        2.142866823600234,
+        -90.8636018499511,
+        -123.44164512803917
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.8
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.00000000000001
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body14",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.5349098369179686,
+      "volume_cm3": 0.06686372961474607,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        39.94348695919059,
+        -0.9701046577385469,
+        -33.486381709665
+      ],
+      "bbox_local_mm": [
+        [
+          38.5,
+          -1.5000000000000047,
+          11.999999999999995
+        ],
+        [
+          41.5,
+          1.5000000000000024,
+          22.884816265255715
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body17",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.5163229822476668,
+      "volume_cm3": 0.06454037278095835,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -39.935175547339554,
+        -0.9701046577385855,
+        -33.643474205466816
+      ],
+      "bbox_local_mm": [
+        [
+          -41.5,
+          -1.4999999999999991,
+          11.999999999999995
+        ],
+        [
+          -38.5,
+          1.4999999999999991,
+          22.70895140928689
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body27",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 14.973438381232205,
+      "volume_cm3": 11.343513925175913,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        0.047028037309384534,
+        -0.9302572187162568,
+        -25.56035914306461
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.057865141656436
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 12.61098158048648,
+      "volume_cm3": 10.59746351301385,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        0.04942760827929695,
+        -0.9286276514882259,
+        -25.673452974515264
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.09426014061523
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body86",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.5404349114735494,
+      "volume_cm3": 0.06755436393419367,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        23.54338463597756,
+        -35.03657807746,
+        -27.274782823103806
+      ],
+      "bbox_local_mm": [
+        [
+          22.000000350177295,
+          -35.500000506639495,
+          16.110015419968875
+        ],
+        [
+          25.00000035017729,
+          -32.5000005066395,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body87",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.1902926205310724,
+      "volume_cm3": 0.02378657756638405,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -35.85847059989854,
+        9.951041941774996,
+        -24.19684415202684
+      ],
+      "bbox_local_mm": [
+        [
+          -37.2140337697587,
+          9.36612581164772,
+          23.00874348184697
+        ],
+        [
+          -34.21403376975871,
+          12.366125811647716,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body88",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.6019776146135127,
+      "volume_cm3": 0.07524720182668909,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -10.668324813918845,
+        -41.58914750412706,
+        -27.82029856026888
+      ],
+      "bbox_local_mm": [
+        [
+          -12.149133778495887,
+          -42.04523074205733,
+          14.886819705902017
+        ],
+        [
+          -9.149133778495887,
+          -39.04523074205733,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body89",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.18877341908604664,
+      "volume_cm3": 0.02359667738575583,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        36.14654115514091,
+        -11.021277481552973,
+        -24.183660761524266
+      ],
+      "bbox_local_mm": [
+        [
+          34.500000536441824,
+          -11.500000149011614,
+          23.037830435148443
+        ],
+        [
+          37.50000053644182,
+          -8.500000149011619,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body90",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.5647043037613727,
+      "volume_cm3": 0.07058803797017159,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -23.760533269575824,
+        33.326073498496385,
+        -27.489989046487928
+      ],
+      "bbox_local_mm": [
+        [
+          -25.2175477296647,
+          32.73061671216612,
+          15.606683016011855
+        ],
+        [
+          -22.2175477296647,
+          35.730616712166125,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body91",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.4838435451022971,
+      "volume_cm3": 0.06048044313778714,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -37.734629360910134,
+        -18.887316122156893,
+        -26.778912294817808
+      ],
+      "bbox_local_mm": [
+        [
+          -39.15844562444804,
+          -19.37475621483086,
+          17.117316664130495
+        ],
+        [
+          -36.15844562444803,
+          -16.37475621483086,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body92",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.47915989951559845,
+      "volume_cm3": 0.05989498743944981,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        38.061711059585726,
+        16.21854100331348,
+        -26.737031752120348
+      ],
+      "bbox_local_mm": [
+        [
+          36.48445176214481,
+          15.647680862269546,
+          17.210544199997898
+        ],
+        [
+          39.4844517621448,
+          18.64768086226954,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body93",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.3708090118744628,
+      "volume_cm3": 0.04635112648430784,
+      "density_g_cm3": 8.000000000000002,
+      "center_world_mm": [
+        16.03748403124411,
+        37.8632751312762,
+        -29.809593711956023
+      ],
+      "bbox_local_mm": [
+        [
+          14.491638411357302,
+          37.21940541663314,
+          14.981741285165528
+        ],
+        [
+          17.491638411357297,
+          40.21940541663312,
+          23.799999999999997
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.02691029045541314,
+      "volume_cm3": 0.022613689458330373,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -10.579032167926128,
+        -41.24504726845493,
+        -36.830228153379664
+      ],
+      "bbox_local_mm": [
+        [
+          -12.149133778495887,
+          -42.04523074205733,
+          10.8
+        ],
+        [
+          -9.149133778495887,
+          -39.04523074205733,
+          17.238088195296342
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (2)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.03680772227070539,
+      "volume_cm3": 0.03093085905101294,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        23.39444896543343,
+        -34.808859556067006,
+        -36.26884229205622
+      ],
+      "bbox_local_mm": [
+        [
+          22.000000350177295,
+          -35.500000506639495,
+          10.8
+        ],
+        [
+          25.00000035017729,
+          -32.5000005066395,
+          18.27760889148369
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (3)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.09278066256512467,
+      "volume_cm3": 0.07796694333203755,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        35.95322973218539,
+        -10.953786832572536,
+        -32.98006533465775
+      ],
+      "bbox_local_mm": [
+        [
+          34.500000536441824,
+          -11.500000149011615,
+          10.8
+        ],
+        [
+          37.50000053644182,
+          -8.500000149011617,
+          24.22209244995411
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (4)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.045929160409960174,
+      "volume_cm3": 0.0385959331176136,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        37.846017859789825,
+        16.104687124882403,
+        -35.72497345656256
+      ],
+      "bbox_local_mm": [
+        [
+          36.48445176214481,
+          15.647680862269544,
+          10.8
+        ],
+        [
+          39.4844517621448,
+          18.647680862269542,
+          19.340330972868255
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (5)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.027676306565727997,
+      "volume_cm3": 0.02325740047540168,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        15.890133834019554,
+        37.497527441601164,
+        -36.785737572909625
+      ],
+      "bbox_local_mm": [
+        [
+          14.4916384113573,
+          37.21940541663314,
+          10.8
+        ],
+        [
+          17.491638411357297,
+          40.21940541663313,
+          17.32033582430922
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (6)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.03278078812406977,
+      "volume_cm3": 0.02754688077652922,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -23.593706604298053,
+        33.07211294629325,
+        -36.493590849967404
+      ],
+      "bbox_local_mm": [
+        [
+          -25.2175477296647,
+          32.730616712166125,
+          10.8
+        ],
+        [
+          -22.2175477296647,
+          35.730616712166125,
+          17.87254628732168
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (7)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.09255915840902139,
+      "volume_cm3": 0.07778080538573227,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        -35.6673726080217,
+        9.878200075190215,
+        -32.993458465435346
+      ],
+      "bbox_local_mm": [
+        [
+          -37.2140337697587,
+          9.366125811647718,
+          10.8
+        ],
+        [
+          -34.2140337697587,
+          12.366125811647716,
+          24.196717162733513
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (8)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.045187593458058256,
+      "volume_cm3": 0.03797276761181367,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        -37.518183665156904,
+        -18.76739208717921,
+        -35.767107630400155
+      ],
+      "bbox_local_mm": [
+        [
+          -39.158445624448035,
+          -19.37475621483086,
+          10.8
+        ],
+        [
+          -36.158445624448035,
+          -16.374756214830864,
+          19.262741577639034
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Latest",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 12.61098158048648,
+      "volume_cm3": 10.59746351301385,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        0.04942760827929695,
+        -0.9286276514882259,
+        -25.673452974515264
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.09426014061523
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body141",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 84.29263625044783,
+      "volume_cm3": 10.737915445916922,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        0.08728499982926871,
+        -0.9207545676781337,
+        -25.54750985074234
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Component1:1+Component2:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "ABS Plastic",
+      "mass_g": 16.493031648934174,
+      "volume_cm3": 15.559463819749224,
+      "density_g_cm3": 1.0599999999999998,
+      "center_world_mm": [
+        -0.06565682671517542,
+        5.060890939914794,
+        -8.775492355458432
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.2681435630706,
+          -12.000000000000002
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          1.0000000000000009
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Component1:1",
+      "body": "Body2",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 20.538492242098584,
+      "volume_cm3": 15.559463819771652,
+      "density_g_cm3": 1.3200000000000003,
+      "center_world_mm": [
+        -0.06565682659382334,
+        5.060890939928707,
+        34.28973848212556
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.26814356307058,
+          29.0
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          42.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1+Component3:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 124.18831459390793,
+      "volume_cm3": 15.820167464192094,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        2.1705845802902433,
+        -82.55394242390203,
+        -108.33308307034677
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -60.0,
+          -12.000000000000002
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          1.0000000000000009
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Left V1.2:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "PA 12 - PA 2200 - 120\u00b5m - Balance (with EOS 3D printers)",
+      "mass_g": 71.61906499095497,
+      "volume_cm3": 72.3424898898535,
+      "density_g_cm3": 0.9900000000000001,
+      "center_world_mm": [
+        2.2858847584464757,
+        -83.21522798156165,
+        -94.83335017370423
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.550401068816946,
+          2.1371793224034263e-14
+        ],
+        [
+          45.0,
+          59.862980568593365,
+          12.000000000000002
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1",
+      "body": "Body2",
+      "visible": false,
+      "solid": true,
+      "material": "PA 12 - PA 2200 - 120\u00b5m - Balance (with EOS 3D printers)",
+      "mass_g": 78.93480518322464,
+      "volume_cm3": 79.73212644770166,
+      "density_g_cm3": 0.99,
+      "center_world_mm": [
+        2.580413448994312,
+        -83.26222965264839,
+        -94.24475246510195
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -51.00000000000004,
+          2.1371793224034263e-14
+        ],
+        [
+          45.0,
+          63.18873271216865,
+          11.999999999999993
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1",
+      "body": "Body14",
+      "visible": false,
+      "solid": true,
+      "material": "PA 12 - PA 2200 - 120\u00b5m - Balance (with EOS 3D printers)",
+      "mass_g": 71.59860511062323,
+      "volume_cm3": 72.32182334406387,
+      "density_g_cm3": 0.9899999999999999,
+      "center_world_mm": [
+        2.187355930298609,
+        -93.63929143269159,
+        -141.68937370640566
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.550401068816946,
+          -47.999999999999986
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          -36.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1",
+      "body": "Body15",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 15.104401076823045,
+      "volume_cm3": 11.442728088502307,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        2.3349319722003345,
+        -83.8028458109876,
+        -91.33112053248945
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.550401068816946,
+          -1.457167719820518e-15
+        ],
+        [
+          45.0,
+          48.09942954499135,
+          11.999999999999993
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1",
+      "body": "Body16",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 2.5200794637708204,
+      "volume_cm3": 1.9091511089172881,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        0.031670946358176855,
+        -35.458710171719396,
+        -109.01508839199906
+      ],
+      "bbox_local_mm": [
+        [
+          -35.543179643827585,
+          32.407368041236936,
+          4.304265280038168e-15
+        ],
+        [
+          25.744971588944875,
+          59.86298056859336,
+          6.12732359342408
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1",
+      "body": "Body17",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 17.508253947486335,
+      "volume_cm3": 13.263828748095706,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        2.001897501394963,
+        -77.10314882311629,
+        -93.76782441280882
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.2681435630706,
+          0.0
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          11.999712966083312
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1",
+      "body": "Body19",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 17.59361473703234,
+      "volume_cm3": 13.328496012903287,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        2.1107540230038375,
+        -80.27471875267878,
+        -108.76743217946782
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.2681435630706,
+          -12.000000000000002
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          -2.886579864025407e-14
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1",
+      "body": "Body20",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 18.611154083109398,
+      "volume_cm3": 2.3708476538992866,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        2.2351030180959106,
+        -85.60367150448037,
+        -99.60524935769297
+      ],
+      "bbox_local_mm": [
+        [
+          -40.826040094984336,
+          -49.950401068816944,
+          -0.5
+        ],
+        [
+          40.826040094984336,
+          49.950401068816944,
+          1.0000000000000002
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1",
+      "body": "Body25",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 17.537228911163936,
+      "volume_cm3": 13.285779478154499,
+      "density_g_cm3": 1.3199999999999998,
+      "center_world_mm": [
+        2.1103912468046557,
+        -80.10563768944195,
+        -108.80987600518361
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.2681435630706,
+          -12.000000000000002
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          -2.886579864025407e-14
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1",
+      "body": "Body26",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 2.3818374664494772,
+      "volume_cm3": 0.30341878553496526,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        2.2351282742029346,
+        -135.6217531377509,
+        -94.76421859780203
+      ],
+      "bbox_local_mm": [
+        [
+          -3.0000000000000004,
+          -60.0,
+          -9.000000089406967
+        ],
+        [
+          3.0000000000000004,
+          -44.0,
+          -3.0000000894069667
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Left V1.2:1",
+      "body": "Body33",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 123.92525856904724,
+      "volume_cm3": 15.786657142553791,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        2.168925113886859,
+        -82.05752530518133,
+        -107.20865078717212
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -60.0,
+          -12.000000000000002
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          1.0000000000000009
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Configuration 1:1+Component11:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 12.263795968514506,
+      "volume_cm3": 1.5622670023585359,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -22.898267674042838,
+        -70.91791826597566,
+        -65.3229233073846
+      ],
+      "bbox_local_mm": [
+        [
+          -12.500000000000039,
+          -74.62837288026856,
+          81.55479799296606
+        ],
+        [
+          12.500000000000075,
+          -49.77820543899533,
+          89.82993042100276
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Configuration 1:1",
+      "body": "Body3",
+      "visible": false,
+      "solid": true,
+      "material": "Steel AISI 5160 434 QT",
+      "mass_g": 35.93143921908945,
+      "volume_cm3": 4.5772534037056625,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        66.2306675035764,
+        -85.57300808547355,
+        0.4870735788902625
+      ],
+      "bbox_local_mm": [
+        [
+          -12.57915015270002,
+          -74.41499180685666,
+          -88.75713295087718
+        ],
+        [
+          12.420849847299989,
+          85.0000012665987,
+          89.45099045885847
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Configuration 1:1",
+      "body": "Sheet Metal Band",
+      "visible": false,
+      "solid": true,
+      "material": "Steel AISI 5160 434 QT",
+      "mass_g": 34.93540772181578,
+      "volume_cm3": 4.4503704104223925,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        67.72787733515001,
+        -85.56607109363125,
+        0.5352623697271475
+      ],
+      "bbox_local_mm": [
+        [
+          -12.500000000000014,
+          -74.34767430717297,
+          -88.4509904588586
+        ],
+        [
+          12.499999999999991,
+          84.00000125169754,
+          88.4509904588586
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Configuration 1:1",
+      "body": "Body5",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 11.198792221570864,
+      "volume_cm3": 1.4265977352319572,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -22.988988646592958,
+        -70.87571769008875,
+        -65.51280548563737
+      ],
+      "bbox_local_mm": [
+        [
+          -12.500000000000039,
+          -74.62837288026856,
+          81.77234473800203
+        ],
+        [
+          12.500000000000075,
+          -49.77820543899533,
+          89.82993042100276
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Configuration 1:1",
+      "body": "Left",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 12.263741525597707,
+      "volume_cm3": 1.562260066955122,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        1.5798710347777245,
+        -94.55721909777074,
+        40.95867046229835
+      ],
+      "bbox_local_mm": [
+        [
+          -12.500000000000043,
+          -74.60709865306175,
+          -30.14815992343733
+        ],
+        [
+          12.500000000000078,
+          -49.77691462429352,
+          -21.664764771504352
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Textured Knob - Left:1+Left:1",
+      "body": "Left",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 12.263741525597707,
+      "volume_cm3": 1.562260066955122,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        1.6895007052108024,
+        -94.55462234833345,
+        -140.98584073287606
+      ],
+      "bbox_local_mm": [
+        [
+          -12.500000000000043,
+          -74.60709865306175,
+          -30.14815992343733
+        ],
+        [
+          12.500000000000078,
+          -49.77691462429352,
+          -21.664764771504352
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel 17-4 PH",
+      "mass_g": 1.4484846516757415,
+      "volume_cm3": 0.1857031604712489,
+      "density_g_cm3": 7.8,
+      "center_world_mm": [
+        0.017028148358666506,
+        -69.02479240516695,
+        -43.64803752420619
+      ],
+      "bbox_local_mm": [
+        [
+          21.40240454107594,
+          7.810982008659658,
+          73.59936757071954
+        ],
+        [
+          25.40240454107594,
+          55.502808480872034,
+          83.40897413625137
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body6",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel 17-4 PH",
+      "mass_g": 11.486448139687695,
+      "volume_cm3": 1.4726215563702174,
+      "density_g_cm3": 7.8,
+      "center_world_mm": [
+        1.8201499805769927,
+        -33.64327956067165,
+        -60.79162672844569
+      ],
+      "bbox_local_mm": [
+        [
+          9.055113750770978,
+          -21.06806787507609,
+          76.22925278409973
+        ],
+        [
+          34.143451667094325,
+          4.073070483229904,
+          83.60729562161839
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body5",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel 17-4 PH",
+      "mass_g": 3.8564162126361885,
+      "volume_cm3": 0.49441233495335757,
+      "density_g_cm3": 7.799999999999999,
+      "center_world_mm": [
+        -0.02599925699744876,
+        -102.47505531291722,
+        -208.40502456334087
+      ],
+      "bbox_local_mm": [
+        [
+          10.938651105761007,
+          -20.877670004389152,
+          -85.55301992495943
+        ],
+        [
+          35.95220504914293,
+          3.938874809416477,
+          -80.320352900505
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body7",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 35.1507124449426,
+      "volume_cm3": 4.477797763686955,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        0.009783836038899096,
+        -134.31490068052426,
+        -102.15190257910572
+      ],
+      "bbox_local_mm": [
+        [
+          10.938651136271877,
+          -20.878301716071487,
+          -86.40602586374862
+        ],
+        [
+          35.94037570559927,
+          138.22088075199346,
+          83.40897413625137
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body8",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 3.8554711068585026,
+      "volume_cm3": 0.49114281616031885,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        1.8190701081047234,
+        -33.625224136303665,
+        -60.76591726057916
+      ],
+      "bbox_local_mm": [
+        [
+          9.075796119490198,
+          -20.903945005940237,
+          77.30901308467922
+        ],
+        [
+          34.12496310905384,
+          3.904808052937083,
+          82.55151222381102
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+H1 - V1 - Cap:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "PA 12 - PA 2200 - 120\u00b5m - Balance (with EOS 3D printers)",
+      "mass_g": 0.7086091880595026,
+      "volume_cm3": 0.7157668566257601,
+      "density_g_cm3": 0.9900000000000001,
+      "center_world_mm": [
+        -0.03644142132330495,
+        -102.87921240977087,
+        -209.82869987424309
+      ],
+      "bbox_local_mm": [
+        [
+          -11.0,
+          -11.0,
+          0.0
+        ],
+        [
+          11.0,
+          11.0,
+          2.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "Polycarbonate, Clear",
+      "mass_g": 20.945559214010647,
+      "volume_cm3": 17.454632678342207,
+      "density_g_cm3": 1.2,
+      "center_world_mm": [
+        0.08586372262128983,
+        -98.4873630266978,
+        -193.12047563098187
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          12.000000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.27692988681388
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (1) (1):1",
+      "body": "SHELL V1.2 (1) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.02691029045541314,
+      "volume_cm3": 0.022613689458330373,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -10.57903212051313,
+        -56.58162435163247,
+        -192.65417785337317
+      ],
+      "bbox_local_mm": [
+        [
+          -12.149133778495887,
+          -42.04523074205733,
+          10.8
+        ],
+        [
+          -9.149133778495887,
+          -39.04523074205733,
+          17.238088195296342
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (8) (1):1",
+      "body": "SHELL V1.2 (8) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.045187593458058256,
+      "volume_cm3": 0.03797276761181367,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        -37.51818361774383,
+        -78.56852784423359,
+        -187.86342817281653
+      ],
+      "bbox_local_mm": [
+        [
+          -39.158445624448035,
+          -19.37475621483086,
+          10.8
+        ],
+        [
+          -36.158445624448035,
+          -16.374756214830864,
+          19.262741577639034
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (4) (1):1",
+      "body": "SHELL V1.2 (4) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.045929160409960174,
+      "volume_cm3": 0.0385959331176136,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        37.846017907202715,
+        -112.26327489820157,
+        -178.87856841709348
+      ],
+      "bbox_local_mm": [
+        [
+          36.48445176214481,
+          15.647680862269544,
+          10.8
+        ],
+        [
+          39.4844517621448,
+          18.647680862269542,
+          19.340330972868255
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (5) (1):1",
+      "body": "SHELL V1.2 (5) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.027676306565727997,
+      "volume_cm3": 0.02325740047540168,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        15.890133881432531,
+        -132.65262590212657,
+        -172.31707445871027
+      ],
+      "bbox_local_mm": [
+        [
+          14.4916384113573,
+          37.21940541663314,
+          10.8
+        ],
+        [
+          17.491638411357297,
+          40.21940541663313,
+          17.32033582430922
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (2) (1):1",
+      "body": "SHELL V1.2 (2) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.03680772227070539,
+      "volume_cm3": 0.03093085905101294,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        23.394449012846334,
+        -62.94380163843427,
+        -191.53062699751902
+      ],
+      "bbox_local_mm": [
+        [
+          22.000000350177295,
+          -35.500000506639495,
+          10.8
+        ],
+        [
+          25.00000035017729,
+          -32.5000005066395,
+          18.27760889148369
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (6) (1):1",
+      "body": "SHELL V1.2 (6) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.03278078812406977,
+      "volume_cm3": 0.02754688077652922,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -23.593706556884975,
+        -128.4536168849362,
+        -173.74464807732355
+      ],
+      "bbox_local_mm": [
+        [
+          -25.2175477296647,
+          32.730616712166125,
+          10.8
+        ],
+        [
+          -22.2175477296647,
+          35.730616712166125,
+          17.87254628732168
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (9):1",
+      "body": "SHELL V1.2 (9)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 12.61098158048648,
+      "volume_cm3": 10.59746351301385,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        0.04942765569214452,
+        -98.41188118138493,
+        -192.99613790952603
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.09426014061523
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (7) (1):1",
+      "body": "SHELL V1.2 (7) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.09255915840902139,
+      "volume_cm3": 0.07778080538573227,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        -35.667372560608655,
+        -106.95591835153577,
+        -183.12854272446228
+      ],
+      "bbox_local_mm": [
+        [
+          -37.2140337697587,
+          9.366125811647718,
+          10.8
+        ],
+        [
+          -34.2140337697587,
+          12.366125811647716,
+          24.196717162733513
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (3) (1):1",
+      "body": "SHELL V1.2 (3) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.09278066256512467,
+      "volume_cm3": 0.07796694333203755,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        35.95322977959823,
+        -86.8372305817307,
+        -188.53319445443023
+      ],
+      "bbox_local_mm": [
+        [
+          34.500000536441824,
+          -11.500000149011615,
+          10.8
+        ],
+        [
+          37.50000053644182,
+          -8.500000149011617,
+          24.22209244995411
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (1) (1) (1):1",
+      "body": "SHELL V1.2 (1) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 13.011769625256926,
+      "volume_cm3": 10.934260189291535,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        0.0725025795705571,
+        -98.33146291768156,
+        -192.72923571968414
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.09426014061523
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1+Latest (1):1",
+      "body": "Latest (1)",
+      "visible": true,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 13.174353809948368,
+      "volume_cm3": 11.070885554578462,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        2.3441729174913957,
+        -90.9736553149477,
+        -123.55977936687994
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.8
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.00000000000001
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body14",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.5349098369179686,
+      "volume_cm3": 0.06686372961474607,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        39.94348700660343,
+        -96.3496827151657,
+        -185.46016330444073
+      ],
+      "bbox_local_mm": [
+        [
+          38.5,
+          -1.5000000000000047,
+          11.999999999999995
+        ],
+        [
+          41.5,
+          1.5000000000000024,
+          22.884816265255715
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body17",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.5163229822476668,
+      "volume_cm3": 0.06454037278095835,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -39.935175499926494,
+        -96.30902418540924,
+        -185.3084236056285
+      ],
+      "bbox_local_mm": [
+        [
+          -41.5,
+          -1.4999999999999991,
+          11.999999999999995
+        ],
+        [
+          -38.5,
+          1.4999999999999991,
+          22.70895140928689
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body27",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 14.973438381232205,
+      "volume_cm3": 11.343513925175913,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        0.047028084722230606,
+        -98.43957797777675,
+        -193.1057999251521
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.057865141656436
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 12.61098158048648,
+      "volume_cm3": 10.59746351301385,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        0.04942765569214452,
+        -98.41188118138493,
+        -192.99613790952603
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.09426014061523
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body86",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.5404349114735494,
+      "volume_cm3": 0.06755436393419367,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        23.543384683390343,
+        -65.05167632084542,
+        -200.27715921201914
+      ],
+      "bbox_local_mm": [
+        [
+          22.000000350177295,
+          -35.500000506639495,
+          16.110015419968875
+        ],
+        [
+          25.00000035017729,
+          -32.5000005066395,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body87",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.1902926205310724,
+      "volume_cm3": 0.02378657756638405,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -35.8584705524856,
+        -109.30300950843613,
+        -191.60656681133477
+      ],
+      "bbox_local_mm": [
+        [
+          -37.2140337697587,
+          9.36612581164772,
+          23.00874348184697
+        ],
+        [
+          -34.21403376975871,
+          12.366125811647716,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body88",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.6019776146135127,
+      "volume_cm3": 0.07524720182668909,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -10.668324766505968,
+        -58.58119042089392,
+        -201.44616123482135
+      ],
+      "bbox_local_mm": [
+        [
+          -12.149133778495887,
+          -42.04523074205733,
+          14.886819705902017
+        ],
+        [
+          -9.149133778495887,
+          -39.04523074205733,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body89",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.18877341908604664,
+      "volume_cm3": 0.02359667738575583,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        36.146541202553635,
+        -89.0487166528008,
+        -197.04733667542973
+      ],
+      "bbox_local_mm": [
+        [
+          34.500000536441824,
+          -11.500000149011614,
+          23.037830435148443
+        ],
+        [
+          37.50000053644182,
+          -8.500000149011619,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body90",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.5647043037613727,
+      "volume_cm3": 0.07058803797017159,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -23.760533222162866,
+        -131.0292275624272,
+        -182.37572976131247
+      ],
+      "bbox_local_mm": [
+        [
+          -25.2175477296647,
+          32.73061671216612,
+          15.606683016011855
+        ],
+        [
+          -22.2175477296647,
+          35.730616712166125,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body91",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.4838435451022971,
+      "volume_cm3": 0.06048044313778714,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -37.73462931349718,
+        -80.77900625560567,
+        -196.57639680340435
+      ],
+      "bbox_local_mm": [
+        [
+          -39.15844562444804,
+          -19.37475621483086,
+          17.117316664130495
+        ],
+        [
+          -36.15844562444803,
+          -16.37475621483086,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body92",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.47915989951559845,
+      "volume_cm3": 0.05989498743944981,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        38.061711106998494,
+        -114.69949978918166,
+        -187.5307858824982
+      ],
+      "bbox_local_mm": [
+        [
+          36.48445176214481,
+          15.647680862269546,
+          17.210544199997898
+        ],
+        [
+          39.4844517621448,
+          18.64768086226954,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body93",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.3708090118744628,
+      "volume_cm3": 0.04635112648430784,
+      "density_g_cm3": 8.000000000000002,
+      "center_world_mm": [
+        16.03748407865699,
+        -134.81146993407864,
+        -178.9608495141233
+      ],
+      "bbox_local_mm": [
+        [
+          14.491638411357302,
+          37.21940541663314,
+          14.981741285165528
+        ],
+        [
+          17.491638411357297,
+          40.21940541663312,
+          23.799999999999997
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.02691029045541314,
+      "volume_cm3": 0.022613689458330373,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -10.57903212051313,
+        -56.58162435163247,
+        -192.65417785337317
+      ],
+      "bbox_local_mm": [
+        [
+          -12.149133778495887,
+          -42.04523074205733,
+          10.8
+        ],
+        [
+          -9.149133778495887,
+          -39.04523074205733,
+          17.238088195296342
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (2)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.03680772227070539,
+      "volume_cm3": 0.03093085905101294,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        23.394449012846334,
+        -62.94380163843427,
+        -191.53062699751902
+      ],
+      "bbox_local_mm": [
+        [
+          22.000000350177295,
+          -35.500000506639495,
+          10.8
+        ],
+        [
+          25.00000035017729,
+          -32.5000005066395,
+          18.27760889148369
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (3)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.09278066256512467,
+      "volume_cm3": 0.07796694333203755,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        35.95322977959823,
+        -86.8372305817307,
+        -188.53319445443023
+      ],
+      "bbox_local_mm": [
+        [
+          34.500000536441824,
+          -11.500000149011615,
+          10.8
+        ],
+        [
+          37.50000053644182,
+          -8.500000149011617,
+          24.22209244995411
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (4)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.045929160409960174,
+      "volume_cm3": 0.0385959331176136,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        37.846017907202715,
+        -112.26327489820157,
+        -178.87856841709348
+      ],
+      "bbox_local_mm": [
+        [
+          36.48445176214481,
+          15.647680862269544,
+          10.8
+        ],
+        [
+          39.4844517621448,
+          18.647680862269542,
+          19.340330972868255
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (5)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.027676306565727997,
+      "volume_cm3": 0.02325740047540168,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        15.890133881432531,
+        -132.65262590212657,
+        -172.31707445871027
+      ],
+      "bbox_local_mm": [
+        [
+          14.4916384113573,
+          37.21940541663314,
+          10.8
+        ],
+        [
+          17.491638411357297,
+          40.21940541663313,
+          17.32033582430922
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (6)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.03278078812406977,
+      "volume_cm3": 0.02754688077652922,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -23.593706556884975,
+        -128.4536168849362,
+        -173.74464807732355
+      ],
+      "bbox_local_mm": [
+        [
+          -25.2175477296647,
+          32.730616712166125,
+          10.8
+        ],
+        [
+          -22.2175477296647,
+          35.730616712166125,
+          17.87254628732168
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (7)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.09255915840902139,
+      "volume_cm3": 0.07778080538573227,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        -35.667372560608655,
+        -106.95591835153577,
+        -183.12854272446228
+      ],
+      "bbox_local_mm": [
+        [
+          -37.2140337697587,
+          9.366125811647718,
+          10.8
+        ],
+        [
+          -34.2140337697587,
+          12.366125811647716,
+          24.196717162733513
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (8)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.045187593458058256,
+      "volume_cm3": 0.03797276761181367,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        -37.51818361774383,
+        -78.56852784423359,
+        -187.86342817281653
+      ],
+      "bbox_local_mm": [
+        [
+          -39.158445624448035,
+          -19.37475621483086,
+          10.8
+        ],
+        [
+          -36.158445624448035,
+          -16.374756214830864,
+          19.262741577639034
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Latest",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 12.61098158048648,
+      "volume_cm3": 10.59746351301385,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        0.04942765569214452,
+        -98.41188118138493,
+        -192.99613790952603
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.09426014061523
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body141",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 84.29263625044783,
+      "volume_cm3": 10.737915445916922,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        0.08728504724211451,
+        -98.45208247540178,
+        -193.11575192138807
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel 17-4 PH",
+      "mass_g": 1.4484846516757415,
+      "volume_cm3": 0.1857031604712489,
+      "density_g_cm3": 7.8,
+      "center_world_mm": [
+        0.017027863879901517,
+        -43.04274527384413,
+        -91.04765509158547
+      ],
+      "bbox_local_mm": [
+        [
+          21.40240454107594,
+          7.810982008659658,
+          73.59936757071954
+        ],
+        [
+          25.40240454107594,
+          55.502808480872034,
+          83.40897413625137
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body6",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel 17-4 PH",
+      "mass_g": 11.486448139687695,
+      "volume_cm3": 1.4726215563702174,
+      "density_g_cm3": 7.8,
+      "center_world_mm": [
+        1.8201496960983432,
+        -82.25582882362234,
+        -93.89162775091458
+      ],
+      "bbox_local_mm": [
+        [
+          9.055113750770978,
+          -21.06806787507609,
+          76.22925278409973
+        ],
+        [
+          34.143451667094325,
+          4.073070483229904,
+          83.60729562161839
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body5",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel 17-4 PH",
+      "mass_g": 3.8564162126361885,
+      "volume_cm3": 0.49441233495335757,
+      "density_g_cm3": 7.799999999999999,
+      "center_world_mm": [
+        -0.02599954147393113,
+        -96.45246135202126,
+        68.36121258916704
+      ],
+      "bbox_local_mm": [
+        [
+          10.938651105761007,
+          -20.877670004389152,
+          -85.55301992495943
+        ],
+        [
+          35.95220504914293,
+          3.938874809416477,
+          -80.320352900505
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body7",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 35.1507124449426,
+      "volume_cm3": 4.477797763686955,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        0.009783551561106663,
+        -15.751785418992608,
+        -7.736767596788923
+      ],
+      "bbox_local_mm": [
+        [
+          10.938651136271877,
+          -20.878301716071487,
+          -86.40602586374862
+        ],
+        [
+          35.94037570559927,
+          138.22088075199346,
+          83.40897413625137
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+Configuration 1:1",
+      "body": "Body8",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 3.8554711068585026,
+      "volume_cm3": 0.49114281616031885,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        1.8190698236260738,
+        -82.25861054586787,
+        -93.9229205153888
+      ],
+      "bbox_local_mm": [
+        [
+          9.075796119490198,
+          -20.903945005940237,
+          77.30901308467922
+        ],
+        [
+          34.12496310905384,
+          3.904808052937083,
+          82.55151222381102
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1+H1 - V1 - Cap:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "PA 12 - PA 2200 - 120\u00b5m - Balance (with EOS 3D printers)",
+      "mass_g": 0.7086091880595026,
+      "volume_cm3": 0.7157668566257601,
+      "density_g_cm3": 0.9900000000000001,
+      "center_world_mm": [
+        -0.036441705799767084,
+        -96.81428869447726,
+        69.79623012357594
+      ],
+      "bbox_local_mm": [
+        [
+          -11.0,
+          -11.0,
+          0.0
+        ],
+        [
+          11.0,
+          11.0,
+          2.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+Earcup with Grommet Hole *:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "Polycarbonate, Clear",
+      "mass_g": 20.945559214010647,
+      "volume_cm3": 17.454632678342207,
+      "density_g_cm3": 1.2,
+      "center_world_mm": [
+        0.08586343814458991,
+        -92.26362970818398,
+        53.13055878524789
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          12.000000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.27692988681388
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (1) (1):1",
+      "body": "SHELL V1.2 (1) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.02691029045541314,
+      "volume_cm3": 0.022613689458330373,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        10.59581531355709,
+        -133.8383616900448,
+        52.36152276616938
+      ],
+      "bbox_local_mm": [
+        [
+          -12.149133778495887,
+          -42.04523074205733,
+          10.8
+        ],
+        [
+          -9.149133778495887,
+          -39.04523074205733,
+          17.238088195296342
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (8) (1):1",
+      "body": "SHELL V1.2 (8) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.045187593458058256,
+      "volume_cm3": 0.03797276761181367,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        37.53496681078776,
+        -111.85145819744392,
+        57.152272446727146
+      ],
+      "bbox_local_mm": [
+        [
+          -39.158445624448035,
+          -19.37475621483086,
+          10.8
+        ],
+        [
+          -36.158445624448035,
+          -16.374756214830864,
+          19.262741577639034
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (4) (1):1",
+      "body": "SHELL V1.2 (4) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.045929160409960174,
+      "volume_cm3": 0.0385959331176136,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        -37.82923471415876,
+        -78.15671114347671,
+        66.13713220245292
+      ],
+      "bbox_local_mm": [
+        [
+          36.48445176214481,
+          15.647680862269544,
+          10.8
+        ],
+        [
+          39.4844517621448,
+          18.647680862269542,
+          19.340330972868255
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (5) (1):1",
+      "body": "SHELL V1.2 (5) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.027676306565727997,
+      "volume_cm3": 0.02325740047540168,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -15.873350688388587,
+        -57.767360139552096,
+        72.6986261608372
+      ],
+      "bbox_local_mm": [
+        [
+          14.4916384113573,
+          37.21940541663314,
+          10.8
+        ],
+        [
+          17.491638411357297,
+          40.21940541663313,
+          17.32033582430922
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (2) (1):1",
+      "body": "SHELL V1.2 (2) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.03680772227070539,
+      "volume_cm3": 0.03093085905101294,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        -23.377665819802363,
+        -127.47618440324315,
+        53.48507362202418
+      ],
+      "bbox_local_mm": [
+        [
+          22.000000350177295,
+          -35.500000506639495,
+          10.8
+        ],
+        [
+          25.00000035017729,
+          -32.5000005066395,
+          18.27760889148369
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (6) (1):1",
+      "body": "SHELL V1.2 (6) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.03278078812406977,
+      "volume_cm3": 0.02754688077652922,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        23.610489749928895,
+        -61.966369156742275,
+        71.27105254222332
+      ],
+      "bbox_local_mm": [
+        [
+          -25.2175477296647,
+          32.730616712166125,
+          10.8
+        ],
+        [
+          -22.2175477296647,
+          35.730616712166125,
+          17.87254628732168
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (9):1",
+      "body": "SHELL V1.2 (9)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 12.61098158048648,
+      "volume_cm3": 10.59746351301385,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -0.03264446264828961,
+        -92.00810486029238,
+        52.019562710019194
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.09426014061523
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (7) (1):1",
+      "body": "SHELL V1.2 (7) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.09255915840902139,
+      "volume_cm3": 0.07778080538573227,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        35.68415575365255,
+        -83.46406769014207,
+        61.887157895083206
+      ],
+      "bbox_local_mm": [
+        [
+          -37.2140337697587,
+          9.366125811647718,
+          10.8
+        ],
+        [
+          -34.2140337697587,
+          12.366125811647716,
+          24.196717162733513
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (3) (1):1",
+      "body": "SHELL V1.2 (3) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.09278066256512467,
+      "volume_cm3": 0.07796694333203755,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -35.9364465865543,
+        -103.58275545994698,
+        56.48250616511457
+      ],
+      "bbox_local_mm": [
+        [
+          34.500000536441824,
+          -11.500000149011615,
+          10.8
+        ],
+        [
+          37.50000053644182,
+          -8.500000149011617,
+          24.22209244995411
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+SHELL V1.2 (1) (1) (1):1",
+      "body": "SHELL V1.2 (1) (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 13.011769625256926,
+      "volume_cm3": 10.934260189291535,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -0.05571938652669973,
+        -92.08852312399577,
+        52.28646489986107
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.09426014061523
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1+Latest (1):1",
+      "body": "Latest (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 13.174353809948368,
+      "volume_cm3": 11.070885554578462,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -0.09226145042367143,
+        -92.0486742151667,
+        52.16870051525195
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.8
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.00000000000001
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body14",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.5349098369179686,
+      "volume_cm3": 0.06686372961474607,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        39.943486722126586,
+        -90.2847589998704,
+        45.42769355377351
+      ],
+      "bbox_local_mm": [
+        [
+          38.5,
+          -1.5000000000000047,
+          11.999999999999995
+        ],
+        [
+          41.5,
+          1.5000000000000024,
+          22.884816265255715
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body17",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.5163229822476668,
+      "volume_cm3": 0.06454037278095835,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -39.935175784403256,
+        -90.24410047011422,
+        45.27595385496231
+      ],
+      "bbox_local_mm": [
+        [
+          -41.5,
+          -1.4999999999999991,
+          11.999999999999995
+        ],
+        [
+          -38.5,
+          1.4999999999999991,
+          22.70895140928689
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body27",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 14.973438381232205,
+      "volume_cm3": 11.343513925175913,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        0.04702780024553038,
+        -92.29767492155581,
+        53.09395672672031
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.057865141656436
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 12.61098158048648,
+      "volume_cm3": 10.59746351301385,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        0.0494273712154428,
+        -92.26683004302153,
+        52.98513823716202
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.09426014061523
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body86",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.5404349114735494,
+      "volume_cm3": 0.06755436393419367,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        23.54338439891361,
+        -124.79812557894896,
+        42.61058522034871
+      ],
+      "bbox_local_mm": [
+        [
+          22.000000350177295,
+          -35.500000506639495,
+          16.110015419968875
+        ],
+        [
+          25.00000035017729,
+          -32.5000005066395,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body87",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.1902926205310724,
+      "volume_cm3": 0.02378657756638405,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -35.85847083696225,
+        -82.14005068682314,
+        57.22729852928918
+      ],
+      "bbox_local_mm": [
+        [
+          -37.2140337697587,
+          9.36612581164772,
+          23.00874348184697
+        ],
+        [
+          -34.21403376975871,
+          12.366125811647716,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body88",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.6019776146135127,
+      "volume_cm3": 0.07524720182668909,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -10.66832505098267,
+        -130.98623175453733,
+        40.38772771919591
+      ],
+      "bbox_local_mm": [
+        [
+          -12.149133778495887,
+          -42.04523074205733,
+          14.886819705902017
+        ],
+        [
+          -9.149133778495887,
+          -39.04523074205733,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body89",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.18877341908604664,
+      "volume_cm3": 0.02359667738575583,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        36.146540918076916,
+        -102.40116776754053,
+        51.811997019922906
+      ],
+      "bbox_local_mm": [
+        [
+          34.500000536441824,
+          -11.500000149011614,
+          23.037830435148443
+        ],
+        [
+          37.50000053644182,
+          -8.500000149011619,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body90",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.5647043037613727,
+      "volume_cm3": 0.07058803797017159,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -23.760533506639582,
+        -58.709175398895404,
+        60.09626817276911
+      ],
+      "bbox_local_mm": [
+        [
+          -25.2175477296647,
+          32.73061671216612,
+          15.606683016011855
+        ],
+        [
+          -22.2175477296647,
+          35.730616712166125,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body91",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.4838435451022971,
+      "volume_cm3": 0.06048044313778714,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        -37.73462959797384,
+        -109.3274771174397,
+        47.26929592849775
+      ],
+      "bbox_local_mm": [
+        [
+          -39.15844562444804,
+          -19.37475621483086,
+          17.117316664130495
+        ],
+        [
+          -36.15844562444803,
+          -16.37475621483086,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body92",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.47915989951559845,
+      "volume_cm3": 0.05989498743944981,
+      "density_g_cm3": 8.0,
+      "center_world_mm": [
+        38.061710822521725,
+        -75.42866254800319,
+        56.39581384502794
+      ],
+      "bbox_local_mm": [
+        [
+          36.48445176214481,
+          15.647680862269546,
+          17.210544199997898
+        ],
+        [
+          39.4844517621448,
+          18.64768086226954,
+          27.800000000000004
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body93",
+      "visible": false,
+      "solid": true,
+      "material": "Stainless Steel",
+      "mass_g": 0.3708090118744628,
+      "volume_cm3": 0.04635112648430784,
+      "density_g_cm3": 8.000000000000002,
+      "center_world_mm": [
+        16.037483794180204,
+        -53.72621729818068,
+        59.03001631364653
+      ],
+      "bbox_local_mm": [
+        [
+          14.491638411357302,
+          37.21940541663314,
+          14.981741285165528
+        ],
+        [
+          17.491638411357297,
+          40.21940541663312,
+          23.799999999999997
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (1)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.02691029045541314,
+      "volume_cm3": 0.022613689458330373,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -10.579032404989952,
+        -128.3219150763396,
+        31.77386372658028
+      ],
+      "bbox_local_mm": [
+        [
+          -12.149133778495887,
+          -42.04523074205733,
+          10.8
+        ],
+        [
+          -9.149133778495887,
+          -39.04523074205733,
+          17.238088195296342
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (2)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.03680772227070539,
+      "volume_cm3": 0.03093085905101294,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        23.39444872836948,
+        -122.25033249466156,
+        33.981928786366936
+      ],
+      "bbox_local_mm": [
+        [
+          22.000000350177295,
+          -35.500000506639495,
+          10.8
+        ],
+        [
+          25.00000035017729,
+          -32.5000005066395,
+          18.27760889148369
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (3)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.09278066256512467,
+      "volume_cm3": 0.07796694333203755,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        35.9532294951214,
+        -100.05929977470346,
+        43.332790529568484
+      ],
+      "bbox_local_mm": [
+        [
+          34.500000536441824,
+          -11.500000149011615,
+          10.8
+        ],
+        [
+          37.50000053644182,
+          -8.500000149011617,
+          24.22209244995411
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (4)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.045929160409960174,
+      "volume_cm3": 0.0385959331176136,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        37.84601762272584,
+        -73.2123864602221,
+        47.684661275429875
+      ],
+      "bbox_local_mm": [
+        [
+          36.48445176214481,
+          15.647680862269544,
+          10.8
+        ],
+        [
+          39.4844517621448,
+          18.647680862269542,
+          19.340330972868255
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (5)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.027676306565727997,
+      "volume_cm3": 0.02325740047540168,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        15.89013359695565,
+        -52.27394354495354,
+        52.19691632265338
+      ],
+      "bbox_local_mm": [
+        [
+          14.4916384113573,
+          37.21940541663314,
+          10.8
+        ],
+        [
+          17.491638411357297,
+          40.21940541663313,
+          17.32033582430922
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (6)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.03278078812406977,
+      "volume_cm3": 0.02754688077652922,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        -23.593706841361808,
+        -56.62417883386716,
+        51.33372683355054
+      ],
+      "bbox_local_mm": [
+        [
+          -25.2175477296647,
+          32.730616712166125,
+          10.8
+        ],
+        [
+          -22.2175477296647,
+          35.730616712166125,
+          17.87254628732168
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (7)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.09255915840902139,
+      "volume_cm3": 0.07778080538573227,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        -35.66737284508542,
+        -79.93367921026095,
+        48.71156871771088
+      ],
+      "bbox_local_mm": [
+        [
+          -37.2140337697587,
+          9.366125811647718,
+          10.8
+        ],
+        [
+          -34.2140337697587,
+          12.366125811647716,
+          24.196717162733513
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "SHELL V1.2 (8)",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 0.045187593458058256,
+      "volume_cm3": 0.03797276761181367,
+      "density_g_cm3": 1.1899999999999997,
+      "center_world_mm": [
+        -37.51818390222062,
+        -106.88532326091162,
+        38.6184045463456
+      ],
+      "bbox_local_mm": [
+        [
+          -39.158445624448035,
+          -19.37475621483086,
+          10.8
+        ],
+        [
+          -36.158445624448035,
+          -16.374756214830864,
+          19.262741577639034
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Latest",
+      "visible": false,
+      "solid": true,
+      "material": "Acrylic, Clear",
+      "mass_g": 12.61098158048648,
+      "volume_cm3": 10.59746351301385,
+      "density_g_cm3": 1.19,
+      "center_world_mm": [
+        0.0494273712154428,
+        -92.26683004302153,
+        52.98513823716202
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.09426014061523
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Earcup Shell Left V1.2 - OLD:1",
+      "body": "Body141",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 84.29263625044783,
+      "volume_cm3": 10.737915445916922,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        0.08728476276541441,
+        -92.29182170706898,
+        53.10882765709154
+      ],
+      "bbox_local_mm": [
+        [
+          -45.21146043984369,
+          -45.0,
+          10.800000000000002
+        ],
+        [
+          45.21146043984373,
+          45.0,
+          35.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Component1:1+Component2:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "ABS Plastic",
+      "mass_g": 16.493031648934174,
+      "volume_cm3": 15.559463819749224,
+      "density_g_cm3": 1.0599999999999998,
+      "center_world_mm": [
+        -0.06565706377902761,
+        -90.85491338015116,
+        70.85751629317532
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.2681435630706,
+          -12.000000000000002
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          1.0000000000000009
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Component1:1",
+      "body": "Body2",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 20.538492242098584,
+      "volume_cm3": 15.559463819771654,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        -0.06565706365767074,
+        -102.00101530264078,
+        112.45533497430162
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.26814356307058,
+          29.0
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          42.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Component3:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 124.18831459390793,
+      "volume_cm3": 15.820167464192094,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -0.06454393079749818,
+        -91.7546314553308,
+        70.62604081070857
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -60.0,
+          -12.000000000000002
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          1.0000000000000009
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1+Component4:1",
+      "body": "Body1",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 124.18831448786644,
+      "volume_cm3": 15.820167450683623,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        1.6733584897657043,
+        -82.29682903302643,
+        7.1275068907085
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -60.0,
+          -1.0
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          12.000000000000002
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Earcup Base Right NEW:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "PA 12 - PA 2200 - 120\u00b5m - Balance (with EOS 3D printers)",
+      "mass_g": 71.61906499095497,
+      "volume_cm3": 72.3424898898535,
+      "density_g_cm3": 0.9900000000000001,
+      "center_world_mm": [
+        0.05075648442274406,
+        -98.49434110852073,
+        81.07173740283186
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.550401068816946,
+          2.1371793224034263e-14
+        ],
+        [
+          45.0,
+          59.862980568593365,
+          12.000000000000002
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1",
+      "body": "Body2",
+      "visible": false,
+      "solid": true,
+      "material": "PA 12 - PA 2200 - 120\u00b5m - Balance (with EOS 3D printers)",
+      "mass_g": 78.93480518322464,
+      "volume_cm3": 79.73212644770166,
+      "density_g_cm3": 0.99,
+      "center_world_mm": [
+        0.3452851749705824,
+        -98.80816271941322,
+        81.57190978930842
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -51.00000000000004,
+          2.1371793224034263e-14
+        ],
+        [
+          45.0,
+          63.18873271216865,
+          11.999999999999993
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1",
+      "body": "Body14",
+      "visible": false,
+      "solid": true,
+      "material": "PA 12 - PA 2200 - 120\u00b5m - Balance (with EOS 3D printers)",
+      "mass_g": 71.59860511062323,
+      "volume_cm3": 72.32182334406387,
+      "density_g_cm3": 0.9899999999999999,
+      "center_world_mm": [
+        -0.04777234372540396,
+        -86.07278272341443,
+        34.7052308769393
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.550401068816946,
+          -47.999999999999986
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          -36.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1",
+      "body": "Body15",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 15.104401076823045,
+      "volume_cm3": 11.442728088502307,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        0.09980369817662121,
+        -100.63467701628127,
+        83.90543981755602
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.550401068816946,
+          -1.457167719820518e-15
+        ],
+        [
+          45.0,
+          48.09942954499135,
+          11.999999999999993
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1",
+      "body": "Body16",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 2.5200794637708204,
+      "volume_cm3": 1.9091511089172881,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        -2.2034573276655474,
+        -49.591965675813924,
+        90.5777549313554
+      ],
+      "bbox_local_mm": [
+        [
+          -35.543179643827585,
+          32.407368041236936,
+          4.304265280038168e-15
+        ],
+        [
+          25.744971588944875,
+          59.86298056859336,
+          6.12732359342408
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1",
+      "body": "Body17",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 17.508253947486335,
+      "volume_cm3": 13.263828748095706,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        -0.2332307726287519,
+        -93.56747580821263,
+        84.84252712102798
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.2681435630706,
+          0.0
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          11.999712966083312
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1",
+      "body": "Body19",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 17.59361473703234,
+      "volume_cm3": 13.328496012903287,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        -0.12437425101995662,
+        -89.44441789207252,
+        70.07609619165731
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.2681435630706,
+          -12.000000000000002
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          -2.886579864025407e-14
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1",
+      "body": "Body20",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 18.611154083109398,
+      "volume_cm3": 2.3708476538992866,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        -2.5255927851877715e-05,
+        -98.40580369281348,
+        75.73621067997269
+      ],
+      "bbox_local_mm": [
+        [
+          -40.826040094984336,
+          -49.950401068816944,
+          -0.5
+        ],
+        [
+          40.826040094984336,
+          49.950401068816944,
+          1.0000000000000002
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1",
+      "body": "Body25",
+      "visible": false,
+      "solid": true,
+      "material": "PAEK Plastic",
+      "mass_g": 17.537228911163936,
+      "volume_cm3": 13.285779478154495,
+      "density_g_cm3": 1.32,
+      "center_world_mm": [
+        -0.12473702721915948,
+        -89.27487081440505,
+        70.11663842569922
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -50.2681435630706,
+          -12.000000000000002
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          -2.886579864025407e-14
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1",
+      "body": "Body26",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 2.3818374664494772,
+      "volume_cm3": 0.30341878553496526,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        1.7911666164596008e-10,
+        -144.9946918545691,
+        56.902210336388436
+      ],
+      "bbox_local_mm": [
+        [
+          -3.0000000000000004,
+          -60.0,
+          -9.000000089406967
+        ],
+        [
+          3.0000000000000004,
+          -44.0,
+          -3.0000000894069667
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Earcup Base Right NEW:1",
+      "body": "Body33",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 124.18831459390793,
+      "volume_cm3": 15.820167464192094,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -0.06454393079749818,
+        -91.7546314553308,
+        70.62604081070857
+      ],
+      "bbox_local_mm": [
+        [
+          -45.0,
+          -60.0,
+          -12.000000000000002
+        ],
+        [
+          45.0,
+          59.86298056859334,
+          1.0000000000000009
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:1+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -8.41455867583863,
+        -48.25286079520315,
+        -118.4249393760841
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Tension Band V3:1+Configuration 1:1",
+      "body": "Body3",
+      "visible": false,
+      "solid": true,
+      "material": "Steel AISI 5160 434 QT",
+      "mass_g": 35.93143921908945,
+      "volume_cm3": 4.5772534037056625,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        1.7066018807618086,
+        -21.706206615402913,
+        -45.75491442476154
+      ],
+      "bbox_local_mm": [
+        [
+          -12.57915015270002,
+          -74.41499180685666,
+          -88.75713295087718
+        ],
+        [
+          12.420849847299989,
+          85.0000012665987,
+          89.45099045885847
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1+Configuration 1:1",
+      "body": "Sheet Metal Band",
+      "visible": false,
+      "solid": true,
+      "material": "Steel AISI 5160 434 QT",
+      "mass_g": 34.93540772181578,
+      "volume_cm3": 4.4503704104223925,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        1.6893678242724808,
+        -20.256756719068765,
+        -45.37701821349087
+      ],
+      "bbox_local_mm": [
+        [
+          -12.500000000000014,
+          -74.34767430717297,
+          -88.4509904588586
+        ],
+        [
+          12.499999999999991,
+          84.00000125169754,
+          88.4509904588586
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1+Component1:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 37.29552219755856,
+      "volume_cm3": 4.751021935994722,
+      "density_g_cm3": 7.849999999999998,
+      "center_world_mm": [
+        1.7100716810387833,
+        -18.080070773369727,
+        -51.98590739772062
+      ],
+      "bbox_local_mm": [
+        [
+          -93.93987062125322,
+          -77.26933082831115,
+          -8.948997330237685
+        ],
+        [
+          93.94658061444414,
+          89.49751771486218,
+          18.896759866720917
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body1",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.0001309397519836914,
+      "volume_cm3": 1.668022318263585e-05,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        1.715627345298535,
+        57.88323004029909,
+        -50.01952835456612
+      ],
+      "bbox_local_mm": [
+        [
+          -0.22033495453885488,
+          88.48241551306518,
+          0.0
+        ],
+        [
+          0.22033495453820132,
+          88.48998592314305,
+          10.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body3",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 5.183422091857336,
+      "volume_cm3": 0.6603085467334187,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        1.6895703910352122,
+        -94.23865842859932,
+        39.47332047076589
+      ],
+      "bbox_local_mm": [
+        [
+          -92.94140239120068,
+          -75.98895155657459,
+          -7.526118731758392
+        ],
+        [
+          -86.04929242427369,
+          -51.25963086436734,
+          17.47388126824162
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body4",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 5.183422091857331,
+      "volume_cm3": 0.660308546733418,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        1.6895703910351667,
+        -94.2386584285994,
+        -139.51237717989824
+      ],
+      "bbox_local_mm": [
+        [
+          86.04929242427369,
+          -75.98895155657459,
+          -7.526118731758392
+        ],
+        [
+          92.94140239120068,
+          -51.25963086436734,
+          17.47388126824162
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body6",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 5.740629000770916,
+      "volume_cm3": 0.7312903185695435,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        1.6768928503204257,
+        -94.19158445894297,
+        -139.52284743380633
+      ],
+      "bbox_local_mm": [
+        [
+          85.74036321912581,
+          -77.37788865098067,
+          -8.948997330237688
+        ],
+        [
+          93.25033159634857,
+          -49.87069376996133,
+          18.896759866720917
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body7",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 44.708290825619855,
+      "volume_cm3": 5.695323672053485,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        1.7156273452982211,
+        1.456310881119971,
+        -49.88932464921084
+      ],
+      "bbox_local_mm": [
+        [
+          -94.43987062125322,
+          -53.03834771031688,
+          0.0
+        ],
+        [
+          94.44658061444416,
+          89.99751771486217,
+          10.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body12",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 86.60458981183076,
+      "volume_cm3": 11.032431823163156,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        1.709731041547553,
+        -18.59805290446612,
+        -119.52995678899839
+      ],
+      "bbox_local_mm": [
+        [
+          0.0,
+          -78.02923558699767,
+          -8.948997330237685
+        ],
+        [
+          97.43742123409757,
+          92.99751771486221,
+          18.896759866720917
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body15",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 159.22577967188835,
+      "volume_cm3": 20.283538811705522,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        1.710666038295292,
+        -15.816353725690636,
+        -50.01952834537335
+      ],
+      "bbox_local_mm": [
+        [
+          -97.4398706212532,
+          -76.25377542397774,
+          -7.526118731758416
+        ],
+        [
+          97.4398706212532,
+          92.99751771486609,
+          17.473881268241634
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body18",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 5.7404535297119486,
+      "volume_cm3": 0.7312679655684011,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        1.6770466383869005,
+        -94.1916001222954,
+        39.48363242189007
+      ],
+      "bbox_local_mm": [
+        [
+          -93.25033159634857,
+          -77.37788865098067,
+          -8.948997330237688
+        ],
+        [
+          -85.74036321912581,
+          -49.87069376996133,
+          18.896759866720917
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body19",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 28.05206836386803,
+      "volume_cm3": 3.5735118934863737,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        1.7070527482273057,
+        -17.971847764941863,
+        -118.10394384440531
+      ],
+      "bbox_local_mm": [
+        [
+          0.0,
+          -77.37788865098067,
+          -8.948997330237685
+        ],
+        [
+          94.44658061444414,
+          89.99750853171052,
+          18.896759866720917
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body22",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 56.10508605903288,
+      "volume_cm3": 7.147144720895909,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        1.7074928320009042,
+        -17.976720072439093,
+        -50.01941218372519
+      ],
+      "bbox_local_mm": [
+        [
+          -94.43987062125322,
+          -77.37788865098067,
+          -8.948997330237688
+        ],
+        [
+          94.43987062125322,
+          89.99751771486606,
+          18.89675986672092
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body23",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 56.10508605903422,
+      "volume_cm3": 7.14714472089608,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        1.7074928320010634,
+        -17.976720072440816,
+        -50.019412183727255
+      ],
+      "bbox_local_mm": [
+        [
+          -94.43987062125322,
+          -77.37788865098067,
+          -8.948997330237688
+        ],
+        [
+          94.43987062125322,
+          89.99751771486606,
+          18.89675986672092
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body25",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 37.25493311712144,
+      "volume_cm3": 4.745851352499547,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        1.7100988507196164,
+        -17.94683639549614,
+        -50.02207498817072
+      ],
+      "bbox_local_mm": [
+        [
+          -93.9231915299809,
+          -77.26719584651075,
+          -8.948997330237699
+        ],
+        [
+          93.93653477181027,
+          89.49751771486362,
+          18.896759866720917
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body26",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.15011338089973952,
+      "volume_cm3": 0.019122723681495483,
+      "density_g_cm3": 7.849999999999999,
+      "center_world_mm": [
+        -10.22403263952243,
+        -105.71780108664703,
+        -136.70306199747864
+      ],
+      "bbox_local_mm": [
+        [
+          85.74401161875974,
+          -77.25292772525276,
+          -9.000000000000004
+        ],
+        [
+          88.24649683196064,
+          -70.17343302752836,
+          -2.0382377605404756
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body27",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.15301806939979204,
+      "volume_cm3": 0.019492747694241024,
+      "density_g_cm3": 7.8500000000000005,
+      "center_world_mm": [
+        13.642657633825676,
+        -105.69070093039937,
+        -136.70908964967592
+      ],
+      "bbox_local_mm": [
+        [
+          85.74401161875974,
+          -77.25292772525276,
+          11.986000297023889
+        ],
+        [
+          88.26977045109118,
+          -70.06879548471018,
+          19.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body28",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.04813312069824228,
+      "volume_cm3": 0.006131607732260163,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        14.55328949163641,
+        -106.61559074307789,
+        36.46431774353779
+      ],
+      "bbox_local_mm": [
+        [
+          -87.52302377565246,
+          -77.26719584651075,
+          15.325389432029672
+        ],
+        [
+          -85.74083808540027,
+          -73.42614778615359,
+          19.0
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "Tension Band V3:1",
+      "body": "Body29",
+      "visible": false,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.04662542522930587,
+      "volume_cm3": 0.0059395446151982,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -11.13752836676877,
+        -106.63655725251552,
+        36.459654345005426
+      ],
+      "bbox_local_mm": [
+        [
+          -87.50752361988532,
+          -77.26719584651075,
+          -9.000000000000004
+        ],
+        [
+          -85.7408380854003,
+          -73.49583605312867,
+          -5.377626895546442
+        ]
+      ],
+      "linked": true
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:2+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        25.73457545283454,
+        -54.64196038185489,
+        -117.00386748962876
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:3+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        38.234575639099056,
+        -78.06946206618264,
+        -111.79309192384605
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:4+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        40.21902686480206,
+        -104.56955928035804,
+        -105.89890564162431
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:5+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        18.22621351401458,
+        -125.62670952204904,
+        -101.21534674392854
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:6+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -21.482972627007427,
+        -121.24499688173788,
+        -102.18993300028953
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:7+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -33.47945866710144,
+        -98.43784514136772,
+        -107.26272952017294
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:8+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -35.42387052179078,
+        -70.38255130590785,
+        -113.50282466896391
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:9+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        25.23734931404123,
+        -54.80623548956093,
+        16.62655886010166
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:10+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -33.976684805894834,
+        -98.60212024907362,
+        6.885420890645621
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:11+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -35.92109666058413,
+        -70.54682641361377,
+        13.125516039436656
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:12+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -21.980198765800885,
+        -121.40927198944375,
+        1.8126243707623158
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:13+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        37.73734950030571,
+        -78.23373717388874,
+        11.415783294318997
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:14+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        39.72180072600866,
+        -104.73383438806403,
+        5.521597012097358
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:15+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        -8.911784814631927,
+        -48.41713590290908,
+        18.04763074655678
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    },
+    {
+      "path": "M1.5 x 5 Countersunk Hex Screw:16+M1.6 x 5 - Countersunk hex socket screw:1",
+      "body": "M1.6 x 5 - Countersunk hex socket screw",
+      "visible": true,
+      "solid": true,
+      "material": "Steel",
+      "mass_g": 0.08104234071832836,
+      "volume_cm3": 0.010323865059659664,
+      "density_g_cm3": 7.85,
+      "center_world_mm": [
+        17.72898737522111,
+        -125.790984629755,
+        0.8380381144015137
+      ],
+      "bbox_local_mm": [
+        [
+          -1.6,
+          -1.6,
+          0.0
+        ],
+        [
+          1.6,
+          1.6,
+          5.0
+        ]
+      ],
+      "linked": false
+    }
+  ]
+}
