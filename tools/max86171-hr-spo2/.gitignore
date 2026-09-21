@@ -1,2 +1,5 @@
 bin/
 *.exe
+
+# recorded sessions contain people's names - keep them out of the repo
+tools/max86171-hr-spo2/**/sessions/

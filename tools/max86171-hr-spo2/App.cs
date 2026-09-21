@@ -153,7 +153,7 @@ class MainForm : Form {
     StyleButton(recordButton, "Record", Color.FromArgb(28, 36, 54), AccentSoft);
     recordButton.SetBounds(258, 34, 104, 30); recordButton.Click += (s, e) => ToggleRecording();
     StyleButton(folderButton, "Open folder", Color.FromArgb(28, 36, 54), TextDim);
-    StyleButton(openLastButton, "Open in Excel", Color.FromArgb(28, 36, 54), TextDim);
+    StyleButton(openLastButton, "Open report", Color.FromArgb(28, 36, 54), TextDim);
     openLastButton.SetBounds(478, 34, 118, 30); openLastButton.Enabled = false;
     openLastButton.Click += (s, e) => OpenLastSession();
     folderButton.SetBounds(370, 34, 104, 30); folderButton.Click += (s, e) => OpenSessionFolder();
@@ -210,12 +210,12 @@ class MainForm : Form {
       var s = recorder.Stop();
       recorder = null;
       StyleButton(recordButton, "Record", Color.FromArgb(28, 36, 54), AccentSoft);
-      lastSessionFile = s.ExcelPath != null && System.IO.File.Exists(s.ExcelPath) ? s.ExcelPath : s.Path;
+      lastSessionFile = s.ReportPath != null && System.IO.File.Exists(s.ReportPath) ? s.ReportPath : s.Path;
       openLastButton.Enabled = true;
       sessionLabel.Text = string.Format("Saved.\n{0} s, {1} readings ({2:F0}%)\n{3}",
         s.Seconds, s.Readings, s.Coverage,
         s.Readings > 0 ? string.Format("mean {0:F0} BPM, {1:F0}-{2:F0}", s.MeanBpm, s.MinBpm, s.MaxBpm) : "no readings captured");
-      statusLabel.Text = "Saved " + System.IO.Path.GetFileName(lastSessionFile) + " (Excel and CSV) in " + SessionRecorder.Folder;
+      statusLabel.Text = "Saved " + System.IO.Path.GetFileName(lastSessionFile) + " (PDF report and CSV) in " + SessionRecorder.Folder + (s.ReportError != null ? " - PDF failed: " + s.ReportError : "");
       return;
     }
     if (stream == null) { statusLabel.Text = "Press Start first - there is nothing to record yet."; return; }

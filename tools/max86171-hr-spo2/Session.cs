@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Globalization;
 
-// Records a measurement session to disk: one CSV per session, plus a single index of every session.
+// Records a measurement session to disk: a PDF report and a CSV per session, plus one index of all sessions.
 // Everything is plain text on this machine - nothing is sent anywhere.
 class SessionRecorder {
   public readonly string Subject;
@@ -43,7 +43,7 @@ class SessionRecorder {
     seconds++;
     if (bpm > 0) rates.Add(bpm);
     if (spo2 > 0) oxygen.Add(spo2);
-    // Kept in memory as typed values too, for the Excel copy written when the session stops.
+    // Kept in memory as typed values too, for the PDF report written when the session stops.
     rows.Add(new object[] {
       DateTime.Now.ToString("HH:mm:ss"), (double)seconds,
       bpm > 0 ? (object)Math.Round(bpm) : null,
@@ -69,7 +69,7 @@ class SessionRecorder {
   }
 
   public class Summary {
-    public string Subject, Path, ExcelPath;
+    public string Subject, Path, ReportPath, ReportError;
     public int Seconds, Readings;
     public double MeanBpm, MinBpm, MaxBpm, MeanSpO2;
     public double Coverage { get { return Seconds > 0 ? 100.0 * Readings / Seconds : 0; } }
@@ -84,37 +84,95 @@ class SessionRecorder {
       s.Seconds, s.Readings, s.Coverage, s.MeanBpm, s.MinBpm, s.MaxBpm));
     file.Close();
     AppendToIndex(s);
-    try { s.ExcelPath = WriteExcel(s); } catch (Exception ex) { s.ExcelPath = "(could not write the Excel file: " + ex.Message + ")"; }
+    try { s.ReportPath = WritePdf(s); } catch (Exception ex) { s.ReportPath = null; s.ReportError = ex.Message; }
     return s;
   }
 
-  // The same session as a real .xlsx, so the numbers arrive in Excel as numbers rather than text.
-  string WriteExcel(Summary s) {
-    var readings = new Xlsx.Sheet("Readings");
-    readings.Headers.AddRange(new[] { "Time", "Seconds", "Heart rate (BPM)", "Pulse quality",
-      "Channel", "SpO2 (%)", "SpO2 spread", "Ratio R", "Signal/noise", "State" });
-    foreach (var r in rows) readings.Rows.Add(r);
+  // A one-file report that opens on any machine: summary, a chart of the session, then the readings.
+  string WritePdf(Summary s) {
+    var pdf = new Pdf();
+    pdf.NewPage();
+    double top = Pdf.PageHeight - 60;
+    pdf.Text(50, top, 18, "Heart rate session", true);
+    pdf.Text(50, top - 26, 12, s.Subject, true, 0.15);
+    pdf.Text(50, top - 44, 10, Started.ToString("dddd d MMMM yyyy, HH:mm"), false, 0.35);
+    pdf.Line(50, top - 56, Pdf.PageWidth - 50, top - 56, 0.8, 0.75);
 
-    var summary = new Xlsx.Sheet("Summary");
-    summary.Headers.AddRange(new[] { "Item", "Value" });
-    Action<string, object> add = (k, v) => summary.Rows.Add(new object[] { k, v });
-    add("Subject", s.Subject);
-    add("Started", Started.ToString("yyyy-MM-dd HH:mm:ss"));
-    add("Duration (s)", (double)s.Seconds);
-    add("Seconds with a reading", (double)s.Readings);
-    add("Coverage (%)", Math.Round(s.Coverage));
+    double y = top - 84;
+    Action<string, string> row = (k, v) => {
+      pdf.Text(50, y, 10, k, false, 0.4);
+      pdf.Text(210, y, 11, v, true, 0.1);
+      y -= 20;
+    };
+    row("Duration", s.Seconds + " s");
+    row("Readings", string.Format(Inv, "{0} of {1} seconds ({2:F0}% of the time)", s.Readings, s.Seconds, s.Coverage));
     if (s.Readings > 0) {
-      add("Mean heart rate (BPM)", Math.Round(s.MeanBpm));
-      add("Lowest (BPM)", Math.Round(s.MinBpm));
-      add("Highest (BPM)", Math.Round(s.MaxBpm));
+      row("Mean heart rate", string.Format(Inv, "{0:F0} BPM", s.MeanBpm));
+      row("Range", string.Format(Inv, "{0:F0} - {1:F0} BPM", s.MinBpm, s.MaxBpm));
     }
-    if (s.MeanSpO2 > 0) add("Mean SpO2 (%)", Math.Round(s.MeanSpO2));
-    add("Note", "SpO2 is an uncalibrated estimate and is not a medical measurement");
+    if (s.MeanSpO2 > 0) row("Mean SpO2", string.Format(Inv, "{0:F0} %  (uncalibrated)", s.MeanSpO2));
 
-    string path = System.IO.Path.ChangeExtension(Path, ".xlsx");
-    Xlsx.Write(path, readings, summary);
+    // Chart: heart rate against time. Gaps where no reading was available are left as gaps, not bridged.
+    double cx = 50, cw = Pdf.PageWidth - 100, ch = 180, cy = y - ch - 30;
+    pdf.Text(cx, cy + ch + 12, 10, "HEART RATE OVER THE SESSION", true, 0.4);
+    pdf.FillRect(cx, cy, cw, ch, 0.97);
+    if (s.Readings > 0) {
+      double lo = Math.Max(30, s.MinBpm - 10), hi = s.MaxBpm + 10;
+      for (int i = 0; i <= 4; i++) {
+        double gy = cy + ch * i / 4.0;
+        pdf.Line(cx, gy, cx + cw, gy, 0.4, 0.85);
+        pdf.Text(cx - 28, gy - 3, 8, (lo + (hi - lo) * i / 4.0).ToString("F0", Inv), false, 0.45);
+      }
+      var run = new List<double[]>();
+      foreach (var r in rows) {
+        double t = Convert.ToDouble(r[1], Inv);
+        double px = cx + cw * (s.Seconds > 1 ? (t - 1) / (s.Seconds - 1) : 0);
+        if (r[2] == null) { // gap: end the current line
+          if (run.Count > 1) pdf.Polyline(run, 1.6, 0.13, 0.42, 0.85);
+          run = new List<double[]>();
+          continue;
+        }
+        double bpm = Convert.ToDouble(r[2], Inv);
+        run.Add(new[] { px, cy + ch * (bpm - lo) / Math.Max(hi - lo, 1) });
+      }
+      if (run.Count > 1) pdf.Polyline(run, 1.6, 0.13, 0.42, 0.85);
+      pdf.Text(cx, cy - 14, 8, "0 s", false, 0.45);
+      pdf.Text(cx + cw - 24, cy - 14, 8, s.Seconds + " s", false, 0.45);
+    } else {
+      pdf.Text(cx + 16, cy + ch / 2, 10, "No readings were captured during this session.", false, 0.45);
+    }
+
+    // Readings table, continued over as many pages as it needs.
+    double ty = cy - 70;
+    Action header = () => {
+      pdf.Text(50, ty, 9, "TIME", true, 0.4); pdf.Text(110, ty, 9, "BPM", true, 0.4);
+      pdf.Text(160, ty, 9, "QUALITY", true, 0.4); pdf.Text(230, ty, 9, "SPO2", true, 0.4);
+      pdf.Text(285, ty, 9, "SIGNAL", true, 0.4); pdf.Text(345, ty, 9, "STATE", true, 0.4);
+      ty -= 6;
+      pdf.Line(50, ty, Pdf.PageWidth - 50, ty, 0.6, 0.8);
+      ty -= 13;
+    };
+    pdf.Text(50, ty + 22, 10, "READINGS", true, 0.4);
+    header();
+    foreach (var r in rows) {
+      if (ty < 60) { pdf.NewPage(); ty = Pdf.PageHeight - 60; header(); }
+      pdf.Text(50, ty, 9, Convert.ToString(r[0]), false, 0.2);
+      pdf.Text(110, ty, 9, r[2] == null ? "-" : Convert.ToString(r[2], Inv), false, 0.1);
+      pdf.Text(160, ty, 9, r[3] == null ? "" : Convert.ToString(r[3], Inv), false, 0.35);
+      pdf.Text(230, ty, 9, r[5] == null ? "" : Convert.ToString(r[5], Inv), false, 0.35);
+      pdf.Text(285, ty, 9, r[8] == null ? "" : Convert.ToString(r[8], Inv), false, 0.35);
+      pdf.Text(345, ty, 9, Convert.ToString(r[9]), false, 0.35);
+      ty -= 13;
+    }
+    if (ty < 80) { pdf.NewPage(); ty = Pdf.PageHeight - 60; }
+    pdf.Text(50, ty - 16, 8, "SpO2 is an uncalibrated estimate from a development sensor, not a medical measurement.", false, 0.45);
+    pdf.Text(50, ty - 28, 8, "Blank rows are seconds when movement or poor contact left no clear pulse.", false, 0.45);
+
+    string path = System.IO.Path.ChangeExtension(Path, ".pdf");
+    pdf.Save(path);
     return path;
   }
+
 
   // One row per session, so every recording ever made can be read from a single file.
   static void AppendToIndex(Summary s) {
