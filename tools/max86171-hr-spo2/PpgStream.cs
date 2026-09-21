@@ -25,6 +25,12 @@ class PpgStream : IDisposable {
   const byte PdPair12 = 0x18, PdPair34 = 0x78; // MEASx Configuration 1: TINT max + PDSEL bits (AVER added separately)
   const byte Aver8 = 0x03;
   static readonly string[] Detectors = { "detector 1", "detector 2", "detector 3", "detector 4" };
+  // Each detector sees two green measurements (the three-LED group and the single LED). They are kept apart
+  // rather than added: at the ear one is often clean while the other is swamped by stray light, and adding a
+  // swamped channel to a clean one throws the good signal away (measured 21 Sep: SNR 43 -> 7 at the ear).
+  static readonly string[] GreenChannels = {
+    "detector 1 (LED group)", "detector 1 (single LED)", "detector 2 (LED group)", "detector 2 (single LED)",
+    "detector 3 (LED group)", "detector 3 (single LED)", "detector 4 (LED group)", "detector 4 (single LED)" };
 
   OS61 board;
   readonly List<byte> frame = new List<byte>();
@@ -103,7 +109,7 @@ class PpgStream : IDisposable {
   }
 
   void CreateEstimators(double fs) {
-    Estimator = new MultiHeartRate(fs, Detectors);
+    Estimator = new MultiHeartRate(fs, GreenChannels);
     Oximeter = new MultiPathOximeter(fs, Detectors);
   }
 
@@ -169,12 +175,11 @@ class PpgStream : IDisposable {
     Samples++;
     for (int pd = 0; pd < 4; pd++) {
       int m0 = pd < 2 ? 1 : 5, occ = pd % 2;
-      double green = v[m0, occ] + v[m0 + 1, occ]; // all four green LEDs seen by this photodiode
+      double greenGroup = v[m0, occ], greenSingle = v[m0 + 1, occ];
       double red = v[m0 + 2, occ], ir = v[m0 + 3, occ];
-      // Saturation check on the individual green readings (the sum can legitimately exceed full scale).
-      bool greenSat = Math.Abs(v[m0, occ]) >= 523287 || Math.Abs(v[m0 + 1, occ]) >= 523287;
-      LastGreen[pd] = green; LastRed[pd] = red; LastIr[pd] = ir;
-      Estimator.Add(pd, green, greenSat);
+      LastGreen[pd] = greenGroup + greenSingle; LastRed[pd] = red; LastIr[pd] = ir;
+      Estimator.Add(2 * pd, greenGroup, Math.Abs(greenGroup) >= 523287);
+      Estimator.Add(2 * pd + 1, greenSingle, Math.Abs(greenSingle) >= 523287);
       Oximeter.Add(pd, red, ir);
     }
     if (RawLog != null) RawLog.Add((int)LastGreen[0]);
