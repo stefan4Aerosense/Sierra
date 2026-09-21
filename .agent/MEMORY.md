@@ -374,3 +374,21 @@ unsafe ... could not verify its publisher".
 self-signed certificate does not qualify.
 **Do not touch the setting myself** (security setting = Stefan's call, and it cannot be re-enabled without
 reinstalling Windows). Evidence: `Get-WinEvent -LogName Microsoft-Windows-CodeIntegrity/Operational` events 3033/3077.
+
+## Scar 18 — averaging a bad channel into a good one destroys the good one (2026-09-21)
+
+`[measured]` The tester summed each detector's two green measurements before estimating. At the ear that put a
+swamped channel on top of a clean one: **SNR 43 -> 7**, and the sub-50 BPM readings Stefan complained about on
+18 Sep. Split into 8 separate channels, scored individually: 0 wrong readings on the same data.
+**The same lesson was already written for SpO2 ("averaging is worse than choosing", 17 Sep) and I did not apply
+it to the heart-rate path.** When a rule is learned in one signal path, sweep every other path for it the same
+day. Related: I blamed contact/hardware first (scar 16) — the channel bug was mine.
+
+## Scar 19 — a generated file is not verified until something renders it (2026-09-21)
+
+`[measured]` My first PDF writer produced a file that **Windows refused to open**: the page tree listed content
+streams instead of page objects. It passed every check I had — bytes written, structure "looked right".
+Rendering it with the Windows PDF engine (`bench/pdfshot.cs`) found it in one run. Same pattern caught the CSV
+locale bug: this machine writes decimals with a comma, which split `0,86` across two CSV columns and would have
+corrupted every session file. **Write a generated format, then open it with an independent reader before
+shipping it** — images via `bench/imgconv.cs`, PDFs via `bench/pdfshot.cs`, the UI via `--shot`.

@@ -1,6 +1,6 @@
 # status — Agent KILO
 
-**Last updated:** 2026-09-18 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
+**Last updated:** 2026-09-21 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
 Older entries: `journal.md`. **Merged 2026-09-18:** my KILO memory from `stefan4Aerosense/Aerosense@679ce5e`
 (2026-07-28 → 09-03) is now in this repo — scars appended to `MEMORY.md`, status/handoffs/journal archived in
 `journal.md`, owned docs moved to `docs/` with provenance. The Aerosense repo is frozen at that SHA; its fate
@@ -14,6 +14,41 @@ awaits Stefan.
 - AeroNode enclosure split card `f878f33e` is on Stefan in ops, but a 30 Jul ruling said it is
   Duran/electronics-owned — raised with INDIA, never resolved on record (as of 24 Aug).
 - Gates: per INDIA 2026-09-01 **seven gates, RV-1 dissolved 24 Aug**; V2 closes 1 Oct.
+
+## 2026-09-21 — ear placement measured, channel fix, app reworked, phone version
+
+**The fix that mattered.** `[measured]` The app was *summing* each detector's two green measurements before
+looking for a pulse. At the ear one is usually clean and the other swamped by stray light, so summing buried
+the good one: concha SNR **43 -> 7**. Keeping all 8 channels separate: ear recordings went from 5 readings
+(all wrong, sub-50) to 10 readings, none wrong; **Friday's weak finger recording from 35 readings with 4 wrong
+(the 39 BPM Stefan saw) to 51 readings, 0 wrong.** So Friday's fault was the summing, not the HR algorithm and
+not his finger — my Friday diagnosis was wrong and is corrected on the record (`48b3c31`).
+
+**Ear placement study** — `docs/h1-ear-ppg-placement.md`, raw data committed. Lobe/just below the ear is best
+(**pulse 4.35 %, beats a fingertip**); concha cleanest (SNR 43) but unreachable by a cushion; front of tragus
+good (SNR 25); **behind the ear worst** (0.5 %, channels disagree) — it sits over bone. LED current makes **no
+difference** to SNR across 5x (so run at ~1/5 power); brighter saturates. Every winner was a **low-DC** channel
+→ stray light is the enemy: opaque LED/detector barrier, matte black sealed pocket. Talking halves HR
+availability (10/10 s → 5/10 s) but the readings it gives stay right; **red/IR collapse while talking**
+(SNR 21-24 → 4), so SpO2 must be gated on quiet windows. Red/IR unusable at the tragus, fine at the lobe.
+
+**App now:** dark navy theme, luminous-red HR, pale-cyan SpO2 (his swatch, sampled 159,238,254), green-yellow
+glowing trace, Chakra Petch display font (SIL OFL, embedded in the exe), Aerosense logo (WebP → PNG via
+`bench/imgconv.cs`, lifted 30 % for the dark background — **ask for an official light-on-dark logo**), hold the
+last reading for 8 s through movement, first reading 2-3 s sooner (5 s window until one appears; 4 s was tested
+and rejected — it invents sub-50 readings), and **named session recording → PDF report + CSV** in `bin/sessions`
+(gitignored: real names). `--shot <png> [demo]` renders the window for layout checks without hardware.
+
+**Phone version** `web/` — Chrome-on-Android page, same maths, Bluetooth direct. **Maths verified** against four
+of today's recordings (72/72/70/78 vs C# 73/72/69/78); **the BLE half has never driven the board — first phone
+run is its test.** Needs HTTPS or localhost; README has the USB port-forwarding route. Hosting undecided.
+
+**SpO2 calibration:** routes written up in the placement doc (reference-comparison vs controlled desaturation,
+FDA 2025 draft: >=24 subjects, 480 paired points, ARMS <3 %). **Parked on Stefan's call.** The H1 risk is on
+record: hypoxia matters at 80-90 %, which cheap calibration cannot validate.
+
+**Still open:** SSH key not yet added on GitHub (HTTPS still in use); permission net installed but needs a
+restart to go live; INDIA 09-18-001 open; H1 (Chris step 5) not started; `D:\Github\kilo` still locked.
 
 ## 2026-09-18 (c) — end-of-day state
 

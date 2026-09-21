@@ -11,3 +11,6 @@ __pycache__/
 
 # recorded sessions contain peoples names - keep them out of the repo
 tools/max86171-hr-spo2/**/sessions/
+
+# derived from the committed raw recordings; regenerate rather than store
+tools/max86171-hr-spo2/recordings/*SUM_*.txt
