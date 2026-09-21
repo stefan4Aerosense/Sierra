@@ -95,6 +95,7 @@ class MainForm : Form {
 
   readonly CardPanel bpmCard = new CardPanel(), spo2Card = new CardPanel(), infoCard = new CardPanel();
   readonly CardPanel sessionCard = new CardPanel();
+  readonly PictureBox logo = new PictureBox();
   readonly TextBox nameBox = new TextBox();
   readonly Button recordButton = new Button(), folderButton = new Button(), openLastButton = new Button();
   string lastSessionFile;
@@ -116,6 +117,13 @@ class MainForm : Form {
 
     var big = DisplayFont.Digits(62);
     var small = new Font("Segoe UI", 9);
+
+    // Company logo, embedded in the exe like the display font. Top right, above the readings.
+    logo.Image = Embedded.Lighten(Embedded.Image("hrlogo"), 0.30f);
+    logo.SizeMode = PictureBoxSizeMode.Zoom;
+    logo.BackColor = Color.Transparent;
+    logo.SetBounds(ClientSize.Width - 16 - 176, 6, 176, 58);
+    logo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 
     bpmCard.Accent = Pulse; bpmCard.SetBounds(16, 68, 264, 132);
     spo2Card.Accent = Oxygen; spo2Card.SetBounds(292, 68, 264, 132);
@@ -167,7 +175,7 @@ class MainForm : Form {
     statusLabel.ForeColor = TextFaint; statusLabel.Font = small;
     statusLabel.Text = "Close the Maxim GUI, switch the board on, then press Start.";
 
-    Controls.AddRange(new Control[] { startButton, stopButton, bpmCard, spo2Card, infoCard, wave, sessionCard, statusLabel });
+    Controls.AddRange(new Control[] { logo, startButton, stopButton, bpmCard, spo2Card, infoCard, wave, sessionCard, statusLabel });
     uiTimer.Interval = 50; uiTimer.Tick += (s, e) => RefreshUi();
     FormClosing += (s, e) => StopStream();
     HandleCreated += (s, e) => UseDarkTitleBar(Handle);
@@ -346,6 +354,37 @@ class MainForm : Form {
   }
 }
 
+// Files built into the exe (see /res: in build.cmd), so the built file carries everything it needs.
+static class Embedded {
+  public static System.IO.Stream Open(string name) {
+    return System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(name);
+  }
+  public static Image Image(string name) {
+    try { using (var s = Open(name)) return s == null ? null : System.Drawing.Image.FromStream(s); }
+    catch { return null; }
+  }
+
+  // The logo's own colours are meant for white paper and go muddy on a near-black background, so it is
+  // lifted towards white on load. Transparency is preserved and the original file is left untouched.
+  public static Image Lighten(Image src, float amount) {
+    if (src == null) return null;
+    var bmp = new Bitmap(src.Width, src.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+    using (var g = Graphics.FromImage(bmp))
+    using (var attr = new System.Drawing.Imaging.ImageAttributes()) {
+      var m = new System.Drawing.Imaging.ColorMatrix(new[] {
+        new[] { 1f, 0f, 0f, 0f, 0f },
+        new[] { 0f, 1f, 0f, 0f, 0f },
+        new[] { 0f, 0f, 1f, 0f, 0f },
+        new[] { 0f, 0f, 0f, 1f, 0f },
+        new[] { amount, amount, amount, 0f, 1f } });
+      attr.SetColorMatrix(m);
+      g.DrawImage(src, new Rectangle(0, 0, src.Width, src.Height), 0, 0, src.Width, src.Height, GraphicsUnit.Pixel, attr);
+    }
+    src.Dispose();
+    return bmp;
+  }
+}
+
 // The display font (Chakra Petch Bold Italic, SIL OFL - see assets/) is embedded in the exe and loaded from
 // memory, so nothing has to be installed on the machine. Falls back to a stock font if anything goes wrong.
 static class DisplayFont {
@@ -354,7 +393,7 @@ static class DisplayFont {
 
   static DisplayFont() {
     try {
-      using (var s = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("hrfont")) {
+      using (var s = Embedded.Open("hrfont")) {
         if (s != null) {
           var bytes = new byte[s.Length];
           s.Read(bytes, 0, bytes.Length);
