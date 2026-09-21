@@ -94,7 +94,8 @@ class MainForm : Form {
   readonly CardPanel bpmCard = new CardPanel(), spo2Card = new CardPanel(), infoCard = new CardPanel();
   readonly CardPanel sessionCard = new CardPanel();
   readonly TextBox nameBox = new TextBox();
-  readonly Button recordButton = new Button(), folderButton = new Button();
+  readonly Button recordButton = new Button(), folderButton = new Button(), openLastButton = new Button();
+  string lastSessionFile;
   readonly Label sessionLabel = new Label();
   SessionRecorder recorder;
 
@@ -150,12 +151,15 @@ class MainForm : Form {
     nameBox.BackColor = Color.FromArgb(28, 36, 54); nameBox.ForeColor = Color.White;
     nameBox.BorderStyle = BorderStyle.FixedSingle; nameBox.Font = new Font("Segoe UI", 10);
     StyleButton(recordButton, "Record", Color.FromArgb(28, 36, 54), AccentSoft);
-    recordButton.SetBounds(264, 34, 110, 30); recordButton.Click += (s, e) => ToggleRecording();
+    recordButton.SetBounds(258, 34, 104, 30); recordButton.Click += (s, e) => ToggleRecording();
     StyleButton(folderButton, "Open folder", Color.FromArgb(28, 36, 54), TextDim);
-    folderButton.SetBounds(384, 34, 110, 30); folderButton.Click += (s, e) => OpenSessionFolder();
-    sessionLabel.SetBounds(508, 14, 268, 52); sessionLabel.Font = small; sessionLabel.ForeColor = TextFaint;
+    StyleButton(openLastButton, "Open in Excel", Color.FromArgb(28, 36, 54), TextDim);
+    openLastButton.SetBounds(478, 34, 118, 30); openLastButton.Enabled = false;
+    openLastButton.Click += (s, e) => OpenLastSession();
+    folderButton.SetBounds(370, 34, 104, 30); folderButton.Click += (s, e) => OpenSessionFolder();
+    sessionLabel.SetBounds(608, 12, 172, 56); sessionLabel.Font = small; sessionLabel.ForeColor = TextFaint;
     sessionLabel.Text = "Not recording.\nReadings are saved as CSV, one file per session.";
-    sessionCard.Controls.AddRange(new Control[] { recordTitle, nameCaption, nameBox, recordButton, folderButton, sessionLabel });
+    sessionCard.Controls.AddRange(new Control[] { recordTitle, nameCaption, nameBox, recordButton, folderButton, openLastButton, sessionLabel });
 
     statusLabel.SetBounds(18, 558, 786, 30); statusLabel.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
     statusLabel.ForeColor = TextFaint; statusLabel.Font = small;
@@ -206,10 +210,12 @@ class MainForm : Form {
       var s = recorder.Stop();
       recorder = null;
       StyleButton(recordButton, "Record", Color.FromArgb(28, 36, 54), AccentSoft);
-      sessionLabel.Text = string.Format("Saved {0}\n{1} s, {2} readings ({3:F0}% of the time)\n{4}",
-        System.IO.Path.GetFileName(s.Path), s.Seconds, s.Readings, s.Coverage,
-        s.Readings > 0 ? string.Format("mean {0:F0} BPM, range {1:F0}-{2:F0}", s.MeanBpm, s.MinBpm, s.MaxBpm) : "no readings captured");
-      statusLabel.Text = "Session saved to " + s.Path;
+      lastSessionFile = s.ExcelPath != null && System.IO.File.Exists(s.ExcelPath) ? s.ExcelPath : s.Path;
+      openLastButton.Enabled = true;
+      sessionLabel.Text = string.Format("Saved.\n{0} s, {1} readings ({2:F0}%)\n{3}",
+        s.Seconds, s.Readings, s.Coverage,
+        s.Readings > 0 ? string.Format("mean {0:F0} BPM, {1:F0}-{2:F0}", s.MeanBpm, s.MinBpm, s.MaxBpm) : "no readings captured");
+      statusLabel.Text = "Saved " + System.IO.Path.GetFileName(lastSessionFile) + " (Excel and CSV) in " + SessionRecorder.Folder;
       return;
     }
     if (stream == null) { statusLabel.Text = "Press Start first - there is nothing to record yet."; return; }
@@ -217,6 +223,13 @@ class MainForm : Form {
     StyleButton(recordButton, "Stop recording", Color.FromArgb(150, 40, 60), Color.White);
     sessionLabel.Text = "Recording " + recorder.Subject + "...\n0 s";
     statusLabel.Text = "Recording to " + recorder.Path;
+  }
+
+  // Hands the file to Windows, which opens it in whatever spreadsheet is installed.
+  void OpenLastSession() {
+    if (lastSessionFile == null) { statusLabel.Text = "No session has been recorded yet."; return; }
+    try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(lastSessionFile) { UseShellExecute = true }); }
+    catch (Exception ex) { statusLabel.Text = "Could not open " + lastSessionFile + " (" + ex.Message + ")"; }
   }
 
   void OpenSessionFolder() {

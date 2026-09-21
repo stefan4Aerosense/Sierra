@@ -12,6 +12,7 @@ class SessionRecorder {
   public readonly string Path;
   readonly StreamWriter file;
   readonly List<double> rates = new List<double>(), oxygen = new List<double>();
+  readonly List<object[]> rows = new List<object[]>();
   int seconds;
   // This machine formats decimals with a comma, which would split CSV columns - always write invariant.
   static readonly IFormatProvider Inv = CultureInfo.InvariantCulture;
@@ -42,6 +43,17 @@ class SessionRecorder {
     seconds++;
     if (bpm > 0) rates.Add(bpm);
     if (spo2 > 0) oxygen.Add(spo2);
+    // Kept in memory as typed values too, for the Excel copy written when the session stops.
+    rows.Add(new object[] {
+      DateTime.Now.ToString("HH:mm:ss"), (double)seconds,
+      bpm > 0 ? (object)Math.Round(bpm) : null,
+      bpm > 0 ? (object)Math.Round(quality, 2) : null,
+      channel ?? "",
+      spo2 > 0 ? (object)Math.Round(spo2) : null,
+      spo2 > 0 ? (object)Math.Round(spread, 1) : null,
+      spo2 > 0 ? (object)Math.Round(r, 3) : null,
+      snr > 0 ? (object)Math.Round(snr, 1) : null,
+      state });
     file.WriteLine(string.Join(",",
       DateTime.Now.ToString("HH:mm:ss"),
       seconds.ToString(),
@@ -57,7 +69,7 @@ class SessionRecorder {
   }
 
   public class Summary {
-    public string Subject, Path;
+    public string Subject, Path, ExcelPath;
     public int Seconds, Readings;
     public double MeanBpm, MinBpm, MaxBpm, MeanSpO2;
     public double Coverage { get { return Seconds > 0 ? 100.0 * Readings / Seconds : 0; } }
@@ -72,7 +84,36 @@ class SessionRecorder {
       s.Seconds, s.Readings, s.Coverage, s.MeanBpm, s.MinBpm, s.MaxBpm));
     file.Close();
     AppendToIndex(s);
+    try { s.ExcelPath = WriteExcel(s); } catch (Exception ex) { s.ExcelPath = "(could not write the Excel file: " + ex.Message + ")"; }
     return s;
+  }
+
+  // The same session as a real .xlsx, so the numbers arrive in Excel as numbers rather than text.
+  string WriteExcel(Summary s) {
+    var readings = new Xlsx.Sheet("Readings");
+    readings.Headers.AddRange(new[] { "Time", "Seconds", "Heart rate (BPM)", "Pulse quality",
+      "Channel", "SpO2 (%)", "SpO2 spread", "Ratio R", "Signal/noise", "State" });
+    foreach (var r in rows) readings.Rows.Add(r);
+
+    var summary = new Xlsx.Sheet("Summary");
+    summary.Headers.AddRange(new[] { "Item", "Value" });
+    Action<string, object> add = (k, v) => summary.Rows.Add(new object[] { k, v });
+    add("Subject", s.Subject);
+    add("Started", Started.ToString("yyyy-MM-dd HH:mm:ss"));
+    add("Duration (s)", (double)s.Seconds);
+    add("Seconds with a reading", (double)s.Readings);
+    add("Coverage (%)", Math.Round(s.Coverage));
+    if (s.Readings > 0) {
+      add("Mean heart rate (BPM)", Math.Round(s.MeanBpm));
+      add("Lowest (BPM)", Math.Round(s.MinBpm));
+      add("Highest (BPM)", Math.Round(s.MaxBpm));
+    }
+    if (s.MeanSpO2 > 0) add("Mean SpO2 (%)", Math.Round(s.MeanSpO2));
+    add("Note", "SpO2 is an uncalibrated estimate and is not a medical measurement");
+
+    string path = System.IO.Path.ChangeExtension(Path, ".xlsx");
+    Xlsx.Write(path, readings, summary);
+    return path;
   }
 
   // One row per session, so every recording ever made can be read from a single file.
