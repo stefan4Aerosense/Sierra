@@ -89,6 +89,7 @@ class MainForm : Form {
   static readonly Color AccentSoft = Color.FromArgb(120, 190, 255); // lighter blue
   static readonly Color TextDim = Color.FromArgb(128, 145, 175);  // labels
   static readonly Color TextFaint = Color.FromArgb(96, 112, 140); // fine print
+  static readonly Color Pulse = Color.FromArgb(255, 58, 70);      // luminous red for the heart rate
   static readonly Color Held = Color.FromArgb(86, 104, 136);      // a reading being held through movement
 
   readonly CardPanel bpmCard = new CardPanel(), spo2Card = new CardPanel(), infoCard = new CardPanel();
@@ -115,12 +116,12 @@ class MainForm : Form {
     var big = DisplayFont.Digits(62);
     var small = new Font("Segoe UI", 9);
 
-    bpmCard.Accent = AccentSoft; bpmCard.SetBounds(16, 68, 264, 132);
+    bpmCard.Accent = Pulse; bpmCard.SetBounds(16, 68, 264, 132);
     spo2Card.Accent = Accent; spo2Card.SetBounds(292, 68, 264, 132);
     infoCard.Accent = Color.FromArgb(48, 64, 96); infoCard.SetBounds(568, 68, 236, 132);
     infoCard.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 
-    bpmLabel.Text = "--"; bpmLabel.Font = big; bpmLabel.ForeColor = AccentSoft;
+    bpmLabel.Text = "--"; bpmLabel.Font = big; bpmLabel.ForeColor = Pulse;
     bpmLabel.SetBounds(14, 6, 236, 92); bpmLabel.TextAlign = ContentAlignment.MiddleLeft;
     bpmUnit.Text = "HEART RATE  ·  BPM"; bpmUnit.SetBounds(18, 100, 240, 20);
     bpmUnit.ForeColor = TextDim; bpmUnit.Font = small;
@@ -158,7 +159,7 @@ class MainForm : Form {
     openLastButton.Click += (s, e) => OpenLastSession();
     folderButton.SetBounds(370, 34, 104, 30); folderButton.Click += (s, e) => OpenSessionFolder();
     sessionLabel.SetBounds(608, 12, 172, 56); sessionLabel.Font = small; sessionLabel.ForeColor = TextFaint;
-    sessionLabel.Text = "Not recording.\nReadings are saved as CSV, one file per session.";
+    sessionLabel.Text = "Not recording.\nEach session is saved as\na PDF report and a CSV.";
     sessionCard.Controls.AddRange(new Control[] { recordTitle, nameCaption, nameBox, recordButton, folderButton, openLastButton, sessionLabel });
 
     statusLabel.SetBounds(18, 558, 786, 30); statusLabel.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
@@ -314,7 +315,7 @@ class MainForm : Form {
         Record(0, 0, null, null, age <= HoldSeconds ? "movement - holding" : "no clear pulse");
         return;
       }
-      bpmLabel.ForeColor = AccentSoft; bpmLabel.Text = bpm.ToString("F0");
+      bpmLabel.ForeColor = Pulse; bpmLabel.Text = bpm.ToString("F0");
       lastGoodBpm = bpm; lastGoodAt = DateTime.Now;
       string info = "Pulse quality " + (q * 100).ToString("F0") + "% via " + est.BestChannel + "\n";
 
