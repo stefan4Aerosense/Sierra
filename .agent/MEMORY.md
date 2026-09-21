@@ -392,3 +392,11 @@ Rendering it with the Windows PDF engine (`bench/pdfshot.cs`) found it in one ru
 locale bug: this machine writes decimals with a comma, which split `0,86` across two CSV columns and would have
 corrupted every session file. **Write a generated format, then open it with an independent reader before
 shipping it** — images via `bench/imgconv.cs`, PDFs via `bench/pdfshot.cs`, the UI via `--shot`.
+
+## Scar 20 — a clamped value looks like a confident reading (2026-09-21)
+
+`[measured]` The SpO2 curve clamps to 70-100. At the ear, R=1.48 (far outside the fitted 0.4-0.8) gave a
+displayed **"70 %" with spread 0** - the steadiest-looking number on screen, and completely meaningless.
+Stefan spotted it because he felt fine. **Any clamp, saturation or range limit must be detected and refused,
+never rendered as a value**; the steadiness of a clamped output makes it more convincing, not less.
+Fixed `a80738f` (C# and the JS port together).

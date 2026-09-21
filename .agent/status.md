@@ -16,6 +16,19 @@ awaits Stefan.
 - Gates: per INDIA 2026-09-01 **seven gates, RV-1 dissolved 24 Aug**; V2 closes 1 Oct.
 
 ## 2026-09-21 — ear placement measured, channel fix, app reworked, phone version
+**Late 21 Sep — two faults found live at the ear, one fixed, one OPEN.**
+- `[measured]` **SpO2 showed "70%" that was not a measurement**: R=1.48 (plausible is ~0.4-0.8), and the curve
+  simply clamps at 70. It displayed with spread 0, which looks *more* trustworthy, not less. **Fixed** in
+  `a80738f`: R rejected outside 0.3-1.2, and any value landing on the curve clamp is rejected. Mirrored into
+  `web/ppg.js`. **Rule: a clamped or saturated value must never be rendered as a reading.**
+- `[measured]` **UNRESOLVED: heart rate reported 48-50 BPM with quality 0.83-0.95** (confidently wrong).
+  `bench/spec.cs` on the captured channel: peaks at 0.66 Hz (40 BPM, strongest), 0.84 (50), 0.57 (34), and a
+  weak 1.70 (102). A real pulse does not produce unrelated 34/40/50 peaks - that pattern says the sensor is
+  rocking against skin. Raising the band-pass low edge to 0.7/0.8/0.9 Hz did NOT change it (`bench/filttest.cs`),
+  so it is not just drift leaking through. **Two readings fit the data: a true ~102 with a half-rate lock, or a
+  genuine ~50.** Waiting on Stefan's smartwatch as the reference; do not change the HR maths on a hunch first
+  (that was the Friday mistake). Capture kept as `recordings/rec_LIVE_M1_PD1.txt`.
+
 
 **The fix that mattered.** `[measured]` The app was *summing* each detector's two green measurements before
 looking for a pulse. At the ear one is usually clean and the other swamped by stray light, so summing buried
