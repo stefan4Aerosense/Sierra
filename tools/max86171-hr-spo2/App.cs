@@ -20,6 +20,18 @@ static class Program {
       return rc;
     }
     Application.EnableVisualStyles();
+    // --shot <file.png>: render the window to an image and exit (used to check the layout without hardware).
+    if (args.Length >= 2 && args[0] == "--shot") {
+      using (var f = new MainForm()) {
+        f.Show(); Application.DoEvents();
+        if (args.Length > 2 && args[2] == "demo") { f.ShowDemo(); Application.DoEvents(); }
+        using (var bmp = new Bitmap(f.Width, f.Height)) {
+          f.DrawToBitmap(bmp, new Rectangle(0, 0, f.Width, f.Height));
+          bmp.Save(args[1], System.Drawing.Imaging.ImageFormat.Png);
+        }
+      }
+      return 0;
+    }
     Application.Run(new MainForm());
     return 0;
   }
@@ -63,35 +75,99 @@ class MainForm : Form {
   PpgStream stream;
   DateTime lastEstimate;
 
+  // Dark palette: near-black navy behind slightly lighter cards, with blue accents.
+  static readonly Color Ink = Color.FromArgb(9, 12, 20);          // window background
+  static readonly Color Card = Color.FromArgb(19, 25, 40);        // panels
+  static readonly Color CardEdge = Color.FromArgb(32, 42, 64);    // panel outline
+  static readonly Color Accent = Color.FromArgb(56, 132, 255);    // primary blue
+  static readonly Color AccentSoft = Color.FromArgb(120, 190, 255); // lighter blue
+  static readonly Color TextDim = Color.FromArgb(128, 145, 175);  // labels
+  static readonly Color TextFaint = Color.FromArgb(96, 112, 140); // fine print
+
+  readonly CardPanel bpmCard = new CardPanel(), spo2Card = new CardPanel(), infoCard = new CardPanel();
+
   public MainForm() {
     Text = "Heart Rate & SpO2 Tester (MAX86171)";
-    ClientSize = new Size(780, 520);
-    MinimumSize = new Size(640, 480);
-    BackColor = Color.White;
+    ClientSize = new Size(820, 560);
+    MinimumSize = new Size(700, 500);
+    BackColor = Ink;
+    ForeColor = TextDim;
     Font = new Font("Segoe UI", 10);
 
-    startButton.Text = "Start"; startButton.SetBounds(16, 16, 110, 36); startButton.Click += (s, e) => StartStream();
-    stopButton.Text = "Stop"; stopButton.SetBounds(136, 16, 110, 36); stopButton.Enabled = false; stopButton.Click += (s, e) => StopStream();
+    StyleButton(startButton, "Start", Accent, Color.White);
+    startButton.SetBounds(16, 16, 118, 38); startButton.Click += (s, e) => StartStream();
+    StyleButton(stopButton, "Stop", Color.FromArgb(28, 36, 54), AccentSoft);
+    stopButton.SetBounds(146, 16, 118, 38); stopButton.Enabled = false; stopButton.Click += (s, e) => StopStream();
 
-    var big = new Font("Segoe UI", 60, FontStyle.Bold);
-    bpmLabel.Text = "--"; bpmLabel.Font = big; bpmLabel.ForeColor = Color.FromArgb(200, 30, 50);
-    bpmLabel.SetBounds(16, 60, 250, 100); bpmLabel.TextAlign = ContentAlignment.MiddleLeft;
-    bpmUnit.Text = "Heart rate (BPM)"; bpmUnit.SetBounds(22, 160, 250, 22); bpmUnit.ForeColor = Color.DimGray;
+    var big = new Font("Segoe UI Light", 58, FontStyle.Regular);
+    var small = new Font("Segoe UI", 9);
 
-    spo2Label.Text = "--"; spo2Label.Font = big; spo2Label.ForeColor = Color.FromArgb(30, 90, 190);
-    spo2Label.SetBounds(290, 60, 250, 100); spo2Label.TextAlign = ContentAlignment.MiddleLeft;
-    spo2Unit.Text = "SpO2 % (uncalibrated estimate)"; spo2Unit.SetBounds(296, 160, 250, 22); spo2Unit.ForeColor = Color.DimGray;
+    bpmCard.Accent = AccentSoft; bpmCard.SetBounds(16, 68, 264, 132);
+    spo2Card.Accent = Accent; spo2Card.SetBounds(292, 68, 264, 132);
+    infoCard.Accent = Color.FromArgb(48, 64, 96); infoCard.SetBounds(568, 68, 236, 132);
+    infoCard.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 
-    infoLabel.SetBounds(560, 64, 204, 120); infoLabel.ForeColor = Color.DimGray; infoLabel.Font = new Font("Segoe UI", 9);
-    infoLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+    bpmLabel.Text = "--"; bpmLabel.Font = big; bpmLabel.ForeColor = AccentSoft;
+    bpmLabel.SetBounds(14, 6, 236, 92); bpmLabel.TextAlign = ContentAlignment.MiddleLeft;
+    bpmUnit.Text = "HEART RATE  ·  BPM"; bpmUnit.SetBounds(18, 100, 240, 20);
+    bpmUnit.ForeColor = TextDim; bpmUnit.Font = small;
 
-    wave.SetBounds(16, 196, 748, 270); wave.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
-    statusLabel.SetBounds(16, 478, 748, 30); statusLabel.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
-    statusLabel.ForeColor = Color.DimGray; statusLabel.Text = "Close the Maxim GUI, switch the board on, then press Start.";
+    spo2Label.Text = "--"; spo2Label.Font = big; spo2Label.ForeColor = Accent;
+    spo2Label.SetBounds(14, 6, 236, 92); spo2Label.TextAlign = ContentAlignment.MiddleLeft;
+    spo2Unit.Text = "BLOOD OXYGEN  ·  %  (uncalibrated)"; spo2Unit.SetBounds(18, 100, 240, 20);
+    spo2Unit.ForeColor = TextDim; spo2Unit.Font = small;
 
-    Controls.AddRange(new Control[] { startButton, stopButton, bpmLabel, bpmUnit, spo2Label, spo2Unit, infoLabel, wave, statusLabel });
+    infoLabel.SetBounds(14, 10, 210, 112); infoLabel.ForeColor = TextFaint; infoLabel.Font = small;
+    infoLabel.Text = "Idle.\nPress Start to connect\nto the sensor board.";
+
+    bpmCard.Controls.AddRange(new Control[] { bpmLabel, bpmUnit });
+    spo2Card.Controls.AddRange(new Control[] { spo2Label, spo2Unit });
+    infoCard.Controls.Add(infoLabel);
+
+    wave.SetBounds(16, 216, 788, 292);
+    wave.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+    statusLabel.SetBounds(18, 520, 786, 30); statusLabel.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+    statusLabel.ForeColor = TextFaint; statusLabel.Font = small;
+    statusLabel.Text = "Close the Maxim GUI, switch the board on, then press Start.";
+
+    Controls.AddRange(new Control[] { startButton, stopButton, bpmCard, spo2Card, infoCard, wave, statusLabel });
     uiTimer.Interval = 50; uiTimer.Tick += (s, e) => RefreshUi();
     FormClosing += (s, e) => StopStream();
+    HandleCreated += (s, e) => UseDarkTitleBar(Handle);
+  }
+
+  [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
+  static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int value, int size);
+
+  // Windows 10 2004+ / 11: paint the title bar dark to match. Older builds simply ignore it.
+  static void UseDarkTitleBar(IntPtr hwnd) {
+    int on = 1;
+    try { if (DwmSetWindowAttribute(hwnd, 20, ref on, sizeof(int)) != 0) DwmSetWindowAttribute(hwnd, 19, ref on, sizeof(int)); } catch { }
+  }
+
+  // Fills the window with representative values so the layout can be checked without hardware.
+  public void ShowDemo() {
+    bpmLabel.Text = "72"; spo2Label.Text = "98";
+    infoLabel.Text = "Pulse quality 86% via\ndetector 3 (LED group)\n\nSpO2 +/-1%, R 0.52\nsignal/noise 24\n\nSamples 1483 @ 25.2 Hz";
+    statusLabel.Text = "Streaming with all LEDs and 4 detectors.";
+    var d = new double[150];
+    for (int i = 0; i < d.Length; i++) {
+      double ph = 2 * Math.PI * 1.2 * i / 25.0;
+      d[i] = Math.Sin(ph) + 0.35 * Math.Sin(2 * ph + 0.8) + 0.05 * Math.Sin(2 * Math.PI * 0.2 * i / 25.0);
+    }
+    wave.Data = d; wave.Invalidate();
+  }
+
+  static void StyleButton(Button b, string text, Color back, Color fore) {
+    b.Text = text;
+    b.FlatStyle = FlatStyle.Flat;
+    b.FlatAppearance.BorderSize = 1;
+    b.FlatAppearance.BorderColor = CardEdge;
+    b.FlatAppearance.MouseOverBackColor = ControlPaint.Light(back, 0.2f);
+    b.BackColor = back;
+    b.ForeColor = fore;
+    b.Font = new Font("Segoe UI Semibold", 10);
+    b.UseVisualStyleBackColor = false;
   }
 
   void SetStatus(string msg) {
@@ -142,7 +218,7 @@ class MainForm : Form {
       double bpm, q;
       if (!est.Estimate(out bpm, out q)) {
         bpmLabel.Text = "--"; spo2Label.Text = "--";
-        infoLabel.Text = "No clear pulse.\nRest fingertip lightly on the sensor and keep still.\n" + counts;
+        infoLabel.Text = "No clear pulse.\nRest the sensor lightly against the skin and keep still.\n" + counts;
         return;
       }
       bpmLabel.Text = bpm.ToString("F0");
@@ -161,21 +237,49 @@ class MainForm : Form {
   }
 }
 
-class WavePanel : Panel {
-  public double[] Data = new double[0];
-  public WavePanel() { DoubleBuffered = true; BackColor = Color.FromArgb(248, 248, 250); BorderStyle = BorderStyle.FixedSingle; }
+// A flat dark card with a thin coloured bar down its left edge.
+class CardPanel : Panel {
+  public Color Accent = Color.FromArgb(56, 132, 255);
+  public CardPanel() { DoubleBuffered = true; BackColor = Color.FromArgb(19, 25, 40); }
   protected override void OnPaint(PaintEventArgs e) {
     base.OnPaint(e);
+    using (var edge = new Pen(Color.FromArgb(32, 42, 64))) e.Graphics.DrawRectangle(edge, 0, 0, Width - 1, Height - 1);
+    using (var bar = new SolidBrush(Accent)) e.Graphics.FillRectangle(bar, 0, 0, 3, Height);
+  }
+}
+
+class WavePanel : Panel {
+  public double[] Data = new double[0];
+  static readonly Color Line = Color.FromArgb(96, 176, 255);
+  public WavePanel() { DoubleBuffered = true; BackColor = Color.FromArgb(13, 18, 30); }
+  protected override void OnPaint(PaintEventArgs e) {
+    base.OnPaint(e);
+    var g = e.Graphics;
+    using (var edge = new Pen(Color.FromArgb(32, 42, 64))) g.DrawRectangle(edge, 0, 0, Width - 1, Height - 1);
+    // Faint grid, so the pulse has something to be read against.
+    using (var grid = new Pen(Color.FromArgb(20, 27, 43))) {
+      for (int i = 1; i < 6; i++) { int y = Height * i / 6; g.DrawLine(grid, 1, y, Width - 2, y); }
+      for (int i = 1; i < 12; i++) { int x = Width * i / 12; g.DrawLine(grid, x, 1, x, Height - 2); }
+    }
     var d = Data;
-    if (d == null || d.Length < 2) { e.Graphics.DrawString("Pulse waveform (green LED)", Font, Brushes.Gray, 8, 8); return; }
+    using (var dim = new SolidBrush(Color.FromArgb(96, 112, 140)))
+      g.DrawString("PULSE WAVEFORM  ·  GREEN", new Font("Segoe UI", 8), dim, 10, 8);
+    if (d == null || d.Length < 2) return;
     double min = double.MaxValue, max = double.MinValue;
     foreach (var v in d) { if (v < min) min = v; if (v > max) max = v; }
     double span = Math.Max(max - min, 1e-9);
     var pts = new PointF[d.Length];
     for (int i = 0; i < d.Length; i++)
-      pts[i] = new PointF(i * (Width - 1f) / (d.Length - 1), (float)(Height - 10 - (d[i] - min) / span * (Height - 20)));
-    e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-    using (var pen = new Pen(Color.FromArgb(200, 30, 50), 2)) e.Graphics.DrawLines(pen, pts);
+      pts[i] = new PointF(i * (Width - 1f) / (d.Length - 1), (float)(Height - 14 - (d[i] - min) / span * (Height - 44)));
+    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+    // Fill under the trace, then the trace itself with a soft glow behind it.
+    var fill = new PointF[pts.Length + 2];
+    Array.Copy(pts, fill, pts.Length);
+    fill[pts.Length] = new PointF(pts[pts.Length - 1].X, Height);
+    fill[pts.Length + 1] = new PointF(pts[0].X, Height);
+    using (var under = new SolidBrush(Color.FromArgb(26, Line))) g.FillPolygon(under, fill);
+    using (var glow = new Pen(Color.FromArgb(60, Line), 6)) g.DrawLines(glow, pts);
+    using (var pen = new Pen(Line, 2)) g.DrawLines(pen, pts);
   }
 }
 

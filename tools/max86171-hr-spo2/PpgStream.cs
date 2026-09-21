@@ -105,7 +105,7 @@ class PpgStream : IDisposable {
     board.Packet += OnPacket;
     board.EnableNotifications(true);
     board.EnableSensors(true);
-    Log("Streaming with all LEDs and 4 detectors. Rest a fingertip lightly on the sensor and keep still.");
+    Log("Streaming with all LEDs and 4 detectors. Rest the sensor lightly against the skin and keep still.");
   }
 
   void CreateEstimators(double fs) {
