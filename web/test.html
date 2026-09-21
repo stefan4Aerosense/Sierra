@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PPG port check</title>
+  <style>body { background:#090c14; color:#c8d4e8; font:14px monospace; padding:20px } .fail{color:#ff5a66} .pass{color:#9dff3c}</style>
+</head>
+<body>
+<pre id="out">running...</pre>
+<script type="module">
+import { MultiHeartRate, MultiPathOximeter, SpO2Estimator } from './ppg.js';
+import { RECORDINGS } from './recordings.js';
+
+const fs = 25.2;
+const lines = [];
+const log = s => lines.push(s);
+
+// Replays each recording's eight green channels, exactly as the desktop app feeds them.
+// Expected values come from the C# build run on the same files (see docs/h1-ear-ppg-placement.md).
+const expected = { EAR4: 73, QUIET: 72, TALK: 69, EAR1: 78 };
+let failures = 0;
+
+for (const [name, chans] of Object.entries(RECORDINGS)) {
+  const keys = Object.keys(chans);
+  const hr = new MultiHeartRate(fs, keys);
+  const n = Math.min(...keys.map(k => chans[k].length));
+  const step = Math.round(fs);
+  let last = null, reads = 0, wrong = 0, first = -1;
+  for (let i = 0; i < n; i++) {
+    keys.forEach((k, c) => hr.add(c, chans[k][i]));
+    if (i > 0 && i % step === 0) {
+      const r = hr.estimate();
+      if (r) {
+        if (first < 0) first = i / step;
+        reads++; last = r;
+        if (r.bpm < 50) wrong++;
+      }
+    }
+  }
+  const want = expected[name];
+  const ok = last && Math.abs(last.bpm - want) <= 4 && wrong === 0;
+  if (!ok) failures++;
+  log(`${name.padEnd(6)} -> ${last ? last.bpm.toFixed(0).padStart(3) : ' --'} BPM (C# gave ${want}), ` +
+      `${String(reads).padStart(2)} readings, first at ${first}s, ${wrong} below 50  ${ok ? 'PASS' : 'FAIL'}`);
+}
+
+// SpO2 maths: the curve must reproduce known values.
+const curveOk = Math.abs(SpO2Estimator.curve(0.5) - 98.7) < 0.2 && Math.abs(SpO2Estimator.curve(1.0) - 80.1) < 0.2;
+log(`SpO2 curve R=0.5 -> ${SpO2Estimator.curve(0.5).toFixed(1)}%, R=1.0 -> ${SpO2Estimator.curve(1.0).toFixed(1)}%  ${curveOk ? 'PASS' : 'FAIL'}`);
+if (!curveOk) failures++;
+
+log('');
+log(failures === 0 ? 'ALL CHECKS PASSED' : failures + ' CHECK(S) FAILED');
+document.getElementById('out').textContent = lines.join('\n');
+document.title = failures === 0 ? 'PASS' : 'FAIL';
+window.__result = { failures, lines };
+</script>
+</body>
+</html>

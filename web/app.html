@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heart Rate &amp; SpO2 Tester</title>
+<style>
+  @font-face { font-family: "Chakra Petch"; src: url("ChakraPetch-BoldItalic.ttf") format("truetype"); font-weight: 700; font-style: italic; font-display: swap; }
+  :root {
+    --ink: #090c14; --card: #131928; --edge: #202a40;
+    --pulse: #ff3a46; --oxygen: #9feefe; --held: #566888;
+    --dim: #8091af; --faint: #607089; --green: #beff3c;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0; padding: 16px; background: var(--ink); color: var(--dim);
+    font: 15px/1.4 "Segoe UI", Roboto, system-ui, sans-serif;
+  }
+  header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  header img { height: 44px; filter: brightness(1.35); }
+  button {
+    font: 600 15px/1 "Segoe UI", Roboto, system-ui, sans-serif; color: #fff;
+    background: #3884ff; border: 1px solid var(--edge); border-radius: 8px;
+    padding: 13px 18px; min-height: 46px;
+  }
+  button.secondary { background: #1c2436; color: #78beff; }
+  button:disabled { opacity: .45; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card { background: var(--card); border: 1px solid var(--edge); border-radius: 10px; padding: 12px 14px; position: relative; overflow: hidden; }
+  .card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent, #3884ff); }
+  .value { font-family: "Chakra Petch", "Segoe UI", sans-serif; font-weight: 700; font-style: italic;
+           font-size: 56px; line-height: 1.05; transform: scaleX(1.25); transform-origin: left center; }
+  #bpm { color: var(--pulse); } #spo2 { color: var(--oxygen); }
+  .value.held { color: var(--held) !important; }
+  .label { font-size: 11px; letter-spacing: .08em; color: var(--dim); margin-top: 6px; }
+  canvas { width: 100%; height: 190px; display: block; background: #0d121e; border: 1px solid var(--edge); border-radius: 10px; margin-top: 10px; }
+  .row { display: flex; gap: 8px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+  input[type=text] { flex: 1 1 140px; min-width: 120px; background: #1c2436; color: #fff;
+                     border: 1px solid var(--edge); border-radius: 8px; padding: 12px; font-size: 15px; }
+  #info, #status { font-size: 12px; color: var(--faint); margin-top: 10px; white-space: pre-line; }
+  .warn { color: #ffb648; }
+</style>
+</head>
+<body>
+
+<header>
+  <button id="connect">Connect</button>
+  <button id="disconnect" class="secondary" disabled>Stop</button>
+  <img src="logo.png" alt="Aerosense">
+</header>
+
+<div class="cards">
+  <div class="card" style="--accent: var(--pulse)">
+    <div class="value" id="bpm">--</div>
+    <div class="label">HEART RATE · BPM</div>
+  </div>
+  <div class="card" style="--accent: var(--oxygen)">
+    <div class="value" id="spo2">--</div>
+    <div class="label">BLOOD OXYGEN · % (uncalibrated)</div>
+  </div>
+</div>
+
+<canvas id="wave"></canvas>
+
+<div class="row">
+  <input type="text" id="name" placeholder="Name (for the recording)">
+  <button id="record" class="secondary" disabled>Record</button>
+  <button id="save" class="secondary" disabled>Save CSV</button>
+</div>
+
+<div id="info">Not connected. Tap Connect and choose "OS61 Demo".</div>
+<div id="status"></div>
+
+<script type="module">
+import { Board } from './os61.js';
+
+const $ = id => document.getElementById(id);
+const bpmEl = $('bpm'), spo2El = $('spo2'), infoEl = $('info'), statusEl = $('status');
+const canvas = $('wave'), ctx = canvas.getContext('2d');
+
+let board = null, timer = null;
+let lastGoodBpm = 0, lastGoodSpO2 = 0, lastGoodAt = 0;
+const HOLD_MS = 8000, FIRST_WINDOW = 5;
+let recording = null;
+
+const setStatus = m => { statusEl.textContent = m; };
+
+let lastWave = null; // kept so a resize (or a phone rotating) can repaint instead of going blank
+function sizeCanvas() {
+  const ratio = window.devicePixelRatio || 1;
+  canvas.width = canvas.clientWidth * ratio;
+  canvas.height = canvas.clientHeight * ratio;
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  drawWave(lastWave);
+}
+window.addEventListener("resize", sizeCanvas);
+sizeCanvas();
+drawWave(null); // draw the empty grid at startup rather than a blank box
+
+function drawWave(data) {
+  lastWave = data;
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  ctx.clearRect(0, 0, w, h);
+  ctx.strokeStyle = '#141b2b'; ctx.lineWidth = 1;
+  for (let i = 1; i < 5; i++) { const y = h * i / 5; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+  ctx.fillStyle = '#607089'; ctx.font = '10px system-ui';
+  ctx.fillText('PULSE WAVEFORM · GREEN', 10, 16);
+  if (!data || data.length < 2) return;
+  let min = Infinity, max = -Infinity;
+  for (const v of data) { if (v < min) min = v; if (v > max) max = v; }
+  const span = Math.max(max - min, 1e-9);
+  ctx.beginPath();
+  data.forEach((v, i) => {
+    const x = i * (w - 1) / (data.length - 1), y = h - 14 - (v - min) / span * (h - 34);
+    i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+  });
+  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--green').trim();
+  ctx.lineWidth = 2; ctx.stroke();
+}
+
+$('connect').onclick = async () => {
+  $('connect').disabled = true;
+  try {
+    board = new Board(setStatus);
+    await board.connect();
+    await board.start();
+    $('disconnect').disabled = false;
+    $('record').disabled = false;
+    timer = setInterval(refresh, 1000);
+    setInterval(() => { if (board) drawWave(board.estimator.tail(Math.round(board.fs * 6))); }, 60);
+  } catch (e) {
+    setStatus('Error: ' + e.message);
+    $('connect').disabled = false;
+    board = null;
+  }
+};
+
+$('disconnect').onclick = async () => {
+  clearInterval(timer); timer = null;
+  if (recording) stopRecording();
+  if (board) await board.stop();
+  board = null;
+  $('connect').disabled = false; $('disconnect').disabled = true; $('record').disabled = true;
+  bpmEl.textContent = '--'; spo2El.textContent = '--';
+  infoEl.textContent = 'Stopped.';
+};
+
+function refresh() {
+  if (!board) return;
+  const est = board.estimator;
+  const counts = `Samples ${board.samples} @ ${board.fs.toFixed(1)} Hz · dropped ${board.dropped}`;
+  if (board.samples === 0) { infoEl.textContent = 'Waiting for data...\n' + counts; return; }
+  if (est.count < est.fs * FIRST_WINDOW) {
+    const left = Math.ceil(FIRST_WINDOW - est.count / est.fs);
+    infoEl.textContent = `Measuring... keep still.\nFirst reading in ${left} s.\n` + counts;
+    record(0, 0, null, null, 'warming up');
+    return;
+  }
+
+  let hr = est.estimate();
+  if (!hr && lastGoodBpm === 0) hr = est.estimate(FIRST_WINDOW);
+  if (!hr) {
+    const age = Math.round((Date.now() - lastGoodAt) / 1000);
+    if (lastGoodBpm > 0 && age <= HOLD_MS / 1000) {
+      bpmEl.textContent = Math.round(lastGoodBpm); bpmEl.classList.add('held');
+      if (lastGoodSpO2 > 0) { spo2El.textContent = Math.round(lastGoodSpO2); spo2El.classList.add('held'); }
+      infoEl.textContent = `Movement - no clear pulse.\nHolding the last reading (${age} s old).\n` + counts;
+    } else {
+      bpmEl.textContent = '--'; spo2El.textContent = '--';
+      bpmEl.classList.add('held'); spo2El.classList.add('held');
+      lastGoodBpm = lastGoodSpO2 = 0;
+      infoEl.textContent = 'No clear pulse.\nRest the sensor lightly against the skin and keep still.\n' + counts;
+    }
+    record(0, 0, null, null, 'no clear pulse');
+    return;
+  }
+
+  bpmEl.textContent = Math.round(hr.bpm); bpmEl.classList.remove('held');
+  lastGoodBpm = hr.bpm; lastGoodAt = Date.now();
+  let info = `Pulse quality ${(hr.quality * 100).toFixed(0)}% via ${est.bestChannel}\n`;
+
+  const ox = board.oximeter.estimate(hr.bpm);
+  if (!ox.problem) {
+    spo2El.textContent = Math.round(ox.spo2); spo2El.classList.remove('held');
+    lastGoodSpO2 = ox.spo2;
+    info += `SpO2 +/-${ox.spread.toFixed(0)}%, R ${ox.r.toFixed(2)} via ${ox.path}, signal/noise ${ox.snr.toFixed(0)}\n`;
+  } else {
+    const age = Math.round((Date.now() - lastGoodAt) / 1000);
+    if (lastGoodSpO2 > 0 && age <= HOLD_MS / 1000) { spo2El.textContent = Math.round(lastGoodSpO2); spo2El.classList.add('held'); }
+    else { spo2El.textContent = '--'; spo2El.classList.add('held'); lastGoodSpO2 = 0; }
+    info += 'SpO2: ' + ox.problem + '\n';
+  }
+  infoEl.textContent = info + counts;
+  record(hr.bpm, hr.quality, est.bestChannel, ox, ox.problem ? 'heart rate only' : 'ok');
+}
+
+// Recording: rows in memory, downloaded as CSV. Gaps are written as blank rows, never hidden.
+function record(bpm, quality, channel, ox, state) {
+  if (!recording) return;
+  const haveOx = ox && !ox.problem;
+  recording.rows.push([
+    new Date().toLocaleTimeString(), ++recording.seconds,
+    bpm > 0 ? Math.round(bpm) : '', bpm > 0 ? quality.toFixed(2) : '', channel || '',
+    haveOx ? Math.round(ox.spo2) : '', haveOx ? ox.spread.toFixed(1) : '', haveOx ? ox.r.toFixed(3) : '',
+    ox && ox.snr ? ox.snr.toFixed(1) : '', state
+  ]);
+  if (bpm > 0) recording.rates.push(bpm);
+  $('record').textContent = `Stop (${recording.seconds}s)`;
+}
+
+$('record').onclick = () => recording ? stopRecording() : startRecording();
+
+function startRecording() {
+  recording = { subject: $('name').value.trim() || 'unnamed', started: new Date(), rows: [], rates: [], seconds: 0 };
+  $('record').textContent = 'Stop (0s)';
+  $('save').disabled = true;
+  setStatus('Recording ' + recording.subject + '...');
+}
+
+function stopRecording() {
+  const r = recording; recording = null;
+  $('record').textContent = 'Record';
+  const mean = r.rates.length ? r.rates.reduce((s, v) => s + v, 0) / r.rates.length : 0;
+  const coverage = r.seconds ? 100 * r.rates.length / r.seconds : 0;
+  setStatus(`Saved ${r.seconds}s for ${r.subject}: ${r.rates.length} readings (${coverage.toFixed(0)}%)` +
+            (mean ? `, mean ${mean.toFixed(0)} BPM` : ''));
+  window.__lastRecording = r;
+  $('save').disabled = false;
+  $('save').onclick = () => downloadCsv(r);
+}
+
+function downloadCsv(r) {
+  const head = ['# subject,' + r.subject, '# started,' + r.started.toISOString(),
+    '# note,SpO2 is an uncalibrated estimate and is not a medical measurement',
+    'time,seconds,bpm,pulse_quality,channel,spo2,spo2_spread,ratio_R,signal_noise,state'];
+  const csv = head.concat(r.rows.map(row => row.map(v => String(v).includes(',') ? '"' + v + '"' : v).join(','))).join('\n');
+  const stamp = r.started.toISOString().slice(0, 19).replace(/[:T]/g, '-');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+  a.download = `${stamp}_${r.subject.replace(/[^\w-]+/g, '_')}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+if (!navigator.bluetooth) {
+  infoEl.innerHTML = '<span class="warn">This browser cannot use Bluetooth.</span>\nOpen this page in Chrome on Android.';
+  $('connect').disabled = true;
+}
+</script>
+</body>
+</html>
