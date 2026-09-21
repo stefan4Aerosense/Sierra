@@ -92,11 +92,16 @@ class MainForm : Form {
   static readonly Color Held = Color.FromArgb(86, 104, 136);      // a reading being held through movement
 
   readonly CardPanel bpmCard = new CardPanel(), spo2Card = new CardPanel(), infoCard = new CardPanel();
+  readonly CardPanel sessionCard = new CardPanel();
+  readonly TextBox nameBox = new TextBox();
+  readonly Button recordButton = new Button(), folderButton = new Button();
+  readonly Label sessionLabel = new Label();
+  SessionRecorder recorder;
 
   public MainForm() {
     Text = "Heart Rate & SpO2 Tester (MAX86171)";
-    ClientSize = new Size(820, 560);
-    MinimumSize = new Size(700, 500);
+    ClientSize = new Size(820, 600);
+    MinimumSize = new Size(760, 560);
     BackColor = Ink;
     ForeColor = TextDim;
     Font = new Font("Segoe UI", 10);
@@ -131,13 +136,32 @@ class MainForm : Form {
     spo2Card.Controls.AddRange(new Control[] { spo2Label, spo2Unit });
     infoCard.Controls.Add(infoLabel);
 
-    wave.SetBounds(16, 216, 788, 292);
+    wave.SetBounds(16, 216, 788, 250);
     wave.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
-    statusLabel.SetBounds(18, 520, 786, 30); statusLabel.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+
+    // Session recording: name the person, record, and the readings land in a CSV file.
+    sessionCard.Accent = Color.FromArgb(48, 64, 96); sessionCard.SetBounds(16, 478, 788, 72);
+    sessionCard.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+    var recordTitle = new Label { Text = "RECORD A SESSION", Font = small, ForeColor = TextDim };
+    recordTitle.SetBounds(16, 10, 200, 18);
+    var nameCaption = new Label { Text = "Name", Font = small, ForeColor = TextFaint };
+    nameCaption.SetBounds(16, 40, 44, 20);
+    nameBox.SetBounds(60, 36, 190, 26);
+    nameBox.BackColor = Color.FromArgb(28, 36, 54); nameBox.ForeColor = Color.White;
+    nameBox.BorderStyle = BorderStyle.FixedSingle; nameBox.Font = new Font("Segoe UI", 10);
+    StyleButton(recordButton, "Record", Color.FromArgb(28, 36, 54), AccentSoft);
+    recordButton.SetBounds(264, 34, 110, 30); recordButton.Click += (s, e) => ToggleRecording();
+    StyleButton(folderButton, "Open folder", Color.FromArgb(28, 36, 54), TextDim);
+    folderButton.SetBounds(384, 34, 110, 30); folderButton.Click += (s, e) => OpenSessionFolder();
+    sessionLabel.SetBounds(508, 14, 268, 52); sessionLabel.Font = small; sessionLabel.ForeColor = TextFaint;
+    sessionLabel.Text = "Not recording.\nReadings are saved as CSV, one file per session.";
+    sessionCard.Controls.AddRange(new Control[] { recordTitle, nameCaption, nameBox, recordButton, folderButton, sessionLabel });
+
+    statusLabel.SetBounds(18, 558, 786, 30); statusLabel.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
     statusLabel.ForeColor = TextFaint; statusLabel.Font = small;
     statusLabel.Text = "Close the Maxim GUI, switch the board on, then press Start.";
 
-    Controls.AddRange(new Control[] { startButton, stopButton, bpmCard, spo2Card, infoCard, wave, statusLabel });
+    Controls.AddRange(new Control[] { startButton, stopButton, bpmCard, spo2Card, infoCard, wave, sessionCard, statusLabel });
     uiTimer.Interval = 50; uiTimer.Tick += (s, e) => RefreshUi();
     FormClosing += (s, e) => StopStream();
     HandleCreated += (s, e) => UseDarkTitleBar(Handle);
@@ -175,6 +199,31 @@ class MainForm : Form {
     b.ForeColor = fore;
     b.Font = new Font("Segoe UI Semibold", 10);
     b.UseVisualStyleBackColor = false;
+  }
+
+  void ToggleRecording() {
+    if (recorder != null) {
+      var s = recorder.Stop();
+      recorder = null;
+      StyleButton(recordButton, "Record", Color.FromArgb(28, 36, 54), AccentSoft);
+      sessionLabel.Text = string.Format("Saved {0}\n{1} s, {2} readings ({3:F0}% of the time)\n{4}",
+        System.IO.Path.GetFileName(s.Path), s.Seconds, s.Readings, s.Coverage,
+        s.Readings > 0 ? string.Format("mean {0:F0} BPM, range {1:F0}-{2:F0}", s.MeanBpm, s.MinBpm, s.MaxBpm) : "no readings captured");
+      statusLabel.Text = "Session saved to " + s.Path;
+      return;
+    }
+    if (stream == null) { statusLabel.Text = "Press Start first - there is nothing to record yet."; return; }
+    recorder = new SessionRecorder(nameBox.Text);
+    StyleButton(recordButton, "Stop recording", Color.FromArgb(150, 40, 60), Color.White);
+    sessionLabel.Text = "Recording " + recorder.Subject + "...\n0 s";
+    statusLabel.Text = "Recording to " + recorder.Path;
+  }
+
+  void OpenSessionFolder() {
+    try {
+      System.IO.Directory.CreateDirectory(SessionRecorder.Folder);
+      System.Diagnostics.Process.Start("explorer.exe", "\"" + SessionRecorder.Folder + "\"");
+    } catch (Exception ex) { statusLabel.Text = "Could not open the folder: " + ex.Message; }
   }
 
   void SetStatus(string msg) {
@@ -220,10 +269,11 @@ class MainForm : Form {
       lastEstimate = DateTime.Now;
 
       string counts = "Samples " + stream.Samples + " @ " + est.SampleRate.ToString("F1") + " Hz\nDropped packets " + stream.DroppedPackets;
-      if (stream.Samples == 0) { infoLabel.Text = "Waiting for data...\n" + counts; return; }
+      if (stream.Samples == 0) { infoLabel.Text = "Waiting for data...\n" + counts; Record(0, 0, null, null, "waiting for data"); return; }
       if (est.Count < est.SampleRate * FirstWindow) {
         int left = (int)Math.Ceiling(FirstWindow - est.Count / est.SampleRate);
         infoLabel.Text = "Measuring... keep still.\nFirst reading in " + left + " s.\n" + counts;
+        Record(0, 0, null, null, "warming up");
         return;
       }
 
@@ -247,6 +297,8 @@ class MainForm : Form {
           lastGoodBpm = lastGoodSpO2 = 0;
           infoLabel.Text = "No clear pulse.\nRest the sensor lightly against the skin and keep still.\n" + counts;
         }
+        // Recorded as a gap: a session file should show honestly when the sensor could not read.
+        Record(0, 0, null, null, age <= HoldSeconds ? "movement - holding" : "no clear pulse");
         return;
       }
       bpmLabel.ForeColor = AccentSoft; bpmLabel.Text = bpm.ToString("F0");
@@ -265,7 +317,17 @@ class MainForm : Form {
         info += "SpO2: " + ox.Problem + "\n";
       }
       infoLabel.Text = info + counts;
+      Record(bpm, q, est.BestChannel, ox, ox.Problem == null ? "ok" : "heart rate only");
     }
+  }
+
+  // One row per second into the open session file, and a live count on the session card.
+  void Record(double bpm, double q, string channel, SpO2Estimator.Result ox, string state) {
+    if (recorder == null) return;
+    bool haveOx = ox != null && ox.Problem == null;
+    recorder.Add(bpm, q, channel,
+      haveOx ? ox.SpO2 : 0, haveOx ? ox.Spread : 0, haveOx ? ox.R : 0, ox != null ? ox.Snr : 0, state);
+    sessionLabel.Text = string.Format("Recording {0}...\n{1} s, {2} readings", recorder.Subject, recorder.Seconds, recorder.WithReading);
   }
 }
 

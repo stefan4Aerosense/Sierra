@@ -8,3 +8,6 @@ id_*
 .DS_Store
 node_modules/
 __pycache__/
+
+# recorded sessions contain peoples names - keep them out of the repo
+tools/max86171-hr-spo2/**/sessions/

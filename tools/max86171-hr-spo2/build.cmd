@@ -7,7 +7,7 @@ set WM=%WINDIR%\System32\WinMetadata
 rem The display font is embedded in the exe, so the built file needs nothing installed alongside it.
 set RES=/res:"%~dp0assets\ChakraPetch-BoldItalic.ttf",hrfont
 set REFS=/r:"%WM%\Windows.Devices.winmd" /r:"%WM%\Windows.Foundation.winmd" /r:"%WM%\Windows.Storage.winmd" /r:"%FW%\System.Runtime.WindowsRuntime.dll" /r:"%FW%\System.Runtime.dll" /r:"%FW%\System.Runtime.InteropServices.WindowsRuntime.dll" /r:System.Windows.Forms.dll /r:System.Drawing.dll
-set SRC=App.cs OS61.cs PpgStream.cs HeartRate.cs SpO2.cs SelfTest.cs
+set SRC=App.cs OS61.cs PpgStream.cs HeartRate.cs SpO2.cs SelfTest.cs Session.cs
 set OUT=%~1
 if "%OUT%"=="" set OUT=%~dp0
 cd /d "%~dp0"
