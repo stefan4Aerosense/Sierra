@@ -119,3 +119,7 @@ above: H1** (Chris's step 5).
 ## 2026-09-21 — Fusion headset evidence handoff
 
 Codex added `docs/h1-fusion-update-2026-09-21.md` with supporting audit, skeleton report and sensor/cushion-fit evidence under `docs/h1-fusion-evidence/2026-09-21/`. This is documentation of prior work, not a new Fusion measurement. Band revision/alloy, full BOM mass and wearing-frame CG remain unresolved. Existing heart-rate tester software and other team repositories were not changed. Consult the handoff before presenting the initial skeleton or sensor fit as production-complete.
+
+## 2026-09-21 — Roof Final 3 Fusion enclosure handoff
+
+Codex added docs/fusion-enclosure-update-2026-09-21.md and supporting evidence under docs/fusion-enclosure-evidence/2026-09-21/. Separate Fusion design Roof Final 3 - NEO Modern Enclosure incorporates the three revised port positions, modern shell, cable-tie ramps and rounded rear cover. CAD profile/interference checks passed; manufacturing fit remains unverified. Included studio image depicts the previous Stefan Is revision, not the updated hole positions. CAD exports are local in the Fusion workspace; FusionChatGPT publication remains unconfirmed due to index.lock write denial at preparation time.

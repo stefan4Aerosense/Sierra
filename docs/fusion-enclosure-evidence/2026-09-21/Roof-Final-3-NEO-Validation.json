@@ -1,0 +1,123 @@
+{
+  "document": "Roof Final 3 - NEO Modern Enclosure",
+  "front_interface_max_vertex_error_mm": 0.0,
+  "port_profiles": [
+    {
+      "side": "right",
+      "index": 1,
+      "cross_section_vertex_error_mm": 0.0
+    },
+    {
+      "side": "right",
+      "index": 2,
+      "cross_section_vertex_error_mm": 0.0
+    },
+    {
+      "side": "top",
+      "index": 1,
+      "cross_section_vertex_error_mm": 0.0
+    },
+    {
+      "side": "bottom",
+      "index": 1,
+      "cross_section_vertex_error_mm": 0.0
+    }
+  ],
+  "all_bodies_solid": true,
+  "front_back_intersections": [
+    {
+      "front": "Tapered enclosure",
+      "back": "Rear cover with original lip",
+      "ok": true,
+      "mm3": 0.0
+    },
+    {
+      "front": "Tapered enclosure",
+      "back": "Rear accent",
+      "ok": true,
+      "mm3": 0.0
+    },
+    {
+      "front": "Tapered enclosure",
+      "back": "Rear accent (1)",
+      "ok": true,
+      "mm3": 0.0
+    },
+    {
+      "front": "Graphite inset face",
+      "back": "Rear cover with original lip",
+      "ok": true,
+      "mm3": 0.0
+    },
+    {
+      "front": "Graphite inset face",
+      "back": "Rear accent",
+      "ok": true,
+      "mm3": 0.0
+    },
+    {
+      "front": "Graphite inset face",
+      "back": "Rear accent (1)",
+      "ok": true,
+      "mm3": 0.0
+    },
+    {
+      "front": "Body3",
+      "back": "Rear cover with original lip",
+      "ok": true,
+      "mm3": 0.0
+    },
+    {
+      "front": "Body3",
+      "back": "Rear accent",
+      "ok": true,
+      "mm3": 0.0
+    },
+    {
+      "front": "Body3",
+      "back": "Rear accent (1)",
+      "ok": true,
+      "mm3": 0.0
+    },
+    {
+      "front": "Body4",
+      "back": "Rear cover with original lip",
+      "ok": true,
+      "mm3": 0.0
+    },
+    {
+      "front": "Body4",
+      "back": "Rear accent",
+      "ok": true,
+      "mm3": 0.0
+    },
+    {
+      "front": "Body4",
+      "back": "Rear accent (1)",
+      "ok": true,
+      "mm3": 0.0
+    }
+  ],
+  "cable_tie_passages": [
+    {
+      "x_mm": -44.75,
+      "y_mm": -36.5,
+      "passage_obstruction_mm3": 0.0
+    },
+    {
+      "x_mm": -44.75,
+      "y_mm": 36.5,
+      "passage_obstruction_mm3": 0.0
+    },
+    {
+      "x_mm": 44.75,
+      "y_mm": -36.5,
+      "passage_obstruction_mm3": 0.0
+    },
+    {
+      "x_mm": 44.75,
+      "y_mm": 36.5,
+      "passage_obstruction_mm3": 0.0
+    }
+  ]
+}
