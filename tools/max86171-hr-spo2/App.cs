@@ -77,6 +77,7 @@ class MainForm : Form {
   DateTime lastEstimate;
   // Last accepted readings, kept so a second or two of movement does not blank the display.
   const int HoldSeconds = 8;
+  const double FirstWindow = 5.0;  // shorter window used only until the first reading appears
   double lastGoodBpm, lastGoodSpO2;
   DateTime lastGoodAt;
 
@@ -220,10 +221,19 @@ class MainForm : Form {
 
       string counts = "Samples " + stream.Samples + " @ " + est.SampleRate.ToString("F1") + " Hz\nDropped packets " + stream.DroppedPackets;
       if (stream.Samples == 0) { infoLabel.Text = "Waiting for data...\n" + counts; return; }
-      if (est.Count < est.SampleRate * 8) { infoLabel.Text = "Measuring... keep still\n" + counts; return; }
+      if (est.Count < est.SampleRate * FirstWindow) {
+        int left = (int)Math.Ceiling(FirstWindow - est.Count / est.SampleRate);
+        infoLabel.Text = "Measuring... keep still.\nFirst reading in " + left + " s.\n" + counts;
+        return;
+      }
 
       double bpm, q;
-      if (!est.Estimate(out bpm, out q)) {
+      // The steady-state estimate uses 8 s. Before there is anything on screen, a 5 s window is tried as well:
+      // measured on the 21 Sep recordings it brings the first reading forward 2-3 s with no wrong readings,
+      // while 4 s starts inventing sub-50 BPM values.
+      bool ok = est.Estimate(out bpm, out q);
+      if (!ok && lastGoodBpm == 0) ok = est.Estimate(out bpm, out q, FirstWindow);
+      if (!ok) {
         // Movement drowns the pulse for a second or two at a time. Blanking the screen each time makes the
         // tool look broken, so the last good reading is held briefly and shown dimmed with its age.
         int age = (int)(DateTime.Now - lastGoodAt).TotalSeconds;

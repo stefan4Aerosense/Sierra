@@ -58,9 +58,12 @@ class HeartRateEstimator {
   }
 
   // Returns true with bpm/quality when the last 8 s contain a clear periodic pulse.
-  public bool Estimate(out double bpm, out double quality) {
+  public bool Estimate(out double bpm, out double quality) { return Estimate(out bpm, out quality, 8.0); }
+
+  // windowSeconds: shorter windows give a first reading sooner, at the cost of a noisier correlation.
+  public bool Estimate(out double bpm, out double quality, double windowSeconds) {
     bpm = 0; quality = 0;
-    int n = (int)(fs * 8);
+    int n = (int)(fs * windowSeconds);
     if (filtered.Count < n) return false;
     var x = Tail(n);
     double mean = x.Average();
@@ -134,13 +137,15 @@ class MultiHeartRate {
     ch[i].Add(-raw); // invert so pulse peaks point up
   }
 
-  public bool Estimate(out double bpm, out double quality) {
+  public bool Estimate(out double bpm, out double quality) { return Estimate(out bpm, out quality, 8.0); }
+
+  public bool Estimate(out double bpm, out double quality, double windowSeconds) {
     bpm = 0; quality = 0;
     bool any = false;
     for (int i = 0; i < ch.Length; i++) {
       if (saturatedFor[i] > 0) continue;
       double b, q;
-      if (ch[i].Estimate(out b, out q) && q > quality) { bpm = b; quality = q; best = i; any = true; }
+      if (ch[i].Estimate(out b, out q, windowSeconds) && q > quality) { bpm = b; quality = q; best = i; any = true; }
     }
     return any;
   }
