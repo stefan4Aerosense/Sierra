@@ -250,7 +250,7 @@ class CardPanel : Panel {
 
 class WavePanel : Panel {
   public double[] Data = new double[0];
-  static readonly Color Line = Color.FromArgb(96, 176, 255);
+  static readonly Color Line = Color.FromArgb(190, 255, 60); // luminous green-yellow, like a bedside monitor
   public WavePanel() { DoubleBuffered = true; BackColor = Color.FromArgb(13, 18, 30); }
   protected override void OnPaint(PaintEventArgs e) {
     base.OnPaint(e);
@@ -277,8 +277,8 @@ class WavePanel : Panel {
     Array.Copy(pts, fill, pts.Length);
     fill[pts.Length] = new PointF(pts[pts.Length - 1].X, Height);
     fill[pts.Length + 1] = new PointF(pts[0].X, Height);
-    using (var under = new SolidBrush(Color.FromArgb(26, Line))) g.FillPolygon(under, fill);
-    using (var glow = new Pen(Color.FromArgb(60, Line), 6)) g.DrawLines(glow, pts);
+    using (var under = new SolidBrush(Color.FromArgb(14, Line))) g.FillPolygon(under, fill);
+    using (var glow = new Pen(Color.FromArgb(48, Line), 7)) g.DrawLines(glow, pts);
     using (var pen = new Pen(Line, 2)) g.DrawLines(pen, pts);
   }
 }
