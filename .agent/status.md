@@ -1,6 +1,6 @@
 # status — Agent KILO
 
-**Last updated:** 2026-09-21 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
+**Last updated:** 2026-09-25 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
 Older entries: `journal.md`. **Merged 2026-09-18:** my KILO memory from `stefan4Aerosense/Aerosense@679ce5e`
 (2026-07-28 → 09-03) is now in this repo — scars appended to `MEMORY.md`, status/handoffs/journal archived in
 `journal.md`, owned docs moved to `docs/` with provenance. The Aerosense repo is frozen at that SHA; its fate
@@ -123,3 +123,7 @@ Codex added `docs/h1-fusion-update-2026-09-21.md` with supporting audit, skeleto
 ## 2026-09-21 — Roof Final 3 Fusion enclosure handoff
 
 Codex added docs/fusion-enclosure-update-2026-09-21.md and supporting evidence under docs/fusion-enclosure-evidence/2026-09-21/. Separate Fusion design Roof Final 3 - NEO Modern Enclosure incorporates the three revised port positions, modern shell, cable-tie ramps and rounded rear cover. CAD profile/interference checks passed; manufacturing fit remains unverified. Included studio image depicts the previous Stefan Is revision, not the updated hole positions. CAD exports are local in the Fusion workspace; FusionChatGPT publication remains unconfirmed due to index.lock write denial at preparation time.
+
+
+## 2026-09-25 - AeroNode Fusion concept handoff
+Rounded RV-8 packaging V3 and original-device Blender animation documented in [AeroNode handoff](../docs/aeronode-fusion-update-2026-09-25.md). Titanium/stainless are candidates only; no crash qualification, final material selection or demonstrated minimum size. Connector access, cooling and mounting remain unresolved. Modular building project excluded. CAD binaries remain in the designated Fusion backup workspace; remote publication not confirmed.
