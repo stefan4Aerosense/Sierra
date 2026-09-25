@@ -1,0 +1,5 @@
+# Grepow GRP9161115 layout sample
+Created 25 September 2026 in AeroNode Flight Case after verifying active document. User authorised approximate sample if mechanical drawing unavailable. No verified mechanical drawing found.
+Source catalogue: https://www.voltronic.de/index.php/de/batterieprodukte/lifepo4-pouch
+Nominal listed dimensions L x W x T: 115 +/-1 x 60.5 +/-1 x 8.8 +/-0.3 mm, 3.2 V, 5000 mAh. CAD pouch body verified 115 x 60.5 x 8.8 mm. Rounded silver envelope is a layout proxy, not a detailed cell construction model. Two assumed 8 mm wide, 0.2 mm thick tabs protrude 10 mm, yielding 125 mm sample total length. Polarity unassigned. Tab location, flange/seal detail, and whether catalogue length includes terminals require supplier drawing. Swelling, insulation, protection circuit and mounting allowances not included. Do not use nominal proxy as guaranteed fit or production geometry.
+Separate movable component beside assembly. Original cylindrical battery retained. Three solids verified and viewport inspected. Before/after F3D and standalone sample STEP saved. Assembly retains linked AeroImu/AeroVault components; self-contained export not verified.

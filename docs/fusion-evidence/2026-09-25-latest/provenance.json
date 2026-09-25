@@ -1,0 +1,62 @@
+[
+  {
+    "file": "AeroNode-NOVA-Concept-Notes.md",
+    "sha256": "b7ca49daa284bbce8b3000d3fc3c9e2828c0a778ec53365f903b55c0cdac1e7b"
+  },
+  {
+    "file": "AeroIMU-Mount-Notes.md",
+    "sha256": "a00622a997227cc861f2c33f7ba55d2cf826b993181d1d243ba3f2065be6ac66"
+  },
+  {
+    "file": "NOVA-Closure-Screws-Notes.md",
+    "sha256": "8093957f2eed956c016dcf934be3179d2a24cd9ba63d1ea7b91137a270add2f6"
+  },
+  {
+    "file": "NOVA-Closure-Correction-Notes.md",
+    "sha256": "4f81a4024529e7f41a995ea80cf4234f01b8eb69c252c95bf827bb389cf35847"
+  },
+  {
+    "file": "Compact-Pouch-Case-Notes.md",
+    "sha256": "0a09538effb87bee5690c499b4298a58675cb363f851d6acd9851d6874c09d93"
+  },
+  {
+    "file": "Compact-Lip-Clearance-Notes.md",
+    "sha256": "5ac7804c4f360c30c00713aeda0f5f2e5059d5db92742c23bb51cc9e166aa5b2"
+  },
+  {
+    "file": "GRP9161115-Pouch-Sample-Notes.md",
+    "sha256": "474f8860a261dc30b1b394acf8f0547a1cb6580ad9cbb66e1810c50116f5cc24"
+  },
+  {
+    "file": "26650-1S2P-Parallel-Sample-Notes.md",
+    "sha256": "cb77b524890a6a08ea596b5927cc62cfa0b744162265b12478d20433b9fcbaf1"
+  },
+  {
+    "file": "Waveshare-CM5-IO-BASE-A-Notes.md",
+    "sha256": "ca0bb6d7d4bd99b5c9917be85bbe31c8cd9aa4a984858dadf84e1b0926c64def"
+  },
+  {
+    "file": "EVAL-ADAU1860EBZ-UG2017-REV-B-Notes.md",
+    "sha256": "87aa7c5aafe6f7187f054a71ffbbffc7b23f28d5bccd011c632211d7e26de2b5"
+  },
+  {
+    "file": "EVAL-ADAU1372Z-Photo-Detail-Notes.md",
+    "sha256": "eb80433844012626d288e1c3db769606fb9a7f6a7be012b75268e905580f3c09"
+  },
+  {
+    "file": "Cheeseboard-Grid-Walls-Notes.md",
+    "sha256": "e34a23ee3d06262a24497383906d91a9f6453f08958aade2b6f21c3d48e5e56c"
+  },
+  {
+    "file": "AeroVault-animation-README.md",
+    "sha256": "e406696ea65e0da2a6fc353f8b1008c02968d1758fdf510a835f3593e39b5ca8"
+  },
+  {
+    "file": "AeroVault-animation-video-validation.json",
+    "sha256": "6cfd6766fc7b4835416c556ab89040be1b94d22e501e6f0a9bd7001e19276569"
+  },
+  {
+    "file": "AeroVault-animation-video-check-432.png",
+    "sha256": "7b2bc9ed3d6c16ed30382b46fca0406c5b60f397b4abe15a8a290cfef85ff5c5"
+  }
+]

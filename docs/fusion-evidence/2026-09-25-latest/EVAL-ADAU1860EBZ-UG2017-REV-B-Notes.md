@@ -1,0 +1,6 @@
+# EVAL-ADAU1860EBZ UG2017 revision B
+New independent Fusion document; earlier photo reference retained unchanged. Source: local UG-2017 Rev A page22 Figure16 component-side artwork, extracted EVAL-ADAU1860EBZ_layer_xref338.png. Pixel coordinates traced manually; raster bounds10,16..1058,901 mapped to provisional136x115 mm. Four hole centres taken from artwork rather than symmetric invented centres; diameter2.9 remains provisional. PCB thickness1.6 mm and all component heights remain assumptions.
+
+Repositioned three north input jacks and east output jack, 23 perimeter switch envelopes, header groups, south debug header, central-left socket and IC footprints. Minor passives are simplified representative envelopes, not full PCB population. Nominal2.54mm header pitch used where depicted; counts and connector envelopes require verification against hardware/BOM. USB position is a provisional envelope. No electrical functionality, copper or manufacturing definition implied.
+
+403 bodies, all solid. F3D, STEP and screenshot exported. Standalone design with no linked dependencies. This revision improves layout fidelity but is NOT a final drill pattern or guaranteed clearance model. Hardware measurements still required.

@@ -127,3 +127,13 @@ Codex added docs/fusion-enclosure-update-2026-09-21.md and supporting evidence u
 
 ## 2026-09-25 - AeroNode Fusion concept handoff
 Rounded RV-8 packaging V3 and original-device Blender animation documented in [AeroNode handoff](../docs/aeronode-fusion-update-2026-09-25.md). Titanium/stainless are candidates only; no crash qualification, final material selection or demonstrated minimum size. Connector access, cooling and mounting remain unresolved. Modular building project excluded. CAD binaries remain in the designated Fusion backup workspace; remote publication not confirmed.
+
+
+## 2026-09-25 — Latest Fusion assembly, boards and Cheeseboard handoff
+
+See [latest Fusion handoff](../docs/fusion-latest-handoff-2026-09-25.md): dedicated AeroVault capsule concept, NOVA/COMPACT variants, closure fixes, board references, grid-wall Cheeseboard bracket, and verified 18-second Blender assembly animation. Supersedes earlier same-day architecture/presentation notes. No crash qualification; source CAD remote backup pending. Modular building/bathroom excluded.
+
+
+## 2026-09-25 — H1 headset animation
+
+Completed and verified 20-second 1080p Blender studio rotation of H1 - Assembly - Updated. See [latest handoff](../docs/fusion-latest-handoff-2026-09-25.md#h1-headset-studio-rotation). MP4, Blender scene and Fusion snapshot saved locally; CAD backup publication pending.

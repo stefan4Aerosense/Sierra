@@ -1,0 +1,14 @@
+[
+  {
+    "file": "README.md",
+    "sha256": "9b541f18d99dc528debc8fa6fb2d09cc71f316e480daff203e9855e32e8bb4f8"
+  },
+  {
+    "file": "video-validation.json",
+    "sha256": "313c0b39679ca8161e42a2b7495ab4531240c60984f777ede050648b5acab351"
+  },
+  {
+    "file": "preview.png",
+    "sha256": "8c212457113224bf478e1e16c52f628c4eb89e5691711ddbbfc0b894e388879d"
+  }
+]

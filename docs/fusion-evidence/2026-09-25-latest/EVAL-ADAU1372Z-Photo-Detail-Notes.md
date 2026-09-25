@@ -1,0 +1,2 @@
+# ADAU1372 photo-detail revision
+Applied user photograph to existing verified target model: blue PCB mask, silver mount rings, white switch slider, female 2x6 microphone sockets, side-facing open audio jacks, white testpoints and silkscreen outlines. Original replaced approximations retained hidden. Before F3D preserved. New F3D plus visible-geometry-only STEP exported. 234 visible solid bodies. Dimensions and heights remain provisional; underside not modeled. This is a simplified visual reference, not an exact electrical or manufacturing reproduction.
