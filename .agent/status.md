@@ -1,6 +1,6 @@
 # status — Agent KILO
 
-**Last updated:** 2026-09-25 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
+**Last updated:** 2026-09-28 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
 Older entries: `journal.md`. **Merged 2026-09-18:** my KILO memory from `stefan4Aerosense/Aerosense@679ce5e`
 (2026-07-28 → 09-03) is now in this repo — scars appended to `MEMORY.md`, status/handoffs/journal archived in
 `journal.md`, owned docs moved to `docs/` with provenance. The Aerosense repo is frozen at that SHA; its fate
@@ -137,3 +137,8 @@ See [latest Fusion handoff](../docs/fusion-latest-handoff-2026-09-25.md): dedica
 ## 2026-09-25 — H1 headset animation
 
 Completed and verified 20-second 1080p Blender studio rotation of H1 - Assembly - Updated. See [latest handoff](../docs/fusion-latest-handoff-2026-09-25.md#h1-headset-studio-rotation). MP4, Blender scene and Fusion snapshot saved locally; CAD backup publication pending.
+
+
+## 2026-09-28 — Fusion TPU cushion sensor prototype
+
+Current design uses a single TPU cushion with integral bottom-loading sensor sleeve and flexible keeper lips. Rigid plate/screw alternative is hidden history. Latest rounded shoulder remains stepped, not fully blended. CAD only; retention, optical performance and physical fit unverified. Existing ear-placement findings remain applicable. See [handoff](../docs/fusion-handoff-2026-09-28-ppg-tpu.md). Local exports and Fusion cloud saved; FusionChatGPT push pending Git permissions.

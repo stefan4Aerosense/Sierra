@@ -1,0 +1,19 @@
+{
+  "fillets": [
+    {
+      "feature": "Outer sleeve rounding",
+      "radius_mm": 1.2,
+      "success": true
+    },
+    {
+      "feature": "Optical face soft edge",
+      "radius_mm": 0.4,
+      "success": true
+    }
+  ],
+  "solid": true,
+  "lumps": 1,
+  "f3d": true,
+  "step": true,
+  "stl": true
+}

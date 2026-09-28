@@ -1,0 +1,2 @@
+# Rounded TPU sleeve
+Current model edited after Before.f3d snapshot. Outer shoulder fillet R1.2 mm and optical face perimeter R0.4 mm succeeded. One connected solid remains. Optical openings and bottom-loading retention geometry preserved. This softens edges but is not a fully tangent sculpted blend into the cushion. Fit, TPU compression and sensing remain unverified. Updated F3D, component-only STEP and high-resolution STL exported successfully.

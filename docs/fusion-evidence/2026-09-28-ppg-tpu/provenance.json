@@ -1,0 +1,32 @@
+[
+  {
+    "file": "smooth-notes.md",
+    "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-Smoothed-TPU\\README.md",
+    "sha256": "59d2c66d892943248578326c62e55c5c0bbc534508264629c512a6d7f40b4063"
+  },
+  {
+    "file": "smooth-validation.json",
+    "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-Smoothed-TPU\\Validation.json",
+    "sha256": "86b6f9fa1888712abba2fc2b4065e81be573ccf9a60db807a5c0a0ac9b58e116"
+  },
+  {
+    "file": "smooth-preview.png",
+    "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-Smoothed-TPU\\Smooth-Detail.png",
+    "sha256": "1c9a62cddaaf22f2326ba99c9ea46baa36a5b57e2477fd03e7d6b243278ad6f1"
+  },
+  {
+    "file": "sleeve-notes.md",
+    "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-One-Piece-TPU\\README.md",
+    "sha256": "763f2ee3dcecc933e372fe3bbcace1b2ffe8982a21088989ac351ec4e3279921"
+  },
+  {
+    "file": "sleeve-validation.json",
+    "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-One-Piece-TPU\\Validation.json",
+    "sha256": "950185f7664ecc4b65022a832b0cec6a8e715595b91fdaff0a46f8930796fec2"
+  },
+  {
+    "file": "bottom-insertion.png",
+    "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-One-Piece-TPU\\Push-In-Assembly.png",
+    "sha256": "721b59859dee220a1f605e0bba0e2603e38f8b65571f250ec8fec7810d1fc006"
+  }
+]

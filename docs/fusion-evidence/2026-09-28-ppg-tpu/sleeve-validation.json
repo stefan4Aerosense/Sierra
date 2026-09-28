@@ -1,0 +1,9 @@
+{
+  "f3d": true,
+  "step": true,
+  "stl": true,
+  "single_TPU_solid": true,
+  "clearance_mm_per_side": 0.3,
+  "keeper_lip_mm": 0.7,
+  "note": "Nominal lip overlap requires TPU deformation, not clearance fit. Print test coupon first. Optical skin contact and retention untested."
+}
