@@ -15,11 +15,19 @@ using Windows.Devices.Bluetooth.Advertisement;
 //   MEAS1 green x3, MEAS2 green x1, MEAS3 red x2, MEAS4 IR x2   -> PD1/PD2
 //   MEAS5..MEAS8 the same                                       -> PD3/PD4
 // Heart rate uses the cleanest green channel; SpO2 uses the cleanest red/IR photodiode path.
-class PpgStream : IDisposable {
-  public readonly object Sync = new object();
-  public MultiHeartRate Estimator;
-  public MultiPathOximeter Oximeter;
-  public Action<string> Log = delegate { };
+class PpgStream : ISensorSource {
+  public string Name { get { return "Bluetooth · MAX86171"; } }
+  public double SampleRate { get { return Estimator != null ? Estimator.SampleRate : 0; } }
+  public long Dropped { get { return DroppedPackets; } }
+  public bool HasDeviceValues { get { return false; } }   // this board computes nothing itself
+  public DeviceReading DeviceReading { get { return null; } }
+  readonly object sync = new object();
+  public object Sync { get { return sync; } }
+  public MultiHeartRate Estimator { get; private set; }
+  public MultiPathOximeter Oximeter { get; private set; }
+  public Action<string> Log { get; set; }
+
+  public PpgStream() { Log = delegate { }; }
 
   const byte CurrentGreen = 0x0A, CurrentRed = 0x0A, CurrentIr = 0x10;
   const byte PdPair12 = 0x18, PdPair34 = 0x78; // MEASx Configuration 1: TINT max + PDSEL bits (AVER added separately)
@@ -39,7 +47,8 @@ class PpgStream : IDisposable {
   double configuredFs;
   bool rateChecked;
 
-  public long Samples, DroppedPackets, Frames;
+  public long Samples { get; private set; }
+  public long DroppedPackets, Frames;
   public string LastFrameDebug = "";
   public readonly double[] LastGreen = new double[4], LastRed = new double[4], LastIr = new double[4];
   public List<int> RawLog; // optional: green (detector 1) samples, for diagnostics

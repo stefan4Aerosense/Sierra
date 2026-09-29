@@ -84,6 +84,8 @@ class Pdf {
     foreach (char c in s ?? "") {
       if (c == '(' || c == ')' || c == '\\') sb.Append('\\').Append(c);
       else if (c >= 32 && c < 127) sb.Append(c);
+      else if (c == (char)0xB7) sb.Append('-');   // the middle dot used in sensor names
+      else if (c == (char)0x2019) sb.Append('\'');
       else sb.Append(' ');
     }
     return sb.ToString();
