@@ -33,6 +33,7 @@ static class Program {
       using (var f = new MainForm()) {
         f.Show(); Application.DoEvents();
         if (args.Length > 2 && args[2] == "demo") { f.ShowDemo(); Application.DoEvents(); }
+        if (args.Length > 2 && args[2] == "compare") { f.ShowCompareDemo(); Application.DoEvents(); }
         using (var bmp = new Bitmap(f.Width, f.Height)) {
           f.DrawToBitmap(bmp, new Rectangle(0, 0, f.Width, f.Height));
           bmp.Save(args[1], System.Drawing.Imaging.ImageFormat.Png);
@@ -281,6 +282,16 @@ class MainForm : Form {
   }
 
   // Fills the window with representative values so the layout can be checked without hardware.
+  // Renders the compare tab with two simulated sensors, for checking that view without hardware.
+  public void ShowCompareDemo() {
+    sources[0] = new FakeSource("Bluetooth · MAX86171", 25, 72, false);
+    sources[1] = new FakeSource("USB · XIAO", 100, 74, true);
+    SelectTab(TabCompare);
+    lastEstimate = DateTime.MinValue;
+    RefreshUi();
+    uiTimer.Stop();
+  }
+
   public void ShowDemo() {
     uiTimer.Stop(); // the demo shot is a still: stop the live refresh from overwriting it
     bpmLabel.Text = "72"; spo2Label.Text = "98";
@@ -378,15 +389,30 @@ class MainForm : Form {
 
   // --- reading and display -------------------------------------------------------------------------
 
+  // The sensor threads append to the estimators constantly, so every read of them - including the
+  // waveform, which redraws 20 times a second - has to hold the source's lock.
+  static double[] Tail(ISensorSource src) {
+    if (src == null || src.Estimator == null) return null;
+    lock (src.Sync) { return src.Estimator.Tail((int)(src.SampleRate * 6)); }
+  }
+
   void RefreshUi() {
+    // A fault here must not silently stop the display: show it instead.
+    try { RefreshUiCore(); }
+    catch (Exception ex) {
+      statusLabel.Text = "Display error: " + ex.Message;
+    }
+  }
+
+  void RefreshUiCore() {
     // The waveform redraws fast; the numbers once a second.
     var shown = activeTab < 2 ? sources[activeTab] : null;
     if (activeTab == TabCompare) {
-      wave.Data = sources[0] != null ? sources[0].Estimator.Tail((int)(sources[0].SampleRate * 6)) : null;
-      wave.Data2 = sources[1] != null ? sources[1].Estimator.Tail((int)(sources[1].SampleRate * 6)) : null;
+      wave.Data = Tail(sources[0]);
+      wave.Data2 = Tail(sources[1]);
       wave.Caption = "PULSE WAVEFORM  ·  BOTH MONITORS";
     } else if (shown != null) {
-      wave.Data = shown.Estimator.Tail((int)(shown.SampleRate * 6));
+      wave.Data = Tail(shown);
       wave.Data2 = null;
       wave.Caption = activeTab == TabBle ? "PULSE WAVEFORM  ·  GREEN" : "PULSE WAVEFORM  ·  INFRARED";
     } else {

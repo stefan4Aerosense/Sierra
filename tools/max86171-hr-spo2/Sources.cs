@@ -217,3 +217,37 @@ class XiaoStream : ISensorSource {
     port = null;
   }
 }
+
+// A stand-in sensor fed with a synthetic pulse. Used by "--shot <png> compare" to render the compare
+// tab without hardware, so the layout can be checked and regressions caught.
+class FakeSource : ISensorSource {
+  readonly object sync = new object();
+  public string Name { get; private set; }
+  public object Sync { get { return sync; } }
+  public MultiHeartRate Estimator { get; private set; }
+  public MultiPathOximeter Oximeter { get; private set; }
+  public long Samples { get; private set; }
+  public long Dropped { get { return 0; } }
+  public double SampleRate { get; private set; }
+  public Action<string> Log { get; set; }
+  public bool HasDeviceValues { get; private set; }
+  public DeviceReading DeviceReading { get; private set; }
+
+  public FakeSource(string name, double fs, double bpm, bool deviceValues) {
+    Name = name; SampleRate = fs; Log = delegate { };
+    HasDeviceValues = deviceValues;
+    Estimator = new MultiHeartRate(fs, "channel");
+    Oximeter = new MultiPathOximeter(fs, "path");
+    if (deviceValues) DeviceReading = new DeviceReading { Bpm = bpm + 1, SpO2 = 98, Confidence = 99, Valid = true, At = DateTime.Now };
+    var rnd = new Random(4);
+    for (int i = 0; i < fs * 30; i++) {
+      double t = i / fs, ph = 2 * Math.PI * (bpm / 60.0) * t;
+      double pulse = -Math.Sin(ph) - 0.4 * Math.Sin(2 * ph + 0.8);
+      double ir = 300000 + 2200 * pulse + 900 * Math.Sin(2 * Math.PI * 0.25 * t) + 120 * (rnd.NextDouble() - 0.5);
+      double red = 240000 + 900 * pulse + 700 * Math.Sin(2 * Math.PI * 0.25 * t) + 120 * (rnd.NextDouble() - 0.5);
+      Estimator.Add(0, ir); Oximeter.Add(0, red, ir); Samples++;
+    }
+  }
+  public void Start() { }
+  public void Dispose() { }
+}
