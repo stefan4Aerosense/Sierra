@@ -115,3 +115,11 @@ for a different sensor: every reading is uncalibrated and the app says so.
   resting subjects could read normal on a pilot who is going hypoxic.
 - **Build when resumed:** a reference-reading field in the session recorder (pairs collected automatically), a
   fitting tool, and curve coefficients in a settings file rather than compiled in.
+
+**2026-09-29 — why the two sensors cannot calibrate each other.** With the XIAO/SEN-15219 now in the app
+beside the MAX86171, the obvious shortcut is to fit one's SpO2 to the other's. It does not work: both run the
+same generic Maxim R->SpO2 curve, fitted for neither board, so they agree by construction and the agreement
+carries no information about accuracy. Anchoring still needs an independently validated device - a certified
+fingertip oximeter (~R300-600) for Route A, or Route B for the low range. **What the pair IS good for:**
+measuring how far apart they are (the app's Compare tab and dual recording do this), which separates a device
+fault from a placement fault. Parked again on Stefan's call.
