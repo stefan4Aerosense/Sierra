@@ -1,6 +1,6 @@
 # status — Agent KILO
 
-**Last updated:** 2026-09-28 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
+**Last updated:** 2026-09-30 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
 Older entries: `journal.md`. **Merged 2026-09-18:** my KILO memory from `stefan4Aerosense/Aerosense@679ce5e`
 (2026-07-28 → 09-03) is now in this repo — scars appended to `MEMORY.md`, status/handoffs/journal archived in
 `journal.md`, owned docs moved to `docs/` with provenance. The Aerosense repo is frozen at that SHA; its fate
@@ -14,6 +14,50 @@ awaits Stefan.
 - AeroNode enclosure split card `f878f33e` is on Stefan in ops, but a 30 Jul ruling said it is
   Duran/electronics-owned — raised with INDIA, never resolved on record (as of 24 Aug).
 - Gates: per INDIA 2026-09-01 **seven gates, RV-1 dissolved 24 Aug**; V2 closes 1 Oct.
+
+## 2026-09-30 — second sensor in the app, handover package, patents, competitor
+
+**Second sensor integrated.** XIAO RP2040 + SparkFun SEN-15219 (MAX30101 behind a MAX32664 hub), HOTEL's
+firmware 0.3.1, read over USB serial as NDJSON. Stefan's unit is COM6, serial `4250304B38353817` — **the same
+physical unit HOTEL benched**, so their "joints may be unsoldered" note applies.
+- `[measured 29 Sep]` **Our maths and Maxim's hub agree within 0.5 BPM on identical raw data** (76 vs 76.5),
+  and tracked together 66→85 while his rate rose. Strongest cross-check the HR code has had: it holds on a
+  second vendor's optics. Our SpO2 99.8 % vs the hub's 98.6 % at R≈0.38.
+- `[measured]` This **contradicts HOTEL's 29 Sep "no valid lock"** — theirs was PI 0.21-0.34 %, ours
+  0.35-0.53 %. Contact, not the device.
+- App now: **three tabs** (Bluetooth / USB / Compare), Connect per tab, both can run at once, Compare shows a
+  rate per monitor + live difference + both waveforms; **recording captures every connected monitor** into one
+  session with an agreement block in the PDF (paired seconds, mean difference, typical/worst, % within 5 BPM).
+  `8d3dfdb`, fix `d5806f8`.
+
+**Handover package** (`docs/handover-heart-rate-2026-09-30.md` + `C:\Users\Stefan\Documents\
+heart-rate-handover-2026-09-30(.zip)`, 305 files, checksums): both sensors, the app, source, binaries, raw
+recordings, the web version and HOTEL's sensor-B handover. Written to be read cold.
+
+**Patents** — `docs/patents-earcup-ppg-2026-09-30.md`. **All three ear sites we measured are claimed by
+someone**, two of them aviation competitors: Lightspeed US10701470 (forward of the tragus, to 2037), Spotlight
+US12064247 (behind the ear over bone, to 2040), **Seabeck US11677428 family (a replacement cushion with an
+earlobe pulse oximeter, to 2037, continuation still pending — and the lobe is our best site)**. Valencell's
+foundational ear-PPG starts expiring 2026-2029 and they license openly. Not legal advice; the **Seabeck
+granted claim text is the open question** and needs an attorney.
+
+**Competitor** — `docs/spydr-air-competitor-notes.md`. SPYDR Air (commercial-headset version) is **a concept
+page: one paragraph, three EMPTY headings, SBIR says unfunded development**. The helmet product is real:
+3,803 sorties, 70 g, 20+ h, bone-conduction alerts. Their *Biosensors* 2020 study is the Route B work we
+parked: UCSF hypoxia lab, 12 subjects across skin tones, 348 arterial samples to 70 %, **RMS 2.61 %**, and
+**desaturation seen up to 50 s before finger and forehead sensors** — that early warning, not accuracy, is
+their product claim.
+
+**Open, and the thing I most want settled:** their mastoid result vs our measurement that behind-the-ear is
+the worst of four sites. Most likely explanation is **cushion clamping pressure vs fingers** — test with a
+cushion-mounted sensor before any H1 geometry is fixed. Also still open: the 48-50 BPM ear fault (needs a
+reference), SpO2 calibration (parked, needs a certified oximeter), both sensors never yet run simultaneously
+on a person, and everything measured is still one person.
+
+**Also this week:** base-plate spec for Chris's four dev units (`docs/baseplate-spec.md`) — includes the size
+finding that all four boards on one plate is ~442 x 145 mm, beyond a normal printer bed, so it likely splits
+per dev unit; INDIA's brief is `inbox/stefan/2026-09-25-001`. GOLF's 21 Sep question about my §3b wedging
+their board is **still unanswered**.
 
 ## 2026-09-21 — ear placement measured, channel fix, app reworked, phone version
 **Late 21 Sep — two faults found live at the ear, one fixed, one OPEN.**

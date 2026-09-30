@@ -400,3 +400,14 @@ displayed **"70 %" with spread 0** - the steadiest-looking number on screen, and
 Stefan spotted it because he felt fine. **Any clamp, saturation or range limit must be detected and refused,
 never rendered as a value**; the steadiness of a clamped output makes it more convincing, not less.
 Fixed `a80738f` (C# and the JS port together).
+
+## Scar 21 — a refactor can silently drop an invariant the old code held (2026-09-30)
+
+`[measured]` Restructuring the app for two sensors, I moved the waveform's `Tail()` read **outside** the
+source lock the old single-sensor code had held. With live data arriving on the BLE and serial threads that
+throws inside the UI timer, and the Compare tab showed **nothing** - Stefan found it, not me. Worse: it
+rendered perfectly from simulated sources, because nothing was appending concurrently, so my own layout check
+passed while the live path was broken.
+**When moving code, list the invariants the old version relied on (locks, ordering, lifetimes) and re-check
+each one at the new call site** - a compile and a static render prove neither. Fixed `d5806f8`, which also
+made the display catch and show faults instead of going blank.
