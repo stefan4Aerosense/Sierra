@@ -186,3 +186,8 @@ Completed and verified 20-second 1080p Blender studio rotation of H1 - Assembly 
 ## 2026-09-28 — Fusion TPU cushion sensor prototype
 
 Current design uses a single TPU cushion with integral bottom-loading sensor sleeve and flexible keeper lips. Rigid plate/screw alternative is hidden history. Latest rounded shoulder remains stepped, not fully blended. CAD only; retention, optical performance and physical fit unverified. Existing ear-placement findings remain applicable. See [handoff](../docs/fusion-handoff-2026-09-28-ppg-tpu.md). Local exports and Fusion cloud saved; FusionChatGPT push pending Git permissions.
+
+
+## 2026-09-30 — H1 assembly revision 2 and Fusion handoff
+
+Current H1 video is revision 2: staged carrier/cushion insertion with preassembled outer frame; supersedes the crossing exploded-view choreography. Verified 20 s / 1080p / 24 fps. All-frame mesh checks found no new intersection pairs; original CAD seating overlaps and eight broken source references remain documented. Also records the four-piece nominal 1 mm silicone-cushion mold and approximate Bose A30 visual model. See [handoff](../docs/fusion-handoff-2026-09-30.md). Large artifacts remain local; FusionChatGPT publication pending Git permissions. No building/bathroom or private recording data included.

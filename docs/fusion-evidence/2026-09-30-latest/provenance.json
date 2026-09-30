@@ -1,0 +1,122 @@
+{
+  "evidence": [
+    {
+      "file": "H1-Assembly-Cinematic-Revision2/README.md",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Assembly-Cinematic-Revision2\\README.md",
+      "sha256": "da562637cc05bba225a7ce5900515105ebd9cef42bf21d56400c5f2821a9e55f"
+    },
+    {
+      "file": "H1-Assembly-Cinematic-Revision2/Video-Validation.json",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Assembly-Cinematic-Revision2\\Video-Validation.json",
+      "sha256": "313c0b39679ca8161e42a2b7495ab4531240c60984f777ede050648b5acab351"
+    },
+    {
+      "file": "H1-Assembly-Cinematic-Revision2/Collision-Validation.json",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Assembly-Cinematic-Revision2\\Collision-Validation.json",
+      "sha256": "2c92d764816c7da73857cd761dabf77b743aa1aa87aba299d685997f38e323fa"
+    },
+    {
+      "file": "H1-Assembly-Cinematic-Revision2/Scene-Validation.json",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Assembly-Cinematic-Revision2\\Scene-Validation.json",
+      "sha256": "85c4cbecf04578522af71962d2cb55a35a5391018091d96e188f8ae528d8cc61"
+    },
+    {
+      "file": "H1-Assembly-Cinematic-Revision2/Assembly-Plan.json",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Assembly-Cinematic-Revision2\\Assembly-Plan.json",
+      "sha256": "4310d9071ac8f000c3cdb495bd8ce104f0eb4e0a4b63a6377989968985b4b1ce"
+    },
+    {
+      "file": "H1-Assembly-Cinematic-Revision2/Export-Report.json",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Assembly-Cinematic-Revision2\\Export-Report.json",
+      "sha256": "f464ae30c6493788efaefba7a18db2f82369d1ebadf9e4721ca4cb4462586776"
+    },
+    {
+      "file": "H1-Assembly-Cinematic-Revision2/video-check-120.png",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Assembly-Cinematic-Revision2\\video-check-120.png",
+      "sha256": "a6c043d0167587d2ed37649d4fe11e019d3a052c8eb15c03d26c5f3daee3fc31"
+    },
+    {
+      "file": "H1-Assembly-Cinematic-Revision2/video-check-480.png",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Assembly-Cinematic-Revision2\\video-check-480.png",
+      "sha256": "f6ae92dd42a1e790069c041b854b7928faf3d336134ba45bf6fdbcdf7c85cbe9"
+    },
+    {
+      "file": "PPG-Silicone-Mold/README.md",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-Silicone-Mold\\README.md",
+      "sha256": "b975ffb012034ca08a06901f497a29451422e5e4eba3ae748de1ba000c0c84b9"
+    },
+    {
+      "file": "PPG-Silicone-Mold/Validation.json",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-Silicone-Mold\\Validation.json",
+      "sha256": "2bff6d5f259dda1946d128d71a9ea85ea01715a00c1df2121f88a3f47cbcbb9b"
+    },
+    {
+      "file": "PPG-Silicone-Mold/Mesh-Validation.json",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-Silicone-Mold\\Mesh-Validation.json",
+      "sha256": "24cd29fa277f7c9c06e3545c6c1e27e60e3cf85942da37413747cdb892de6f66"
+    },
+    {
+      "file": "PPG-Silicone-Mold/Mold-Parts.png",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-Silicone-Mold\\Mold-Parts.png",
+      "sha256": "0b4c7f003511edb2c0a1c757c3f8c7efd194c1085878701fcb403aac2c8327db"
+    },
+    {
+      "file": "PPG-Silicone-Mold/Silicone-Casting.png",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-Silicone-Mold\\Silicone-Casting.png",
+      "sha256": "9153c6af595d30d470d7fabc3cd368b964f5de18e7e17b897f0dfba098338d70"
+    },
+    {
+      "file": "Bose-A30-Visual-Reference/README.md",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\Bose-A30-Visual-Reference\\README.md",
+      "sha256": "76558a246a49c32e48a2bc307100aa52ff9ff17af93258c2ae29399ec08acb30"
+    },
+    {
+      "file": "Bose-A30-Visual-Reference/Final-Validation.json",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\Bose-A30-Visual-Reference\\Final-Validation.json",
+      "sha256": "3e417364819694cc610ec12219624adac8cac21840c6151f80ddb64f3632acde"
+    },
+    {
+      "file": "Bose-A30-Visual-Reference/Bose-A30-Headset.png",
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\Bose-A30-Visual-Reference\\Bose-A30-Headset.png",
+      "sha256": "5bcd44aedb17d18d381bcaf5e24b041328aa0ad2bad58749e8a6c64fb06d5938"
+    }
+  ],
+  "local_deliverables": [
+    {
+      "local_file": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Assembly-Cinematic-Revision2\\H1-Assembly-360-Revision2-20s-1080p.mp4",
+      "bytes": 7198284,
+      "sha256": "b6946220467cb74117c82b05d49c030b3a021cb47889b3d9df85863e5244bae1",
+      "included_in_kilo": false
+    },
+    {
+      "local_file": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Assembly-Cinematic-Revision2\\H1-Assembly-Cinematic-Revision2.blend",
+      "bytes": 8180341,
+      "sha256": "932bb8f07400286db2bdf19dd45f041df033eb789d155b6f8b11adeabd176f4d",
+      "included_in_kilo": false
+    },
+    {
+      "local_file": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Assembly-Cinematic-Revision2\\Fusion-Source-Current.f3d",
+      "bytes": 2567585,
+      "sha256": "81b20d9c4090ffea253d212632b680630883395ef61021e2647abd89ecfca931",
+      "included_in_kilo": false
+    },
+    {
+      "local_file": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-Silicone-Mold\\Print-Package.zip",
+      "bytes": 3086895,
+      "sha256": "cdff4cebb5f6d44bbe2532f787042d5144270829294b502adf4f2aa07c41f752",
+      "included_in_kilo": false
+    },
+    {
+      "local_file": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\PPG-Silicone-Mold\\Silicone-Mold-1mm-FINAL.f3d",
+      "bytes": 1008568,
+      "sha256": "8fa0edcbcadd0a64ae70e20936ee4529c8c66973e22aa721ff4a9b65d69f78ba",
+      "included_in_kilo": false
+    },
+    {
+      "local_file": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\Bose-A30-Visual-Reference\\Bose-A30-Visual-Reference-FINAL.f3d",
+      "bytes": 893985,
+      "sha256": "c15396f325a864ea5443d6baad2a2303490a59a716eab955756e9b7e35917ecd",
+      "included_in_kilo": false
+    }
+  ]
+}

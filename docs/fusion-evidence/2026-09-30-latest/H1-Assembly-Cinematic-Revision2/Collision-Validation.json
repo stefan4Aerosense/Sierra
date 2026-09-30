@@ -1,0 +1,2806 @@
+{
+  "method": "Triangle BVH surface intersections at all 480 rendered frames, excluding rigidly co-moving pairs. Source-model intersecting pairs reported separately; no continuous solid-volume or manufacturing validation.",
+  "unexpected_collisions": [
+    {
+      "frame": 104,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 48,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 3.751165980636875
+    }
+  ],
+  "existing_mating_contacts": [
+    {
+      "frame": 105,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 72,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 3.155006858577053
+    },
+    {
+      "frame": 106,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 59,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 2.5999999998899725
+    },
+    {
+      "frame": 107,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 59,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 202,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 108,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 63,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 109,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 87,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 110,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 93,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        48,
+        42
+      ],
+      "triangles": 1070,
+      "baseline_triangles": 3937,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 111,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 120,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        48,
+        42
+      ],
+      "triangles": 1160,
+      "baseline_triangles": 3937,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 112,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 162,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        48,
+        42
+      ],
+      "triangles": 1228,
+      "baseline_triangles": 3937,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 113,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 139,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        48,
+        42
+      ],
+      "triangles": 1284,
+      "baseline_triangles": 3937,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 114,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 123,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        48,
+        42
+      ],
+      "triangles": 1324,
+      "baseline_triangles": 3937,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 190,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 60,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 3.155006858577053
+    },
+    {
+      "frame": 191,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 88,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 2.5999999998899725
+    },
+    {
+      "frame": 192,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 81,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 193,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 77,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 194,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 83,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 195,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 98,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 195,
+      "parts": [
+        47,
+        43
+      ],
+      "triangles": 3748,
+      "baseline_triangles": 5577,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 196,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 114,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 196,
+      "parts": [
+        47,
+        43
+      ],
+      "triangles": 3925,
+      "baseline_triangles": 5577,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 197,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 122,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 197,
+      "parts": [
+        47,
+        43
+      ],
+      "triangles": 4033,
+      "baseline_triangles": 5577,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 198,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 134,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        47,
+        43
+      ],
+      "triangles": 4117,
+      "baseline_triangles": 5577,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        49,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        50,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        51,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        52,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        53,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        54,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        55,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        56,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 199,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 133,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        47,
+        43
+      ],
+      "triangles": 4194,
+      "baseline_triangles": 5577,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        49,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        50,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        51,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        52,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        53,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        54,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        55,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        56,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 286,
+      "parts": [
+        48,
+        3
+      ],
+      "triangles": 1027,
+      "baseline_triangles": 2583,
+      "relative_offset_mm": 0.6999999999703789
+    },
+    {
+      "frame": 287,
+      "parts": [
+        48,
+        3
+      ],
+      "triangles": 1554,
+      "baseline_triangles": 2583,
+      "relative_offset_mm": 0.40078124998303877
+    },
+    {
+      "frame": 288,
+      "parts": [
+        48,
+        3
+      ],
+      "triangles": 1554,
+      "baseline_triangles": 2583,
+      "relative_offset_mm": 0.18124999999232952
+    },
+    {
+      "frame": 289,
+      "parts": [
+        48,
+        3
+      ],
+      "triangles": 1552,
+      "baseline_triangles": 2583,
+      "relative_offset_mm": 0.046093749998050285
+    },
+    {
+      "frame": 371,
+      "parts": [
+        43,
+        0
+      ],
+      "triangles": 1039,
+      "baseline_triangles": 2708,
+      "relative_offset_mm": 0.6999999999703789
+    },
+    {
+      "frame": 372,
+      "parts": [
+        43,
+        0
+      ],
+      "triangles": 1546,
+      "baseline_triangles": 2708,
+      "relative_offset_mm": 0.40078124998303877
+    },
+    {
+      "frame": 373,
+      "parts": [
+        43,
+        0
+      ],
+      "triangles": 1548,
+      "baseline_triangles": 2708,
+      "relative_offset_mm": 0.18124999999232952
+    },
+    {
+      "frame": 374,
+      "parts": [
+        43,
+        0
+      ],
+      "triangles": 1554,
+      "baseline_triangles": 2708,
+      "relative_offset_mm": 0.046093749998050285
+    }
+  ],
+  "narrow_phase_checks": 2389,
+  "sampled_frames": 480,
+  "baseline_intersecting_pairs": [
+    [
+      0,
+      1,
+      884
+    ],
+    [
+      1,
+      2,
+      1558
+    ],
+    [
+      3,
+      5,
+      822
+    ],
+    [
+      4,
+      5,
+      1409
+    ],
+    [
+      8,
+      9,
+      22
+    ],
+    [
+      8,
+      10,
+      24
+    ],
+    [
+      8,
+      11,
+      536
+    ],
+    [
+      8,
+      12,
+      74
+    ],
+    [
+      8,
+      13,
+      27
+    ],
+    [
+      8,
+      14,
+      56
+    ],
+    [
+      8,
+      15,
+      26
+    ],
+    [
+      8,
+      16,
+      643
+    ],
+    [
+      8,
+      17,
+      22
+    ],
+    [
+      8,
+      18,
+      388
+    ],
+    [
+      8,
+      19,
+      674
+    ],
+    [
+      8,
+      20,
+      21
+    ],
+    [
+      8,
+      21,
+      298
+    ],
+    [
+      8,
+      22,
+      44
+    ],
+    [
+      8,
+      23,
+      15
+    ],
+    [
+      8,
+      24,
+      1235
+    ],
+    [
+      8,
+      25,
+      1238
+    ],
+    [
+      8,
+      26,
+      50
+    ],
+    [
+      8,
+      27,
+      672
+    ],
+    [
+      8,
+      28,
+      28
+    ],
+    [
+      8,
+      29,
+      24
+    ],
+    [
+      8,
+      30,
+      24
+    ],
+    [
+      31,
+      32,
+      4231
+    ],
+    [
+      33,
+      37,
+      2388
+    ],
+    [
+      34,
+      37,
+      2382
+    ],
+    [
+      35,
+      37,
+      2391
+    ],
+    [
+      36,
+      37,
+      1343
+    ],
+    [
+      36,
+      38,
+      1436
+    ],
+    [
+      39,
+      40,
+      1452
+    ],
+    [
+      40,
+      41,
+      1346
+    ],
+    [
+      36,
+      42,
+      558
+    ],
+    [
+      38,
+      42,
+      1362
+    ],
+    [
+      0,
+      43,
+      2708
+    ],
+    [
+      8,
+      43,
+      137
+    ],
+    [
+      33,
+      44,
+      114
+    ],
+    [
+      34,
+      44,
+      34
+    ],
+    [
+      35,
+      44,
+      166
+    ],
+    [
+      36,
+      44,
+      569
+    ],
+    [
+      37,
+      44,
+      1262
+    ],
+    [
+      40,
+      44,
+      569
+    ],
+    [
+      41,
+      44,
+      1229
+    ],
+    [
+      33,
+      45,
+      194
+    ],
+    [
+      34,
+      45,
+      192
+    ],
+    [
+      35,
+      45,
+      198
+    ],
+    [
+      44,
+      45,
+      378
+    ],
+    [
+      44,
+      46,
+      1581
+    ],
+    [
+      31,
+      47,
+      696
+    ],
+    [
+      32,
+      47,
+      618
+    ],
+    [
+      39,
+      47,
+      1384
+    ],
+    [
+      40,
+      47,
+      579
+    ],
+    [
+      43,
+      47,
+      5577
+    ],
+    [
+      3,
+      48,
+      2583
+    ],
+    [
+      8,
+      48,
+      103
+    ],
+    [
+      42,
+      48,
+      3937
+    ],
+    [
+      47,
+      49,
+      204
+    ],
+    [
+      47,
+      50,
+      204
+    ],
+    [
+      47,
+      51,
+      204
+    ],
+    [
+      47,
+      52,
+      204
+    ],
+    [
+      47,
+      53,
+      204
+    ],
+    [
+      47,
+      54,
+      204
+    ],
+    [
+      47,
+      55,
+      204
+    ],
+    [
+      47,
+      56,
+      204
+    ],
+    [
+      42,
+      57,
+      206
+    ],
+    [
+      48,
+      57,
+      658
+    ],
+    [
+      42,
+      58,
+      206
+    ],
+    [
+      48,
+      58,
+      656
+    ],
+    [
+      42,
+      59,
+      206
+    ],
+    [
+      48,
+      59,
+      657
+    ],
+    [
+      42,
+      60,
+      206
+    ],
+    [
+      48,
+      60,
+      657
+    ],
+    [
+      42,
+      61,
+      206
+    ],
+    [
+      48,
+      61,
+      657
+    ],
+    [
+      42,
+      62,
+      206
+    ],
+    [
+      48,
+      62,
+      656
+    ],
+    [
+      42,
+      63,
+      206
+    ],
+    [
+      48,
+      63,
+      655
+    ],
+    [
+      42,
+      64,
+      206
+    ],
+    [
+      48,
+      64,
+      655
+    ]
+  ],
+  "new_intersecting_pairs": [],
+  "source_contact_events": [
+    {
+      "frame": 105,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 72,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 3.155006858577053
+    },
+    {
+      "frame": 106,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 59,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 2.5999999998899725
+    },
+    {
+      "frame": 107,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 59,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 202,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 107,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 200,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 108,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 63,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 108,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 109,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 87,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 109,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 110,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 93,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        48,
+        42
+      ],
+      "triangles": 1070,
+      "baseline_triangles": 3937,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 110,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 111,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 120,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        48,
+        42
+      ],
+      "triangles": 1160,
+      "baseline_triangles": 3937,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 111,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 112,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 162,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        48,
+        42
+      ],
+      "triangles": 1228,
+      "baseline_triangles": 3937,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 112,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 113,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 139,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        48,
+        42
+      ],
+      "triangles": 1284,
+      "baseline_triangles": 3937,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 113,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 204,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 114,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 123,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        48,
+        42
+      ],
+      "triangles": 1324,
+      "baseline_triangles": 3937,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        57,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        58,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        59,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        60,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        61,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        62,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        63,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 114,
+      "parts": [
+        64,
+        42
+      ],
+      "triangles": 206,
+      "baseline_triangles": 206,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 190,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 60,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 3.155006858577053
+    },
+    {
+      "frame": 191,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 88,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 2.5999999998899725
+    },
+    {
+      "frame": 192,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 81,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 2.089437585645465
+    },
+    {
+      "frame": 193,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 77,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 1.6266117969133362
+    },
+    {
+      "frame": 194,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 83,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 1.2148148147634057
+    },
+    {
+      "frame": 195,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 98,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 195,
+      "parts": [
+        47,
+        43
+      ],
+      "triangles": 3748,
+      "baseline_triangles": 5577,
+      "relative_offset_mm": 0.8573388202655041
+    },
+    {
+      "frame": 196,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 114,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 196,
+      "parts": [
+        47,
+        43
+      ],
+      "triangles": 3925,
+      "baseline_triangles": 5577,
+      "relative_offset_mm": 0.5574759944894413
+    },
+    {
+      "frame": 197,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 122,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 197,
+      "parts": [
+        47,
+        43
+      ],
+      "triangles": 4033,
+      "baseline_triangles": 5577,
+      "relative_offset_mm": 0.3185185185050393
+    },
+    {
+      "frame": 198,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 134,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        47,
+        43
+      ],
+      "triangles": 4117,
+      "baseline_triangles": 5577,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        49,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        50,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        51,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        52,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        53,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        54,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        55,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 198,
+      "parts": [
+        56,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.14375857338211956
+    },
+    {
+      "frame": 199,
+      "parts": [
+        43,
+        8
+      ],
+      "triangles": 133,
+      "baseline_triangles": 137,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        47,
+        43
+      ],
+      "triangles": 4194,
+      "baseline_triangles": 5577,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        49,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        50,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        51,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        52,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        53,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        54,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        55,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 199,
+      "parts": [
+        56,
+        47
+      ],
+      "triangles": 206,
+      "baseline_triangles": 204,
+      "relative_offset_mm": 0.03648834019049832
+    },
+    {
+      "frame": 286,
+      "parts": [
+        48,
+        3
+      ],
+      "triangles": 1027,
+      "baseline_triangles": 2583,
+      "relative_offset_mm": 0.6999999999703789
+    },
+    {
+      "frame": 287,
+      "parts": [
+        48,
+        3
+      ],
+      "triangles": 1554,
+      "baseline_triangles": 2583,
+      "relative_offset_mm": 0.40078124998303877
+    },
+    {
+      "frame": 288,
+      "parts": [
+        48,
+        3
+      ],
+      "triangles": 1554,
+      "baseline_triangles": 2583,
+      "relative_offset_mm": 0.18124999999232952
+    },
+    {
+      "frame": 289,
+      "parts": [
+        48,
+        3
+      ],
+      "triangles": 1552,
+      "baseline_triangles": 2583,
+      "relative_offset_mm": 0.046093749998050285
+    },
+    {
+      "frame": 371,
+      "parts": [
+        43,
+        0
+      ],
+      "triangles": 1039,
+      "baseline_triangles": 2708,
+      "relative_offset_mm": 0.6999999999703789
+    },
+    {
+      "frame": 372,
+      "parts": [
+        43,
+        0
+      ],
+      "triangles": 1546,
+      "baseline_triangles": 2708,
+      "relative_offset_mm": 0.40078124998303877
+    },
+    {
+      "frame": 373,
+      "parts": [
+        43,
+        0
+      ],
+      "triangles": 1548,
+      "baseline_triangles": 2708,
+      "relative_offset_mm": 0.18124999999232952
+    },
+    {
+      "frame": 374,
+      "parts": [
+        43,
+        0
+      ],
+      "triangles": 1554,
+      "baseline_triangles": 2708,
+      "relative_offset_mm": 0.046093749998050285
+    },
+    {
+      "frame": 104,
+      "parts": [
+        48,
+        8
+      ],
+      "triangles": 48,
+      "baseline_triangles": 103,
+      "relative_offset_mm": 3.751165980636875
+    }
+  ],
+  "maximum_relative_motion_at_source_contact_mm": 3.751165980636875,
+  "review_note": "The only event outside the initial 3.5mm seating screen is carrier 48 / fabric strap 8 at frame 104, 3.751mm before seating. This pair already intersects in the source CAD. It is retained and disclosed, not counted as a proven-clear mating operation."
+}

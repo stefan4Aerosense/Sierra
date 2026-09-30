@@ -1,0 +1,10 @@
+{
+  "mesh_objects": 65,
+  "endpoint_error_cm": 0,
+  "frames": 480,
+  "fps": 24,
+  "seconds": 20,
+  "rotation_degrees": 360,
+  "geometry_modified": false,
+  "strategy": "preassembled outer frame; carriers with captive screws; sequential cushions; clearance alignment then axial seating"
+}

@@ -1,0 +1,78 @@
+[
+  {
+    "file": "01-Core-Plate.stl",
+    "triangles": 16490,
+    "closed_manifold_edges": true,
+    "components": 1,
+    "bounds_mm": [
+      [
+        -56.0,
+        -66.0,
+        0.0
+      ],
+      [
+        56.0,
+        66.0,
+        30.0
+      ]
+    ],
+    "signed_volume_mm3": 170736.19927256124
+  },
+  {
+    "file": "02-Lower-Left.stl",
+    "triangles": 2590,
+    "closed_manifold_edges": true,
+    "components": 1,
+    "bounds_mm": [
+      [
+        -56.0,
+        -66.0,
+        0.0
+      ],
+      [
+        0.0,
+        66.0,
+        9.0
+      ]
+    ],
+    "signed_volume_mm3": 32132.730200237238
+  },
+  {
+    "file": "03-Lower-Right.stl",
+    "triangles": 2924,
+    "closed_manifold_edges": true,
+    "components": 1,
+    "bounds_mm": [
+      [
+        0.0,
+        -66.0,
+        0.0
+      ],
+      [
+        56.0,
+        66.0,
+        9.0
+      ]
+    ],
+    "signed_volume_mm3": 29901.140122345303
+  },
+  {
+    "file": "04-Upper-Cavity.stl",
+    "triangles": 12304,
+    "closed_manifold_edges": true,
+    "components": 1,
+    "bounds_mm": [
+      [
+        -56.0,
+        -66.0,
+        -0.0
+      ],
+      [
+        56.0,
+        66.0,
+        15.0
+      ]
+    ],
+    "signed_volume_mm3": 191340.7830450741
+  }
+]

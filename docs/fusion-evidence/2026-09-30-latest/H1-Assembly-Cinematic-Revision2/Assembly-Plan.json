@@ -1,0 +1,639 @@
+[
+  {
+    "index": 0,
+    "object": "Component4 (1):1 / Body1",
+    "group": "left_cushion",
+    "stages": [
+      -22,
+      -1,
+      295,
+      330,
+      335,
+      375
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 1,
+    "object": "Component5:1 / Body1",
+    "group": "left_cushion",
+    "stages": [
+      -22,
+      -1,
+      295,
+      330,
+      335,
+      375
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 2,
+    "object": "Component6:1 / Body1",
+    "group": "left_cushion",
+    "stages": [
+      -22,
+      -1,
+      295,
+      330,
+      335,
+      375
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 3,
+    "object": "Component7:1 / Body1",
+    "group": "right_cushion",
+    "stages": [
+      22,
+      1,
+      210,
+      245,
+      250,
+      290
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 4,
+    "object": "Component8:1 / Body1",
+    "group": "right_cushion",
+    "stages": [
+      22,
+      1,
+      210,
+      245,
+      250,
+      290
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 5,
+    "object": "Component9:1 / Body1",
+    "group": "right_cushion",
+    "stages": [
+      22,
+      1,
+      210,
+      245,
+      250,
+      290
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 6,
+    "object": "Component1:1 / Body1",
+    "group": "right_cartridge",
+    "stages": [
+      10,
+      1,
+      30,
+      65,
+      70,
+      115
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 7,
+    "object": "Component1 (1):1 / Body1",
+    "group": "left_cartridge",
+    "stages": [
+      -10,
+      -1,
+      115,
+      150,
+      155,
+      200
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 8,
+    "object": "Component3:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 9,
+    "object": "Component4 (2):1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 10,
+    "object": "Component5 (1):1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 11,
+    "object": "Component6 (1):1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 12,
+    "object": "Component7 (1):1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 13,
+    "object": "Component8 (1):1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 14,
+    "object": "Component9 (1):1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 15,
+    "object": "Component10:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 16,
+    "object": "Component11:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 17,
+    "object": "Component12:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 18,
+    "object": "Component13:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 19,
+    "object": "Component14:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 20,
+    "object": "Component15:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 21,
+    "object": "Component16:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 22,
+    "object": "Component17:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 23,
+    "object": "Component18:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 24,
+    "object": "Component19:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 25,
+    "object": "Component20:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 26,
+    "object": "Component21:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 27,
+    "object": "Component22:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 28,
+    "object": "Component23:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 29,
+    "object": "Component24:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 30,
+    "object": "Component25:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 31,
+    "object": "H1 - Microphone Cable Housing - 22 July 2026:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 32,
+    "object": "H1 - Microphone Cable Housing - 22 July 2026:1+Component1:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 33,
+    "object": "H1 - Earcup Tension Band Connector:2 / Body10",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 34,
+    "object": "H1 - Earcup Tension Band Connector:2 / Body11",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 35,
+    "object": "H1 - Earcup Tension Band Connector:2 / Body12",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 36,
+    "object": "H1 - Earcup Tension Band Connector:2+Component4:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 37,
+    "object": "H1 - Earcup Tension Band Connector:2+Component5:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 38,
+    "object": "H1 - Earcup Tension Band Connector:2+Component6:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 39,
+    "object": "H1 - Earcup Tension Band Connector:2+Component7:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 40,
+    "object": "H1 - Earcup Tension Band Connector:2+Component8:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 41,
+    "object": "H1 - Earcup Tension Band Connector:2+Component9:1 / Body1",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 42,
+    "object": "RIGHT SHELL (9) (1):1+RIGHT SHELL (9) (2):1 / RIGHT SHELL (9)",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 43,
+    "object": "Earcup Base Left V1.2:1 / Body33",
+    "group": "left_cartridge",
+    "stages": [
+      -10,
+      -1,
+      115,
+      150,
+      155,
+      200
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 44,
+    "object": "Tension Band V3:1 / Body25",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 45,
+    "object": "Configuration 1:1 / Left",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 46,
+    "object": "Textured Knob - Left:1+Left:1 / Left",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 47,
+    "object": "Earcup Shell Left V1.2 - OLD:1+Latest (1):1 / Latest (1)",
+    "group": "Preassembled headband and outer-shell module",
+    "stages": null,
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 48,
+    "object": "Earcup Base Right NEW:1+Component4:1 / Body1",
+    "group": "right_cartridge",
+    "stages": [
+      10,
+      1,
+      30,
+      65,
+      70,
+      115
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 49,
+    "object": "M1.5 x 5 Countersunk Hex Screw:1+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "left_cartridge",
+    "stages": [
+      -10,
+      -1,
+      115,
+      150,
+      155,
+      200
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 50,
+    "object": "M1.5 x 5 Countersunk Hex Screw:2+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "left_cartridge",
+    "stages": [
+      -10,
+      -1,
+      115,
+      150,
+      155,
+      200
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 51,
+    "object": "M1.5 x 5 Countersunk Hex Screw:3+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "left_cartridge",
+    "stages": [
+      -10,
+      -1,
+      115,
+      150,
+      155,
+      200
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 52,
+    "object": "M1.5 x 5 Countersunk Hex Screw:4+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "left_cartridge",
+    "stages": [
+      -10,
+      -1,
+      115,
+      150,
+      155,
+      200
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 53,
+    "object": "M1.5 x 5 Countersunk Hex Screw:5+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "left_cartridge",
+    "stages": [
+      -10,
+      -1,
+      115,
+      150,
+      155,
+      200
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 54,
+    "object": "M1.5 x 5 Countersunk Hex Screw:6+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "left_cartridge",
+    "stages": [
+      -10,
+      -1,
+      115,
+      150,
+      155,
+      200
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 55,
+    "object": "M1.5 x 5 Countersunk Hex Screw:7+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "left_cartridge",
+    "stages": [
+      -10,
+      -1,
+      115,
+      150,
+      155,
+      200
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 56,
+    "object": "M1.5 x 5 Countersunk Hex Screw:8+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "left_cartridge",
+    "stages": [
+      -10,
+      -1,
+      115,
+      150,
+      155,
+      200
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 57,
+    "object": "M1.5 x 5 Countersunk Hex Screw:9+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "right_cartridge",
+    "stages": [
+      10,
+      1,
+      30,
+      65,
+      70,
+      115
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 58,
+    "object": "M1.5 x 5 Countersunk Hex Screw:10+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "right_cartridge",
+    "stages": [
+      10,
+      1,
+      30,
+      65,
+      70,
+      115
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 59,
+    "object": "M1.5 x 5 Countersunk Hex Screw:11+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "right_cartridge",
+    "stages": [
+      10,
+      1,
+      30,
+      65,
+      70,
+      115
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 60,
+    "object": "M1.5 x 5 Countersunk Hex Screw:12+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "right_cartridge",
+    "stages": [
+      10,
+      1,
+      30,
+      65,
+      70,
+      115
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 61,
+    "object": "M1.5 x 5 Countersunk Hex Screw:13+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "right_cartridge",
+    "stages": [
+      10,
+      1,
+      30,
+      65,
+      70,
+      115
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 62,
+    "object": "M1.5 x 5 Countersunk Hex Screw:14+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "right_cartridge",
+    "stages": [
+      10,
+      1,
+      30,
+      65,
+      70,
+      115
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 63,
+    "object": "M1.5 x 5 Countersunk Hex Screw:15+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "right_cartridge",
+    "stages": [
+      10,
+      1,
+      30,
+      65,
+      70,
+      115
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  },
+  {
+    "index": 64,
+    "object": "M1.5 x 5 Countersunk Hex Screw:16+M1.6 x 5 - Countersunk hex socket screw:1 / M1.6 x 5 - Countersunk hex socket screw",
+    "group": "right_cartridge",
+    "stages": [
+      10,
+      1,
+      30,
+      65,
+      70,
+      115
+    ],
+    "motion": "lateral alignment followed by axial seating; screws retained with carrier"
+  }
+]

@@ -1,0 +1,125 @@
+{
+  "interference": [
+    {
+      "pair": [
+        "01",
+        "02"
+      ],
+      "mm3": 0
+    },
+    {
+      "pair": [
+        "01",
+        "03"
+      ],
+      "mm3": 0
+    },
+    {
+      "pair": [
+        "01",
+        "04"
+      ],
+      "mm3": 0
+    },
+    {
+      "pair": [
+        "02",
+        "03"
+      ],
+      "mm3": 0
+    },
+    {
+      "pair": [
+        "02",
+        "04"
+      ],
+      "mm3": 0
+    },
+    {
+      "pair": [
+        "03",
+        "04"
+      ],
+      "mm3": 0
+    }
+  ],
+  "release_samples": [
+    {
+      "part": "04",
+      "travel_mm": 1,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "04",
+      "travel_mm": 3,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "04",
+      "travel_mm": 8,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "04",
+      "travel_mm": 20,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "04",
+      "travel_mm": 60,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "02",
+      "travel_mm": 1,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "02",
+      "travel_mm": 3,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "02",
+      "travel_mm": 8,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "02",
+      "travel_mm": 20,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "02",
+      "travel_mm": 60,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "03",
+      "travel_mm": 1,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "03",
+      "travel_mm": 3,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "03",
+      "travel_mm": 8,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "03",
+      "travel_mm": 20,
+      "overlap_mm3": 0
+    },
+    {
+      "part": "03",
+      "travel_mm": 60,
+      "overlap_mm3": 0
+    }
+  ],
+  "all_single_solids": true,
+  "silicone_ml": 10.237351375078092
+}

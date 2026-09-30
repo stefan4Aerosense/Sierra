@@ -1,0 +1,123 @@
+{
+  "document": "H1 - Assembly - Updated",
+  "archive": true,
+  "bodies": 65,
+  "groups": [
+    "Component1 (1):1",
+    "Component10:1",
+    "Component11:1",
+    "Component12:1",
+    "Component13:1",
+    "Component14:1",
+    "Component15:1",
+    "Component16:1",
+    "Component17:1",
+    "Component18:1",
+    "Component19:1",
+    "Component1:1",
+    "Component20:1",
+    "Component21:1",
+    "Component22:1",
+    "Component23:1",
+    "Component24:1",
+    "Component25:1",
+    "Component3:1",
+    "Component4 (1):1",
+    "Component4 (2):1",
+    "Component5 (1):1",
+    "Component5:1",
+    "Component6 (1):1",
+    "Component6:1",
+    "Component7 (1):1",
+    "Component7:1",
+    "Component8 (1):1",
+    "Component8:1",
+    "Component9 (1):1",
+    "Component9:1",
+    "Configuration 1:1",
+    "Earcup Base Left V1.2:1",
+    "Earcup Base Right NEW:1",
+    "Earcup Shell Left V1.2 - OLD:1",
+    "H1 - Earcup Tension Band Connector:2",
+    "H1 - Microphone Cable Housing - 22 July 2026:1",
+    "M1.5 x 5 Countersunk Hex Screw:1",
+    "M1.5 x 5 Countersunk Hex Screw:10",
+    "M1.5 x 5 Countersunk Hex Screw:11",
+    "M1.5 x 5 Countersunk Hex Screw:12",
+    "M1.5 x 5 Countersunk Hex Screw:13",
+    "M1.5 x 5 Countersunk Hex Screw:14",
+    "M1.5 x 5 Countersunk Hex Screw:15",
+    "M1.5 x 5 Countersunk Hex Screw:16",
+    "M1.5 x 5 Countersunk Hex Screw:2",
+    "M1.5 x 5 Countersunk Hex Screw:3",
+    "M1.5 x 5 Countersunk Hex Screw:4",
+    "M1.5 x 5 Countersunk Hex Screw:5",
+    "M1.5 x 5 Countersunk Hex Screw:6",
+    "M1.5 x 5 Countersunk Hex Screw:7",
+    "M1.5 x 5 Countersunk Hex Screw:8",
+    "M1.5 x 5 Countersunk Hex Screw:9",
+    "RIGHT SHELL (9) (1):1",
+    "Tension Band V3:1",
+    "Textured Knob - Left:1"
+  ],
+  "errors": [
+    {
+      "path": "H1 - Headphone Steel Spring Washer",
+      "error": "2 : InternalValidationError : path.valid()"
+    },
+    {
+      "path": "H1 - Microphobe Nylon Washer",
+      "error": "2 : InternalValidationError : path.valid()"
+    },
+    {
+      "path": "H1 - Microphone Inner Rubber Friction Washer",
+      "error": "2 : InternalValidationError : path.valid()"
+    },
+    {
+      "path": "H1 - Microphone Outside Friction Washer - 22 July 2026",
+      "error": "2 : InternalValidationError : path.valid()"
+    },
+    {
+      "path": "Adjusting Screws",
+      "error": "2 : InternalValidationError : path.valid()"
+    },
+    {
+      "path": "Adjusting Screws",
+      "error": "2 : InternalValidationError : path.valid()"
+    },
+    {
+      "path": "Earcup Inner Screws",
+      "error": "2 : InternalValidationError : path.valid()"
+    },
+    {
+      "path": "Earcup Inner Screws",
+      "error": "2 : InternalValidationError : path.valid()"
+    }
+  ],
+  "linked_dependencies": [
+    "H1 - Microphone Cable Housing - 22 July 2026:1",
+    "H1 - Earcup Tension Band Connector:2",
+    "Earcup Base Left V1.2:1",
+    "Tension Band V3:1",
+    "Configuration 1:1",
+    "Textured Knob - Left:1",
+    "Earcup Shell Left V1.2 - OLD:1",
+    "Earcup Base Right NEW:1",
+    "M1.5 x 5 Countersunk Hex Screw:1",
+    "M1.5 x 5 Countersunk Hex Screw:2",
+    "M1.5 x 5 Countersunk Hex Screw:3",
+    "M1.5 x 5 Countersunk Hex Screw:4",
+    "M1.5 x 5 Countersunk Hex Screw:5",
+    "M1.5 x 5 Countersunk Hex Screw:6",
+    "M1.5 x 5 Countersunk Hex Screw:7",
+    "M1.5 x 5 Countersunk Hex Screw:8",
+    "M1.5 x 5 Countersunk Hex Screw:9",
+    "M1.5 x 5 Countersunk Hex Screw:10",
+    "M1.5 x 5 Countersunk Hex Screw:11",
+    "M1.5 x 5 Countersunk Hex Screw:12",
+    "M1.5 x 5 Countersunk Hex Screw:13",
+    "M1.5 x 5 Countersunk Hex Screw:14",
+    "M1.5 x 5 Countersunk Hex Screw:15",
+    "M1.5 x 5 Countersunk Hex Screw:16"
+  ]
+}
