@@ -1,0 +1,134 @@
+PART word/footer1.xml
+Aerosense Aviation (Pty) Ltd — ConfidentialAeroNode Audio Capture · Rev 0.1 · Page 
+PART word/document.xml
+AeroNode™ Audio Capture
+MEMS microphone subsystem — DVNC reference & AeroVault™ recording — Design Spec & BOM
+Aerosense Aviation (Pty) Ltd
+Field
+Detail
+Document
+AeroNode Audio Capture — DVNC Reference & AeroVault Recording — Design Spec & BOM
+Revision
+0.1 (Draft for review / DFM)
+Date
+25 June 2026
+Owner
+Duran de Villiers — Aerosense Engineering
+Audience
+Internal engineering; Black Box (PCB & assembly partner)
+Status
+Draft — microphone class selected (high-AOP wideband MEMS)
+1. Summary
+A single high-quality MEMS microphone serves two roles on the AeroNode: it provides the DVNC acoustic reference (low-frequency engine/prop signature for the noise-cancelling layer) and the AeroVault™ cabin-audio stream (full-bandwidth forensic recording for the personal black box). This is a recording-chain configuration, not two microphones: capture the mic wideband (20 Hz–20 kHz, 48 kHz / 24-bit) for AeroVault, and derive the low-band DVNC reference by filtering/decimating the same stream. Full scope is captured; the low band is prioritised for cancellation.
+2. Microphone selection
+The cockpit is loud (90–110 dB SPL, louder transients) and low-frequency rich, so the priorities are a high acoustic overload point (AOP), a flat low-frequency response, and high SNR.
+Part
+SNR
+AOP
+Flat from
+Output
+Role
+Infineon IM72D128
+72 dB(A)
+128 dB SPL
+20 Hz
+Digital (PDM)
+PRIMARY — best all-round; tight matching for arrays
+Infineon IM73A135
+73 dB(A)
+135 dB SPL
+20 Hz
+Analog (IP57)
+Premium / rugged alt (needs ADC/codec)
+Infineon IM69D130
+69 dB(A)
+130 dB SPL
+28 Hz
+Digital (PDM)
+Mid alternative
+Knowles SPM0687LR5H-1
+70 dB(A)
+130 dB SPL
+—
+Analog
+Alt source
+Knowles IA610/IA611
+65 dB(A)
+135 dB SPL
+—
+Digital
+Alt source; ±1 dB matched
+Avoid modest parts (e.g. SPH0645, 65 dB SNR) — fine for hobby audio, under-spec for a loud-cockpit reference and forensic record.
+2.1 Why these specs
+AOP 128–135 dB SPL: crash and alarm transients are extreme; high AOP keeps the loudest, most forensically valuable moments from clipping — exactly when the recording matters most.
+Flat to 20 Hz: captures the full 20–250 Hz rumble band DVNC targets; cheaper mics roll off at 50–100 Hz and miss the lowest rumble.
+High SNR (72–73 dB): clean DVNC reference and intelligible AeroVault voice/audio.
+Tight phase/sensitivity matching: enables a multi-mic array for redundancy, zone coverage and beamforming.
+3. Signal architecture — one mic, two streams
+The single wideband capture feeds two consumers in parallel:
+AeroVault (full scope): the 48 kHz / 24-bit wideband master — voice, alarms/horns, switch clicks, airflow, structural and impact sounds across the full audible band.
+DVNC (low band): a filtered/decimated tap of the same stream for the 20–250 Hz acoustic reference — no second microphone required.
+This keeps the forensic high-end and the cancellation low-end from competing: AeroVault keeps the wideband master; DVNC takes a filtered tap.
+4. Coverage & redundancy (CVR-style)
+Design for 2–4 matched IM72D128 mics: redundancy if one fails in an impact, plus zone coverage and future beamforming / voice-from-engine separation.
+Populate one to start; lay out the matched footprints so additional mics are a populate-only change.
+5. Recording configuration (AeroVault)
+Parameter
+Value / approach
+Sample rate
+48 kHz (96 kHz option for ultrasonic mechanical precursors)
+Bit depth
+24-bit (forensic dynamic range)
+Codec
+Lossless FLAC (~70–90 KB/s/ch; ~250–300 MB/hr/ch) — forensic integrity, not lossy
+Buffering
+Continuous rolling buffer
+Impact lock
+High-G event seals the trailing window into encrypted non-volatile memory (AeroVault)
+Timeline
+Timestamp-aligned with IMU, GPS and flight-state on the unified AeroVault timeline
+6. Interface & routing
+Digital (IM72D128, PDM): route PDM to the STM32H7 SAI/DFSDM peripheral directly (no codec), or via a PDM-to-I²S step to the CM5 for the recording/storage path. AeroVault storage lives on the CM5/Pi.
+Analog (IM73A135): through a low-noise audio ADC/codec to the host.
+Time-sync: clock the mic from a common reference and timestamp samples so the acoustic and IMU (structure-borne) references align for DVNC and the AeroVault timeline.
+7. Mounting & acoustics
+Acoustic port: enclosure port with mesh/windscreen over the mic sound inlet; keep the port path short and sealed.
+Vibration decoupling: mechanically isolate the mic from board/chassis vibration (gasket/soft mount) — the mic must capture cabin air, not chassis vibration (that is the IMU's role).
+Placement: position to sample representative cabin air; for a multi-mic array, separate the mics for zone/directional coverage.
+8. Bill of materials
+Item
+Part / value
+Qty
+Note
+Microphone (primary)
+Infineon IM72D128 (digital PDM)
+2–4
+Matched array; 1 to start
+Microphone (alt)
+Infineon IM73A135 (analog, IP57)
+—
+If max AOP/ruggedness; needs codec
+Audio codec/ADC
+(only for analog mic path)
+0–1
+E.g. low-noise stereo ADC
+PDM-to-I²S bridge
+(only if recording via CM5)
+0–1
+Not needed if using H7 SAI/DFSDM
+Windscreen / acoustic mesh
+Hydrophobic mesh + port gasket
+per mic
+Protects inlet; seals port
+Passives
+Decoupling caps, clock/data series R
+lot
+Per mic
+9. Optional — beyond audible
+For mechanical-failure precursors (bearing/gearbox signatures often appear ultrasonically), the IM73A135-class parts extend above 20 kHz; sampling at 96 kHz captures this. A predictive-maintenance / forensics nice-to-have, not required for v1.
+10. Limitations & safety framing
+AeroVault™ is an experimental/advisory “personal black box,” modelled on cockpit-voice-recorder principles but NOT a certified CVR. It augments post-event understanding and does not replace certified flight recorders or avionics. The AeroNode is a portable electronic device with zero input to the aircraft or its flight controls. This document describes a development-stage subsystem, not a certified product.
+11. References
+Infineon IM73A135 (73 dB SNR, 135 dB AOP, 20 Hz, IP57) — https://www.infineon.com/part/IM73A135
+Infineon IM72D128 / IM69D130 XENSIV MEMS datasheets — https://www.infineon.com/assets/row/public/documents/24/49/infineon-im69d130-datasheet-en.pdf
+Knowles high-AOP MEMS (SPM0687 / IA61x) — https://audioxpress.com/news/knowles-introduces-new-analog-mems-microphone-with-70-db-snr-for-voice-and-anc-applications

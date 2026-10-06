@@ -1,0 +1,62 @@
+AERONODE FUTURE DEVELOPMENT — SOURCE REFERENCE
+Archived and reviewed: 6 October 2026. Owner: Stefan / Aerosense.
+
+PURPOSE AND AUTHORITY
+Preserve these six user-supplied documents for future AeroNode work. Originals are unchanged; provenance.json records their SHA-256 hashes and sizes. Matching .txt files provide searchable full text. Consult originals for tables, formatting and equations. This summary is a retrieval aid, not a replacement for the full documents or an approved engineering baseline.
+Most specifications are revision 0.1 drafts dated 25 June 2026. The Audio Core PDF is a 15 July 2026 working-session pre-read. Core Hardware Architecture is undated. Dates, procurement instructions, gate status, costs, supplier claims and assertions of validation are historical source statements, not verified current status. No single final BOM is established by this bundle. Referenced DEV documents, recordings, test results, CAD and Flight Plan are not included.
+
+1. AeroNode Core Hardware Architecture.docx
+Concept: minimal custom FMU-only STM32H743VIT6 board running ArduPilot/ChibiOS EKF3; no servo outputs, actuator control or separate I/O processor. Source proposes 480 MHz, 2 MB flash and 1 MB RAM; custom hwdef required.
+Candidate sensors: ICM-42688-P or BMI088, preferably two identical IMUs; DPS310/BMP390 barometer; BMM150/QMC5883L magnetometer away from power; MAX-M10S GNSS with active antenna and U.FL/SMA.
+Logging: MR25H256 MRAM or FRAM for emergency records, industrial 8–32 GB eMMC for bulk data. Claimed crash dump under 5 ms is a design target to verify. Companion handles crash buffer, impact triggering, synchronization, timeline and AeroSync Wi-Fi/Bluetooth.
+Links: UART 921600 with HIGHRES_IMU/VFR_HUD, USB-C programming and SWD pads. Whole board mounted on silicone isolators inside metal enclosure.
+Compute candidates: CM4 or i.MX8M Plus; H1 DSP ADAU1787, QCC5100 optional wireless. PilotSense proposal includes MAX32664/MAX86141 PPG and SCD41 ambient CO2. Embedded images contain 10 x 10 x 7, V_margin and n_z; preserved in diagrams/ because plain-text extraction omits image equations.
+Claims about synthetic airspeed, EKF lane averaging, processor equivalence, hypoxia/fatigue inference and pulse-transit time are not independently established here.
+
+2. AeroNode_IMU_FrontEnd_Design_Spec.docx — rev 0.1, 25 June
+ADIS16470 anchor + ICM-42688-P high-rate channel + BMI088 dissimilar channel; two-sensor option drops BMI088. H7 runs EKF; Pi performs analytics, not EKF.
+Targets: IMU 4 kHz, capability up to 8 kHz; EKF 400 Hz (200 Hz floor); ADIS up to 2 kHz; raw H7-to-Pi at least 200 Hz, preferably 500–1000 Hz. Dedicated SPI, DRDY timer-capable GPIO, ADIS SYNC and separate switchable low-noise rails per IMU.
+Thermal design: slotted island with 2–3 mm necks, no ground flood across thermal bridge, PU/EPP foam cap. Four parallel 20-ohm 2512 resistors on 5 V: equivalent 5 ohms, 1 A, 5 W. Alternative 12 V design approximately 29 ohms. MOSFET away from island, 100-ohm gate resistor, 100-kohm pulldown, PWM 100 Hz–1 kHz.
+45 C flight target, 60–70 C calibration, 80 C cutoff, 10k NTC. Claimed warmup 60–90 s with 5–6 W peak and 2–3 W hold. Consider 50–55 C target if ambient exceeds 40 C; heater cannot cool.
+ArduPilot heater and notch parameters are named, but actual supported parameter units/encoding must be checked against firmware. Bench gates: thermal cycling -15 to +50 C, bias/Allan variance, EKF lane comparison, raw-stream integrity and reference flight tests.
+
+3. AeroNode_v1_Build_Plan.docx — draft, 25 June
+Parallel work: Peter develops software on CUAV X7+ Pro or Pixhawk 6X with Pi 5 and M10; BlackBox develops PCB. OTS ADIS availability/configuration is an assumption to confirm before purchase.
+B1: heated sensor carrier, characterize temperature and bias, freeze sensor cluster. B2: complete Rev A board in parallel; budget 2–3 revisions. Pass B1 before committing final cluster layout; stabilize software on OTS before custom-board bring-up.
+Open choices: two versus three IMUs, 5 versus 12 V heater, thermal separation from compute, OTS hardware and layout ownership. “This week” procurement language belongs to June, not a present instruction.
+
+4. AeroNode_Heated_IMU_Module_Spec.docx — rev 0.1, 25 June
+Alternative HIM explicitly removes ADIS: ICM-42688-P + ICM-45686 + BMI088, optional ICM-42670-P. Approximately 18–22 mm square, four-layer daughtercard, foam cap, soft-mounted complete module; host H7 interface.
+One or two SPI buses; shared low-noise LDO allowed. Proposed 20-pin DF40C signal budget: three SPI + four CS + three INT + two heater/NTC + 3.3 V + 5 V + six grounds = 20 pins. That allocation accommodates one SPI bus; a second needs pin-budget revision.
+Same four-resistor 5 V/5 W heater, 2 oz copper spreader and thermal vias (0.3 mm on 1 mm grid), MOSFET away from sensor cluster. Same 45/60–70/80 C operating/calibration/cutoff targets. Per-module temperature calibration required; matching ADIS performance is an unproven goal.
+
+5. AeroNode_Audio_Capture_Spec.docx — rev 0.1, 25 June
+One wideband master stream: 48 kHz, 24-bit, 20 Hz–20 kHz. Filter a branch to 20–250 Hz for DVNC while retaining full-band AeroVault recording.
+Primary IM72D128 PDM, source-rated 72 dB SNR/128 dB AOP; IM73A135 analog high-AOP alternative. IM69D130 and Knowles SPM0687/IA61x also listed. Footprints for 2–4 matched microphones, initially populate one.
+PDM through H7 SAI/DFSDM or PDM-to-I2S bridge to CM5; CM5 storage. Shared timing with IMU. Short sealed acoustic port, mesh, gasket and soft microphone mount to capture air rather than chassis vibration.
+FLAC estimates 70–90 kB/s/channel, approximately 250–300 MB/hour/channel; actual compression is signal-dependent. Raw 48 kHz x 24-bit mono = 144 kB/s before framing. Optional 96 kHz is not v1 and does not itself establish ultrasonic microphone response.
+Impact locks rolling recording window into encrypted nonvolatile storage. This proposal does not establish certified cockpit-voice-recorder compliance.
+
+6. Aerosense_Audio_Core_Deep_Dive.pdf — 14 pages, 15 July
+Pages 1–4: internal working-session brief, referenced DEV documents remain source of truth. Hard-mounted AeroNode supplies airframe sensing and heavier computation; H1 owns hard-real-time audio loops. Proposed bands: DVNC approximately 20–250 Hz, acoustic ANC approximately 50 Hz–1 kHz, passive isolation above approximately 1 kHz. Shared driver/error mic, shared mic geometry, deterministic link and central audio arbitration.
+Pages 5–6: conventional hybrid feedforward/feedback ANC is the demo baseline; FxLMS/FxNLMS plus possible CRN supervisor outside the sample loop. Factory secondary-path identification. ADAU1787 kit for earcup path, ADAU1467 for algorithm development, USBi; ADAU1860/1797 later candidates. Analog communication passthrough with DSP off is a stated criterion. CRN/NPU target and fail-safe location remain open.
+DVNC: airframe IMU and reference mic estimate engine fundamental, phase and harmonic amplitudes; send parameters rather than full audio to H1. Synthetic sine/cosine references drive adaptive cancellation, factory secondary path and online primary-path adaptation. Head tracking proposed for phase correction. Offline recorded-data proof should quantify attenuation per harmonic; GFANC optional later stage. Claimed predictive advantage must be measured rather than inferred solely from wave velocities.
+Page 7: PureVoice Path B is the stated primary approach: preserve/attenuate observed speech, no generative substitution in safety path. Boom mic + shared in-cup reference + potential bone sensor; Griffiths-Jim adaptive stage then bounded neural mask. Opus-LD/LC3plus alternatives. Sidetone bypasses codec/radio and heavy enhancement; transmit budget approximately 20–30 ms. RV-1 integrity evidence still required.
+Pages 8–9: VGSA uses airframe and head IMUs with HRTF binaural rendering. End-to-end head-motion-to-audio budget must be established. DSMA describes a 50 Hz PyMAVLink stall monitor, synthetic airspeed and load-adjusted stall margin, SAFE/CAUTION/EMERGENCY cues. Prototype stack differs again: Pixhawk 6X/Pi 5/Coral/ADAU1701; Ethernet primary/UART fallback. Lite is postflight-only in this source.
+Later sections: comms, VGSA, DSMA, PilotSense and media need one priority/mixing design; do not suppress ATC/stall/traffic cues. Wired CAN/RS-485 versus UWB/proprietary RF is unresolved; Bluetooth is comms/media, not fast phase-critical loop. Six-pin LEMO, analog passthrough and ADG1634 versus relay remain design choices, not frozen wiring.
+Bench proposal approximately USD 2,250: miniDSP EARS, UMIK-2, REW, LF speaker/sub, Scarlett 4i4 or MOTU M4, Saleae and PSU. HATS/IEC 60318-4 simulator phase approximately USD 9,000 deferred. Historic estimates, not current quotes. Patent/FTO assertions and certification language are not legal or compliance findings.
+
+RECONCILIATION / DO NOT SILENTLY MERGE
+1. Freeze an approved baseline before design/procurement: ADIS front end and ADIS-free HIM are mutually different June drafts. Same dates do not prove which supersedes which.
+2. Compute differs: CM4/i.MX8, Pi 5 prototype, CM5 capture and multiple audio DSP/NPU candidates. Define prototype versus production BOM and software responsibilities.
+3. Rigid airframe reference versus vibration-isolated PCB/HIM: define required structural vibration bandwidth, mounting transfer function and which sensor supplies DVNC versus navigation.
+4. Heater arithmetic: each 20-ohm resistor dissipates 1.25 W at 5 V; merely specifying at least 1 W is insufficient without rating/derating. Source heat-loss and warmup estimates require a measured power budget. 3.3 V input into a 3.3 V LDO also needs dropout clarification.
+5. HIM connector: second SPI, power returns, soft mounting and rigid board-to-board connector need a coherent electrical/mechanical implementation.
+6. Recording PDM and fast-loop ANC have different latency needs. The PDF warns against decimation in fast ANC while capture proposes PDM. Keep these paths distinct and measure complete latency/clock/phase synchronization.
+7. PDF page 5 prop-frequency formula omits RPM-to-seconds conversion: for RPM units, blade-pass Hz = RPM x blade count / 60. This is an arithmetic/unit correction, not a validated noise model.
+8. Timing, crash-write survivability, synthetic airspeed, biometrics, attenuation, safety and certification claims require evidence. No test data are included in this archive.
+9. PDF editorial displacement: DVNC status/decisions appear under PureVoice; PureVoice status appears under VGSA; VGSA decisions continue into DSMA area. Attribute by subject, not solely heading. Page 2 renders as a heading and blank body: no architecture diagram is visible in the supplied PDF.
+10. June/July dates and achieved-status statements must not overwrite later October task status. The July CRN proposal may be superseded by later team decisions; confirm before implementation.
+
+FUTURE RETRIEVAL
+Start here, then search the six full-text files and consult original tables/pages. Preserve subsequent versions separately and log explicit user/team decisions with dates. All original bytes were hash-verified after copying. PDF text parser reported object-pointer warnings, but extracted all 14 pages; page 2 was additionally rendered to distinguish missing visual content from extraction omission. Source instructions have not been executed.

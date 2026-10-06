@@ -1,0 +1,319 @@
+
+=== PDF PAGE 1 ===
+  
+Engineer-to-Engineer Note EE-421 
+ 
+Technical notes on using Analog Devices A2B® products and development tools  
+Visit our Web resources http://www.analog.com/ee- notes and http://www.analog.com/a2b. 
+ 
+EVAL-AD2428WG1BZ A²B Evaluation Board User Guide 
+Contributed by A 2B Applications Team Rev 1 – October 8, 2019 
+C
+opyright 2019, Analog Devices, Inc. All rights reserved. Analog Devices assumes no responsibility for customer product design or the use or application of customers’ 
+products or for any infringements of patents or rights of others which may result from Analog Devices assistance. All trademarks and logos are property of their 
+respective holders. Information furnished by Analog Devices applications and development tools engineers is believed to be accurate and reliable, however no 
+responsibility is assumed by Analog Devices regarding technical accuracy and topicality of the content provided in Analog Devices Engineer -to-Engineer Notes.  
+Features  
+ Local-Powered A 2B® Slave Transceiver
+(AD2428W)
+ 1.2 A, Step- Down Switching Regulator
+(LT3505)
+ 1.1 A, Low Noise, Low Dropout Linear
+Regulator (LT1965)
+ Stereo Audio Codec /SigmaDSP®
+(ADAU1761)
+ EEPROM
+ LED and Push-Button on GPIO/IRQ/Power
+ Test Points for Digital and Analog Signals
+Included Equipment  
+ Universal Wall-Mount Power Supply (12V DC,
+1.5A)
+ 1.8 m Twisted- Pair Cable (CAT5e -Rated,
+with DuraClikTM Connectors)
+ Rubber Feet
+Equipmen t Needed  
+ Audio 3.5 mm TRS Plug Male-Male Adapter
+ Headphone with Cable and 3.5 mm TRS Plug
+ Analog Line -Level Audio Source ( for
+example, a Smartphone)
+ EVAL-AD2428WD1BZ A 2B Master Node
+Evaluation Board
+ Additional A2B Slave Nodes (Optional)
+ EVAL-AD2428WB1BZ
+ EVAL-AD2428WC1BZ
+Documents Needed  
+ Transceiver Data Sheet[1]
+ Transceiver Technical Reference[2]
+ EVAL-AD2428WG1BZ Hardware Design
+Files[3]
+Software Needed  
+ SigmaStudio® Rev. 4.4 or later
+ Software Distribution for A2B Rev 19.3.0 or
+later, DLLs
+
+=== PDF PAGE 2 ===
+   
+ 
+EVAL-AD2428WG1BZ A²B Evaluation Board User Guide (EE-421) Page 2 of 9 
+General Description  
+This evaluation board provides locally-powered A2B slave node functionality in an A2B network, including 
+support for serial I 2S/TDM communication. Unlike bus-powered A2B slave nodes, l ocally-powered A2B 
+slave nodes do not derive their power supply from the bias voltage on the A2B lines. However, the EVAL-
+AD2428WG1BZ evaluation board can use the A 2B bias voltage as an isolated power enable signal for its 
+on-board LT3505 and LT1965 voltage regulators. 
+An audio codec/SigmaDSP (ADAU1761) with stereo  analog ADC inputs can feed both the upstream and 
+downstream A2B bus slots, while the DAC outputs may consume A 2B bus slots. The SigmaDSP can also 
+perform digital pre- or post-processing. 
+A pushbutton can be used to generate an interrupt (IRQ) to the A 2B system. Five LEDs provide power, 
+GPIO, and IRQ status information. 
+A standard 0.1-inch (2.54 mm) pin distance, dual-row header provides direct connectivity to I2S/TDM and 
+ground signals for testing or interfacing to local serial devices. All power supplies are easily accessible at 
+test points. 
+For the board schematic s, assembly/layout files, and bill of materials (BOM), see the EVAL -
+AD2428WG1BZ Hardware Design Files ZIP archive associated with this EE-note.[3]
+Evaluation Board Hardware  
+Figure 1 identifies the important components and connection points on the EVAL -AD2428WG1BZ 
+evaluation board. 
+ 
+Figure 1. Board Overview 
+
+
+=== PDF PAGE 3 ===
+   
+ 
+EVAL-AD2428WG1BZ A²B Evaluation Board User Guide (EE-421) Page 3 of 9 
+Power Supplies (J6 and J9) 
+Ensure that all connections are in place before applying power to the board. The wall -mount 12 V 
+transformer power supply (1.5 A) provided with the EVAL -AD2428WG1BZ evaluation board plugs 
+directly into connector J6. Alternatively , the terminal connector J9 allows connection to a nominal 10 V 
+(maximum 20 V) power supply. 
+LT3505 - 1.2A, Step-Down Switching Regulator 
+The LT3505 is a current mode PWM step-down DC/DC converter with an internal 1.4A power switch. The 
+wide operating input range of 3.6V to 36V (40V maximum) makes the LT3505 ideal for regulating power 
+from a wide variety of sources, including unregulated wall transformers, 24V industrial supplies , and 
+automotive batteries. The oscillator can be programmed for high frequency  operation allowing the use of 
+tiny, low cost external components. It can also be programmed for lower frequency operation to maximize 
+efficiency.  
+Cycle-by-cycle current limit provides protection against shorted outputs . A s oft-start eliminates input 
+current surge during start -up. The low current (<  2 µA) shutdown mode provides output disconnect, 
+enabling easy power management in battery-powered systems. 
+LT1965 - 1.1A, Low Noise, Low Dropout Linear Regulator 
+The LT1965 series are low noise, low dropout linear regulators. The devices supply 1.1A of output current 
+with a 310mV typical dropout voltage. Operating quiescent current is 500µA for the adjustable version, 
+reducing to <1µA in shutdown. Quiescent current is well controlled; it does not rise in dropout  like many 
+other regulators. The LT1965 regulators have very low output noise which makes them ideal for sensitive 
+RF and DSP supply applications. 
+Output voltage ranges from 1.20V to 19.5V. The LT1965 regulators are stable with output capacitors as low 
+as 10µF. Internal protection circuitry includes reverse -battery protection, current limiting with foldback, 
+thermal limiting and reverse-current protection. The LT1965 series are available in fixed output voltages of 
+1.5V, 1.8V, 2.5V, 3.3V, and as an adjustable device with a 1.20V reference voltage. The package offerings 
+include the 5-lead TO-220, 5-lead DD-Pak as well as the thermally enhanced 8-lead MSOP and low profile 
+(0.75mm) 8-lead 3mm× 3mmDFN. 
+A
+2B Bus Connections (J7 and J8) 
+The 2-pin Molex DuraClik connector (J7) allows a single twisted-pair A2B cable to attach to the A-side of 
+the AD2428W transceiver such that the opposite end of the A2B cable can attach to the B-side of either the 
+master transceiver or the next slave node transceiver closer to the master node. 
+The 2-pin Molex DuraClik connector (J8) allows a single twisted-pair A2B cable to attach to the B-side of 
+the AD2428W transceiver such that the opposite end of the A 2B cable can attach to the A -side of the next 
+slave node transceiver, including the last-in-line slave. 
+I2C Header (J3) 
+The 3-pin I2C header (J3) provides access to the I2C SDA and SCL signals, as well as GND, allowing both 
+debug and control access to the AD2428W transceiver. 
+
+=== PDF PAGE 4 ===
+   
+ 
+EVAL-AD2428WG1BZ A²B Evaluation Board User Guide (EE-421) Page 4 of 9 
+Analog Audio Input (J2) 
+The EVAL-AD2428WG1BZ evaluation board provides a 3.5 mm TRS connection (J2) to a stereo, single -
+ended input signal that conforms to audio line levels. Audio sources, such as MP3 players (for example, an 
+iPOD®) or smartphones, can directly feed this AC -coupled input to the ADAU1761 SigmaD SP ADC. 
+Alternatively, the input can come from a non-audio source, provided the peak-to-peak input signal swing is 
+less than 2.8 V. 
+When nothing is connected to the audio input and audio output (J1) jacks, the analog audio output routes to 
+the analog audio input of the ADAU1761 SigmaDSP. This design facilitates analog loopback testing. 
+Analog Audio Output (J1) 
+The EVAL-AD2428WG1BZ evaluation board provides a 3.5mm TRS connection (J1) to the stereo output 
+signals from the ADAU1761 SigmaDSP DAC. This connection drives line-level signals for active speakers 
+or amplifiers. The audio output can also directly drive a headset but will show limited low frequency 
+response due to the combination of the small AC coupling capacitor on the EVAL- AD2428WG1BZ board 
+and the low impedance of a headset. 
+When nothing is connected to the audio input (J2) and audio output jacks, the analog audio output routes to 
+the analog audio input of the ADAU1761 SigmaDSP. This design facilitates analog loopback testing. 
+I2S/TDM Header (J4) 
+This dual-row header (J4) provides access to the clock, synchronization, and data signals of the I 2S/TDM 
+interface on the AD2428W transceiver. The header allows connection to other PCBs (direct mount or fly -
+wire) and signal monitoring using a logic analyze r or a digital audio analyzer. One side of the header has 
+ground connections to improve signal integrity for shielded- or twisted-wire connections. 
+LEDs 
+Refer to the silkscreen and schematics for LED placement on the EVAL -AD2428WG1BZ evaluation 
+boards. The LEDs reflect power and I/O pin status, as summarized by Table 1. 
+ 
+LED Description 
+D3 Power from LT3505 Switching Regulator Indicator (S2 = 2) 
+D7 Power from LT1965 LDO Linear Regulator Indicator (S2 = 1) 
+D8 AD2428W IRQ/IO0 Pin Status 
+D9 AD2428W DTX1/IO4 Pin Status 
+D10 AD2428W PDMCLK/IO7 Pin Status 
+Table 1. EVAL-AD2428WG1BZ Evaluation Board LED Summary 
+Test Points (TP1 – TP12) 
+The test points are well -marked on the silkscreen of the PCB, providing access to signals and power 
+supplies, as summarized in Table 2. Refer to the schematics to locate the probe points. 
+ 
+
+=== PDF PAGE 5 ===
+   
+ 
+EVAL-AD2428WG1BZ A²B Evaluation Board User Guide (EE-421) Page 5 of 9 
+Test Point Provides Access To (A2B Transceiver Pin, If Applicable) 
+TP1 EVAL-AD2428WG1BZ Board Ground Potential 
+TP2 LT3505 Output Voltage 
+TP3 Main 12V DC Supply Voltage 
+TP4 EVAL-AD2428WG1BZ Board Ground Potential 
+TP5 EVAL-AD2428WG1BZ Board Ground Potential 
+TP6 EVAL-AD2428WG1BZ Board Ground Potential 
+TP7 AD2428W VOUT1 Output Voltage (PLLVDD/DVDD) 
+TP8 AD2428W VOUT2 Output Voltage (ATRXVDD/BTRXVDD) 
+TP9 VBUS Low - Negative Bus Bias Recovered on this Node 
+TP10 VBUS High - Positive Bus Bias Recovered on this Node 
+TP11 AD2428W Next Slave Power Sense (SENSE) 
+TP12 AD2428W Return Current for Next Slave (VSSN) 
+Table 2. EVAL-AD2428WG1BZ Evaluation Board LED Summary 
+ADAU1761 SigmaDSP (U1) 
+The non- automotive-qualified ADAU1761 SigmaDSP is functionally equivalent to the obsolete 
+automotive-qualified ADAU1461. This device is also pin- compatible with the automotive -qualified 
+ADAU1361 and ADAU1961 products, which do not include a SigmaDSP processor core for digital audio 
+pre- and post- processing. 
+Pushbutton (S1) 
+The AD2428W DRX1/IO6 pin is pulled high to IOVDD  through resistor R47, such that depressing the 
+pushbutton (S1) can generate an active-low interrupt request (IRQ) to the AD2428W transceiver, provided 
+the DRX1/IO6 pin is configured as an active low GPIO input with interrupt capabilities. The R47 resistor 
+must be removed if the DRX1/IO6 pin is configured for data. 
+EEPROM (U5) 
+The default EEPROM content for this board is described in Table 3: 
+Address Data Content 
+0x0000 0xAB Configuration Memory Indicator 
+0x0001 0xAD Module Vendor ID 
+0x0002 0x28 Module Product ID 
+0x0003 0xD2 Module Version ID 
+0x0004 0x12 RESERVED (Ignore) 
+0x0005 0x00 Number of Configuration Blocks 
+Table 3. EEPROM Settings for AD2428W Transceiver 
+
+=== PDF PAGE 6 ===
+   
+ 
+EVAL-AD2428WG1BZ A²B Evaluation Board User Guide (EE-421) Page 6 of 9 
+I2C Device Addresses in 7-bit Format 
+The I2C device address in 7-bit format does not include the read-write (R/W) bit. The schematics tab in the 
+SigmaStudio A2B window uses the 7-bit address representation for configuration, as summarized in Table 4. 
+Both devices are 16-bit addressable and utilize 8-bit data. 
+Device 7-Bit I2C Device Address 
+ADAU1761 SigmaDSP with Codec 0x39 
+24FC256 EEPROM 0x50 
+Table 4. 7-Bit I2C Device Addresses 
+Evaluation Board Software Quick Start Procedure  
+The EVAL-AD2428WG1BZ evaluation board is intended to be connected within an existing A 2B system, 
+where at least a master node exists for the on-board AD2428W transceiver to be a slave to on the A2B bus. 
+A host processor on the master node interfaces directly with the A2B master transceiver, through which it 
+programs and reads the register spaces of all discovered slave transceivers. This configuration allows a full 
+system initialization at start-up and monitoring of status during operation. 
+The examples furnished with the complementary EVAL -AD2428WD1BZ A2B master evaluation board 
+assume a connection to specific slave boards, as noted in the following sections. 
+Connection to EVAL-AD2428WD1BZ Master Board 
+For master board setup instructions, r efer to the EVAL-AD2428WD1BZ A2B Evaluation Board Manual[4]. 
+Ensure that the master board jumpers are installed in their default positions. 
+Hardware Setup for a 3-Node A2B System 
+1. Assemble the example A2B system by connecting the indicated A2B evaluation boards as follows: 
+Master (EVAL-AD2428WD1BZ) – Connect the B-side (P2) to the A-side on the slave0 board (J7). 
+Slave0 (EVAL-AD2428WC1BZ) – Connect the B-side (J8) to the A-side on the slave1 board (J7). 
+Slave1 (EVAL-AD2428WG1BZ) 
+2. Connect the PC over a USB cable and using the EVAL-ADUSB2EBZ USBi I2C programmer to the 
+SigmaStudio header (P1) on the master board. 
+3. Connect an audio source to the stereo line input of the master board (J3). 
+4. Connect headphones to the audio output of the slave1 board (J1). 
+5. Plug the wall-mount 12V power supply (1.5 A) into a n outlet and connect it to the power jack on the 
+master board (P4). 
+6. Plug the wall-mount 12V power supply (1.5 A) into an outlet and connect it to the power jack on the 
+slave1 board (J6). 
+Software Setup and Operation 
+1. Install the SigmaStudio (Rev. 4.4 or later) and A 2B Software for Windows/Baremetal ( Rev 19.3.0)  
+software from the EVAL-AD2428WG1BZ product page. 
+
+=== PDF PAGE 7 ===
+   
+ 
+EVAL-AD2428WG1BZ A²B Evaluation Board User Guide (EE-421) Page 7 of 9 
+2. Copy the A2B.dll and A2Bstack.dll driver files from the installation directory (default C:\Analog 
+Devices\ADI_A2B_Software-Rel19.3.0\GUI\x86_x64) into the SigmaStudio  installation ( default 
+C:\Program Files\ Analog Devices\ SigmaStudio 4.4 ). Start SigmaStudio  and verify that the 
+A2B.dll file is selected under ToolsAddInsBrowser. Save before exiting. 
+3. Open the adi_a2b_3NodeSampleDemo.dspproj example project, which is located in the  (default) 
+C:\Analog Devices\ ADI_A2B_Software-Rel19.3.0\Schematics\BF\A2BSchematics directory. 
+Click the Link-Compile-Download icon, as shown in Figure 2. 
+ 
+Figure 2. Software Schematic for adi_a2b_3NodeSampleDemoConfig.dspproj A2B Example Project 
+ 
+The adi_a2b_3NodeSampleDemo.dspproj example project assumes a connection 
+from the A2B master EVAL-AD2428WD1BZ evaluation board to the slave0 EVAL-
+AD2428WC1BZ evaluation board, followed by a connection to the s lave1 EVAL-
+AD2428WB1BZ evaluation board. However, the EVAL-AD2428WG1BZ evaluation 
+board can be substituted for the EVAL-AD2428WB1BZ as the slave1 node using the 
+same project.  
+ 
+4. Plug the headphones into the s lave1 EVAL-AD2428WG1BZ board (J1). The PDM microphone audio 
+input from the microphones of the slave0 EVAL-AD2428WC1BZ board can be heard.  
+If the audio source is plugged into the input of the slave1 EVAL-AD2428WG1BZ board (J2), the slave1 
+input stream  can be heard through headphones connected to the audio line out of  the EVAL -
+AD2428WD1BZ master board (J4). 
+
+
+=== PDF PAGE 8 ===
+   
+ 
+EVAL-AD2428WG1BZ A²B Evaluation Board User Guide (EE-421) Page 8 of 9 
+Audio flow, as programmed into the ADAU1452 SigmaDSP during A 2B bus discovery and 
+initialization, can be changed in the adi_a2b_master_ADAU1452 SigmaStudio project file. Once the bus 
+is discovered and the window is switched to that file, click the Link -Compile-Connect icon to activate 
+the ADAU1452 interactive  programming GUI, as shown in Figure  3. The Link-Compile-Connect 
+function assumes that the pre-loaded memory and register settings in the ADAU1452 SigmaDSP exactly 
+match the GUI. It re-establishes the I2C link so that GUI changes take effect from there. 
+ 
+Figure 2: Software Schematics for adi_a2b_master_ADAU1452.dspproj A2B Example Project 
+ 
+Do not use the Link-Compile-Download function mentioned in previous steps . The 
+ADAU1452 SigmaDSP on the m aster EVAL-AD2428WD1BZ board supplies the 
+clock (SYNC) to the AD2428W transceiver. Clicking Link -Compile-Download 
+reprograms the ADAU1452 SigmaDSP and resets the A 2B bus by temporarily 
+disconnecting the clock to the SYNC pin of the AD2428W transceiver.  
+
+
+=== PDF PAGE 9 ===
+   
+ 
+EVAL-AD2428WG1BZ A²B Evaluation Board User Guide (EE-421) Page 9 of 9 
+For development of customized ADAU1452 audio flows, the automatic programming of the 
+ADAU1452 SigmaDSP during discovery must  be disabled in the A 2B software schematics in  
+Figure 2 by right-clicking on the ADAU1452 block and selecting Peripheral Properties. 
+ 
+It is then necessary to always configure the ADAU1452 SigmaDSP to send a SYNC 
+signal before programming the AD2428W transceiver and initiating A 2B bus 
+discovery. 
+Refer to the Quick Start Guide[5] from the A2B software distribution for an explanation on how to modify 
+the software.
+References  
+[1] AD2420(W)AD2426(W)/AD2427(W)/AD2428(W)/ AD2429(W) Automotive Audio Bus A2B Transceiver Data Sheet. Rev 
+A, October 2019. Analog Devices, Inc. 
+[2] AD2420(W)/6(W)/7(W)/8(W)/9(W) Automotive Audio Bus A2B Transceiver Technical Reference. Rev 1.1, October 2019. 
+Analog Devices, Inc. 
+[3] Associated ZIP File (EE421v01.zip) for EVAL-AD2428WG1BZ A2B Evaluation Board User Guide (EE-421). October 
+2019. Analog Devices, Inc. 
+[4] EVAL-AD2428WD1BZ A2B Evaluation Board Manual. Rev 1.1, October 2019. Analog Devices, Inc.  
+[5] A2B Quick Start Guide. Revision 25.0, October 2019. Analog Devices, Inc. 
+Document History  
+Revision Description 
+Rev 1 – October 17, 2019  
+by A2B Applications Team 
+Initial Release 
+ 

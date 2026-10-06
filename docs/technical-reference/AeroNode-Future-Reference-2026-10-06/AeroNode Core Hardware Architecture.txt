@@ -1,0 +1,67 @@
+PART word/document.xml
+AERONODE & AEROSENSE ECOSYSTEM: CORE HARDWARE ARCHITECTURE
+Document Type: Engineering Specification Brief
+Project: Aerosense H1 / AeroNode Miniaturization
+Objective: Distill standard ArduPilot (Pixhawk) hardware into a proprietary, minimal-footprint PCB optimized exclusively for EKF3 state estimation, VGSA, and DSMA computations, and outline the broader ecosystem hardware (Companion Computer, Black Box, Audio DSP, and Biometrics).
+1. Architectural Philosophy: The "FMU-Only" Approach
+Standard Pixhawk flight controllers utilize an FMU (Flight Management Unit) + I/O (Input/Output) architecture. The I/O coprocessor handles physical PWM signals for servos and motors.
+The Aerosense Advantage: Because the AeroNode does not actuate flight control surfaces, we can completely eliminate the I/O coprocessor, servo power rails, and bulk connectors. The board will consist solely of the high-performance FMU core, the sensor suite, and serial communication pathways.
+2. The Core Brain: Microcontroller (MCU)
+To run ArduPilot natively on ChibiOS and handle the intense floating-point math required by the Extended Kalman Filter (EKF3) at 400Hz+, you need a modern, high-performance MCU.
+Recommended Silicon: STM32H743VIT6 (or similar STM32H7 series)
+Specs: 32-bit ARM Cortex-M7, 480 MHz, 2MB Flash, 1MB RAM.
+Why: This is the exact processor used in the Pixhawk 6C and Cube Orange. It features a Double-Precision Floating-Point Unit (FPU), which is critical for EKF3 to accurately calculate dynamic stall margins () without rounding errors over long flights.
+ArduPilot Compatibility: Fully natively supported. You will simply compile a custom hwdef.dat (hardware definition file) mapping your specific pins to the ArduPilot firmware.
+3. The Inertial & Atmospheric Sensor Suite
+EKF3 relies on high-fidelity, low-noise data to calculate the wind triangle (synthetic airspeed) without a pitot tube. Selecting natively supported, aviation-grade silicon is crucial.
+A. Primary IMU (Accelerometer + Gyroscope)
+Recommended Silicon: InvenSense ICM-42688-P or Bosch BMI088
+Interface: SPI (do not use I2C for the primary IMU to ensure the lowest possible latency).
+Requirement: The ICM-42688-P is the current gold standard in high-end ArduPilot boards. It offers incredibly low noise, which is vital for detecting the subtle shifts in Z-axis load factor () required for your Dynamic Stall Margin Awareness (DSMA).
+Note on Redundancy: While you can run a single IMU, placing two identical IMUs on the SPI bus allows ArduPilot to run dual EKF cores and average the noise, vastly improving the synthetic airspeed estimation.
+B. Barometer (Altitude & Vertical Velocity)
+Recommended Silicon: Infineon DPS310 or Bosch BMP390
+Interface: I2C or SPI.
+Requirement: Critical for maintaining the Z-axis state in the EKF, especially when detecting the descent rates outlined in your PoC's Kinematic State Machine.
+C. Magnetometer (Heading / Yaw)
+Recommended Silicon: BMM150 or QMC5883L
+Interface: I2C.
+Requirement: Because you are deriving wind speed purely from GPS ground track vs. aircraft heading, a highly accurate compass is mandatory.
+Design Constraint: Must be placed as far away from the power-delivery circuits on the AeroNode PCB as possible to prevent electromagnetic interference (EMI).
+4. Positioning (GNSS)
+To calculate synthetic airspeed, EKF3 needs a highly accurate GPS ground track.
+Integration Method: Instead of a bulky external GPS puck, integrate a U-blox MAX-M10S module directly onto the AeroNode PCB.
+Antenna (Phase One Testing): Route an active antenna connection to a U.FL or SMA connector on the exterior of the AeroNode casing, allowing the pilot to use a small patch antenna on the dashboard.
+5. Storage (The "AeroVault" Black Box)
+Your system relies on an infinite-loop recording system triggered by high-G impacts. Because a catastrophic crash can sever power instantly, the system must dump raw kinematic, audio, and biometric data to non-volatile memory in under 5 milliseconds.
+Ultra-Fast Crash Buffer (Sub-5ms): Standard NAND Flash or SD cards have "page erase" delays that are too slow for sudden power-loss events. You must use MRAM (Magnetoresistive RAM - e.g., Everspin MR25H256) or FRAM (Ferroelectric RAM - e.g., Infineon/Cypress). These memory types write data magnetically or ferroelectrically at bus speeds with zero latency, ensuring the exact millisecond of impact is captured even as the board loses power.
+Bulk Storage: For the standard flight logs and continuous audio buffering, utilize a ruggedized industrial eMMC module (8GB - 32GB).
+Integration: The Companion Computer will manage the cyclic buffer on the eMMC, and automatically dump the final synchronized data packet to the MRAM/FRAM vault upon detecting an impact threshold from the IMU.
+6. Serial I/O & Connectivity
+You only need to expose specific pins for inter-chip communication, vastly reducing the footprint.
+UART 1 (Telemetry): Route directly to the Companion Computer. Set to 921,600 baud for high-speed MAVLink streaming of HIGHRES_IMU and VFR_HUD messages.
+USB (Type-C): Wired to the STM32's USB peripheral for initial flashing (Mission Planner) and parameter tuning.
+SWD Port: Leave a few tiny test pads (SWDIO, SWCLK, GND) for your engineers to flash the bootloader at the factory.
+7. Critical Mechanical Constraint: Vibration Isolation
+ArduPilot's EKF3 will fail if vibration levels are too high. Because you are shrinking the board, you cannot rely on the heavy internal foam isolation found in a Pixhawk Cube. The AeroNode PCB must be physically isolated from its metallic outer casing using customized silicone dampening bobbins, ensuring the IMU receives clean kinematic data.
+8. Companion Computer & Edge Processing
+The STM32 runs the flight math, but a dedicated Companion Computer is required to ingest MAVLink telemetry, audio streams, and biometrics, aligning them on a single, unified timeline for the AeroVault, and pushing data to the AeroSync app.
+Recommended Silicon: Raspberry Pi Compute Module 4 (CM4) or NXP i.MX 8M Plus SoM.
+Why NXP i.MX 8M Plus: If you move past the Raspberry Pi PoC, the NXP chip includes a dedicated Neural Processing Unit (NPU) which is perfect for running your Wake-Word engine and "Deep ANC" algorithms locally without taxing the main CPU.
+Core Functions:
+Data Synchronization: Timestamps MAVLink packets against incoming Bluetooth/wired audio and biometric streams.
+AeroSync Bridge: Acts as the Wi-Fi/Bluetooth gateway to transmit the unified post-flight log to the pilot's iPad or the cloud.
+AeroVault Manager: Manages the cyclic data buffer and executes the <5ms emergency write to the MRAM upon receiving a crash interrupt signal.
+9. H1 Headset Integrated Hardware
+While the AeroNode handles heavy processing, the physical headset requires specialized edge-silicon for advanced audio and physiological monitoring.
+A. Audio DSP (Deep ANC & Spatial Audio)
+Location: Integrated directly into the headset earcups.
+Recommended Silicon: Analog Devices ADAU1787 (or Qualcomm QCC5100 series for wireless).
+Why: The ADAU1787 is an ultra-low latency, dual-DSP codec built specifically for Active Noise Cancellation (ANC). It features a "FastDSP" core that processes mic-to-speaker anti-noise algorithms in microseconds, enabling the premium "Deep ANC" detailed in your business plan while offloading that workload from the AeroNode.
+B. PilotSense Biometric Suite (MEMS & Optical)
+To capture continuous physiological data (HR, HRV, SpO2, CO2) from the pilot without adding weight or discomfort, we must integrate miniaturized medical-grade sensors into the earcup cushions or headband.
+Heart Rate, HRV, & SpO2: * Recommended Silicon: Maxim Integrated (Analog Devices) MAX32664 Sensor Hub combined with a MAX86141 Optical PPG (Photoplethysmography) sensor.
+Why: This is the standard for high-end wearables. It uses LED arrays to measure blood oxygenation and pulse transit time continuously. It calculates the Cognitive Fatigue Index and Hypoxia risk on-chip, sending simple, clean data back to the Companion Computer.
+Ambient Cockpit CO2 Detection:
+Recommended Silicon: Sensirion SCD41.
+Why: Traditional CO2 sensors are too massive for a headset. The SCD41 is a revolutionary MEMS-based photoacoustic NDIR sensor. It is smaller than a fingernail ( mm) but provides highly accurate ambient CO2 parts-per-million (PPM) readings. Integrating this on the exterior shell of the headset will provide early warning for pilot drowsiness caused by poor cockpit ventilation.

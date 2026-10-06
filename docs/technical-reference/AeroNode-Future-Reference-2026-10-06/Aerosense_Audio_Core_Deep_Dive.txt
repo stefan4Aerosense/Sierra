@@ -1,0 +1,493 @@
+PAGE 1
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+AEROSENSE · AUDIO CORE
+Technical Deep Dive & Working-Session Agenda
+The H1 audio stack — architecture, hardware and software to build it out
+Field Detail
+For John Murray (audio / DSP) — pre-read + running order. In the room: John, Chris, Peter, Duran.
+Session Audio technical working session — Wednesday 15 July 2026, office
+Scope Audio only: Noise Cancelling, DVNC™, PureV oice™, VGSA™, DSMA™ audio delivery, and 
+the audio-arbitration layer — plus the hardware and software each needs.
+Basis The per-technology DEV docs (Drive · Technologies/) + Flight Plan gates + Preflight 
+2026-07-08. This doc ties them together; those stay the source of truth.
+Note Internal / confidential — contains unfiled IP (DVNC). Keep external disclosure high-level until 
+filed.
+How to use this document 
+It is both the pre-read and the agenda. Sections 3.1–3.6 are the six working blocks for the day, in order. Each 
+carries the what/why/how, the hardware and software required to build it, where it sits against the roadmap, 
+and a short “to decide on the day” list. Sections 4–5 are the consolidated hardware bill and software stack; §7 is 
+the timed agenda.
+Prepared for John Murray · 15 July 2026	 Page 1
+PAGE 2
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+1. The audio architecture at a glance 
+Prepared for John Murray · 15 July 2026	 Page 2
+PAGE 3
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+One idea shapes everything: the AeroNode — a crash-protected 
+processing + power hub, hard-mounted to the airframe — decouples 
+heavy computation from the headset. That is what lets the audio stack 
+do things a standalone headset cannot (a clean airframe vibration 
+reference for DVNC; a high-rate attitude source for VGSA/DSMA). 
+The H1 earcup runs only the hard-real-time inner loops; the 
+AeroNode does the smart, non-real-time work. 
+1.1 The three-band cancellation model 
+Noise Cancelling and DVNC divide the frequency spectrum; specifying the split 
+stops either side over-claiming: 
+1.2 The seams every audio subsystem shares 
+•One earcup driver + one in-cup error mic — Noise Cancelling and DVNC both drive them; their two anti-
+noise outputs must sum into one (shared engine vs parallel-and-sum: open). 
+•One H1 mic array — Noise Cancelling and PureV oice share it; the in-earcup mic is both ANC feedback and 
+a PureV oice reference. Geometry must be frozen jointly (with John). 
+•One deterministic AeroNode↔H1 link — CAN/RS-485-class wired or UWB/proprietary RF, not standard 
+Bluetooth. DVNC's phase coherence and VGSA's head-tracked horizon both die on variable Bluetooth 
+latency (20–100 ms). BT 5.x is comms/media only. See §6. 
+•One set of ears — comms, the VGSA horizon, DSMA cues, PilotSense warnings and media all contend. A 
+single priority/mixing scheme must arbitrate them (§3.6). 
+1.3 The six working blocks 
+Layer Band Method
+DVNC tonal ~20–250 Hz engine orders AeroNode-fed synthetic-reference FxLMS — the 
+differentiator
+Noise Cancelling broadband ~50 Hz–1 kHz H1 hybrid feedforward + feedback ANC (earcup mics)
+Passive ~1 kHz and up Earcup seal + materials
+Block Subsystem Role in the stack
+3.1 Noise Cancelling Acoustic (mic-reference) hybrid ANC — the 
+certifiable baseline & demo ANC pillar
+3.2 DVNC™ Vibration-referenced ANC layer — the differentiator 
+(off demo critical path)
+3.3 PureVoice™ V oice capture + enhancement — Path B 
+discriminative chain
+3.4 VGSA™ Spatial-audio virtual horizon for disorientation 
+(binaural, head-tracked)
+3.5 DSMA™ audio Stall-margin “headroom” cues — the audio-delivery 
++ arbitration side
+Prepared for John Murray · 15 July 2026	 Page 3
+PAGE 4
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+3.6 Warnings & arbitration PilotSense audio alerts + the system-level audio 
+priority/mixing scheme
+Block Subsystem Role in the stack
+Prepared for John Murray · 15 July 2026	 Page 4
+PAGE 5
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+3. Subsystem deep dives (the working blocks) 
+3.1 Noise Cancelling — acoustic hybrid ANC 
+What & why. The conventional acoustic (mic-reference) ANC path for the H1 
+earcup — feedforward (exterior) + feedback (in-cup) mics driving an in-cup 
+canceller. It is the certifiable, self-contained baseline that works with the headset alone, 
+and the ANC pillar for the December H1 Flight Demo. GA cockpit noise is 90–110 
+dB, LF-dominated; prop fundamental f0 = RPM × blade count ≈ 70–300 Hz. ANC 
+owns 20–~1000 Hz; passive handles ≥1 kHz. Continuous LF processing is 
+“acoustic fatigue” — cutting it is the human-performance payoff. 
+How. Committed architecture is hybrid AI-DSP: a real-time FxLMS (Filtered-x LMS) 
+loop generates anti-noise (needs an accurate factory-identified secondary path 
+Ŝ(z), driver→error-mic); a lightweight CRN (Convolutional Recurrent Network) 
+supervises — it classifies the acoustic scene (“Cessna prop”, “helicopter rotor”, 
+“jet wind”) and retunes FxLMS step-size/coefficients, without sitting in the sample 
+loop. Topology per the 10 Jul steer: hybrid feedforward+feedback + DVNC as a 
+third reference. A fail-safe analog passthrough (comms works with the DSP powered 
+down) is a non-negotiable V3 criterion. 
+Hardware to build it 
+•Prototype: RPi 4/5 (PREEMPT_RT) or Jetson 
+•Production path: STM32H7 / NXP i.MX RT + 
+dedicated audio DSP (ADI ADAU1467) 
+•CRN host: AI-capable MCU — ARM Cortex-
+M55 + Ethos-U55 NPU 
+•SigmaDSP bench: EV AL-ADAU1787Z (earcup 
+real-time path), EV AL-ADAU1467Z (algo dev), 
+EV AL-ADUSB2EBZ USBi 
+•Mics: ≥3/earcup — reference + error + boom; 
+low-latency MEMS (Knowles/Infineon), I²S/
+PDM 
+•Fail-safe: ADI ADG1634 audio switch vs relays; 
+6-pin Lemo cockpit connector + per-cockpit 
+adapters; line-level conversion 
+•Codecs: ultra-low-latency ADC/DAC, round-trip 
+<1 ms (non-negotiable); LF-capable driver
+Software / algorithms 
+•FxLMS / FxNLMS adaptive core (public-
+domain — also the FTO defence) 
+•CRN supervisor: scene classifier; INT8 
+quantised; TFLite Micro / ONNX on the NPU 
+•Ŝ(z) identification procedure (factory white-
+noise) 
+•SigmaStudio for static hybrid ANC bring-up 
+(adaptive FxLMS is NOT a drop-in block) 
+•Training data: aviation-noise corpora × clean 
+speech (LibriSpeech), varied SNR; loss SI-SDR / 
+log-mel 
+•Deep Filter Net / RNNoise evaluated for the 
+comms path
+When — status vs gate 
+WS-D · demo ANC pillar · next gate V2 (Month 4, ~1 Oct): acoustic FxLMS baseline running. On track — 
+acoustic bench in progress (flight-audio testing underway); relay fail-safe passthrough bench test running now 
+(due 12 Jul, result pending). Onboard ANC compute sizing kicked off this week (measure Deep Filter Net before 
+locking CM5 + Hailo-8/Coral). FTO: V on Seidels ANR landscape Phase 1 underway (Zone 3 = the in-cup 
+acoustic canceller — this is where the risk sits).
+Prepared for John Murray · 15 July 2026	 Page 5
+PAGE 6
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+3.2 DVNC™ — vibration-referenced ANC 
+What & why. A vibration-referenced ANC layer (not a replacement) that uses the 
+airframe-mounted AeroNode as a clean, predictive reference. The AeroNode 
+extracts the engine/prop fundamental + harmonics through structure (IMU) and 
+air (mic) and streams parameters (ω0, phase, per-harmonic amplitude — kilobits, 
+not audio) to the H1, which synthesises matched anti-noise for the ~20–250 Hz 
+tonal rumble. Defensibility is structural: no standalone headset (Bose A30, 
+Lightspeed Delta Zulu) has an airframe-mounted reference node. 
+How — and the honest framing. H1 synthesises x(n) = [sin ω0n, cos ω0n, sin 2ω0n, 
+…]; secondary path Ŝ(z) factory-fixed FIR; y(n)=Wᵀ(n)x(n); W(n+1)=W(n) − µ·e(n)·x′
+(n), driven by the earcup error mic. Because vibration travels the airframe 
+(~3,000–5,000 m/s) far faster than sound in air (~343 m/s), the AeroNode knows 
+the engine state before the sound arrives. Do not overclaim: for a steady tone a 
+phase-locked reference already cancels well — the defensible wins are (a) a 
+clutter-free reference (deeper, faster convergence) and (b) tracking through RPM 
+transients. P(z) (airframe→ear) is not static — needs continuous adaptation + dual-
+IMU head tracking. 
+On the day — to align / decide 
+•Silicon: consumer ANC SoC (Qualcomm-class, closed canceller) vs owning the DSP — owning it keeps 
+DVNC/PureV oice + FFT/HRTF load ours (John's FFT-accelerator-vs-NEON/NE10 question). 
+•CRN scope: scene classes, model size, NPU target, update rate. 
+•Fail-safe switch location: in the H1 (standalone-capable) vs in the AeroNode. 
+•Test rig: power + sample-rate budget; attenuation setup (ear simulator/HATS, DO-160G-class).
+Hardware to build it 
+•Earcup ANC DSP: EV AL-ADAU1787Z 
+(headset-optimised, ~5 µs latency) 
+•Algorithm-dev DSP: EV AL-ADAU1467Z 
+(MIPS + multichannel) 
+•Programmer: EV AL-ADUSB2EBZ (USBi) 
+•Product-candidate silicon: ADAU1860 / 
+ADAU1797 (Lark Studio) — later 
+•Mics/driver: low-latency MEMS (avoid PDM 
+decimation); LF-capable driver 
+•AeroNode sensing: calibrated IMU + reference 
+mic (validated) 
+•Bench (~$2,250 core): miniDSP EARS + 
+UMIK-2 + REW; LF monitor/sub; Scarlett 4i4 / 
+MOTU M4; Saleae Logic 8; bench PSU 
+•Phase 2 (deferred, ~$9k): HATS / IEC 60318-4 
+ear simulator
+Software / algorithms 
+•Order tracking: PLL / FFT on IMU → ω0, 
+phase, per-harmonic amplitude 
+•Synthetic-reference FxLMS (multi-reference 
+adaptive notch) 
+•Ŝ(z) offline identification; P(z) online 
+adaptation + dual-IMU head-track phase 
+correction 
+•Offline proof: Python (numpy/scipy/
+sounddevice) on recorded IMU+mic — per-
+harmonic dB reduction (the V2 evidence) 
+•SigmaStudio / REW for hardware bring-up + 
+measurement 
+•Stage-3 (layered, optional): GFANC — CNN 
+picks the control filter per scene; fast loop 
+applies it
+Prepared for John Murray · 15 July 2026	 Page 6
+PAGE 7
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+3.3 PureVoice™ — voice capture & enhancement 
+What & why. The pilot-voice capture + enhancement chain (into comms, AeroVault 
+recording, Creator Mode). The governing decision is already made: Path B — 
+discriminative enhancement — is the committed primary path; generative resynthesis 
+is retained only as an extreme-SNR fallback. Principle: “preserve and attenuate; 
+never fabricate.” Worst failure is over-suppression (muffled/dropped consonant) — 
+recoverable, and never a substitution. It fails toward noisy-but-correct, not clean-but-
+wrong. Generative resynthesis can confidently synthesise a wrong word 
+(“descend” for “ascend”, a corrupted altitude digit) — so it is out of the safety 
+path. Certifiability was the deciding factor. 
+How. Three decoupled problems. Capture: multi-sensor fusion — NC boom mic 
+(air, primary) + in-earcup reference mic (doubles as ANC ref) + bone-conduction 
+sensor (temple/concha piezo). Clean: 2-mic adaptive Griffiths-Jim cancellation → 
+compact mask-based neural denoiser (bounded gain). Encode: low-delay codec 
+(Opus-LD / LC3plus). Two latency budgets: the sidetone loop (own-voice monitor) is 
+hard — DAF disruption climbs ~50→200 ms, so the monitor never includes the 
+codec/radio; the transmit path (~20–30 ms) carries the heavy enhancement. 
+When — status vs gate 
+WS-D differentiator · OFF the demo critical path · reference engine demonstrable by V2, matures Months 
+6–12. Concept validated (AeroNode IMU+mic engine signature captured on the airframe). Next: offline Python 
+proof on the recorded signatures. Bench work waits on dev-kit delivery. IP: DVNC is the filing focus but not yet 
+filed — keep disclosure high-level.
+On the day — to align / decide 
+•Link: wired CAN/RS-485 vs UWB/proprietary RF — determinism + latency + clock/phase-sync budget 
+(the requirement that makes DVNC work). 
+•Accelerometer selection/placement + mounting/vibration isolation for a clean structural reference (joint 
+with AeroNode). 
+•P(z) strategy: pre-trained per airframe vs continuous online; validity across aircraft types. 
+•NC↔DVNC summation at the shared earcup: one engine vs parallel-and-sum.
+Hardware to build it 
+•Boom mic: noise-cancelling, air (primary 
+capture) 
+•In-earcup reference mic: shared with ANC 
+feedback 
+•Bone-conduction sensor: temple/concha piezo 
+(voicing pickup) — selection open 
+•Compute location: headset DSP vs AeroNode 
+(NPU/TPU) — open budget question 
+•Shares the H1 mic array with Noise Cancelling 
+(geometry freeze pending)
+Software / algorithms 
+•Griffiths-Jim 2-mic adaptive cancellation 
+•Mask-based neural denoiser (bounded gain on 
+the observed spectrum) 
+•Codec: Opus-LD vs LC3plus (per link/use-case) 
+•Sidetone: minimally-processed / analog low-
+latency monitor path 
+•Fallback (contained): LPC + LPCNet-hybrid 
+vocoder, extreme-SNR only 
+•RV-1 verification: reconstruction-integrity 
+evidence before sole-live-ATC use
+Prepared for John Murray · 15 July 2026	 Page 7
+PAGE 8
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+3.4 VGSA™ — spatial-audio virtual horizon 
+What & why. Experimental, emergency-only assistance for spatial disorientation in 
+IMC. The AeroNode's high-rate IMU drives a 3D binaural “virtual horizon” that 
+wraps the pilot's head and shifts with pitch/roll/yaw, prompting instinctive 
+corrective inputs — a non-visual auditory horizon that persists when the visual 
+one is gone. Spatial disorientation holds ~15% of fatal mishaps. 
+How. Localisation from ITD (<1500 Hz, azimuth), IID (>1500 Hz, azimuth) and 
+spectral/pinna filtering (>4 kHz, elevation); binaural cues alone can't resolve 
+elevation or front/back, so the HRTF does. HRTFs update in real time with head 
+tracking so the source stays locked to the aircraft frame. Attitude from the 
+AeroNode IMU; head orientation from the H1's own IMU (relative to aircraft); real-
+time HRTF convolution → binaural on the H1 drivers. Latency is safety-critical — the 
+corrective response breaks if head-motion-to-audio lag is too high (hence the 
+wired link, <1 ms). 
+When — status vs gate 
+WS-D (D-Voice) · off the demo critical path · gate RV-1. Committed to Path B. RV-1 evidence work = the M3–
+4 neural-vocoder bench investigation (due ~1 Oct). Mic-array geometry freeze rising in urgency now that headset 
+ID CAD has started.
+On the day — to align / decide 
+•Joint mic architecture with Noise Cancelling + H1 mechanical: placement, sampling clocks, which stage 
+owns which mics — freeze before either side commits. 
+•Denoiser model + compute location (headset vs AeroNode). 
+•Codec (Opus-LD vs LC3plus) and bone-conduction sensor + fusion weighting.
+Hardware to build it 
+•Attitude: AeroNode high-rate IMU (locked to 
+airframe via the structural dock) 
+•Head tracking: H1 IMU (orientation relative to 
+aircraft) 
+•Output: H1 binaural drivers 
+•Dev kits: Pixhawk 6X, 2× CM5, IMUs (ordered 
+2 Jul; arrival unblocks the bench tone) 
+•Deterministic wired link mandatory (latency-
+critical)
+Software / algorithms 
+•Real-time HRTF convolution (generic vs 
+individualised — open) 
+•Head-track fusion: H1 IMU vs AeroNode IMU 
+→ relative orientation per earcup 
+•Front/back-ambiguity mitigation 
+•V1 bench: minimal IMU-driven spatial tone 
+•Validation: blindfold attitude-correction 
+protocol (→ V3 gate)
+When — status vs gate 
+WS-C · H1-only · next gate V3 (Month 6, ~1 Dec): blindfold VGSA validated (attitude correction on audio 
+alone). Near-term V1 item (~1 Aug): IMU-driven tone on the bench once dev kits land. Standing #1 open item: 
+end-to-end latency budget + measurement method.
+Prepared for John Murray · 15 July 2026	 Page 8
+PAGE 9
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+3.5 DSMA™ — audio delivery of stall-margin cues 
+What & why (audio scope). DSMA estimates synthetic airspeed (EKF on 
+IMU+GPS+baro), computes the dynamic stall speed from G-load [V_stall(dyn) = 
+V_stall(base) × √n], and delivers a safety-margin “headroom” cue through the 
+headset — not a binary stall horn. States: SAFE (silent) → CAUTION (soft 
+“Airspeed decaying”) → EMERGENCY (priority “WARNING: STALL MARGIN 
+CRITICAL”). For John the relevant part is the audio delivery: how the headroom is 
+encoded to sound, injected into the pilot's stream, and prioritised against 
+everything else. 
+How (audio path). In the PoC bench a dedicated audio DSP (ADAU1701-class) 
+mixes TTS warning triggers (sent from the Pi over analog line-in) into the ANC 
+audio stream; flap state uses a Picovoice Porcupine wake-word engine on the 
+intercom (offloaded to a Coral Edge TPU so audio has no latency). In production 
+this becomes the H1 audio path + the audio-arbitration contract. 
+3.6 Warnings & the audio-arbitration layer 
+What & why. PilotSense biometrics (HR, HRV, SpO2, CO2 via in-ear + temple 
+sensors; Bio-Audio Fusion engine) deliver prioritised audio warnings for fatigue, 
+stress, hypoxia and hypercapnia. Together with comms, the VGSA horizon, DSMA 
+On the day — to align / decide 
+•End-to-end latency budget (IMU → AeroNode → H1 drivers) + measurement method — the standing 
+#1. 
+•Head-tracking approach (headset IMU vs AeroNode IMU fusion); HRTF generic vs individualised.
+Hardware to build it 
+•Flight controller: Pixhawk 6X (ArduPilot / 
+EKF3) 
+•Companion + edge AI: RPi 5 (8 GB) + Google 
+Coral Edge TPU (wake-word offload) 
+•Audio DSP: ADAU1701-class eval board (TTS 
+injection + mix into ANC stream) 
+•Link: Ethernet (MA VLink/UDP) primary; 
+UART fallback
+Software / algorithms 
+•stall_monitor.py (50 Hz PyMA VLink loop) — 
+margin + state machine 
+•Picovoice Porcupine wake-word (“Flaps ten/
+extended”) + kinematic flap detection 
+•Cue encoding: headroom → sound (design 
+open) 
+•TTS trigger over GPIO/line-out on threshold 
+breach 
+•Turbulence cross-check (n ≈ 1/cos bank) to 
+suppress false alerts
+When — status vs gate 
+WS-B · next gate V2 (Month 4): SAFE/CAUTION states firing from replayed flights; rides ArduPilot/EKF3. V1 
+(~1 Aug) owes the stall_monitor.py core loop in SITL. AeroNode Lite ships DSMA post-flight only; live audio 
+cues need the full-stack AeroNode/H1 path.
+On the day — to align / decide 
+•Audio cue design (headroom encoding) and its priority in the arbitration scheme (§3.6).
+Prepared for John Murray · 15 July 2026	 Page 9
+PAGE 10
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+cues and media, that is five audio sources contending for two ears. A single priority + 
+mixing scheme must own what ducks what, what is spatialised, and what is never 
+suppressed (safety-critical audio: stall horn, traffic/terrain, ATC). This is a root-
+level system contract — no single subsystem may define it — and a natural home 
+for DSP leadership. 
+Why this is the keystone block 
+Every other block outputs into this one. The arbitration scheme constrains latency budgets (VGSA, sidetone), 
+mixing headroom (DVNC + Noise Cancelling anti-noise + cues), and safety guarantees (nothing critical is 
+ducked). Getting it specified early de-risks all five.
+On the day — to align / decide 
+•Priority order + ducking rules across comms / VGSA / DSMA / PilotSense / media. 
+•What is spatialised vs mono; what is never suppressed. 
+•Where arbitration runs (AeroNode vs H1) and its latency budget.
+Prepared for John Murray · 15 July 2026	 Page 10
+PAGE 11
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+4. Consolidated hardware to build the audio stack 
+ 
+Everything the audio blocks need, grouped. Shared items appear 
+once; per-block specifics are in §3. 
+ 
+ 
+Group Item Used by / note
+ANC DSP (real-time) ADI EV AL-ADAU1787Z NC + DVNC earcup path (~5 µs latency)
+Algorithm-dev DSP ADI EV AL-ADAU1467Z NC + DVNC FxLMS + fusion dev
+DSP programmer EV AL-ADUSB2EBZ (USBi) SigmaStudio interface
+Product-candidate silicon ADAU1860 / ADAU1797 (Lark Studio) Later-phase NC codec
+CRN / NPU host Cortex-M55 + Ethos-U55 (or CM5 + 
+Hailo-8 / Coral) NC scene classifier; compute sizing open
+Flight controller Pixhawk 6X (ArduPilot/EKF3) DSMA + VGSA attitude/dynamics
+Companion compute RPi 5 (8 GB) / CM5 DSMA logic, edge AI, DVNC order tracking
+Edge TPU Google Coral DSMA wake-word offload
+Mics Low-latency MEMS ×≥3/earcup + boom 
++ bone-conduction piezo
+NC (ref/error), PureV oice (boom/BC), shared 
+array
+Driver LF-capable transducer All cancellation is sub-1 kHz
+Fail-safe / interconnect ADG1634 switch (vs relays), 6-pin 
+Lemo, per-cockpit adapters NC passthrough; AeroNode plug terminal
+AeroNode↔H1 link CAN/RS-485-class wired or UWB/RF DVNC + VGSA determinism (not Bluetooth)
+Measurement (Phase 1, 
+~$2,250)
+miniDSP EARS + UMIK-2 + REW; LF 
+monitor/sub; Scarlett 4i4 / MOTU M4; 
+Saleae Logic 8; bench PSU
+ANC-depth + bus debug
+Measurement (Phase 2, ~$9k) HATS / IEC 60318-4 ear simulator Formal eardrum-reference validation — 
+deferred
+Prepared for John Murray · 15 July 2026	 Page 11
+PAGE 12
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+5. Consolidated software & algorithm stack 
+6. The deterministic AeroNode↔H1 link & fail-safe 
+This one interface enables DVNC and VGSA and gates the fail-safe 
+story, so it deserves its own block. It must carry DVNC parameters 
+(kilobits — ω0/phase/harmonics) and VGSA/DSMA/PilotSense 
+audio with deterministic, low-latency, phase-coherent timing. Standard 
+Bluetooth (20–100 ms, variable) is disqualified for the real-time 
+path; BT 5.x stays for comms/media/AeroSync. Candidates: wired 
+CAN/RS-485-class (front-runner in the DEV view — clock/phase sync 
+is the real requirement, not bandwidth) or UWB/proprietary RF. The 
+same cable/connector carries the fail-safe analog passthrough — 
+which is why the switch-location decision (H1 vs AeroNode) is shared 
+between Noise Cancelling and this link. 
+Layer Tools / methods
+Real-time ANC FxLMS / FxNLMS adaptive core; Ŝ(z) factory identification; synthetic-reference FxLMS 
+(DVNC); SigmaStudio for static-ANC bring-up
+AI / neural CRN scene classifier (INT8, TFLite Micro / ONNX); GFANC (Stage 3); mask-based neural 
+denoiser (PureV oice); Deep Filter Net / RNNoise (comms path)
+Voice Griffiths-Jim adaptive cancellation; Opus-LD / LC3plus codecs; LPCNet-hybrid fallback
+Spatial Real-time HRTF convolution; IMU head-track fusion
+Flight / cues ArduPilot (EKF3); stall_monitor.py (PyMA VLink 50 Hz); Picovoice Porcupine wake-word; 
+MA VLink over UDP
+Offline / bench Python DSP (numpy / scipy / sounddevice) — primary free proof path; REW; SigmaStudio 
+(Windows)
+Prototyping OS RPi PREEMPT_RT; Goose (internal Qwen-based knowledge/LLM assist)
+On the day — to align / decide 
+•Bus vs RF + determinism/latency/clock-sync budget. 
+•Fail-safe switch location (H1 standalone vs AeroNode-as-unit) and its effect on the plug terminal + per-
+cockpit adapters.
+Prepared for John Murray · 15 July 2026	 Page 12
+PAGE 13
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+7. Running order — Wednesday 15 July 
+ 
+Attendees: John, Chris, Peter, Duran. Duran already answered 
+John's technical-questions list (10 Jul) with three steers: topology 
+is hybrid + DVNC third reference; AeroNode→H1 is a deterministic 
+wired link, not Bluetooth; the silicon question is consumer ANC SoC vs 
+owning the DSP. Each block below maps to a section above. 
+ 
+ 
+ 
+Time Block Aim
+10 min Architecture (§1) Shared model: AeroNode split, three-band 
+cancellation, the four seams
+25 min Noise Cancelling (§3.1) Silicon vs FTO Zone 3; CRN scope; fail-safe 
+(relay bench result); test rig
+20 min DVNC (§3.2) Synthetic-reference FxLMS; the link; Ŝ(z)/P(z); 
+offline proof plan
+15 min PureV oice (§3.3) Path B; joint mic architecture; latency budgets; 
+codec/denoiser/BC
+15 min VGSA + DSMA (§3.4–3.5) HRTF + head-track + latency; cue encoding
+15 min Arbitration + link (§3.6, §6) Priority/mixing scheme; wired-link + fail-safe 
+switch location
+10 min Workplan & contract 3-day cadence; first deliverables; Sigma Studio 
+baseline; wrap contractor structure
+Suggested first deliverables for John (to frame the workplan) 
+1. Offline Python DVNC proof — per-harmonic dB reduction on the recorded AeroNode IMU+mic signatures 
+(the V2 evidence). 
+2. Ŝ(z) factory-identification procedure (shared by Noise Cancelling + DVNC). 
+3. A first draft of the audio-arbitration priority/mixing scheme (unblocks all five blocks). 
+Until the contract is signed, ~90% of initial ANC/DVNC work is doable in-house on the Sigma Studio baseline.
+Prepared for John Murray · 15 July 2026	 Page 13
+PAGE 14
+Aerosense · Audio Core — Deep Dive & Agenda	 Internal / con ﬁdential
+8. Safety & IP notes 
+•Safety framing (mandatory). VGSA, DSMA and the PilotSense alerts are experimental, advisory, 
+emergency-only aids — they augment pilot awareness and do not replace certified avionics or training. The 
+AeroNode has zero input to flight controls. Noise Cancelling/DVNC are comfort features; the fail-safe analog 
+passthrough guarantees comms with the DSP powered down, and the H1 always works as a passive aviation 
+audio headset. 
+•FTO. Risk concentrates in the in-cup acoustic canceller (Noise Cancelling, Zone 3). The FxLMS/FxNLMS + 
+open-source-model route is the independent-derivation defence. V on Seidels ANR landscape Phase 1 is 
+underway; check any in-cup design choice against Zone 3 before committing silicon. 
+•DVNC disclosure. DVNC is the differentiator and filing focus but is NOT yet among the filed provisionals 
+— keep external disclosure high-level until filed. Treat this document as confidential IP under development. 
+Appendix — Glossary 
+Source docs (Drive · Technologies/): DEV Noise Cancelling.md, DEV 
+DVNC.md, DEV PureVoice.md, DEV VGSA.md, DEV DSMA.md + 
+root interface-contract CLAUDE.md; timing/status from _AeroCore/
+Aerosense Flight Plan and Preflight 2026-07-08. 
+Aerosense Aviation (Pty) Ltd — internal / confidential.
+Term Meaning
+FxLMS / FxNLMS Filtered-x (Normalised) LMS — the adaptive filter at the heart of both ANC paths; public 
+domain since the 1980s
+Ŝ(z) / P(z) Secondary path (driver→error-mic, factory-fixed) / primary path (airframe or noise→ear, non-
+static)
+CRN Convolutional Recurrent Network — ANC scene classifier supervising FxLMS (not in the 
+sample loop)
+GFANC Generative Fixed-filter ANC — a CNN selects a control filter per scene; a fast loop applies it
+HRTF Head-Related Transfer Function — spectral mapping that places a binaural source in 3D 
+(VGSA)
+ITD / IID Interaural Time / Intensity Difference — azimuth localisation cues
+Griffiths-Jim Adaptive 2-mic beamformer/canceller used in the PureV oice clean stage
+Path B PureV oice's committed discriminative chain (“preserve & attenuate, never fabricate”)
+DAF Delayed Auditory Feedback — the sidetone latency constraint (~50–200 ms)
+RV-1 PureV oice reconstruction-integrity gate before sole-live-ATC use
+EKF3 ArduPilot's Extended Kalman Filter state estimator — DSMA/VGSA source
+DO-160G RTCA environmental test standard referenced for attenuation/qualification
+Prepared for John Murray · 15 July 2026	 Page 14

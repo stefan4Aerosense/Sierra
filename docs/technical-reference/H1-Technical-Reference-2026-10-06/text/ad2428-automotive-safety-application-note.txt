@@ -1,0 +1,171 @@
+
+=== PDF PAGE 1 ===
+AD2428 Automotive Safety Application Note 
+Technical notes on using Analog Devices products and development tools  
+Visit our Web resources http://www.analog.com/ee- notes and http://www.analog.com/processors or 
+e-mail processor.support@analog.com or processor.tools.support@analog.com for technical support . 
+Guidelines AD2428 ISO26262:2018 Proven-In-Use
+Contributed by Daniel Fu, Martin Kessler, Kenneth Waurin, Stuart Patterson, John Purcell, Gerald Kupel Rev 04 – March 4, 2024 
+C
+opyright 2024, Analog Devices, Inc. All rights reserved. Analog Devices assumes no responsibility for customer product design or the use or application of customers’ 
+products or for any infringements of patents or rights of others which may result from Analog Devices assistance. All trademarks a nd logos are property of their 
+respective holders. Information furnished by Analog Devices applications and development tools engineers is believed to be accurate and reliable, however no 
+responsibility is assumed by Analog Devices regarding technical accuracy and topicality of the content provided in Analog Devices Engineer -to-Engineer Notes.  
+About this document  
+This Application Note summarizes the formal 
+automotive functional safety proven in use 
+analysis performed on the AD2428 product family 
+of A 2B (Automotive Audio Bus) transceiver s. 
+Analog Devices Inc. (ADI) interpretation of ISO 
+26262:2018 part 8, clause 14 (Proven in use 
+argument) in the context of the AD2 428 
+demonstrates compliance with all the 
+requirements in ISO 26262:2018 part 8, clause 14 
+which are addressable by a component supplier to 
+support safety integrity level requirements up to 
+ASIL B. 
+AD2428 Product Overview 
+The AD2428 transceiver block diagram is shown 
+in Figure 1 and a typical Communication System 
+Block Diagram of an A 2B communications is 
+illustrated in Figure 2. Here, a single-main node 
+and multiple subordinate nodes are connected 
+over a single unshielded twisted pair cable . The 
+main node transceiver is controlled by the host. 
+The host generates a periodic synchronization 
+signal (SYNC) on the I2S/TDM interface at a 
+fixed frequency (selectable either 44.1 kHz or 48 
+kHz), to which all A
+2B nodes synchronize. 
+Communication over the A 2B bus occurs in 
+periodic superframes at this rate. Data is 
+transferred at the A
+2B system bit clock 
+(SYSBCLK) rate, which is 1024 times faster than 
+the superframe rate (49.152 MHz for a frame rate 
+of 48 kHz, 45.158 MHz for a frame rate of 44.1 
+kHz). Each superframe is divided into periods of 
+downstream transmission, upstream transmission, 
+and no transmission (where the bus is not driven). 
+F
+igure 1: Block Diagram of the AD2428 
+F
+igure 2: The Communication System 
+Block Diagram shows an A2B Communications 
+System 
+
+
+=== PDF PAGE 2 ===
+AD2428 Proven-In-Use Application Note Page 2 of 4 
+The AD2428 product family has been released in 
+the market since November 2018. It is a 
+commercial off-the-shelf (COTS) product  which 
+has been developed according to the ADI product 
+development process as an  automotive QM  
+(Quality Managed) hardware element suitable for 
+integration into automotive systems . It was not 
+developed in accordance with the ISO 26262 set 
+of standards. In the sense of ISO 26262 there were 
+no ASIL-A/B/C/D classified safety requirements 
+assigned to the product during the development. 
+However, there is substantial field data 
+available for the AD2428 to provide PIU 
+analysis. 
+S
+cope for the System Integrator 
+It is the integrator’s responsibility to evaluate whether the AD2428 PIU application note is sufficient and suitable to 
+support the integration of AD2428 QM part into the safety-related system.  
+Product Evaluation 
+The AD2 428 product family includes severa l device derivatives that are differentiated by operating 
+temperature. Only the “W” grade parts, which are qualified for Automotive Applications and tested across 
+the full automotive temperature range , are considered for the PIU analysis data set  and are defined as the 
+PIU candidates. In addition, only shipments to automotive customers are considered for the PIU analysis 
+shipment volume.   
+The AD2428 product family is designed with a specific set of functions and has unique application space 
+use cases.  Based on this, its use cases in Automotive are assumed limited to those involving A
+2B.  As ADI 
+does not develop the end solution, the assumed use cases are not guaranteed by the Proven in Use argument. 
+Proven In Use Analysis 
+According to the requirements and recommendation of ISO 26262 part 8, clauses 14.4.4 and 14.4.5, the 
+following data has been used as input for the calculation:  
+• Start of production: November 2018
+• System: Automotive Audio Bus for audio system
+Product volume until July 23, 2023 ≥
+ xx1 
+• Field fails received by ADI s ince start of production xx2 pieces.
+Additionally, the following assumptions have been done: 
+• Op
+erational hours of a vehicle per year = 481 hours (1.32 hours per day), according to IEC62380
+recommendations.
+• Storage and delivery time (before AD2428 is used in a car) = 3 months  (¼ year)
+• Observation time for the year of delivery is counted by ¼ years as average observation time for devices
+which are delivered distributed over this year.
+1 For more detailed information, please contact with ADI sale representative. 
+2 For more detailed information, please contact with ADI sale representative. 
+
+=== PDF PAGE 3 ===
+ 
+AD2428 Proven-In-Use Application Note Page 3 of 4 
+The assumptions above are conservative. This already includes 1/4 years headroom for the production time and 
+storage time at Tier1 and OEM (see ISO 26262 part 8, clause 14.4.5.2.3).  
+The accounted observation time in 2023 for the samples which were delivered in 2019 is: 
+𝑡𝑡𝑜𝑜𝑜𝑜(2023) = 2023 − 2019 + 1/4 − 1/4 = 4 
+Service time calculation 
+The necessary minimum evaluation period tservice has been calculated as:  
+𝑡𝑡𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠≥ 𝑡𝑡𝑀𝑀𝑀𝑀𝑀𝑀× �𝒳𝒳1−𝐶𝐶𝐶𝐶;2𝑓𝑓+2�
+2
+2  
+Equ.1  - required service hours formula from ISO 26262-8:2018 clause 14 
+Where: 
+• f is the number of observed safety-related incidents. 
+• CL is the confidence level as absolute value (e.g. 0.7 for 70%); 
+• tMTTF  is the mean time to failure (1/failure rate) 
+• �𝒳𝒳𝛼𝛼,𝑠𝑠�
+2
+  is the chi-squared distribution with error probability α and ν degrees of freedom. 
+PIU Calculation Results Based on ADI PIU Calculator  
+Results for proven in use calculation according to ISO 26262:2018 part 8, clause 14 and ADI PIU calculator are as 
+shown in the Table 1 and Table 2. 
+Table 1 Accumulated Operation Time Results to Support Integration of AD2428 into ASIL B Systems.  
+ 
+Actual In-Service hours until June 
+2023 [hours]  
+Required  Minimum Service 
+Period [hours] 
+Assessment of results  
+3.84E+10 3.40E+10  PASS 
+ 
+Table 2 Calculated Results for Observable Incident Rate to Support Integration of AD2428 into ASILB 
+Systems 
+Calculated Observable Incident 
+Rate  
+ISO 26262 Limits for Observable 
+Incident Rate 
+Assessment of results  
+8.84E-9/h <1E-8/h PASS 
+ 
+Summary of AD2428 Proven In Use Analysis  
+The PIU calculation results demonstrate that the metrics for Minimum Service Interval and Incident Rate for an ASIL 
+B solution are met by the AD2428.  
+
+=== PDF PAGE 4 ===
+AD2428 Proven-In-Use Application Note Page 4 of 4 
+The calculated minimum service period required for ASIL B is 3.40E+10 hours.  The AD2428 as of June 2023 has 
+an in-service period of 3.84E+10 hours, which satisfies the ASIL B requirement. 
+The calculated incident rate for the AD2428 is 8.84E-09, which satisfies the ASIL B requirement of < 1E-08. 
+In the above calculation , even though a very conservative customer return number was used, the PIU calculation 
+results for AD2428 can still pass the ASIL B. 
+References  
+[1] ISO 26262-8:2018
+[2
+] AD2426/7/8 Automotive Audio Bus (A2B) Transceiver Technical Reference (Rev. 1.3)
+ad242x-trm.pdf (analog.com)
+[3] AD2426/AD2427/AD2428: Automotive Audio Bus A2B Transceiver Data Sheet (Rev. E)
+AD2426/AD2427/AD2428 (Rev. E) (analog.com)
+Document History  
+Revision Description 
+Rev 01 – October 31, 2023 Added PIU Calculation Results and Reference 
+Rev 02 – November 20, 2023 Added Modified Calculation Results based on Conservative Customer 
+return number 
+Rev 03 – February 07, 2024 Updated after the review feedback, Initial release 
+Rev 04 – March 04, 2024 Hidden Production Volume data 

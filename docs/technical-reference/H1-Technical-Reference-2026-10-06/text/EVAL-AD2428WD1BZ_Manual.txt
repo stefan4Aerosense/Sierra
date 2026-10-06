@@ -1,0 +1,788 @@
+
+=== PDF PAGE 1 ===
+  EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 
+Revision 1.1 , October 2019
+Part Number
+82-000983-01
+Analog Devices, Inc.
+One T echnology Way
+Norwood, MA 02062-9106
+
+=== PDF PAGE 2 ===
+Copyright Information
+© 2019 Analog Devices, Inc., ALL RIGHTS RESERVED. This document may not be reproduced in any form
+without prior, express written consent from Analog Devices, Inc.
+Disclaimer
+Analog Devices, Inc. reserves the right to change this product without prior notice. Information furnished by Ana-
+log Devices is believed to be accurate and reliable. However, no responsibility is assumed by Analog Devices for its
+use; nor for any infringement of patents or other rights of third parties which may result from its use. No license is
+granted by implication or otherwise under the patent rights of Analog Devices, Inc.
+Trademark and Service Mark Notice
+The Analog Devices logo, Blackfin, SHARC, A2B, SigmaDSP , SigmaStudio and EngineerZone are registered trade-
+marks of Analog Devices, Inc.
+All other brand and product names are trademarks or service marks of their respective owners.
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual ii
+
+=== PDF PAGE 3 ===
+Contents
+Preface
+Purpose of This Manual................................................................................................................................. 1–2
+Manual Contents........................................................................................................................................... 1–2
+Technical Support.......................................................................................................................................... 1–2
+Supported Integrated Circuit ......................................................................................................................... 1–2
+Supported Tools............................................................................................................................................. 1–2
+Product Information...................................................................................................................................... 1–2
+Analog Devices Website.............................................................................................................................. 1–3
+EngineerZone ............................................................................................................................................. 1–3
+Using the Board
+Product Overview .......................................................................................................................................... 2–1
+Package Contents........................................................................................................................................... 2–2
+Default Configuration ................................................................................................................................... 2–2
+Reference Design Information ....................................................................................................................... 2–3
+24AA512T - 512K I2C Serial EEPROM ....................................................................................................... 2–4
+AD2428 - Automotive Audio Bus A2B T ransceiver........................................................................................ 2–4
+ADAU1452 - SigmaDSP Digital Audio Processor.......................................................................................... 2–4
+ADAU1761 - SigmaDSP Stereo, Low Power, 96 kHz, 24-Bit Audio Codec with Integrated PLL .................. 2–5
+LT8609 - 2A/3A Peak Synchronous Step-Down Regulator with 2.5μA Quiescent Current............................ 2–6
+LT8620 - 65V, 2A Synchronous Step-Down Regulator with 2.5μA Quiescent Current ................................. 2–6
+LTC3121 - 1.5A Synchronous Step-Up DC/DC Converter ........................................................................... 2–6
+LTC3621 -1A Synchronous Step-Down Regulator ........................................................................................ 2–7
+LTC4040 - 2.5A Battery Backup Power Manager .......................................................................................... 2–7
+Using the Software......................................................................................................................................... 2–7
+Setting up Hardware for an A2B System .................................................................................................... 2–7
+Setting up Software ................................................................................................................................... 2–8
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual iii
+
+=== PDF PAGE 4 ===
+Hardware Reference
+System Architecture ....................................................................................................................................... 3–1
+Switches......................................................................................................................................................... 3–2
+Reset Pushbutton ( SW1 )........................................................................................................................... 3–3
+Connectors .................................................................................................................................................... 3–3
+SPDIF Input ( J1 ) .................................................................................................................................... 3–4
+SPDIF Output ( J2 ) ................................................................................................................................. 3–5
+Audio Input/Output ( J3 and J4 ) ............................................................................................................ 3–5
+SDP ( J5 ) ................................................................................................................................................. 3–5
+SigmaStudio ( P1 ) ..................................................................................................................................... 3–5
+A2B ( P2 and P3 )...................................................................................................................................... 3–5
+Power Plug ( P4 ) ....................................................................................................................................... 3–6
+Power Terminal ( P5 ) ................................................................................................................................ 3–6
+Battery ( P6 ) ............................................................................................................................................. 3–6
+Jumpers ......................................................................................................................................................... 3–6
+A2B Power ( JP1 ) ................................................................................................................................... 3–15
+Hybrid/Local Power ( JP2 )..................................................................................................................... 3–15
+Hybrid Power ( JP3 )............................................................................................................................... 3–16
+Boot ( JP4 )............................................................................................................................................. 3–16
+BCLK ( JP5 ) .......................................................................................................................................... 3–16
+SYNC ( JP6 ) .......................................................................................................................................... 3–16
+DRX0 ( JP7 ) .......................................................................................................................................... 3–17
+DRX1 ( JP8 ) .......................................................................................................................................... 3–17
+DTX1 ( JP9 ) .......................................................................................................................................... 3–17
+DTX0 ( JP10 )........................................................................................................................................ 3–17
+ADP621 CLK ( JP11 )............................................................................................................................ 3–17
+NTC ( JP12 ).......................................................................................................................................... 3–18
+A2B REG ( JP13 )................................................................................................................................... 3–18
+A2B Voltage ( JP14 ) ............................................................................................................................... 3–18
+iv EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 5 ===
+ADAU1761 MCLK Select ( JP19 ) ......................................................................................................... 3–18
+LEDs ........................................................................................................................................................... 3–19
+A2B Interrupt ( LED1 ) ............................................................................................................................ 3–19
+ADAU1452 Status ( LED2 ) ..................................................................................................................... 3–20
+USBi ( LED3 ).......................................................................................................................................... 3–20
+Reset ( LED4 ).......................................................................................................................................... 3–20
+LTC4040 Charge ( LED5 )....................................................................................................................... 3–20
+LTC4040 Fault ( LED6 ) .......................................................................................................................... 3–20
+LTC4040 PFO ( LED7 )........................................................................................................................... 3–20
+LTC4040 Reset ( LED8 ).......................................................................................................................... 3–20
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual v
+
+=== PDF PAGE 6 ===
+1   Preface
+Thank you for purchasing the Analog Devices, Inc. EVAL-AD2428WD1BZ evaluation system.
+In the default configuration (master mode), this evaluation board provides A2B master node functionality for an
+A2B network. A PC host controls the AD2428 A2B master transceiver I2C signals over the EVAL-ADUSB2EB
+USB-to-I2C bridge. This allows the PC to directly discover and control an A2B network, as well as to read back
+registers and monitor performance. Alternatively, the AD2428 master transceiver is controllable over the EI3 con-
+nector through an external uController/DSP host device like the Blackfin ADSP-BF527 processor. In the master
+mode, AD2428 digital audio signals interface directly to the ADAU1452 SigmaDSP® , which provides the clock and
+frame sync signals to the A2B network.
+The evaluation board also supports local-powered slave mode with different jumper settings, where AD2428 digital
+audio signals could interface directly to the ADAU1761 audio codec or three microphones, without the ADAU1452
+SigmaDSP sitting in the middle of the signal chain. In the slave mode, the AD2428 transceiver drives clock and
+frame sync signals to the ADAU1761 SigmaDSP for transmitting or receiving data. Three digital MEMS micro-
+phones with PDM output feed the A2B bus slots in the slave mode.
+The SigmaStudio®  graphical development tool is the programming, development, and tuning software for the Sig-
+maDSP , A2B and Sharc processors. Familiar audio processing blocks can be wired together as in a schematic, and the
+compiler generates DSP-ready code and a control surface for setting and tuning parameters. This tool allows engi-
+neers with no DSP code writing experience to easily implement a DSP into their design and yet is still powerful
+enough to satisfy the demands of experienced DSP designers. SigmaStudio links with both Analog Devices evalua-
+tion boards and production designs to provide full in-circuit real-time IC control.
+SigmaStudio includes an extensive library of algorithms to perform audio processing such as filtering, mixing, and
+dynamics processing, as well as basic low-level DSP functions and control blocks. Advanced record-side processing
+algorithms such as Enhanced Stereo Capture and wind noise detection are included in the standard libraries. Plug-in
+algorithms from Analog Devices and 3rd party partners can be added to SigmaStudio's drag-and-drop library.
+Along with its graphical DSP signal flow development, SigmaStudio also includes other features to speed up the
+design cycle from product concept to release. SigmaStudio includes tools for intuitively setting control registers, cal-
+culating tables of filter coefficients, visualizing filter magnitude and phase responses, generating C header files, and
+sequencing a series of controls to ease your transition from SigmaStudio to system implementation on your micro-
+controller.
+Preface
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 1–1
+
+=== PDF PAGE 7 ===
+Purpose of This Manual
+This manual provides instructions for installing the product hardware (board). This manual describes operation and
+configuration of the board components and provides guidelines for running code on the board.
+Manual Contents
+The manual consists of:
+• Using the board
+Provides basic board information.
+• Hardware Reference
+Provides information about the hardware aspects of the board.
+• Bill of Materials
+A companion file in PDF format that lists all of the components used on the board is available on the website
+at http://www.analog.com/EVAL-AD2428WD1BZ .
+Please contact Analog Devices Field Application T eam for documentation that is not available on website.
+• Schematic
+A companion file in PDF format documenting all of the circuits used on the board is available on the website
+at http://www.analog.com/EVAL-AD2428WD1BZ .
+Please contact Analog Devices Field Application T eam for documentation that is not available on website.
+Technical Support
+Contact your Analog Devices sales office or authorized distributor. Locate one at: http://www.analog.com/adi-sales
+Supported Integrated Circuit
+This evaluation system supports the Analog Devices AD2428 IC.
+Supported Tools
+Information about SigmaStudio and the A2B software plug-in for the EVAL-AD2428WD1BZ evaluation board is
+available at: www.analog.com/SigmaStudio.
+Product Information
+Information about the AD2428 product family is available at: www.analog.com/A2B
+Purpose of This Manual
+1–2 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 8 ===
+Analog Devices Website
+The Analog Devices website, http://www.analog.com, provides information about a broad range of products - ana-
+log integrated circuits, amplifiers, converters, transceivers, and digital signal processors.
+Also note, MyAnalog.com is a free feature of the Analog Devices website that allows customization of a web page to
+display only the latest information about products you are interested in. You can choose to receive weekly e-mail
+notifications containing updates to the web pages that meet your interests, including documentation errata against
+all manuals. MyAnalog.com provides access to books, application notes, data sheets, code examples, and more.
+Visit MyAnalog.com to sign up. If you are a registered user, just log on. Your user name is your e-mail address.
+EngineerZone
+EngineerZone is a technical support forum from Analog Devices, Inc. It allows you direct access to ADI technical
+support engineers. You can search FAQs and technical information to get quick answers to your embedded process-
+ing and DSP design questions.
+Use EngineerZone to connect with other DSP developers who face similar design challenges. You can also use this
+open forum to share knowledge and collaborate with the ADI support team and your peers. Visit http://
+ez.analog.com to sign up.
+Product Information
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 1–3
+
+=== PDF PAGE 9 ===
+2   Using the Board
+This chapter provides information on the major components and peripherals on the board, along with instructions
+for installing and setting up the emulation software.
+Product Overview
+The board features:
+• Analog Devices AD2428 - Automotive Audio Bus A2B T ransceiver
+• Audio
+• Analog Devices ADAU1452 - SigmaDSP Digital Audio Processor
+• Analog Devices ADAU1761 - SigmaDSP Stereo, Low Power, 96 kHz, 24-Bit Audio Codec with Integrat-
+ed PLL
+• T wo 3.5mm audio jacks
+• T wo optical SPDIF connectors
+• A2B
+• T wo DuraClikTM connectors
+• LEDs
+• Eight LEDs: one board reset (red) and seven status (yellow)
+• Pushbuttons
+• One pushbutton: Reset
+• External power supply
+• CE compliant
+• 12V @1.5 Amps
+Using the Board
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 2–1
+
+=== PDF PAGE 10 ===
+Package Contents
+Your EVAL-AD2428WD1BZ package contains the following items.
+• EVAL-AD2428WD1BZ evaluation board
+• EVAL-ADUSB2EBZ dongle
+• Universal 12V DC power supply
+• 1.8m twisted-pair CAT5e-rated cable with DuraClik connectors
+Contact the vendor where you purchased your EVAL-AD2428WD1BZ evaluation board or contact Analog Devices,
+Inc. if any item is missing.
+Default Configuration
+The EVAL-AD2428WD1BZ board is designed to run as a standalone unit.
+The Default Hardware Setup figure shows the default settings for jumpers and switches and the location of the
+jumpers, switches, connectors, and LEDs. Confirm that your board is in the default configuration before using the
+board.
+Default Config
+Package Contents
+2–2 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 11 ===
+Jumper setting for Master without mics mode
+Figure 2-1: Default Hardware Setup
+NOTE: Connectors on the back of the board are noted with dotted lines if applicable.
+Reference Design Information
+A reference design info package is available for download on the Analog Devices Web site. The package provides
+information on the schematic design, layout, fabrication, and assembly of the board.
+The information can be found at:
+http://www.analog.com/EVAL-AD2428WD1BZ
+Reference Design Information
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 2–3
+
+=== PDF PAGE 12 ===
+24AA512T - 512K I2C Serial EEPROM
+The Microchip T echnology Inc. 24AA512 is a 512Kb (64K x 8) Serial Electrically Erasable PROM (EEPROM),
+capable of operation across a broad voltage range (1.7V to 5.5V). It has been developed for advanced, low-power
+applications such as personal communications and data acquisition. This device also has a page write capability of
+up to 128 bytes of data. This device is capable of both random and sequential reads up to the 512K boundary.
+Functional address lines allow up to eight devices on the same bus, for up to 4 Mbit address space. This device is
+available in the standard 8-pin plastic DIP , SOIJ and DFN packages.
+AD2428 - Automotive Audio Bus A2B Transceiver
+The Automotive Audio Bus (A2B® ) provides a multichannel, I2S/TDM link over distances of up to 15 m between
+nodes. It embeds bidirectional synchronous pulse-code modulation (PCM) data (for example, digital audio), clock,
+and synchronization signals onto a single differential wire pair. A2B supports a direct point to point connection and
+allows multiple, daisy-chained nodes at different locations to contribute and/or consume time division multiplexed
+channel content.
+A2B is a single-master, multiple-slave system where the transceiver chip at the host controller is the master. The mas-
+ter generates clock, synchronization, and framing for all slave nodes. The master A2B chip is programmable over a
+control bus (I2C) for configuration and read back. An extension of this control bus is embedded in the A2B data
+stream, which grants direct access of registers and status information on slave transceivers as well as I2C to I2C com-
+munication over distance.
+The transceiver can connect directly to general-purpose digital signal processors (DSPs), field-programmable gate
+arrays (FPGAs), application specific integrated circuits (ASICs), microphones, analog-to-digital converters (ADCs),
+digital-toanalog converters (DACs), and codecs through a multichannel I2S/TDM interface. It also provides a pulse
+density modulation (PDM) interface for direct connection of up to four PDM digital microphones.
+Finally, the transceiver also supports an A2B bus powering feature, where the master node supplies voltage and cur-
+rent to the slave nodes over the same daisy-chained, twisted pair wire cable as used for the communication link.
+ADAU1452 - SigmaDSP Digital Audio Processor
+The ADAU1452 is a automotive qualified audio processors that far exceed the digital signal processing capabilities
+of earlier SigmaDSP®  devices. The restructured hardware architecture is optimized for efficient audio processing.
+The audio processing algorithms are realized in sample-by-sample and block-by-block paradigms that can both be
+executed simultaneously in a signal processing flow created using the graphical programming tool, SigmaStudio® .
+The restructured digital signal processor (DSP) core architecture enables some types of audio processing algorithms
+to be executed using significantly fewer instructions than were required on previous SigmaDSP generations, leading
+to vastly improved code efficiency.
+24AA512T - 512K I2C Serial EEPROM
+2–4 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 13 ===
+The 1.2 V , 32-bit DSP core can run at frequencies of up to 294.912 MHz and execute up to 6144 instructions per
+sample at the standard sample rate of 48 kHz. However, in addition to industry standard rates, a wide range of sam-
+ple rates are available. The integer PLL and flexible clock generator hardware can generate up to 15 audio sample
+rates simultaneously. These clock generators, along with the on board asynchronous sample rate converters (ASRCs)
+and a flexible hardware audio routing matrix, make the ADAU1452 ideal audio hubs that greatly simplify the design
+of complex multirate audio systems.
+The ADAU1452 interfaces with a wide range of ADCs, DACs, digital audio devices, amplifiers, and control circui-
+try, due to their highly configurable serial ports, S/PDIF interfaces, and multipurpose input/output pins. They can
+also directly interface with PDM output MEMS microphones, thanks to integrated decimation filters specifically
+designed for that purpose.
+Independent slave and master I2C/SPI control ports allow the ADAU1452 not only to be programmed and config-
+ured by an external master device, but also to act as masters that can program and configure external slave devices
+directly. This flexibility, combined with self boot functionality, enables the design of standalone systems that do not
+require any external input to operate.
+The power efficient DSP core executes full programs while consuming only a few hundred milliwatts (mW) of pow-
+er and can run at a maximum program load while consuming less than a watt, even in worst case temperatures ex-
+ceeding 100°C. This relatively low power consumption and small footprint make the ADAU1452 ideal replace-
+ments for large, general-purpose DSPs that consume more power at the same processing load.
+ADAU1761 - SigmaDSP Stereo, Low Power, 96 kHz, 24-Bit Audio
+Codec with Integrated PLL
+The ADAU1761 is a low power, stereo audio codec with integrated digital audio processing that supports stereo 48
+kHz record and playback at 14 mW from a 1.8 V analog supply. The stereo audio ADCs and DACs support sample
+rates from 8 kHz to 96 kHz as well as a digital volume control.
+The SigmaDSP core features 28-bit processing (56-bit double precision). The processor allows system designers to
+compensate for the real-world limitations of microphones, speakers, amplifiers, and listening environments, result-
+ing in a dramatic improvement in the perceived audio quality through equalization, multiband compression, limit-
+ing, and third-party branded algorithms.
+The SigmaStudio®  graphical development tool is used to program the ADAU1761. This software includes audio
+processing blocks such as filters, dynamics processors, mixers, and low level DSP functions for fast development of
+custom signal flows.
+The record path includes an integrated microphone bias circuit and six inputs. The inputs can be mixed and muxed
+before the ADC, or they can be configured to bypass the ADC. The ADAU1761 includes a stereo digital micro-
+phone input.
+The ADAU1761 includes five high power output drivers (two differential and three single-ended), supporting stereo
+head-phones, an earpiece, or other output transducer. AC-coupled or capless configurations are supported. Individu-
+al fine level controls are supported on all analog outputs. The output mixer stage allows for flexible routing of audio.
+ADAU1761 - SigmaDSP Stereo, Low Power, 96 kHz, 24-Bit Audio Codec with Integrated PLL
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 2–5
+
+=== PDF PAGE 14 ===
+LT8609 - 2A/3A Peak Synchronous Step-Down Regulator with
+2.5μA Quiescent Current
+The LT8609 is a compact, high efficiency, high speed synchronous monolithic step-down switching regulator that
+consumes only 1.7μA of non switching quiescent current. The LT8609 can deliver 2A of continuous current with
+peak loads of 3A (<1sec). Burst Mode operation enables high efficiency down to very low output currents while
+keeping the output ripple below 10mVP-P . A SYNC pin allows synchronization to an external clock, or spread spec-
+trum modulation for low EMI operation. Internal compensation with peak current mode topology allows the use of
+small inductors and results in fast transient response and good loop stability. The EN/UV pin has an accurate 1V
+threshold and can be used to program VIN UVLO or to shut down the part. A capacitor on the TR/SS pin pro-
+grams the output voltage ramp rate during start-up while the PG flag signals when VOUT is within ±8.5% of the
+programmed output voltage as well as fault conditions.
+LT8620 - 65V, 2A Synchronous Step-Down Regulator with 2.5μA
+Quiescent Current
+The LT8620 is a compact, high efficiency, high speed synchronous monolithic step-down switching regulator that
+accepts a wide input voltage range up to 65V , and consumes only 2.5μA of quiescent current. T op and bottom pow-
+er switches are included with all necessary circuitry to minimize the need for external components. Low ripple Burst
+Mode operation enables high efficiency down to very low output currents while keeping the output ripple below
+10mVP-P. A SYNC pin allows synchronization to an external clock. Internal compensation with peak current mode
+topology allows the use of small inductors and results in fast transient response and good loop stability. The EN/UV
+pin has an accurate 1V threshold and can be used to program VIN undervoltage lockout or to shut down the
+LT8620 reducing the input supply current to 1μA. A capacitor on the TR/SS pin programs the output voltage ramp
+rate during start-up. The PG flag signals when VOUT is within ±9% of the programmed output voltage as well as
+fault conditions. The LT8620 is available in small 16-Lead MSOP and 3mm × 5mm QFN packages with exposed
+pads for low thermal resistance.
+LTC3121 - 1.5A Synchronous Step-Up DC/DC Converter
+The The LTC3121 is a synchronous step-up DC/DC converter with true output disconnect and inrush current lim-
+iting. The 1.5A current limit along with the ability to program output voltages up to 15V makes the LTC3121 well
+suited for a variety of demanding applications. Once started, operation will continue with inputs down to 500mV ,
+extending run time in many applications.
+The LTC3121 features output disconnect in shutdown, dramatically reducing input power drain and enabling
+VOUT to completely discharge. Adjustable PWM switching from 100kHz to 3MHz optimizes applications for
+highest efficiency or smallest solution footprint. The oscillator can also be synchronized to an external clock for
+noise sensitive applications. Selectable Burst Mode operation reduces quiescent current to 25μA, ensuring high effi-
+ciency across the entire load range. An internal soft-start limits inrush current during start-up.
+LT8609 - 2A/3A Peak Synchronous Step-Down Regulator with 2.5μA Quiescent Current
+2–6 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 15 ===
+Other features include a <1μA shutdown current and robust protection under short-circuit, thermal overload, and
+output overvoltage conditions.
+LTC3621 -1A Synchronous Step-Down Regulator
+The The LTC3621 is a high efficiency 17V , 1A synchronous monolithic step-down regulator. The switching fre-
+quency is fixed to 1MHz or 2.25MHz with a ±40% synchronizing range. The regulator features ultralow quiescent
+current and high efficiencies over a wide VOUT range.
+The step-down regulator operates from an input voltage range of 2.7V to 17V and provides an adjustable output
+range from 0.6V to VIN while delivering up to 1A of output current. A user-selectable mode input is provided to
+allow the user to trade off ripple noise for light load efficiency; Burst Mode operation provides the highest efficiency
+at light loads, while pulse-skipping mode provides the lowest voltage ripple. The MODE pin can also be used to
+allow the user to sync the switching frequency to an external clock.
+LTC4040 - 2.5A Battery Backup Power Manager
+The LTC4040 is a complete 3.5V to 5.5V supply rail battery backup system. It contains a high current step-up
+DC/DC regulator to back up the supply from a single-cell Li-Ion or LiFePO4 battery. When external power is avail-
+able, the step-up regulator operates in reverse as a stepdown battery charger.
+The LTC4040’s adjustable input current limit function reduces charge current to protect the main supply from
+overload while an external disconnect switch isolates the external supply during backup. When the input supply
+drops below the adjustable PFI threshold, the 2.5A boost regulator delivers power from the battery to the system
+output.
+An optional input overvoltage protection (OVP) circuit protects the LTC4040 from high voltage damage at the VIN
+pin. One logic input selects either the Li-Ion or the LiFePO4 battery option, and two other logic inputs program
+the battery charge voltage to one of four levels suitable for backup applications.
+Using the Software
+The EVAL-AD2428WD1BZ evaluation board is intended to serve as the master node hosting an A2B system. It can
+also function as either a local or bus-powered slave node on the A2B bus. A host processor on the master node inter-
+faces directly with the A2B master transceiver through which it programs and reads the register spaces of all discov-
+ered slave transceivers. This configuration allows a full system initialization at start-up and status monitoring during
+operation. The examples furnished with the EVAL-AD2428WD1BZ A2B master evaluation board assume a connec-
+tion to specific slave boards, as noted in the following sections.
+Setting up Hardware for an A2B System
+Use the following sequence to set up the hardware for a three node A2B system.
+LTC3621 -1A Synchronous Step-Down Regulator
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 2–7
+
+=== PDF PAGE 16 ===
+1. Assemble the example A 2B system by connecting the indicated A2B evaluation boards as follows:
+• Master (EVAL-AD2428WD1BZ) – Connect the B-side (P2) to the A-side on the slave0 board (J7)
+• Slave0 (EVAL-AD2428WC1BZ) – Connect the B-side (J8) to the A-side on the slave1 board (J7)
+• Slave1 (EVAL-AD2428WB1BZ)
+2. Connect the PC over a USB cable and using the EVAL-ADUSB2EBZ USBi I 2C programmer to the SigmaStu-
+dio header (P1) on the master board.
+3. Connect an audio source to the stereo line input of the slave1 board (J2).
+4. Connect headphones to the audio output of the master board (J4).
+5. Plug the wall-mount 12V power supply (1.5 A) into an outlet and connect it to the power jack on the master
+board (P4).
+Setting up Software
+Use the following programming sequence to set up and operate the A2B Software.
+1. Install the SigmaStudio (Rev. 4.4 or later) and A2B Software for Windows/Baremetal (Rev 19.3.0 or later) soft-
+ware from the EVAL-AD2428WD1BZ product page.
+2. Copy the A2B.dll and A2Bstack.dll driver files from the installation directory (default) C:\Analog
+Devices\ADI_A2B_Software-Rel19.3.0\GUI\x86_x64) into the SigmaStudio installation
+( (default) C:\Program Files\Analog Devices\SigmaStudio 4.4). Start SigmaStudio and
+verify that the A2B.dll file is selected under T ools→AddInsBrowser. Save before exiting.
+3. Open the adi_a2b_3NodeSampleDemo.dspproj example project, which is located in the (default)
+C:\Analog Devices\ADI_A2B_Software-Rel19.3.0\Schematics\BF
+\A2BSchematics directory. Click the Link-Compile-Download icon, as shown in the Software Schematic
+for adi_a2b_3NodeSampleDemoConfig.dspproj A2B Example Project figure.
+Using the Software
+2–8 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 17 ===
+Figure 2-2: Software Schematic for adi_a2b_3NodeSampleDemoConfig.dspproj A2B Example Project
+4. Before running the demo, follow the Setting up Hardware for an A2B System for a three node A2B system
+guidance. The sample demo configuration appears as shown in the Software Schematic for adi_a2b_3Node-
+SampleDemoConfig.dspproj A2B Example Project figure. The audio source connected to the slave1 EVAL-
+AD2428WB1BZ board plays out of the headphones connected to the master EVAL-AD2428WD1BZ board.
+The microphone audio from the slave0 EVAL-AD2428WC1BZ board plays out of the slave1 EVAL-
+AD2428WB1BZ board.
+5. Use the configuration settings shown in the EVAL-AD2428WB1BZ Evaluation Board Example Slot Assign-
+ments figure to properly interface the codec with the A2B transceiver. The EVAL-AD2428WB1BZ Evaluation
+Board Example Slot Assignments figure shows an example of a downstream data configuration where two slots
+are consumed from the A2B bus and sent to the local DAC while two additional slots are contributed by the
+transceiver taking data from the local ADC.
+Using the Software
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 2–9
+
+=== PDF PAGE 18 ===
+Figure 2-3: EVAL-AD2428WB1BZ Evaluation Board Example Slot Assignments
+6. The ADAU1452 SigmaDSP on the master EVAL-AD2428WD1BZ board supplies the clock (SYNC) to the
+AD2428W transceiver. For development of customized ADAU1452 audio flows, disable the automatic pro-
+gramming of the ADAU1452 SigmaDSP during discovery. Right-click the ADAU1452 block and select Periph-
+eral Properties in the A2B software schematics.
+7. T o test the PDM microphones on the slave1 EVAL-AD2428WB1BZ board, make the connections shown in
+the Software Schematic for adi_a2b_3NodeSampleDemoConfig.dspproj A2B Example Project figure. Click RX1
+in the A2B cell to change the input to PDM, as shown in the Changing AD2428W Pin Function from DRX1
+to PDM1 figure.
+The headphones connected to the master EVAL-AD2428WD1BZ board can be used to listen to the micro-
+phone data coming from the slave1 EVAL-AD2428WB1BZ board.
+Figure 2-4: Changing AD2428W Pin Function from DRX1 to PDM1
+Using the Software
+2–10 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 19 ===
+8. Use the Stream Config tab (right-click on T arget Processor → Device Properties → Stream Config) to define audio
+streams across the nodes. (See the Stream Configuration figure). The stream assignments configure the up-
+stream and downstream slot settings across the nodes.
+Figure 2-5: Stream Configuration
+Using the Software
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 2–11
+
+=== PDF PAGE 20 ===
+3   Hardware Reference
+This chapter describes the hardware design of the EVAL-AD2428WD1BZ evaluation board.
+System Architecture
+The board's configuration is shown in the Block Diagram figure.
+Hardware Reference
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 3–1
+
+=== PDF PAGE 21 ===
+AD2428
+A2B
+(2) 2 pin 
+DuraClik
+LEDI2C
+ADC/DAC
+ADAU1761
+3.5mm 
+Stereo
+Line Out
+3.5mm 
+Stereo
+Line In
+I2S/TDM
+PDM
+IRQ
+Digital Audio 
+Processor
+ADAU1452TOSLINK
+Optical
+Output
+TOSLINK
+Optical
+Input
+(3)
+PDM Mics
+12V
+PWR IN
+5V
+Regulator 
+LT8609S
+Battery 
+Backup 
+Power 
+Manager 
+LTC4040
+3.3V
+Regulator
+LTC3621
+7V/8V
+Regulator
+LTC3121
+Li-Ion
+Battery
+Figure 3-1: Block Diagram
+Switches
+This section describes operation of the switches. The switch locations are shown in the Switch Locations figure.
+Switches
+3–2 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 22 ===
+Figure 3-2: Switch Locations
+Reset Pushbutton ( SW1 )
+The reset pushbutton resets the ADAU1452 SigmaDSP . Reset ( LED4 ) is used to indicate when the board is in
+reset.
+Connectors
+This section describes connector functionality and provides information about mating connectors. The connector
+locations are shown in the Connector Locations figure.
+Switches
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 3–3
+
+=== PDF PAGE 23 ===
+Figure 3-3: Connector Locations
+SPDIF Input ( J1 )
+The SPDIF Input connector is conencted to the SPDIFIN on the ADAU1452 - SigmaDSP Digital Audio Process-
+or.
+Part Description Manufacturer Part Number
+Fiber optic receiver Everlight PLR135/T10
+Mating Cable
+Connectors
+3–4 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 24 ===
+Part Description Manufacturer Part Number
+Standard TOSLINK optical digital cable
+SPDIF Output ( J2 )
+The SPDIF Output connector is conencted to the SPDIFOUT on the ADAU1452 - SigmaDSP Digital Audio Pro-
+cessor.
+Part Description Manufacturer Part Number
+Fiber optic transmitter Everlight PLT133/T10W
+Mating Cable
+Standard TOSLINK optical digital cable
+Audio Input/Output ( J3 and J4 )
+The audio input connector is connected to the LAUX and RAUX on the ADAU1761 - SigmaDSP Stereo, Low
+Power, 96 kHz, 24-Bit Audio Codec with Integrated PLL. The audio output is connected to the LHP and RHP on
+the ADAU1761 - SigmaDSP Stereo, Low Power, 96 kHz, 24-Bit Audio Codec with Integrated PLL.
+Part Description Manufacturer Part Number
+3.5mm Stereo Jack CUI SJ-3523-SMT
+Mating Cable
+Standard 3.5mm stereo audio male cable
+SDP ( J5 )
+The SDP connector allows for an SDP daughterboard containing an ADSP-BF527 processor to be connected to the
+eval board when used in master mode.
+SigmaStudio ( P1 )
+This connector interfaces with SigmaStudio through the EVAL-ADUSB2EBZ board. The connector is a 0.1" head-
+er. The pinout can be found in the schematic.
+A2B ( P2 and P3 )
+P2 is used to connect downstream towards the next-in-line slave board, and P3 is used to connect upstream towards
+the master board. These connectors allow the AD2428W on the eval board to talk to other A2B devices on the bus.
+Connectors
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 3–5
+
+=== PDF PAGE 25 ===
+Part Description Manufacturer Part Number
+2-pin DuraClik Molex 5023520200
+Mating Cable
+DuraClik cable assembly
+Power Plug ( P4 )
+This powers up the board with a 12V supply. Power is required when the board is operating in both master and slave
+mode.
+Part Description Manufacturer Part Number
+2.1 mm power jack CUI PJ-102AH
+Mating Cable
+12.0VDC@1.5A power supply CUI EMSA120150-P5RP-SZ
+Power Terminal ( P5 )
+This powers up the board with a 12V supply. Power is required when the board is operating in both master and slave
+mode.
+Part Description Manufacturer Part Number
+5.08mm power jack Weidmuller 1760510000
+Mating Cable
+12.0VDC discrete wires
+Battery ( P6 )
+The battery connector is a terminal block for connecting to a 3.7V Li-Ion battery. This battery from adafruit was
+tested on the board.
+Jumpers
+This section describes functionality of the configuration jumpers. The Jumper Locations figure shows the jumper
+locations.
+Connectors
+3–6 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 26 ===
+Jumper setting for Master without mics mode
+Figure 3-4: Master Without Microphones
+Jumpers
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 3–7
+
+=== PDF PAGE 27 ===
+Jumper setting for Master with mics(IO7 Clock) mode
+Figure 3-5: Master with Microphones (PDMCLK/IO7 Clock)
+Jumpers
+3–8 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 28 ===
+Jumper setting for Master with mics(without IO7 Clock) mode
+Figure 3-6: Master with Microphones (No PDMCLK/IO7 Clock)
+Jumpers
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 3–9
+
+=== PDF PAGE 29 ===
+Jumper setting for Slave (codec only) mode
+Figure 3-7: Slave with Codec Only
+Jumpers
+3–10 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 30 ===
+Jumper setting for Slave(codec,mics without IO7 Clock & no SigmaDSP) mode
+Figure 3-8: Slave with Codec with Microphones (No PDMCLK/IO7 Clock, No SigmaDSP)
+Jumpers
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 3–11
+
+=== PDF PAGE 31 ===
+Jumper setting for Slave (codec, mics with IO7 Clock & no SigmaDSP) mode
+Figure 3-9: Slave with Codec with Microphones (PDMCLK/IO7 Clock, No SigmaDSP)
+Jumpers
+3–12 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 32 ===
+Jumper setting for Slave (only mics & IO7 Clock) mode
+Figure 3-10: Slave with Microphones (PDMCLK/IO7 Clock)
+Jumpers
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 3–13
+
+=== PDF PAGE 33 ===
+Jumper setting for Slave (only mics & no IO7 Clock) mode
+Figure 3-11: Slave with Microphones (No PDMCLK/IO7 Clock)
+Jumpers
+3–14 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 34 ===
+Jumper setting for Slave (with mics,codec & SigmaDSP) mode
+Figure 3-12: Slave with Microphones (with Codec, with SigmaDSPs)
+A2B Power ( JP1 )
+The A2B Power jumper is used to provide power to the AD2428 via an LTC3121 regulator. When this jumper is
+installed, the A2B REG ( JP13 ) should not be installed. Also, the A2B Voltage ( JP14 ) A2B Voltage jumper needs
+to be configured. This jumper is installed by default.
+Hybrid/Local Power ( JP2 )
+Jumpers
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 3–15
+
+=== PDF PAGE 35 ===
+The Hybrid/Local Power jumper is used in conjunction with Hybrid Power ( JP3 ) for enabling the hybrid power
+mode. Hybrid power mode is used in conjunction with local power mode. Hybrid power allows a node that uses a
+local power source from Power Plug ( P4 ) or Power T erminal ( P5 ) to automatically transition to A2B bus power
+when the local power source is no longer available. Hybrid power mode is enabled by installing a jumper on pins 1-2
+and pins 3-4. Remove all jumpers to disable hybrid power mode. Hybrid power mode is disabled by default.
+Hybrid Power ( JP3 )
+The Hybrid Power jumper is used in conjunction with Hybrid/Local Power ( JP2 ) for enabling the hybrid power
+mode. Hybrid power mode is used in conjunction with local power mode. Hybrid power allows a node that uses a
+local power source from Power Plug ( P4 ) or Power T erminal ( P5 ) to automatically transition to A2B bus power
+when the local power source is no longer available. Hybrid power mode is enabled by installing a jumper on pins 1-2
+and pins 3-4. Remove all jumpers to disable hybrid power mode. Hybrid power mode is disabled by default.
+Boot ( JP4 )
+The Boot jumper allows the ADAU1452 SigmaDSP to perform a self boot, in which it loads its RAM and register
+settings from an external EEPROM. When the jumper is installed, no self boot operation is initiated. When the
+jumper is removed, a self boot operation is initiated the next time there is a rising edge on the RESET signal of the
+ADAU1452 SigmaDSP . This jumper is installed by default.
+BCLK ( JP5 )
+The BCLK jumper is used to select the routing of the AD2428 BCLK signal. The default setting for the jumper is
+pins 3 and 4.
+Jumper Clock Routing
+3 and 4 ADAU1452_BCLK_OUT0
+1 and 3 ADAU1761_BCLK
+3 and 5 ADAU1452_BCLK_IN0
+SYNC ( JP6 )
+The SYNC jumper is used to select the routing of the AD2428 SYNC signal. The default setting for the jumper is
+pins 3 and 4.
+Jumper Clock Routing
+3 and 4 ADAU1452_LRCLK_OUT0
+1 and 3 ADAU1761_LRCLK
+3 and 5 ADAU1452_LRCLK_IN3
+Jumpers
+3–16 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 36 ===
+DRX0 ( JP7 )
+The DRX0 jumper is used to select the routing of the AD2428 DRX0 signal. The default setting for the jumper is
+pins 3 and 4.
+Jumper Clock Routing
+3 and 4 ADAU1452_SDATA_OUT0
+1 and 3 ADAU1761_ADC
+3 and 5 ADMP621_DATA0
+DRX1 ( JP8 )
+The DRX1 jumper is used to select the routing of the AD2428 DRX1 signal. The default setting for the jumper is
+pins 2 and 3.
+Jumper Clock Routing
+1 and 2 ADMP621_DATA1
+2 and 3 ADAU1452_SDATA_OUT1
+DTX1 ( JP9 )
+The DTX1 jumper is used to select the routing of the AD2428 DTX1 signal. The default setting for the jumper is
+pins 3 and 4.
+Jumper Clock Routing
+3 and 4 ADAU1452_SDATA_IN1
+1 and 3 ADAU1452_SDATA_OUT1
+3 and 5 ADAU1761_ADC
+DTX0 ( JP10 )
+The DTX0 jumper is used to select the routing of the AD2428 DTX0 signal. The default setting for the jumper is
+pins 1 and 2.
+Jumper Clock Routing
+1 and 2 ADAU1452_SDATA_IN0
+2 and 3 ADAU1761_DAC
+ADP621 CLK ( JP11 )
+Jumpers
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 3–17
+
+=== PDF PAGE 37 ===
+The ADP621 CLK jumper is used to select the routing of the ADP621 CLK signal. The default setting for the
+jumper is pin 1.
+Jumper Clock Routing
+3 and 4 AD2428_BCLK
+1 and 3 AD2428_IO7
+3 and 5 ADAU1452_BCLK_OUT0
+NTC ( JP12 )
+Input to the Thermistor Monitoring Circuits. The NTC pin connects to a battery’s thermistor to determine if the
+battery is too hot or too cold to charge. If the battery’s temperature is out of range, charging is paused until it re-
+enters the valid range. A low drift bias resistor is required from VIN to NTC and a thermistor is required from NTC
+to ground. If the NTC function is not desired, the NTC pin should be grounded This jumper is installed by default.
+A2B REG ( JP13 )
+The A2B REG jumper is used to enable or disable the regulator for the AD2428 transceiver. The default setting for
+the jumper is not installed.
+Jumper Clock Routing
+Installed Regulator Disabled
+Not Installed Regulator Enabled
+A2B Voltage ( JP14 )
+The A2B Voltage jumper is used to select the voltage for the AD2428 transceiver. The default setting for the jumper
+is installed.
+Jumper Clock Routing
+Installed 7V
+Not Installed 8V
+ADAU1761 MCLK Select ( JP19 )
+The ADAU1761 MCLK Select jumper is used to select the MCLK source for the ADAU1761 SigmaDSP , and the
+default position is 1 and 2. This jumper is available on Rev 1.1 boards and later, and earlier versions may label this
+jumper as ADAU1961 MCLK Select. As the ADAU1761 is pin-compatible with the ADAU1961, the footprint and
+silkscreen are identical in this regard.
+Jumpers
+3–18 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 38 ===
+Jumper Clock Routing
+1 and 2 ADAU1452_CLKOUT
+2 and 3 AD2428_BCLK
+LEDs
+This section describes the on-board LEDs. The LED Locations figure shows the LED locations.
+Figure 3-13: LED Locations
+A2B Interrupt ( LED1 )
+LEDs
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 3–19
+
+=== PDF PAGE 39 ===
+The A2B Interrupt LED is driven by the AD2428 transceiver. The LED is turned on when the IRQ/IO0 pin drives
+it high. Refer to the AD2420(W)/6(W)/7(W)/8(W)/9(W) T echnical Reference for further information about using
+interrupts.
+ADAU1452 Status ( LED2 )
+The ADAU1452 Status LED is lit when the ADAU1452 SigmaDSP has been successfully programmed.
+USBi ( LED3 )
+The USBi LED is lit when there is an active SigmaStudio session connected to the AD2428 transceiver.
+Reset ( LED4 )
+When ON (red), it indicates that the board is in reset. A master reset is asserted by pressing SW1 , which activates
+the LED. For more information, see Reset Pushbutton ( SW1 ).
+LTC4040 Charge ( LED5 )
+The LTC4040 Charge LED is lit during a battery charging cycle. CHRG is pulled low until the charge current
+drops below C/8, at which point the CHRG pin becomes high impedance.
+LTC4040 Fault ( LED6 )
+The LTC4040 Fault LED indicates charge cycle fault conditions during a battery charging cycle. A temperature fault
+or a bad-battery fault causes this pin to be pulled low. If no fault conditions exist, the FAULT pin remains high
+impedance.
+LTC4040 PFO ( LED7 )
+The LTC4040 PFO LED is pulled to ground by an internal N-channel MOSFET when the PFI input is below the
+falling threshold of the power-fail comparator. Once the PFI input rises above the rising threshold, this pin becomes
+high impedance.
+LTC4040 Reset ( LED8 )
+The LTC4040 Reset LED is pulled to ground by an internal N-channel MOSFET whenever the RSTFB pin falls
+below 0.74V . Once the RSTFB pin voltage recovers, the pin becomes high impedance after a 232ms delay.
+LEDs
+3–20 EVAL-AD2428WD1BZ A 2B Evaluation Board Manual
+
+=== PDF PAGE 40 ===
+EVAL-AD2428WD1BZ A 2B Evaluation Board Manual 21

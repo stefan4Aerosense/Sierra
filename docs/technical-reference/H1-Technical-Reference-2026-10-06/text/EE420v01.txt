@@ -1,0 +1,186 @@
+
+=== PDF PAGE 1 ===
+  
+Engineer-to-Engineer Note EE-420 
+ 
+Technical notes on using Analog Devices A2B® products and development tools  
+Visit our Web resources http://www.analog.com/ee- notes and http://www.analog.com/a2b. 
+ 
+EVAL-AD2428WC1BZ A²B Evaluation Board User Guide 
+Contributed by A 2B Applications Team Rev 1 – October 8, 2019 
+C
+opyright 2019, Analog Devices, Inc. All rights reserved. Analog Devices assumes no responsibility for customer product design or the use or application of customers’ 
+products or for any infringements of patents or rights of others which may result from Analog Devices assistance. All trademarks and logos are property  of their 
+respective holders. Information furnished by Analog Devices applications and development tools engineers is believed to be accurate and reliable, however no 
+responsibility is assumed by Analog Devices regarding technical accuracy and topicality of the content provided in Analog Devices Engineer -to-Engineer Notes.  
+Features  
+ Bus-Powered A 2B® Slave Transceiver
+(AD2428W)
+ Four Stereo MEMS Microphones
+ LED on GPIO
+Included Equipment  
+ 1.8 m Twisted- Pair Cable (CAT5e -Rated,
+with DuraClikTM Connectors)
+ Rubber Feet
+Equipment Needed 
+ EVAL-AD2428WD1BZ A 2B Master Node
+Evaluation Board
+ Additional A2B Slave Nodes (Optional)
+ EVAL-AD2428WG1BZ
+ EVAL-AD2428WB1BZ
+Documents Needed  
+ Transceiver Data Sheet[1]
+ Transceiver Technical Reference[2]
+ EVAL-AD2428WC1BZ Hardware D esign
+Files[3]
+Software Needed  
+ SigmaStudio® Rev. 4.4 or later
+ Software Distribution for A2B Rev 19.3.0 or
+later, DLLs
+
+=== PDF PAGE 2 ===
+   
+ 
+EVAL-AD2428WC1BZ A²B Evaluation Board User Guide (EE-420) Page 2 of 7 
+General Description  
+This evaluation board provides A 2B bus-powered slave node functionality for an A 2B network, including 
+support for PDM microphone input . Bus-powered slave nodes derive power from the bias voltage on the 
+A2B wires. 
+The EVAL-AD2428WC1BZ board’s four digital INMP621 MEMS microphones with PDM output can feed 
+the upstream or downstream slots on the A 2B bus. Adding multiple microphone signals inc reases the 
+acoustic dynamic range. This four microphone array also lends itself well to static or adaptive beamforming 
+techniques used to introduce directionality to the otherwise omnidirectional MEMS microphones. 
+For the board schematic s, assembly/layout files, and bill of materials (BOM), see the EVAL -
+AD2428WC1BZ Hardware Design Files ZIP archive associated with this EE-note[3]
+Evaluation Board Hardware  
+Figure 1 identifies the important components and connecti on points on the EVAL -AD2428WC1BZ 
+evaluation board. 
+ 
+Figure 1. Board Overview 
+A2B Bus Connections (J7 and J8) 
+The 2-pin Molex DuraClik connector (J7) allows a single twisted- pair A2B cable to attach to the A-side of 
+the AD2428W transceiver such that the opposite end of the A2B cable can attach to the B-side of either the 
+master transceiver or the next slave node transceiver closer to the master node. 
+
+
+=== PDF PAGE 3 ===
+   
+ 
+EVAL-AD2428WC1BZ A²B Evaluation Board User Guide (EE-420) Page 3 of 7 
+The 2-pin Molex DuraClik connector (J8) allows a single twisted- pair A2B cable to attach to the B-side of 
+the AD2428W transceiver . The opposite end of the A 2B cable can attach to the A -side of the next slave 
+node transceiver, including the last-in-line slave. 
+PDM Microphones (INMP621) 
+There are four digital MEMS microphones connected directly to the transceiver through PDM. 
+LED (D2) 
+The D2 LED reflects the status of the DTX1/IO3 pin when used as a GPIO pin. 
+Test Points (TP1 – TP10) 
+The test points are well -marked on the silkscreen of the PCB, providing access to signals and power 
+supplies, as summarized in Table 1. Refer to the schematics to locate the probe points. 
+ 
+Test Point Provides Access To 
+TP1 AD2428W I2C Serial Clock Signal (SCL) 
+TP2 AD2428W I2C Serial Data Signal (SDA) 
+TP3 EVAL-AD2428WC1BZ Board Ground Potential 
+TP4 AD2428W I2S/TDM Primary Data Signal (DTX0/IO3) 
+TP5 EVAL-AD2428WC1BZ Board Ground Potential 
+TP6 AD2428W IO1 Signal (ADR1/IO1) 
+TP7 AD2428W VOUT1 Output Voltage (PLLVDD/DVDD) 
+TP8 AD2428W VOUT2 Output Voltage (ATRXVDD/BTRXVDD) 
+TP9 AD2428W Next Slave Power Sense (SENSE) 
+TP10 AD2428W Return Current for Next Slave (VSSN) 
+Table 1. EVAL-AD2428WC1BZ Evaluation Board Test Points 
+I2C Device Addresses in 7-bit Format 
+The I2C device address in 7-bit format does not include the read-write (R/W) bit. The schematics tab in the 
+SigmaStudio A 2B window uses the 7- bit address representation for configuration of and access  to the 
+AD2428W A2B transceiver registers. 
+Evaluation Board Software Quick Start Procedure  
+The EVAL-AD2428WC1BZ evaluation board is intended to be connected within an existing A 2B system, 
+where at least a master node exists for the on-board AD2428W transceiver to be a slave to on the A2B bus. 
+A host processor on the master node interfaces directly with the A2B master transceiver, through which it 
+programs and reads the register spaces of all discovered slave transceivers. This configuration allows a full 
+system initialization at start-up and status monitoring during operation. 
+
+=== PDF PAGE 4 ===
+   
+ 
+EVAL-AD2428WC1BZ A²B Evaluation Board User Guide (EE-420) Page 4 of 7 
+The examples furnished with the complementary EVAL -AD2428WD1BZ A2B master evaluation board 
+assume a connection to specific slave boards, as noted in the following sections. 
+Connection to EVAL-AD2428WD1BZ Master Board 
+For master board setup instructions, please refer to the EVAL -AD2428WD1BZ A2B Evaluation Board 
+Manual[4]. Ensure that the master board jumpers are all installed in their default positions. 
+Hardware Setup for a 3-Node A2B System 
+1. Assemble the example A2B system by connecting the indicated A2B evaluation boards as follows: 
+Master (EVAL-AD2428WD1BZ) – Connect the B-side (P2) to the A-side on the slave0 board (J7) 
+Slave0 (EVAL-AD2428WC1BZ) – Connect the B-side (J8) to the A-side on the slave1 board (J7) 
+Slave1 (EVAL-AD2428WB1BZ) 
+2. Connect the PC over a USB cable and through the EVAL-ADUSB2EBZ USBi I2C programmer to the 
+SigmaStudio header (P1) on the master board. 
+3. Connect an audio source to the stereo line input of the slave1 board (J2). 
+4. Connect headphones to the audio output of the master board (J4). 
+5. Plug the wall-mount 12V power supply (1.5 A) into an outlet and connect it to the power jack on the 
+master board (P4). 
+Software Setup and Operation 
+1. Install the SigmaStudio (Rev. 4.4 or later) and A 2B Software for Windows/Baremetal ( Rev 19.3.0)  
+software from the EVAL-AD2428WC1BZ product page. 
+2. Copy the A2B.dll and A2Bstack.dll driver files from the installation directory (default C:\Analog 
+Devices\ADI_A2B_Software-Rel19.3.0\GUI\x86_x64) into the SigmaStudio installation ( default 
+C:\Program Files\ Analog Devices\ SigmaStudio 4.4 ). Start SigmaStudio  and verify that the 
+A2B.dll file is selected under ToolsAddInsBrowser. Save before exiting. 
+3. Open the adi_a2b_3NodeSampleDemo.dspproj example project , which is located in the  (default) 
+C:\Analog Devices\ ADI_A2B_Software-Rel19.3.0\Schematics\BF\A2BSchematics directory. 
+Click the Link-Compile-Download icon, as shown in Figure 2. 
+4. If a headset is connected to slave1, then the signals from the two slave0 microphones can be heard from 
+the left and right ears, respectively. 
+5. The AD2428W DRX0/IO5 and DRX1/IO6 pins are multiplexed to support either I 2S/TDM receive 
+functionality (default) or PDM input (PDM0 and PDM1, respectively). Ensure that PDM functionality 
+is enabled using the SigmaStudio GUI, as shown in Figure 3. 
+ 
+
+=== PDF PAGE 5 ===
+   
+ 
+EVAL-AD2428WC1BZ A²B Evaluation Board User Guide (EE-420) Page 5 of 7 
+ 
+Figure 2. Software Schematic for adi_a2b_3NodeSampleDemoConfig.dspproj A2B Example Project 
+ 
+Figure 3. Changing AD2428W Pin Function from DRX1 to PDM1 
+ 
+6. The microphone data from slave0 is played out of the headset connected to slave1. Select the source and 
+destination in the A2B S tream Configuration window to change the routing . The Stream Config tab 
+(right-click on Target ProcessorDevice PropertiesStream Config) to define audio streams across 
+the nodes, as shown in Figure 4 . When the Apply  button is clicked, the stream assignme nts configure 
+the upstream and downstream slots accordingly across the nodes.  
+
+
+=== PDF PAGE 6 ===
+   
+ 
+EVAL-AD2428WC1BZ A²B Evaluation Board User Guide (EE-420) Page 6 of 7 
+ 
+                                                           Figure 4: Stream Configuration 
+Refer to the Quick Start Guide[5] from the A2B software distribution for guidance regarding the modification 
+of the software. 
+  
+
+
+=== PDF PAGE 7 ===
+   
+ 
+EVAL-AD2428WC1BZ A²B Evaluation Board User Guide (EE-420) Page 7 of 7 
+References  
+[1] AD2420(W)AD2426(W)/AD2427(W)/AD2428(W)/ AD2429(W) Automotive Audio Bus A2B Transceiver Data Sheet. Rev 
+A, October 2019. Analog Devices, Inc. 
+[2] AD2420(W)/6(W)/7(W)/8(W)/9(W) Automotive Audio Bus A2B Transceiver Technical Reference. Rev 1.1, October 2019. 
+Analog Devices, Inc. 
+[3] Associated ZIP File (EE420v01.zip) for EVAL-AD2428WC1BZ A2B Evaluation Board User Guide (EE-420). October 
+2019. Analog Devices, Inc. 
+[4] EVAL-AD2428WD1BZ A2B Evaluation Board Manual. Rev 1.1, October 2019. Analog Devices, Inc.  
+[5] A2B Quick Start Guide. Revision 25.0, October 2019. Analog Devices, Inc. 
+Document History  
+Revision Description 
+Rev 1 – October 17, 2019  
+by A2B Applications Team 
+Initial Release 
+ 

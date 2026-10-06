@@ -1,0 +1,989 @@
+
+=== PDF PAGE 1 ===
+Engineer-to-Engineer Note EE-459 
+  
+ 
+Technical notes on using Analog Devices products and development tools  
+Visit our Web resources http://www.analog.com/ee-notes and http://www.analog.com/processors or 
+e-mail processor.support@analog.com or processor.tools.support@analog.com for technical support.  
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results  
+Contributed by Tomarakos, John Rev 1 – September 26, 2024 
+ 
+Copyright 2024, Analog Devices, Inc. All rights reserved. Analog Devices assumes no responsibility for customer product design or the use or application of customers’ 
+products or for any infringements of patents or rights of others which may result from Analog Devices assistance. All tradema rks and logo s are property of their 
+respective holders. Information furnished by Analog Devices applications and development tools engineers is believed to be ac curate and reliable, however no 
+responsibility is assumed by Analog Devices regarding technical accuracy and topicality of the content provided in Analog Devices Engineer-to-Engineer Notes. 
+ 
+Introduction 
+Systems based on the AD242x A 2B™ (Automotive Audio Bus) transceiver deliver multi -channel, bi -
+directional I2S/TDM audio, clock, and data over a maximum distance of 80 meters using unshielded twisted-
+pair cable. The AD242x family includes AD2426, AD2427, and AD2428 devices . The audio performance 
+of such systems, which perform audio clock recovery from the transmitted stream, can be subject to some 
+degradation due to clock jitter. C lock jitter accumulates as the clock information proceeds from node to 
+node over the A 2B bus. This increase in jitter can result in a decrease in audio quality for audio devices 
+sensitive to clock jitter. For most engineers designing automotive-grade audio systems, this degradation in 
+audio signal quality may not be sufficient to cause concern or may be acceptable. For higher-end or premium 
+automotive systems with more stringent audio quality requirements, a closer look at audio performance is 
+warranted. 
+This application note: 
+ Evaluates the audio performance of an AD242x A2B bus. 
+ Describes results of testing performed on an AD2428 A2B bus. 
+ Discusses possible methods to mitigate audio degradation for A2B-connected systems. 
+Jitter Accumulation in A 2B Systems  
+A2B networks use a daisy -chain style topology, where a clock signal propagates and is recovered at each 
+node. The A 2B transceiver at the main node uses the SYNC and BCLK signals received at the I 2S/TDM 
+interface for the master clock of the entire A2B bus. This main node generates clocks and encodes them into 
+the bus data from which each downstream sub node derives its own synchronization signals. Each 
+subordinate node subsequently regenerates the clocks and embeds it into the A
+2B data for the next 
+downstream node. The clock that is propagated along the cascaded nodes may show increased jitter  as the 
+number of nodes increases. While the data on the bus is b it-correct at all points, each node contributes a 
+small amount of jitter to the clocks resulting in a slight increase in overall jitter as the node count increases. 
+There are several ways to measure this jitter ( Figure 1). The most common methods for clock recovery 
+systems are cycle-to-cycle jitter and Time Interval Jitter (TIE). 
+ 
+
+=== PDF PAGE 2 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 2 of 32 
+ 
+Figure 1 Time Interval (TIE) Jitter 
+ 
+Time Interval Error (TIE) is the difference between the observed clock edge time and expected clock edge 
+time. TIE refers to clock edges, while period jitter refers to the clock period. TIE is calculated by subtracting 
+the actual clock edge from the ideal clock edge. Analog Devices provides RMS Time Interval Error 
+(TIERMS) data measured at each subordinate node I 2S/TDM port in the AD2426/AD2427/AD2428 A2B 
+Transceiver Datasheet[1]. Tables 10 of the  AD242x datasheet (also d isplayed below in Figure 2) provides 
+each node’s  RMS TIE jitter for the I2S SYNC signal up to a maximum of 16 supported subordinate nodes. 
+The accumulated jitter shown in the table does not result in bit errors. However, it can be observed at each 
+sub node I2S/TDM port and can result in distortion during any A/D and D/A conversions. 
+ 
+Figure 2 AD2428 Datasheet Specified TIERMS Jitter for I2S SYNC Signal 
+ 
+ 
+Prior to measuring THD+N (Total Harmonic Distortion and Noise – see the next section in this application 
+note for more details), clock jitter measurements were first taken using the Audio Precision APx555 
+
+
+=== PDF PAGE 3 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 3 of 32 
+connecting to the I2S/TDM port of each AD2428 sub node. These results are displayed in Table  1. Notice 
+that these measurements were slightly higher than the datasheet typical values  shown in Table 10 of the 
+datasheet. The parts used in this experiment were selected because they have higher jitter at 25 deg C than 
+the typical A2B part. Despite the increase in TIERMS with increasing node count, no degradation of THD+N 
+was observed through higher node counts when analyzing the digital serial data measured from I 2S/TDM 
+input at the main node to I2S/TDM output at each sub node. 
+Table 1 Measured SYNC clock Jitter for 16 Subordinate Nodes Using the APx555 Audio Analyzer 
+ 
+Audio Performance Measurement -Total Harmonic Distortion Plus Noise  
+The primary goal for designing high-quality audio systems is to ensure that the device output can faithfully 
+transmit or reconstruct the audio signal that is fed into the system. And that means ideally, the output signal 
+is an identical or scaled version o f the input signal. Anything that alters the input signal in any way, such 
+high-jitter clock on the D/A conversion stage, is known as distortion. Audio performance and quality (SNR, 
+dynamic range, THD, and so forth) must be measured and quantified. 
+The best way to test the audio quality and performance of such a system is to simulate or inject into the 
+system a pure sine tone and perform spectral analysis of the output signal. This helps us analyze the output 
+of the system for any unwanted distortion components that were not part of the original signal input. These 
+nonlinearities cause harmonic distortion at multiples of the input sine tone frequency generated and other 
+noise components. 
+The most common method of measuring distortion and noise components (Figure 3) is THD+N, done by: 
+1. Implementing a notch filter tuned to the generated or measured fundamental sine tone frequency. 
+2. Following the notch filter with a band limiting filter (normally set within our audible hearing range 
+of 20 Hz to 20 kHz). 
+3. Ending with an RMS level detector that determines the ratio of the residual noise and harmonic 
+divided by the level of the input signal.  
+For the A
+2B system, use the Audio Processor (AP) to inject a tone on the I2S input and measure the THD+N 
+at the far -end DAC analog output using the AP. To perform this test, Analog Devices used the APx555 
+Audio Precision Analyzer and APX500 version 8.0 software. 
+ 
+ 
+
+
+=== PDF PAGE 4 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 4 of 32 
+ 
+Figure 3 Block Diagram of THD+N Analyzer (Source: ap.com) 
+ 
+The AD2428 transceiver uses a built-in phase-locked loop (PLL) to recover the clock at each node. A small 
+amount of jitter measured in single-digit nanoseconds happens at each node, resulting in a small amount of 
+audio degradation that is additive as distance from the main node increases . The audio degradation is not 
+tonal in nature but spread across the spectrum. With high- level signals, this results in earlier sub -nodes in 
+an AD2428 transceiver -based system having slightly better measured audio performanc e than sub -nodes 
+towards the end of the A 2B bus. The measured difference between nodes cannot be observed with lower -
+level audio signals; therefore, there is no audible decrease in audio performance with higher node counts 
+and lower signal levels. 
+THD+N Measurement Setup and Equipment Required  
+The audio performance of the AD242x A2B bus can be measured using a series of AD242 x transceiver 
+evaluation boards, an audio performance measurement system, and a digital -to-analog converter. This test 
+used the Audio Precision APx555 Audio Analyzer with the Analog Devices ADAU1966 DAC as shown in 
+the Figure 4 block diagram. See the ADAU1966 16- Channel High Performance Differential Output, 192 
+kHz, 24-Bit DAC Datasheet
+[8] for further setup information for this test. 
+Figure 4 Block Diagram of Test Setup 
+ 
+The Digital Signal taken from Audio Precision shown in Figure  4 is a digital 1  kHz or 11 kHz sine wave 
+provided by the APx555 Audio Analyzer output to the AD2428 Transceiver WD1BZ Main  Node board. 
+Measurements are taken for both -1 dBFS and -40 dBFS input signals. 
+The Analog Signal connected back to Audio Precision shown in Figure 4 is connected to the input of the 
+APx555 Audio Analyzer, and audio performance is measured. The A
+2B bus is extended by inserting 
+additional subordinate nodes (depicted by the WD1BZ AD2428 Sub- Node blocks in Figure 4), enabling 
+measurements for the full set of sixteen subordinate nodes. 
+
+
+=== PDF PAGE 5 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 5 of 32 
+The test setup uses a combination of seventeen EVAL -AD2428WD1BZ evaluation kits (1 main  node and 
+16 sub nodes). The evaluation kits were modified from standard customer evaluation kits using sockets for 
+the AD2428 transceiver to allow for removing and installing different silicon revision parts (and in this case, 
+slightly higher jitter performance parts). The evaluation kit is shown in Figure  5. Refer to the EVAL-
+AD2428WD1BZ A2B Evaluation Board Manual[3] for more information including setup and jumpers. 
+ 
+Figure 5 Hardware Configuration Uses Seventeen Total EVAL-AD2428WD1BZ Evaluation Kits 
+ 
+The A2B network system is a combination local-powered WDZ subordinate nodes and bus powered WDZ 
+subordinate notes shown. Depending on the configuration used to test the number of nodes, a local-powered 
+sub node must be inserted in between every fourth or fifth node, so that sufficient voltage can drive the 
+downstream boards. Figure 6 shows the test setup of 16 socketed EVAL-AD2428WD1BZ sub node boards.  
+ 
+Figure 6 THD+N Test setup using a network of  EVAL-AD2428WD1BZ evaluation kits 
+ 
+
+
+=== PDF PAGE 6 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 6 of 32 
+Measurements taken during this test setup ( Figure 6) included a single sub -node (sub[0], depicted as the 
+single WDZ Sub-Node in Figure 4 with no other WDZ Sub-Nodes present) and then up to a maximum sixteen 
+sub nodes (sub[0…15], where sub[n] is the WDZ Sub-Node in Figure 6. For each test setup, the measurement 
+was taken at the last sub node, and all results are measured in THD+N dBrA, where A is set such that 
+0 dBrA = 0  dBFS.  For each of the sixteen sub node tests, a customized SigmaStudio+ Schematic was 
+developed for each sub node test, as shown below in Figure 7. 
+ 
+Figure 7 SigmaStudio+ 2.2 schematics for sub nodes 0 to 15 used for jitter analysis and THD+N testing 
+ 
+Selection of High -Quality DAC for THD+N Performance Testing 
+To examine the effects of accumulated jitter on an audio system, a high-quality DAC must be chosen to see 
+when any negative audible artifacts are introduced because of the jitter introduced by consecutive A2B sub 
+nodes. The higher the dynamic range (SNR and THD+N), the lower the noise floor (baseline) in the FFT 
+spectrum analysis. The Analog Devices DAC converter evaluation kit (
+EVAL-ADAU1966Z), shown in 
+Figure 7 was chosen for this test. See ADAU1966 16- Channel High Performance Differential Output, 192 
+kHz, 24-Bit DAC Datasheet[8] for detailed set-up instructions. 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 7 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 7 of 32 
+Figure 8 EVAL-ADAU1966Z (left) DAC Evaluation Kits 
+ 
+For high THD+N performance specifications and testing, the ADAU1966 evaluation kit is one possible 
+solution offered by Analog Devices to test the audio quality of an A 2B-connected system. This evaluation 
+board was chosen specifically because its performance exceeds many other Analog Devices DACs currently 
+sold in the market today. Figure 8 shows the excerpt related to the performance of the DAC taken from the 
+ADAU1966 datasheet (THD+N at -98 dB, at 0 dBFS). 
+Figure 9 The ADAU1966 is one of the higher performing DACs from Analog Devices  
+ 
+
+
+=== PDF PAGE 8 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 8 of 32 
+Connecting the WDZB1  Sub Node Eval Kit I2S Output to the  ADAU1966  
+For our series of THD+N tests we expect to hear and measure the generated sine tone initially injected into 
+the main AD2428 board streamed through the output of the last node. The last AD2428 sub node provides 
+the audio output through its I2S/TDM interface which we can further connect to the audio DAC. Many D/A 
+converters typically require a master clock (MCLK) to clock the device , so we need to generate this clock 
+signal as well from the recovered A2B clock. Specifically, when using the ADAU1966, the AD2428 has to 
+provide a 12.288 MHz CLKOUT on the IO1/ ADR1 pin, the 3.072 MHz BCLK, 48 kHz SYNC, and DTX 
+serial audio data. The serial interface signals are provided to the JPx headers and the P5 expansion header 
+and are shown in Figure  9. The IO1 pin is not easily  accessible on the board through the any of the JPx 
+jumpers. However, the IO1 pin is conveniently routed to the P5 expansion connector where we can access 
+that clock pin. In order to tap into it, we can use the ADZS-BRKOUT-EX3 breakout board pin 43. 
+ 
+Figure 10 EVAL-AD2428WDZB1 P1 Header I2S Signals 
+ 
+ 
+The block diagram for connecting the AD2428 WDZB1  evaluation kit I2S pins to the A DAU1966 DAC 
+evaluation board is shown in Figure  11, including the P 5 and P10 headers  and JP5/JP6/JP9 header pin 
+connections described in the EVAL -AD2428WD1B1 evaluation kit schematics. Figure  11 also shows the 
+connections with jumper wires for the ADAU1966 DAC board. 
+ 
+
+
+=== PDF PAGE 9 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 9 of 32 
+Figure 11 EVAL-AD2428WD1BZ Sub Node I2S Output Connections to the ADAU1966 DAC Eval Kits 
+ 
+SigmaStudio+ Project Setup and Considerations  
+SigmaStudio+ version 2.2 and A2B plug-in version 1.3.1 was used to create the various AD2428 sub node 
+test projects. The A2B plugin v.1.3.1 is the first supported release update which extended support for the 
+AD2428 from 10 to 16 sub nodes. The SigmaStudio+ test project configuration shown in Figure 11 has one 
+main AD2428 node and sixteen AD2428 sub node connections. 
+ 
+In the SigmaStudio+ schematic signal flow, the first node in the system shown is defined as the main node 
+using an EVAL -AD2428WD1BZ board. This is followed by up to sixteen EVAL -AD2428WD1BZ sub 
+node boards.  In the test system shown in Figure 6, sub nodes 0, 5 and 11 are locally-powered subs using 
+an external12-volt supply. The other sub nodes are bus-powered nodes in the system. 
+ 
+Figure 12 SigmaStudio+ 17-Node Configuration Used For the THD+N and Jitter Testing 
+ 
+
+
+=== PDF PAGE 10 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 10 of 32 
+Using SigmaStudio+ to generate a 12.288 MHz CLKOUT1 on ADR1/IO1 pin for the DAC’s MCLK 
+To properly connect the WDZB1 board’s I2S interface to the DAC board, enable a clock source on the last 
+sub node for the Master Clock (MCLK) of the DACs. By default, this clock is not enabled in SigmaStudio+. 
+The P1 header provides the ADR1/IO1 signal, which is enabled by programming the CLKCFG register to 
+turn on the clock and divide the 24.575 MHz A2B clock by two to generate the needed 12.288 MHz MCLK 
+for the DACs. Figure 13 and Figure 14 show the required register settings in SigmaStudio+. 
+ 
+Figure 13 SigmaStudio+ AD2428 Subnode Register Settings for CLKOUT1 and CLK1CFG Register 
+ 
+ 
+Figure 14 SigmaStudio+ CLK1CFG Register bits 0 and 7 are set to 1 
+ 
+
+
+=== PDF PAGE 11 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 11 of 32 
+Figure 15 shows an analyzer capture of the 12.288 MHz MCLK supplied for the DAC (A2B’s CLKOUT1) 
+which becomes activated after programming the CLK 1CFG register during discovery/initialization of the 
+A2B system. 
+ 
+Figure 15 Capture of WD1BZ I2S output – 12.288 MHz MCLK, 3.072 MHz BCLK, and 48 kHz SYNC 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Baseline Digital I2S THD+N Test 
+An audio analyzer such as the Audio Precision APx555 can be used for THD+N measurements for an A
+2B 
+system. The APx555’s DSIO interface module is used to provide an I2S source and sink into the system for 
+the measurement. Two tests were performed, one testing the digital THD+N capability on the I2S inputs 
+and outputs of the analyzer itself in a “loopback” mode, followed by a digital THD+N test for the entire I2S 
+(i.e. I2S input  A2B system  I2S output) path through 16 x AD2428 sub nodes.  Testing and results are 
+described below. 
+APx555 DSIO Loopback of 1 kHz and 11 kHz Test Tones 
+As a first test, pure sine tones were injected and measured from the APx555 DSIO module’s I2S transmitter 
+back to the DSIO module’s I2S receiver input. The FFT spectrum of the audio signals (Figure 16 and Figure 
+17) shows no harmonics or noise generated, except for quantization noise which were the smallest LSBs of 
+the 32‑bit audio data approximating ‑175 to ‑185 dB. The noise floor resulting from the quantization of the 
+audio samples significantly less than the noise floor of the DAC and thus we are certain that this will not 
+adversely affect the THD+N results for our DAC measurements. 
+
+
+=== PDF PAGE 12 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 12 of 32 
+Figure 16 1 kHz at -1 dBFS APx555 I2S Loopback                Figure 17 11 kHz at -1 dBFS APx555 I2S Loopback 
+    
+ 
+1 kHz and 11 kHz Test Tones for THD+N Tests through a maximum 17-node configuration 
+Other measurements included the test tones injected from the APx555 DSIO Module’s I2S transmitter on to 
+the WDZB1 main board, and the DSIO Module I2S Receiver capturing the last sub node’s I2S 24-bit digital 
+data on the I2S output of the same 1 kHz tone streamed from the main node. The FFT and THD+N result is 
+shown ( Figure 18) for 1  kHz at - 1 dBFS, measuring at approximately - 142 dB. The THD+N due to 
+quantization or bit errors  on the digital signal is  shown to be much less than typical results for the DAC 
+converters by -20 to -30 dB. Thus, we can see here the digital path of the I2S data through the A2B system 
+should not itself adversely affect the THD+N results for the DACs because effects on the audio quality due 
+to quantization effects  are significantly less than the noise floor for any typical automotive -quality audio 
+converter such as the ADAU1966.   
+ 
+Figure 18 FFT and THD+N results for a 1 kHz sine tone at -1dBFS - I2S-to-I2S 16 sub node Loopback 
+  
+  
+
+
+=== PDF PAGE 13 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 13 of 32 
+DAC THD+N Performance Results with AD24 28  Node Cumulative Jitter  
+Table 2 shows the results of the THD+N testing using the Audio Precision APx555 Audio Analyzer. The 
+THD+N test parameters were set to A-weighted, band-limited frequency range from 20 Hz through 20 kHz. 
+Table 2 displays the results for the ADAU1966 DAC. Test tones were measured at 1  kHz and 11 kHz at 
+levels of - 1 dBFS and - 40 dBFS and THD+N results are shown along with the corresponding jitter 
+measurement at each node. Each row corresponds to either the first baseline direct I2S to DAC measurement 
+or THD+N numbers for each A2B sub-node. The sub node number corresponds to where the measurement 
+was taken. For each test this was the last bus-powered sub-node on the A2B bus. 
+ 
+Table 2 Results for AD2428WDZB1 Sub Node I2S Output Connections to the ADAU1966 
+Sub node # 
+I2S Output 
+APx555 
+Measured Jitter 
+ADAU1966 THD+N 
+1kHz -1 dBFS 
+ADAU1966 THD+N 
+1kHz -40 dBFS 
+ADAU1966 THD+N 
+11 kHz -1 dBFS 
+ADAU1966 THD+N 
+11 kHz -40 dBFS 
+I2S  DAC 75 ps -97.83 dBrA -113.12 dBrA -112.54 dBrA -115.84 dBrA 
+Sub 0 1.82 ns -96.94 dBrA -113.05 dBrA -87.89 dBrA -115.66 dBrA 
+Sub 1 2.14 ns -96.32 dBrA -113.02 dBrA -86.44 dBrA -115.56 dBrA 
+Sub 2 2.35 ns -96.16 dBrA -113.09 dBrA -85.76 dBrA -115.48 dBrA 
+Sub 3 2.64 ns -95.82 dBrA -112.94 dBrA -85.49 dBrA -115.46 dBrA 
+Sub 4 2.79 ns -95.63 dBrA -112.85 dBrA -85.23 dBrA -115.47 dBrA 
+Sub 5 2.94 ns -95.42 dBrA -113.10 dBrA -85.04 dBrA -115.47 dBrA 
+Sub 6 3.05 ns -95.23 dBrA -112.95 dBrA -84.97 dBrA -115.43 dBrA 
+Sub 7 3.13 ns -95.07 dBrA -113.11 dBrA -84.88 dBrA -115.35 dBrA 
+Sub 8 3.25 ns -94.84 dBrA -113.07 dBrA -84.84 dBrA -115.34 dBrA 
+Sub 9 3.41 ns -94.47 dBrA -113.02 dBrA -84.82 dBrA -115.27 dBrA 
+Sub 10 3.58 ns -94.26 dBrA -112.97 dBrA -84.77 dBrA -115.24 dBrA 
+Sub 11 3.70 ns -94.16 dBrA -113.07 dBrA -84.75 dBrA -115.22 dBrA 
+Sub 12 3.82 ns -93.89 dBrA -113.03 dBrA -84.70 dBrA -115.13 dBrA 
+Sub 13 3.94 ns -93.63 dBrA -112.77 dBrA -84.61 dBrA -115.02 dBrA 
+Sub 14 4.05 ns -93.38 dBrA -112.97 dBrA -84.43 dBrA -114.93 dBrA 
+Sub 15 4.19 ns -92.71 dBrA -113.13 dBrA -84.18 dBrA -114.79 dBrA 
+ 
+Analyzing the THD+N Results for the ADAU1966 
+The AD2428 parts used in the test setup at room temperature ( 25 ℃) were taken from a sample lot which 
+were screened and found to be higher  than the average jitter numbers shown in Table 10 in the AD2428 
+datasheet [AD2428 A2B Transceiver Datasheet[1]. 
+Examining the THD+N measurement results for the DAC, a significant degradation in audio performance 
+was recorded (measured in dBrA units) with increasing accumulated jitter at higher nodes. These measured 
+results using typical lot parts installed on Analog Devices A 2B evaluation boards showed approximately a 
+5 dB reduction in THD+N for the ADAU1966 DAC, at the maximum measurement RMS jitter of the A2B 
+bus. These results must be considered when reviewing the full-system measurements.  
+
+=== PDF PAGE 14 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 14 of 32 
+Based on measured results, it’s apparent the ADAU1966 suffered a degradation in performance, however 
+its THD+N calculation with higher accumulated jitter still performed much better to maintain compressed 
+“CD-quality” compressed audio with greater than 90 dB . The ADAU1966 was found to provide better 
+tolerance to jitter as compared to higher quality legacy Analog Devices converters such as the AD1955, 
+perhaps due to a slightly-improved noise-immune design for the on-chip PLL. [Refer to EE-452 – AD2437 
+A2B Transceiver Performance Testing which includes testing for the AD1955 DAC] 
+For the audio engineer, the amount of acceptable degradation must be weighed, depending on the type of 
+audio product to be designed. For a consumer or automotive audio design, anything between -90 to -95 dB 
+THD+N might be acceptable or “good enough.” However, for a professional audio product using converters 
+with over 120 dB in dynamic range, this degradation can be unacceptable. Potential mitigation strategies 
+(discussed later in this application note ) may need to be employed in the A
+2B system to prevent adverse 
+effects on the performance of the audio converters, which can derive their I 2S or TDM serial clocks and 
+frame syncs from the A2B bus recovered clock. 
+Additionally, the AD2426/AD2427/AD2428 A2B Transceiver Datasheet [1]. does specify worst -case jitter 
+values. It is possible to see jitter values up to 60 to 70% higher than the typical TIE RMS value. Expect an 
+additional reduction in THD+N than the test results showed.  
+FFT Spectrum Diagrams for -1/ -40  dBFS using 1 kHz/11  kHz Test Tones  
+Figure 21 through Figure 68 show different various FFT Spectrum plots from four THD+N tests. It measures 
+the performance of the audio quality while connected directly to the ADI D/A Converter Evaluation Kits to 
+establish a best case expected performance value (the baseline  measurement). After the baseline plots, 
+measured frequency spectrum plots are shown for I
+2S audio output stages for sub node zero, sub node four, 
+sub node eight, sub node twelve, and sub node sixteen for both DACs. 
+ADAU1966 1 kHz -1 dBFS Test Results 
+Figure 19  shows the FFT spectrum analysis plots for the baseline direct I2S connection to the ADAU1966 
+DAC from the DSIO output of the Audio Precision APx555, followed by spectrum plots (Figure 20 through 
+Figure 24) for the A2B bus configurations of sub node 0, 4, 8, 12, and 15 where the A2B sub node I2S output 
+is fed to the ADAU1966 DAC. The results are based on a 1 kHz input sine wave at-1 dBFS. 
+ 
+Figure 19 1 kHz, -1 dBFS APx555 to ADAU1966                     Figure 20 1 kHz, -1 dBFS S0 I2S to ADAU1966  
+    
+
+
+=== PDF PAGE 15 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 15 of 32 
+ 
+Figure 21 1 kHz, -1 dBFS S4 I2S to ADAU1966                     Figure 22 1 kHz, -1 dBFS S8 I2S to ADAU1966 
+    
+ 
+Figure 23 1 kHz, -1 dBFS S12 I2S to ADAU1966                Figure 24: 1 kHz, -1 dBFS S15 I2S to ADAU1966 
+    
+ 
+Figure 19 through Figure 24 Observations. The noise floor (measure of the noise density in dBm/Hz or 
+the noise power in a signal of 1 Hz bandwidth) is raised significantly in the first sub node, and it is raised 
+incrementally further as the number of nodes increases. Some higher frequency harmonics and noise are 
+generated at higher-numbered nodes which do not exist for the initial baseline results, especially visible in 
+the last node (sub node 15) for the ADAU1966. 
+ADAU1966 1 kHz -40 dBFS Test Results 
+Figure 25 shows the FFT spectrum analysis plots for the baseline direct I 2S connection to the ADAU1966 
+DAC from the DSIO output of the Audio Precision APx555, followed by A 2B bus configurations of sub 
+node 0, 4, 8, 12, and 15 where the A 2B sub node I 2S output is fed to the ADAU1966 DAC (Figure 35 
+through Figure 44). The results are based on a 1 kHz input sine wave at -40 dBFS. 
+ 
+
+
+=== PDF PAGE 16 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 16 of 32 
+Figure 25 1 kHz, -40 dBFS APx555 to ADAU1966            Figure 26 1 kHz, -40 dBFS S0 I2S to ADAU1966 
+    
+ 
+Figure 27 1 kHz, -40 dBFS S4 I2S to ADAU1966       Figure 28 1 kHz, -40 dBFS S8 I2S to ADAU1966 
+    
+ 
+Figure 29 1 kHz, -40 dBFS S12 I2S to ADAU1966                Figure 30 1 kHz, -40 dBFS S15 I2S to ADAU1966 
+    
+ 
+
+
+=== PDF PAGE 17 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 17 of 32 
+Figure 25 Through Figure 30 Observations. The noise floor at - 40 dB is not much different than the 
+baseline case. Perhaps worst case is two to three dB increase in noise floor for higher-numbered nodes. An 
+observation is that the baseline spectrum for the ADAU1966 shows some high frequencies nois e or 
+harmonics between 10 kHz and 20 kHz, and the noise vanishes when the I2S data is received from the A2B 
+bus and higher-jitter clock. 
+ 
+ADAU1966 11 kHz Test Results at -1 dBFS 
+Figure 31 shows the FFT spectrum analysis plots for the baseline direct I 2S connection to the ADAU1966 
+DAC from the DSIO output of the Audio Precision APx555, followed by A2B bus configurations (Figure 32 
+through Figure 36) for sub node zero, sub node four, sub node eight, sub node twelve, and sub node fifteen 
+where the A2B sub node I2S output is fed to the ADAU1966 DAC. The results are based on a 11 kHz input 
+sine wave at -1 dBFS. 
+ 
+Figure 31 11 kHz, -1 dBFS APx555 to ADAU1966             Figure 32 11 kHz, -1 dBFS S0 I2S to ADAU1966 
+    
+ 
+Figure 33 11 kHz, -1 dBFS S4 I2S to ADAU1966                 Figure 34 11 kHz, -1 dBFS S8 I2S to ADAU1966 
+    
+ 
+
+
+=== PDF PAGE 18 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 18 of 32 
+  Figure 35 11 kHz, -1 dBFS S12 I2S to ADAU1966        Figure 36 11 kHz, -1 dBFS S15 I2S to ADAU1966 
+    
+ 
+Figure 31 Through Figure 36 Observations. Once again, at -1 dB the noise floor is raised significantly, 
+especially around the 11 kHz signal, and is raised further for the higher-numbered nodes. The low frequency 
+content again eventually vanishes into the noise floor. The  ADAU1966 DAC shows  harmonic or tone at 
+1 kHz. The accumulated jitter causes this mysterious tone to display approximating -105 dB to -115 dB. 
+ 
+ADAU1966 11 kHz Test Results at -40 dBFS 
+Figure 37 shows the FFT spectrum analysis plots the baseline direct I2S connection to the ADAU1966 DAC 
+from the DSIO output of the Audio Precision APx555, followed by A 2B bus configurations ( Figure 38 
+through Figure 42) of sub node zero, sub node four, sub node eight, sub node twelve, and sub node fifteen 
+where the A2B sub node I2S output is fed to the DAC. The results are based on a 11 kHz input sine wave at 
+-1 dBFS. 
+ 
+Figure 37 11 kHz, -40 dBFS AP I2S out to ADAU1966           Figure 38 11 kHz, -40 dBFS S0 I2S to ADAU1966 
+    
+ 
+Figure 39 11 kHz, -40 dBFS S4 I2S to ADAU1966       Figure 40 11 kHz, -40 dBFS S8 I2S to ADAU1966 
+
+
+=== PDF PAGE 19 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 19 of 32 
+    
+ 
+Figure 41 11 kHz, -40 dBFS S12 I2S to ADAU1966        Figure 42 11 kHz, -40 dBFS S15 I2S to ADAU1966 
+    
+ 
+ 
+Figure 37 through Figure 42 Observations. The noise floor is not much different (slightly higher) than 
+the baseline case with degradation of THN+N is approximately -1.5 dB for higher-numbered nodes. For the 
+ADAU1966 some of the frequencies between 5K to 20K are raised by approximately 5 dB, while  others 
+vanish as compared to baseline I2S case. 
+Strategies for Mitigation of Audio Degradation  
+For system designs using ADCs and DACs, onboard PLLs with more robust specifications ensure a cleaner 
+clock signal for the converters, reducing the performance degradation of the audio signals.  
+However, when the DAC performance is still affected by the accumulated jitter in the recovered I2S bit and 
+word clocks, possible methods to mitigate the audio degradation due to accumulated jitter effects are: 
+• Perform a sample rate conversion at the DAC to align the samples to a clean clock signal. This is 
+possible because the maximum accumulation of jitter is measured in single -digit nanoseconds, but 
+the digital data remains correct. Resampling to a clean, low-jitter clock reference for the master I
+2S 
+
+
+=== PDF PAGE 20 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 20 of 32 
+output of the rate converter eliminates the THD+N degradation and reduces the clock jitter on the 
+serial bus to a range of 100 to 200 picoseconds. 
+ 
+• Use a low -bandwidth PLL or Jitter Attenuator (JA) device to remove the upper -frequency 
+components of the jitter on the recovered clock. This provides a similar performance benefit as the 
+resampling data to a different master clock source. Jitter can be reduced to less than 100 picoseconds. 
+ 
+ 
+Solution One-Use a HW ASRC to Improve DAC THD+N Performance on Sub Nodes 
+Asynchronous sample rate conversion (ASRC) is a technique normally used to convert between audio 
+streams running at different sample rates, or to perform sample rate conversion between audio streams 
+running at the same sample rate but with different clock domains, such as a 48 -kHz to 48- kHz rate 
+conversion. An ASRC will convert the sample rate of a digital signal without locking the output clock to 
+the input clock. The output clock can clock the audio data free from jitter effects of the input clock for the  
+audio data samples. ASRCs can modify the sampling frequence in small increments over time without 
+producing audible artifacts. Thus, we can utilize this rate conversion to transfer the same audio data to a 
+new clock domain, and specifically in the case of  a A
+2B-recovered clock, move the resampled data 
+synchronized to a new I2S master with significantly less jitter (free) master clock, bit clock, and frame sync. 
+This next test case uses the same A2B 16-node system, but with a HW ASRC inserted between the last node 
+and the DAC board. For this test, a separate EVAL-ADAU1452 Obsolete Evaluation Board [26] was used, 
+primarily because the EVAL -AD2428WDZ board’s ADAU1452 does not provide additional dedicated 
+serial port output headers or jumpers to easily access separate SPORT output pins. 
+Figure 43 shows the functional block diagram defining the necessary connections required between the 
+EVAL-AD2428WDZ sub node, the ADAU1452MINIZ board, and the ADAU1966 eval kit. The 
+ADAU1452MINIZ board is configured to receive I2S audio on SPORT2 and transmit rate-converted audio 
+on SPORT3. These signals are accessible on header J3 and the various test points provided on the board.  
+Figure 44 shows the actual test setup between the three boards using jumper wires to connect the I 2S pins 
+between the A2B transceiver, the DSP, and the DAC. 
+ 
+Figure 43 Test Setup with Sub Node 15 Connection to ADAU1452’s ASRC0 to ADAU1966 DAC 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 21 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 21 of 32 
+Figure 44 Test Setup with Sub Node 15 Connection to ADAU1452’s ASRC0 to ADAU1966 DAC 
+ 
+ 
+To configure the ADAU1452 evaluation kit, a SigmaStudio+ 2.2 SigmaDSP schematic project was created 
+for a simple passthrough of audio data coming from SPORT2, which is connected to the  last sub node 
+AD2428 WDZ board’s I2S output. The I2S data on SPORT2 is connected to ASRC0. The output of ASRC0 
+is fed to the ADAU1452 Sigma300 DSP core, performing a simple  audio talkthru out to the channels 
+associated with SPORT3 (configured as an I 2S master). Last ly, we configure the CLKOUT to generate a 
+12.288 MHz. This is needed to drive the MCLK inputs for the ADAU1966. The project settings in Figure 45 
+configure the ASRC0, SPORT2, SPORT3, and CLKOUT/MCLK. The settings are the I 2S slave SPORT2 
+input to SPORT3 Master I2S output using ASRC0, plus generating a 12.288 MHZ Master CLKOUT for the 
+ADAU1966 MCLK Source. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PDF PAGE 22 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 22 of 32 
+Figure 45 SigmaStudio+ ADAU1452 Project Settings 
+ 
+ 
+  
+
+
+=== PDF PAGE 23 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 23 of 32 
+DAC THD+N Performance Results with ADAU1452 Integrated HW ASRC  
+Table 3 below show the measured results when adding the ADAU1452 ASRC (asynchronous sample rate 
+converter) block in the signal path between the last “nth” sub node in the A2B system and the connection 
+to the ADAU1966 DAC. First in the test, the jitter was measured on the output of the ADAU1452 I2S output 
+after passing through the HW ASRC block. Compared to the previous measured accumulated jitter results 
+shown in Table 2, the measured jitter at the ADAU1452 DSP’s ASRC/I2S out path showed a significantly 
+reduction from the accumulated A2B bus jitter to now only about 170 to 230 picoseconds of jitter for BCLK 
+and SYNC clocks. The THD+N measurements in the table below shows that the reduced jitter resulted in a 
+much-improved THD+N performance matching the datasheet typical THD+N value for the  ADAU1966. 
+This was regardless of the addition of any higher number of nodes in the A2B system. The results are almost 
+identical for each node. Thus, the use of the ASRC demonstrates the benefit of reduced  I2S clock jitter 
+which also provides optimal THD+N performance for the  D/A converters – once sensitive to accumulated 
+clock jitter affects. The results below show the DAC performance is equal to the datasheet typical THD+N 
+numbers of -98 dB at for the ADAU1966 using a tone generated at 1 kHz and -1 dBFS.   
+Table 3. ADAU1966 THD+N Results with ASRC Inserted Between Sub Node [n] Path to DAC 
+Sub node # 
+I2S Output 
+APx555 
+Measured Jitter 
+ADAU1966 THD+N 
+1kHz -1 dBFS 
+ADAU1966 THD+N       
+1 kHz -40 dBFS 
+ADAU1966 THD+N     
+11 kHz -1 dBFS 
+ADAU1966 THD+N     
+11 kHz -40 dBFS 
+I2S  DAC 70 ps -98.34 dBrA -113.12 dBrA -112.54 dBrA -115.84 dBrA 
+Sub 0 179 ps -98.25 dBrA -113.06 dBrA -112.02 dBrA -115.77 dBrA 
+Sub 1 217 ps -98.37 dBrA -112.96 dBrA -111.91 dBrA -115.96 dBrA 
+Sub 2 211 ps -98.43 dBrA -113.01 dBrA -111.89 dBrA -115.78 dBrA 
+Sub 3 212 ps -98.34 dBrA -112.94 dBrA -111.82 dBrA -115.87 dBrA 
+Sub 4 223 ps -98.24 dBrA -112.83 dBrA -111.93 dBrA -115.74 dBrA 
+Sub 5 214 ps -98.29 dBrA -113.05 dBrA -111.75 dBrA -115.96 dBrA 
+Sub 6 213 ps -98.41 dBrA -113.07 dBrA -111.95 dBrA -115.98 dBrA 
+Sub 7 218 ps -98.32 dBrA -113.03 dBrA -111.73 dBrA -115.89 dBrA 
+Sub 8 210 ps -98.53 dBrA -113.11 dBrA -111.97 dBrA -115.93 dBrA 
+Sub 9 219 ps -98.42 dBrA -113.02 dBrA -112.04 dBrA -115.81 dBrA 
+Sub 10 225 ps -98.26 dBrA -112.94 dBrA -111.78 dBrA -115.72 dBrA 
+Sub 11 230 ps -98.35 dBrA -113.09 dBrA -111.91 dBrA -115.85 dBrA 
+Sub 12 221 ps -98.33 dBrA -112.95 dBrA -111.72 dBrA -115.89 dBrA 
+Sub 13 225 ps -98.39 dBrA -113.06 dBrA -111.81 dBrA -115.81 dBrA 
+Sub 14 222 ps -98.41 dBrA -112.98 dBrA -111.83 dBrA -115.76 dBrA 
+Sub 15 226 ps -98.28 dBrA -113.08 dBrA -111.81 dBrA -115.67 dBrA 
+ 
+ADAU1966 -1 dBFS Test Results with ADAU1952 ASRC0 Added Before DAC 
+Figure 46 through Figure 51 are the supporting FFT spectrum analysis plots for the direct I2S connection of 
+the ADAU1966 DAC from the DSIO output of the Audio Precision APx555, plus the sub node  zero, sub 
+node four, sub node eight, sub node twelve, and sub node fifteen A2B bus configurations. All figures depict 
+the performance with a 1 kHz input sine wave at -1 dBFS. 
+ 
+
+=== PDF PAGE 24 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 24 of 32 
+Figure 46 1 kHz, -1 dBFS AP I2S Out to ADAU1966            Figure 47: 1 kHz, -1 dBFS S0 to ASRC to ADAU1966 
+    
+ 
+Figure 48: 1 kHz, -1 dBFS S4 to ASRC to ADAU1966         Figure 49: 1 kHz, -1 dBFS S8 to ASRC to ADAU1966 
+    
+ 
+Figure 50: 1 kHz, -1 dBFS S12 to ASRC to ADAU1966       Figure 51: 1 kHz, -1 dBFS S15 to ASRC to ADAU1966 
+    
+ 
+
+
+=== PDF PAGE 25 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 25 of 32 
+Figure 46 through Figure 51 Observations. The resampling of the audio data to a local I 2S master clock 
+has improved the noise floor significantly for all sub nodes, matching characteristics of the spectrum of the 
+direct I2S connection of the audio source to the DAC. The effects of removing the jitter from the A 2B bus 
+recovered clocks with the ASRC connected between the sub node and the DAC achieve favorable results. 
+ 
+ 
+ADAU1966 -40 dBFS Test Results with ADAU1952 ASRC0 Added Before DAC 
+Figure 52 through Figure 57 are the supporting FFT spectrum analysis plots for the direct I2S connection of 
+the ADAU1966 DAC from the DSIO output of the Audio Precision APx555, plus the sub node  zero, sub 
+node four, sub node eight, sub node twelve, and sub node  fifteen A2B bus configurations, with an 11 kHz 
+input sine wave at -1 dBFS: 
+Figure 52: 11 kHz, -1 dBFS AP I2S out to ADAU1966             Figure 53: 11 kHz, -1 dBFS S0 I2S to ADAU1966 
+    
+ 
+Figure 54: 11 kHz, -1 dBFS S4 I2S to ADAU1966               Figure 55: 1 kHz, -1 dBFS S8 I2S to ADAU1966 
+    
+ 
+ 
+
+
+=== PDF PAGE 26 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 26 of 32 
+Figure 56: 11 kHz, -1 dBFS S12 I2S to ADAU1966              Figure 57: 11 kHz, -1 dBFS S15 I2S to ADAU1966 
+    
+Figure 52 through Figure 57 Observations. The resampling of the audio data to a local I 2S master clock 
+has improved the noise floor and THD+N significantly for all sub nodes. Spurious noise centered close to 
+the fundamental harmonic was observed. This noise was caused by the sample rate converter algorithm, but 
+these do not exceed -140 dB (which matches the older AD1890/1 product specifications, so this is expected). 
+These artifacts are unperceived by the listener and are at -120 dB or less levels. For higher frequencies, the 
+effects of removing the jitter from the A
+2B bus recovered clocks with the ASRC connected between the sub 
+node and the DAC achieve favorable results (an improved THD+N). 
+Analog Devices offered a discrete hardware asynchronous sample rate converter solution back in the 1990s 
+with products such as the 
+AD1890 and AD1891. (See AD1890/AD1891 SamplePort Stereo Asynchronous 
+Sample Rate Converters Datasheet [14] for more details.) These ASRC hardware blocks have since been 
+integrated in many larger ADI audio processors. For example, the SHARC ® processors and SigmaDSP ® 
+audio processors integrate multiple hardware ASRCs that allow rate conversion of multiple A2B streams for 
+a given A2B sub node. The ADAU1452 SigmaDSP offers a convenient option to evaluate hardware sample 
+rate conversion that can be used to test jitter reduction and improvements on THN+N performance. The 
+ADAU1452 device is already included in some of the local-powered sub node A
+2B evaluation kits provided 
+by Analog Devices. The setup and programming of the ADAU1452 can be accomplished using the same 
+SigmaStudio+ software tools as the AD2437.  
+ 
+SOLUTION #2 – Using a Jitter Attenuator with a Low-Jitter Fractional PLL on A
+2B I2S Clocks 
+Another option to remove the jitter from the recovered A2B clocks is to use a jitter attenuator (JA) containing 
+a low-jitter, low-bandwidth phase-locked loop. Combined clock multiplier and jitter attenuation devices 
+such as the Microchip ZL30253 (formerly Microsemi, see ZL30252, ZL30253 3-Input, 3-Output Any-to-Any 
+Clock Multiplier and Jitter Attenuator ICs Datasheet [6]) are great options to eliminate accumulated -node 
+jitter from an A2B-recovered I2S clock sources. This device can take a maximum of three clock inputs and 
+generate output frequencies for three outputs. There are other options in the ZL3025x family that can also 
+be considered.  
+The block diagram in Figure  58 shows an example system configuration where the 48 kHz SYNC (I 2S 
+left/right clock) feeds into the JA and uses the clock multipliers to generate the necessary I2S output clocks 
+with less than 0.3 picoseconds of RMS jitter. For 24-bit stereo I2S data received from an A2B sub mode, the 
+
+
+=== PDF PAGE 27 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 27 of 32 
+ZL30253 needs to generate a 12.288 MHz MCLK, a 3.072 MHz BCLK, and a 48  kHz LRCLK that is 
+required to clock an audio DAC, such as the  ADAU1966. The output 48 kHz I 2S left/right clock can be 
+phase aligned to the 48 kHz SYNC from the AD2437. This also would guarantee phase alignment of the 
+3.072 MHz BCLK and 12.288 MHz MCLK as they are integer multiples of 48 kHz. 
+Figure 58. Block Diagram for Connecting the AD2437 to a DAC Using a ZL30253 JA to Remove SYNC Jitter 
+ 
+Another benefit of this family of JAs is a holdover feature where it continues to generate the output clocks 
+when there is a loss of the input clock. This added feature is useful in an A2B system when there is a system 
+reset or rediscovery of the A 2B bus. The ZL3025x JA can still maintain the I 2S clocks to the DACs and 
+prevent issues like audible clicks or pops on output speakers, and the DAC outputs can be muted until the 
+A
+2B bus is rediscovered. 
+The benefits of the ZL3025x JA device are: 
+• Offer jitter reduction of the A2B -recovered I2S clocks. 
+• Hold over and maintain the input reference clock when the A 2B main node clock is temporarily 
+disabled, removing audible glitches in the system. Contact Microchip for more information 
+regarding other lower-cost variants of this JA/clock multiplier family. 
+ 
+Spread -Spectrum Clocking  
+In order to meet the demanding automotive standards for EMC, system designers must take care to reduce 
+emissions caused, in part, by low rise-time digital signals wherever possible. A simple method for mitigating 
+electromagnetic radiation problems in digital clocks is to use frequency modulation of the clock signal to 
+smear the power across a wider bandwidth, reducing the peak power at any one frequency and thus reducing 
+radiated emissions. This mitigation technique is called Spread-Spectrum Clocking. 
+The AD242x family of products provides system designers several key parameters that can be tuned to 
+implement this spread-spectrum clocking in order to improve EMC performance. The mode parameter for 
+spread spectrum allows for three options for selecting w hich signals will be modulated. The default mode 
+setting is for no spread spectrum to be applied. Modes 2 and 3 give the user the option to enable spread-
+spectrum clocking only for the clocks related to the A
+2B bus itself as well as the option to apply it to both 
+A2B clocks as well as the external clocks for the I 2S/TDM port, respectively. Additionally, there are two 
+parameters for adjusting the modulation that is used, the depth and the frequency of the modulating signal. 
+A designer is able to modulate clocks using two depth options, low and high, as well as four different 
+frequency options, 4x, 5x, 6x, and 7x. These frequency options are integer multiples of the SYNC signal 
+which sets the period of the data superframe.   
+
+
+=== PDF PAGE 28 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 28 of 32 
+Effects of Spread Spectrum Clocking 
+By modulating the clock frequency slightly, emissions can be reduced but this option also introduces another 
+possible source of jitter. To evaluate the impacts of spread spectrum, testing similar to that which was done 
+in previous sections was performed while also sweeping the spread spectrum settings. As seen in Figure 59, 
+at high signal levels, these settings appear to have minimal impact on the audio performance of the overall 
+A
+2B system. 
+ 
+Figure 59. Effects of Spread Spectrum at -1 dBFS 
+Additionally, at low signal levels, -40 dBFS, we also see minimal impact from enabling spread spectrum. 
+THD+N holds steadily around -114 dBFS for all cases. This is shown in Figure 60 below. 
+-105
+-100
+-95
+-90
+-85
+-80
+4x 5x 6x 7x 4x 5x 6x 7x 4x 5x 6x 7x 4x 5x 6x 7x 4x 5x 6x 7x 4x 5x 6x 7x
+No Spread A2B A2B & I2S No Spread A2B A2B & I2S
+Low High
+THD+N (dBFS)
+THD+N and Spread Spectrum
+1 Sub Node
+2 Sub Nodes
+3 Sub Nodes
+4 Sub Nodes
+5 Sub Nodes
+6 Sub Nodes
+7 Sub Nodes
+8 Sub Nodes
+9 Sub Nodes
+10 Sub Nodes
+
+=== PDF PAGE 29 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 29 of 32 
+ 
+Figure 60. Effects of Spread Spectrum at -40 dBFS 
+[The author would like to acknowledge and thank Michael Hathaway  for his contribution to the Spread 
+Spectrum performance testing and results used in this section of this EE-Note] 
+Conclusion  
+In A2B systems, node -to-node jitter is unavoidable. These audio- networked systems accumulate jitter at 
+each subordinate node, but typical amounts of such error are generally lower than those incurred by a DAC 
+or ADC. Because overall system audio performance appears to be dominated by the DAC performance, 
+THD+N measurements can be significantly influenced by the harmonic distortion introduced by the DAC 
+at higher signal levels with the degradation quickly falling off as the amplitude is reduc ed. Thus, higher 
+levels of clock jitter can begin to have an impact on the performance of the analog audio output of the 
+system. However, the resulting degradation effect on audio performance seen at the downstream A
+2B bus 
+nodes can be reduced by selecting a converter with a low -bandwidth PLL to remove the upper frequency 
+components of the jitter on the recovered clock. Jitter Attenuator devices are another option to remove the 
+jitter from the recovered clocks and prevent signal degradation. Audio degradation can even be further 
+reduced or eliminated with processors containing HW ASRC blocks , since the resampled audio data is 
+instead driven from clocks derived from a clean local clock oscillator source. Finally, at measured levels of 
+THD+N seen here, spread -spectrum clocking appears to show minimal audio degradation regardless of 
+modulation parameters with performance showing only very minor variation when sweeping spread-
+spectrum settings, even at high node counts. Thus, spread-spectrum modes on the AD2428 have a negligible 
+impact on an audio converter’s THD+N performance. 
+  
+-120
+-115
+-110
+-105
+-100
+-95
+4x 5x 6x 7x 4x 5x 6x 7x 4x 5x 6x 7x 4x 5x 6x 7x 4x 5x 6x 7x 4x 5x 6x 7x
+No Spread A2B A2B & I2S No Spread A2B A2B & I2S
+Low High
+THD+N (dBFS)
+THD+N and Spread Spectrum
+1 Sub Node
+2 Sub Nodes
+3 Sub Nodes
+4 Sub Nodes
+5 Sub Nodes
+6 Sub Nodes
+7 Sub Nodes
+8 Sub Nodes
+9 Sub Nodes
+10 Sub Nodes
+
+=== PDF PAGE 30 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 30 of 32 
+ 
+References  
+[1] AD2426/AD2427/AD2428 A2B Transceiver Datasheet (Revision F), 2023. Analog Devices, Inc. 
+https://www.analog.com/media/en/technical-documentation/data-sheets/ad2426-ad2427-ad2428.pdf  
+ 
+[2] AD2426/7/8 Automotive Audio Bus (A2B) Transceiver Technical Reference (Rev.1.3), June 2023. Analog Devices Inc. 
+https://www.analog.com/media/en/technical-documentation/user-guides/ad242x-trm.pdf  
+ 
+[3] EVAL-AD2428WD1BZ A 2B Evaluation Board Manual, Revision 1.1, October 2019. Analog Devices Inc. 
+https://www.analog.com/media/en/technical-documentation/user-guides/EVAL-AD2428WD1BZ_Manual.pdf  
+ 
+[4] ZL30252, ZL30253 3-Input, 3-Output Any-to-Any Clock Multiplier and Jitter Attenuator ICs Datasheet, January 2018, 
+Microsemi. https://ww1.microchip.com/downloads/en/DeviceDoc/ZL30252,_ZL30253_data_sheet_012318.pdf 
+ 
+[5] ADAU1966 16-Channel High Performance Differential Output, 192 kHz, 24-Bit DAC Datasheet, Revision E, 
+March 2016. Analog Devices, Inc. 
+https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1966.pdf 
+ 
+[6] Evaluating the ADAU1962/ADAU1966 High Performance, Low Power, Multibit Sigma-Delta DACs, Evaluation Board 
+User Guide/UG-416. Revision A, January 2014. Analog Devices, Inc. 
+https://www.analog.com/media/en/technical-documentation/user-guides/UG-416.pdf 
+ 
+Further Reading  
+[7] Technote 008-A2B I2S Clock Jitter, Revision 2, July 2020. Clockworks Signal Processing, LLC. 
+https://clk.works/wp-content/uploads/TechNotes/TN008_A2B_jitter.r2.pdf 
+ 
+[8] Technote 010-AK4619 ADC and DAC Performance - Evaluation of the Impact of A2B I2S Clock Jitter, Revision 2. 
+May 2023. Clockworks Signal Processing LLC. 
+https://clk.works/wp-content/uploads/TechNotes/TN010_A2B_ak4619_performance.r2.pdf 
+ 
+[9] Appnote 001 - Measuring Jitter Spectrum with a DSO, Revision 1.0b, July 2020. Clockworks Signal Processing LLC. 
+https://clk.works/wp-content/uploads/AppNotes/AP001jitter_measurement.r1b.pdf 
+ 
+[10] N. Rocchi, A. Toscani, G. Chiorboli, D. Pinardi, M. Binelli, and A. Farina, "Transducer Arrays Over A²B Networks in 
+Industrial and Automotive Applications: Clock Propagation Measurements," in IEEE Access, vol. 9, pp. 118232‑118241, 
+2021, doi: 10.1109/ACCESS.2021.3106710. Unverified link. 
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9520394 
+ 
+[11] AD1890/AD1891 SamplePort Stereo Asynchronous Sample Rate Converters Datasheet, Revision 0, 1993, Analog 
+Devices, Inc. 
+https://www.analog.com/media/en/technical-documentation/data-sheets/AD1890_1891.pdf 
+ 
+
+=== PDF PAGE 31 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 31 of 32 
+[12] Robert Adams, Jitter Analysis of Asynchronous Sample-rate Conversion, Presented at 95th AES Convention, Oct 7-10, 
+1993. (Link to Purchase) https://www.aes.org/e-lib/browse.cfm?elib=19086 
+ 
+[13] Adams, Robert & Kwan, Tom, Theory and VLSI Architectures for Asynchronous Sample-Rate Converters, Journal of the 
+Audio Engineering Society. JAES Volume 41 Issue 7/8 pp. 539-555; July 1993. (Link to Purchase) 
+https://secure.aes.org/forum/pubs/journal/?elib=6993 
+ 
+[14] Kevin James McLaughlin and Robert Adams, An Asynchronous Sample Rate Converter with 120 dB THD+N Supporting 
+Sample Rates up to 192 kHz. Analog Devices, Wilmington, MA, USA. Presented at the 109th AES Convention, September 
+2000. (Link to Purchase) 
+https://www.aes.org/e-lib/browse.cfm?elib=9147
+ 
+ 
+[15] Maury Wood, Analysis of Jitter Rejection of SRCs and DACs Using an NCO, Analog Devices Inc., Wilmington, USA, 
+Presented at the 100th AES Convention, May 1996. (Link to Purchase) 
+https://www.aes.org/e-lib/browse.cfm?elib=7515
+ 
+ 
+[16] Boris Lerner and Aaron Lowenberger, EE-261: Understanding Jitter Requirements of PLL-Based Processors, Revision 1, 
+January 2005, Analog Devices, Inc.  
+https://www.analog.com/media/en/technical-documentation/application-notes/EE-261.pdf 
+ 
+[17] Chris Travis, Paul Lesso, Specifying the Jitter Performance of Audio Components, Presented at the 117th Convention, 
+October 2004, USA Audio Engineering Society. 
+https://www.aes.org/tmpFiles/elib/20231107/12950.pdf 
+ 
+[18] Dunn, Julian, Jitter and Digital Audio Performance Measurements. UK 9th Conference: Managing the Bit Budget, 
+May 1994, Audio Engineering Society,  
+https://www.aes.org/e-lib/browse.cfm?elib=6111 
+ 
+[19] Julian Dunn, Jitter Theory-Technote 23. Audio Precision, Inc. AudioPhilleo, LLC. Knowledge Base. 
+http://www.audiophilleo.com/zh_hk/docs/Dunn-AP-tn23.pdf 
+ 
+[20] James A. S. Angus, A New Method for Analyzing the Effects of Jitter in Digital, Audio Systems, 
+103rd AES Convention, May 1998, Audio Engineering Society. 
+https://www.aes.org/e-lib/browse.cfm?elib=8464 
+ 
+[21] Eric Benjamin and Benjamin Gannon, Theoretical and Audible Effects of Jitter on Digital Audio, Quality, Dolby 
+Laboratories Inc. San Francisco, CA 94103, USA, Presented at the 105th AES Convention, September 1998, Audio 
+Engineering Society. 
+https://www.aes.org/e-lib/browse.cfm?elib=8354
+ 
+ 
+[22] Bruno Putzeys and Renaud de Saint Moulin. Effects of Jitter on AD/DA Conversion. Specification of Clock Jitter 
+Performance. Presented at the 116th Convention, May 2004, Audio Engineering Society. (Link to Purchase) 
+https://secure.aes.org/forum/pubs/conventions/?elib=12637 
+ 
+[23] EVAL-ADAU1452 Obsolete Evaluation Board, Analog Devices, Inc. 
+https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/eval-adau1452.html 
+ 
+
+=== PDF PAGE 32 ===
+ 
+ 
+AD2428 A2B Transceiver Audio Performance Testing and Results (EE-459) Page 32 of 32 
+Document History 
+Revision Description 
+Revision 1 – September 20, 2024  
+by John Tomarakos 
+Initial Release 
+  
+  
+ 
+ 

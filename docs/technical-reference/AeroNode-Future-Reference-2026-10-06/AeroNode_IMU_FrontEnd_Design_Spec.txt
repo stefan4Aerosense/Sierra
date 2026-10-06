@@ -1,0 +1,193 @@
+PART word/footer1.xml
+Aerosense Aviation (Pty) Ltd — ConfidentialAeroNode Sensor Front-End · Rev 0.1 · Page 
+PART word/document.xml
+AeroNode™ Inertial Sensing Front-End
+Heated IMU Cluster — Hardware & Firmware Design Specification
+v1 Development Board (Dev-Board Rev A)
+Aerosense Aviation (Pty) Ltd
+Field
+Detail
+Document
+AeroNode Inertial Sensing Front-End — Design Specification
+Revision
+0.1 (Draft for review)
+Date
+25 June 2026
+Owner
+Duran de Villiers — Aerosense Engineering
+Audience
+Internal engineering; Black Box (PCB & assembly partner, St Francis)
+Status
+Draft — for design review and DFM feedback
+Classification
+Confidential — do not distribute outside Aerosense / contracted partners
+This specification covers a research & development board. It does not describe a certified or production-flightworthy unit. See Section 11 (Limitations & Safety Framing).
+Contents
+1. Executive summary
+This document specifies the inertial sensing front-end for the AeroNode™ v1 development board — the centralized processing hub that physically decouples computation from the Aerosense H1 headset and serves as the primary data-fusion centre. Every Aerosense safety function that depends on motion sensing, principally DSMA™ (Dynamic Stall Margin Awareness) and VGSA™ (Vestibular Guidance via Spatial Audio), is derived from this front-end, so its accuracy, redundancy and thermal stability set the ceiling for the entire safety and analytics stack.
+The recommendation is a three-lane, dissimilar-redundant IMU cluster — a factory-calibrated Analog Devices ADIS16470 industrial IMU as the anchor lane, a TDK InvenSense ICM-42688-P as the high-rate lane, and a Bosch BMI088 as a vibration-robust dissimilar lane — mounted on a thermally-isolated, heated island and run by ArduPilot’s EKF3 with native IMU-heater control. All three parts have mainline ArduPilot drivers, are commercially available through distributors that ship to South Africa, and sit clear of tactical-grade export controls.
+The heated island holds the IMUs at a constant 45 °C setpoint to remove warm-up transients and ambient-temperature drift — the single largest residual error source in low-cost MEMS — using a resistive heater, a low-side MOSFET, and ArduPilot’s built-in heater PID loop. This is the same technique used by the Pixhawk 6X and CUAV X7+ Pro, reduced to the minimum footprint Aerosense needs for its own integrated board.
+2. System context
+The AeroNode front-end is a sensor chain, not a single sample rate. Inertial data flows: IMU cluster → STM32H7 (ArduPilot + EKF3) → Raspberry Pi compute module. Each stage has a distinct rate domain, and the stages are deliberately decoupled:
+STM32H7: runs ArduPlane/ArduPilot and the EKF3 state estimator at the main loop rate. Owns the IMUs over dedicated SPI buses and runs the heater control loop.
+Raspberry Pi (general compute): hosts the Aerosense AI / analytics layer feeding DSMA and synthetic-airspeed processing. It consumes EKF state and raw IMU data from the H7 over a high-rate link; it does not run the EKF.
+Critical design consequence: EKF accuracy is governed on the H7 and saturates well within the H7’s capability, while the Pi-side rate requirement is set independently by the phenomena the AI must resolve (e.g. stall buffet). The board must therefore carry a high-rate IMU path and a high-rate H7→Pi bridge. Rate targets are given in Section 4.
+3. Sensor selection & bill of materials
+Three dissimilar IMUs (different vendors and silicon) are specified so that a common-mode firmware bug or component batch defect cannot disable all lanes simultaneously. EKF3 runs a parallel core per IMU and votes, so heterogeneous lanes are an advantage, not a complication. If board area only permits two lanes, drop the BMI088 and retain the ADIS16470 + ICM-42688-P pairing.
+Part
+Role
+Grade
+Key spec
+ArduPilot driver
+Indicative price
+ADI ADIS16470
+Anchor / reference lane
+Industrial, factory-calibrated
+8°/hr bias; ±2000°/s; ±40 g; δ-angle/δ-vel out; SPI
+AP_InertialSensor_ADIS1647x (mainline)
+~$345 (1k); ~$400–500 ea. low qty
+TDK ICM-42688-P
+High-rate lane
+High-end consumer MEMS
+Fast-sample to 8 kHz+; very low noise; SPI ≤ 24 MHz
+Invensensev3 (mainline)
+~$10–20
+Bosch BMI088
+Dissimilar / vibration-robust lane
+Automotive-qualified MEMS
+Designed for high-vibration UAV; split accel/gyro die; SPI ≤ 10 MHz
+BMI088 (mainline)
+~$8–12
+Export note: the ADIS16470’s 8°/hr in-run bias keeps it clear of the tactical-grade threshold (US ECCN 7A003, which begins near ≤0.5°/hr), so it ships as a standard commercial part. Confirm the exact ECCN with the distributor at order time and avoid the ADIS16490/16495/16497 tactical family, which attracts real import friction into South Africa.
+3.1 Parts deliberately excluded
+Epson M-G370 / G330 / G366: excellent low-noise calibrated IMUs, but no mainline ArduPilot driver — a custom driver effort not justified for v1.
+VectorNav VN-100 / VN-200: external-AHRS architecture (runs its own filter), higher cost, and GPS-equipped variants can be export-controlled into South Africa. Different integration philosophy from raw-IMU-into-EKF3.
+3.2 Procurement into South Africa
+DigiKey and Mouser both ship to South Africa and stock all three parts; Communica and RS South Africa are local options for the TDK and Bosch parts. Order ADIS16470 dev quantities early — lead times can run several weeks. The ADIS16470/PCBZ breakout allows bench bring-up before committing the BGA footprint to the board.
+4. Data-rate, bus & timing requirements
+These rates set the board’s bus topology and the H7→Pi link. They follow from how EKF3 ingests inertial data and from the Nyquist requirement of the DSMA buffet-detection pipeline.
+Stage
+Target rate
+Rationale
+IMU fast-sample (INS_GYRO_RATE)
+4 kHz (ICM-42688-P); 8 kHz capable
+Feeds harmonic-notch filtering and coning/sculling integration; not the EKF rate directly.
+INS → EKF (δ-angle/δ-vel)
+Integrated at fast rate
+Coning/sculling done before hand-off, so the EKF loses no information at a lower loop rate.
+Main loop / EKF3 (SCHED_LOOP_RATE)
+400 Hz (floor 200 Hz)
+Accuracy saturates ~400 Hz on H7 fixed-wing; H7 has ample headroom.
+ADIS16470 sample
+Up to 2 kHz internal, decimated
+Runs as a lane; its δ-angle/δ-vel outputs feed EKF directly.
+H7 → Pi raw-IMU bridge (DSMA)
+≥ 200 Hz; target 500–1000 Hz
+Nyquist on stall buffet (~5–30 Hz) — must avoid aliasing the signature DSMA depends on.
+4.1 Bus topology
+Dedicated SPI per IMU. The STM32H7 has six SPI peripherals; assign one bus each (e.g. ADIS16470→SPI1, ICM-42688-P→SPI2, BMI088→SPI3). This isolates a bus fault to a single lane and lets each part run at its own clock ceiling.
+Per-sensor data-ready (DRDY) interrupt routed to a timer-capable GPIO for precise, low-jitter timestamping — timing consistency matters more to the EKF than raw sample rate.
+ADIS16470 SYNC. Wire the external SYNC input so the ADIS can be driven from a board clock for deterministic sampling; observe its inter-word stall-time timing on the SPI burst read.
+H7→Pi link. Size for the chosen Pi stream rate — a high-baud UART, SPI, or USB bridge carrying raw IMU plus EKF state. Confirm against the 500–1000 Hz DSMA target.
+5. Heated IMU island — thermal design
+The heater’s job is to hold the IMU dies at a constant elevated temperature so bias and scale factor sit at one fixed, calibrated operating point regardless of ambient conditions or warm-up state. The benefit is largest for the consumer lanes (ICM-42688-P, BMI088); the ADIS16470 already carries factory temperature compensation but still benefits from the removal of warm-up transients.
+5.1 Thermal isolation
+Isolated island. Cluster all IMUs on a small copper zone and route a slot “moat” around it, leaving only two or three thin necks (~2–3 mm) carrying SPI and power. No ground flood bridging the island to the main board.
+Low thermal mass. Keep the island small — less mass means faster warm-up and lower hold power.
+Foam cover. Cap the cluster with a closed-cell PU/EPP foam cover bonded to the board. This traps still air (cutting heater power) and, importantly, blocks convective currents that would otherwise disturb both the thermal loop and the accelerometers. Pixhawk-standard boards do exactly this.
+5.2 Heater element & sizing
+Two viable elements; discrete power resistors are recommended for v1 because they hit a precise resistance easily:
+Discrete power resistors (recommended): a small parallel array (e.g. 4× 20 Ω 2512) under/around the cluster.
+PCB copper-trace heater (alternative): a serpentine trace on a back/inner layer beneath the cluster; needs 2 oz copper and careful width to carry ~1 A, and is harder to trim to a target resistance.
+Worked sizing (5 V rail, see Appendix A for the full calculation): target ~5–6 W peak heater capability for a 60–90 s warm-up, settling to ~2–3 W steady hold via PID duty. A ~5 Ω element draws ~1 A peak at 5 V. If a 12 V rail is available, use ~29 Ω for the same power at ~0.4 A, which eases MOSFET selection.
+5.3 Heater drive circuit
+Low-side N-channel MOSFET (logic-level, e.g. AO3400-class: 30 V, multi-amp, ~30 mΩ at 4.5 V Vgs — vastly over-specified for ~1 A, so it runs cool).
+Gate drive from an STM32 timer PWM pin via a ~100 Ω gate resistor and a 100 kΩ pull-down. PWM at ~100 Hz–1 kHz is ample — the island’s thermal mass integrates it, and a low frequency keeps EMI down.
+Placement: locate the MOSFET off the thermal island so its own dissipation does not bias the control loop.
+5.4 Temperature feedback & setpoint
+Primary feedback: the IMU internal temperature register — this is the die temperature ArduPilot regulates against. All three IMUs provide it.
+Independent over-temp watchdog: a 10 kΩ NTC near the cluster on an STM32 ADC, with a firmware cut-off (~80 °C) as defence against a runaway if an IMU temperature read fails.
+Setpoints: 45 °C in flight; 60–70 °C transiently during IMU temperature calibration; hardware/firmware over-temp trip ~80 °C.
+Ceiling caution: a heater can only add heat. The 45 °C setpoint requires the IMU island’s local ambient to stay below it with margin. Keep high-dissipation parts — especially the Raspberry Pi compute module — thermally distant from the island, or its waste heat will both fight and contaminate the loop. If the AeroNode enclosure can exceed ~40 °C internally (e.g. in direct sun), consider a 50–55 °C setpoint plus venting of non-IMU heat sources.
+6. Power architecture & bus separation
+Per-IMU LDO. Power each IMU from its own low-noise LDO (e.g. ADP151 / TPS7A20-class, 3.3 V). This isolates supply noise per lane and prevents a single regulator fault from disabling all three.
+Separate SPI buses (as in Section 4) so a bus-level fault is contained to one lane.
+Independent sensor power control (switchable rails per lane) mirrors the Pixhawk-standard approach and allows a faulted lane to be power-cycled in isolation.
+Together these are what make EKF3 lane voting meaningful — redundant lanes only add safety if their power and bus domains are genuinely independent.
+7. Vibration isolation
+Inertial accuracy is worthless if the IMUs are saturated by airframe vibration — this is acute for the helicopter case in the Aerosense target set.
+Soft-mount the board (or the IMU sub-region) on silicone-gel isolators; consider wire-rope isolators for the helicopter airframe. Keep the heated IMU island low-mass so the isolation behaves predictably.
+Harmonic notch filter (INS_HNTCH) keyed to prop/rotor RPM — the high fast-sample rate in Section 4 exists precisely to support this. Expect to tune the notch from flight-test FFT logs.
+Helicopter specifics: main-rotor 1/rev and blade-pass frequencies are low and high-energy; budget for iteration on isolation and notch tuning during flight test.
+8. ArduPilot firmware integration
+ArduPilot drives all of the above natively. The board needs a custom hardware definition (hwdef) plus a small set of parameters.
+8.1 hwdef (board definition)
+Define the three SPI buses, each IMU driver (ADIS1647x; Invensensev3 for ICM-42688-P; BMI088), CS lines, DRDY pins, and IMU order/orientation.
+Enable the heater: HAL_HAVE_IMU_HEATER 1; assign the heater PWM/timer pin and the IMU temperature source.
+Design to the Pixhawk FMUv6X standard where practical — the heater pin, IMU bus and power conventions are part of that open spec, so the hwdef becomes a small delta off an existing definition rather than a from-scratch port, while keeping Aerosense’s compact form factor.
+8.2 Key parameters
+Parameter
+Value
+Purpose
+BRD_HEAT_TARG
+45
+Heater target °C in flight (70 transiently during temp-cal).
+BRD_HEAT_P / _I / _IMAX
+tune
+Heater PID gains.
+SCHED_LOOP_RATE
+400
+Main loop / EKF3 rate (Hz).
+INS_GYRO_RATE
+4 kHz
+Fast-sampling rate for notch + coning.
+EK3_IMU_MASK
+enable lanes
+Selects which IMUs run EKF cores (lane voting).
+INS_HNTCH_*
+tune
+Harmonic notch, keyed to prop/rotor RPM.
+8.3 Commissioning sequence
+Assemble; flash the custom firmware; confirm each IMU enumerates on its bus and DRDY toggles.
+Set BRD_HEAT_TARG; verify the heater PID reaches and holds 45 °C; log warm-up time, steady duty and current.
+Run IMU temperature calibration (raise target to ~70 °C during cal, then restore 45 °C).
+Perform accel/gyro calibration; verify the three lanes agree.
+On the airframe: capture vibration FFT, set the harmonic notch, confirm clip-free inertial data.
+9. Bring-up & verification plan
+Electrical bench: verify all rails and current draw; confirm SPI comms and DRDY on every lane.
+Heater loop: log die temperature vs time to confirm 45 °C hold, settle time and steady current; thermal-chamber soak −15 °C to +50 °C to confirm regulation authority and the over-temp trip.
+Noise & bias: Allan-variance bias-instability before vs after heater + temp-cal; compare across the three lanes.
+EKF lane check: review logs for IMU1/2/3 consistency, EKF lane affinity and innovation magnitudes.
+DSMA pipeline: confirm the H7→Pi raw-IMU stream sustains the 500–1000 Hz target without drops or aliasing.
+Flight test: progressive envelope expansion with EKF health logging; validate synthetic-airspeed and DSMA behaviour against reference data.
+10. Risks & open decisions for Black Box
+Item
+Decision / action
+ADIS16470 lead time & BGA assembly
+Order dev qty early; confirm Black Box BGA placement + rework capability.
+Two vs three IMU lanes
+Decide against final board area; 3 preferred, 2 (ADIS16470 + ICM-42688-P) acceptable.
+Heater rail voltage (5 V vs 12 V)
+Confirm AeroNode power architecture; drives heater resistance & MOSFET choice.
+Enclosure thermal budget
+Keep Pi compute module thermally distant from IMU island; confirm internal ambient ceiling vs 45 °C setpoint.
+ADIS16470 ECCN into South Africa
+Confirm classification with distributor at order time.
+Foam cover material & assembly
+Select closed-cell foam + bonding process.
+Vibration isolation approach
+May differ fixed-wing vs helicopter; finalise after flight-test FFT.
+11. Limitations & safety framing
+AeroNode™ and its DSMA™ and VGSA™ functions are experimental, advisory, emergency-only aids that augment pilot awareness. They do not replace certified avionics or pilot training. The AeroNode is a portable electronic device with zero input to the aircraft or its flight controls; if all else fails, the Aerosense H1 still functions fully as a base aviation audio headset. This document describes a development board for research and testing only — it is not a certified or production-flightworthy unit, and nothing herein should be read as a claim of primary-instrument status.
+12. References
+Analog Devices ADIS16470 product page & datasheet — https://www.analog.com/en/products/adis16470.html
+ArduPilot — IMU Temperature Calibration (BRD_HEAT_TARG) — https://ardupilot.org/copter/docs/common-imutempcal.html
+ArduPilot — Sensor Drivers (dev documentation) — https://ardupilot.org/dev/docs/code-overview-sensor-drivers.html
+Holybro Pixhawk 6X — temperature-controlled IMUs, triple redundancy — https://docs.px4.io/main/en/flight_controller/pixhawk6x.html
+CUAV X7+ Pro — ADIS16470 + STM32H7 reference design — https://www.cuav.net/en/x7-plus-pro-en/
+Appendix A — Heater sizing worked example
+Illustrative first-order sizing; final values depend on island thermal mass and the AeroNode enclosure, and should be confirmed by thermal-chamber test (Section 9).
+Hold power. For a well-isolated, foam-covered island, thermal conductance to ambient G ≈ 0.04–0.06 W/°C. Holding 45 °C against a −15 °C cold start (ΔT = 60 °C): P_hold = G·ΔT ≈ 2.4–3.6 W.
+Warm-up energy. Island mass ~8 g, c ≈ 900 J/kg·°C: E = m·c·ΔT ≈ 0.008×900×60 ≈ 432 J. Over a 90 s warm-up that is ~4.8 W plus losses → size for ~5–6 W peak capability.
+Element value. At 5 V for ~5 W peak: R = V²/P = 25/5 = 5 Ω, drawing ~1 A peak; PID then backs duty off to the ~2–3 W hold. Discrete option: 4× 20 Ω 2512 in parallel = 5 Ω (spec ≥ 1 W resistors for margin).
+12 V alternative. R = V²/P = 144/5 ≈ 29 Ω at ~0.4 A peak — lower current eases MOSFET and trace sizing.

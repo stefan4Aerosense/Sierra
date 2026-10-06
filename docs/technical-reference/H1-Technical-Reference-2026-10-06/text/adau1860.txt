@@ -1,0 +1,1125 @@
+
+=== PDF PAGE 1 ===
+Data Sheet
+ADAU1860/ADAU1860-1
+Three ADCs, One DAC, Low Power Codec with Audio DSPs
+Rev. C
+DOCUMENT FEEDBACK
+ 
+TECHNICAL SUPPORT
+Information furnished by Analog Devices is believed to be accurate and reliable "as is". However, no responsibility is assumed by Analog
+Devices for its use, nor for any infringements of patents or other rights of third parties that may result from its use. Specifications subject to
+change without notice. No license is granted by implication or otherwise under any patent or patent rights of Analog Devices. Trademarks and
+registered trademarks are the property of their respective owners.
+FEATURES
+►Programmable FastDSP audio processing engine
+►Up to 768 kHz sample rate
+►Biquad filters, limiters, volume controls, mixing
+►Tensilica HiFi 3z DSP core
+►Quad MAC per cycle: 24 × 24-bit multiplier and 64-bit accu-
+mulator
+►Flexible power operation mode: 24.576 MHz, 49.152 MHz,
+73.728 MHz, and 98.304 MHz
+►288 kB total memory
+►JTAG debug and trace
+►Low latency, 24-bit ADCs and DAC
+►106 dB SNR (signal through ADC with A-weighted filter)
+►110 dB combined SNR (signal through DAC and headphone
+with A-weighted filter)
+►Programmable double precision MAC engine for maximum 24-
+stage equalizer
+►Serial port sample rates from 8 kHz to 768 kHz
+►5 μs group delay (fS = 768 kHz) analog in to analog out with
+FastDSP bypass (zero instructions)
+►3 differential or single-ended analog inputs, configurable as mi-
+crophone or line inputs
+►8 digital microphone inputs
+►Analog differential audio output, configurable as either line output
+or headphone drive
+►2 PDM output channels
+►PLL supporting any input clock rate from 30 kHz to 36 MHz
+►4 channel asynchronous sample rate converters (ASRCs)
+►2, 16-channel serial audio ports supporting I2S, left justified, right
+justified, or up to TDM16 (TDM12 in Turbo mode)
+►8 interpolators and 8 decimators with flexible routing
+►Power supplies
+►Digital I/O IOVDD at 1.1 V to 1.98 V
+►Digital DVDD at 0.85 V to 1.21 V
+►Headphone HPVDD at 1.8 V typical
+►Headphone HPVDD_L at 1.2 V to HPVDD
+►Control/communication interfaces
+►I2C, SPI, or UART control ports
+►Master quad SPI (QSPI)
+►UART communication port
+►Self-boot from QSPI flash
+►Flexible GPIO and IRQ
+►56-ball, 0.35 mm pitch, 2.980 mm × 2.679 mm WLCSP
+APPLICATIONS
+►Noise canceling handsets, headsets, and headphones
+►Bluetooth active noise canceling (ANC) handsets, headsets, and
+headphones
+►Personal navigation devices
+►Digital still and video cameras
+►Musical instrument effect processors
+►Multimedia speaker systems
+►Smartphones
+GENERAL DESCRIPTION
+The ADAU1860/ADAU1860-1 are codecs with three inputs and
+one output that incorporate two digital signal processors (DSPs).
+The path from the analog input to the DSP core to the analog
+output is optimized for low latency and is ideal for noise canceling
+earphones. With the addition of just a few passive components, the
+ADAU1860/ADAU1860-1 provide a complete earphone solution.
+All specifications, functions, and features described in this data
+sheet are shared between the ADAU1860 and the ADAU1860-1.
+The ADAU1860 is only available for ordering by customers located
+in the People's Republic of China (PRC). The ADAU1860-1 is
+available for ordering by customers located outside of PRC.
+Analog Devices is in the process of updating documentation to
+provide terminology and language that is culturally appropriate. This
+is a process with a wide scope and will be phased in as quickly as
+possible. Thank you for your patience.
+
+=== PDF PAGE 2 ===
+Data Sheet ADAU1860/ADAU1860-1
+TABLE OF CONTENTS
+analog.com Rev. C | 2 of 30
+Features................................................................ 1
+Applications........................................................... 1
+General Description...............................................1
+Functional Block Diagram......................................3
+Specifications........................................................ 4
+Analog Performance Specifications................... 4
+Crystal Amplifier Specifications..........................8
+Digital Input and Output Specifications.............. 9
+Power Supply Specifications..............................9
+Power-Down Current..........................................9
+Typical Power Consumption.............................10
+Digital Filters.....................................................11
+Digital Timing Specifications.............................11
+Absolute Maximum Ratings.................................16
+Thermal Resistance......................................... 16
+Electrostatic Discharge (ESD) Ratings.............16
+ESD Caution.....................................................16
+Pin Configuration and Function Descriptions...... 17
+Typical Performance Characteristics................... 20
+Theory of Operation.............................................27
+System Block Diagram........................................ 28
+Applications Information...................................... 29
+Power Supply Bypass Capacitors.................... 29
+Layout...............................................................29
+Grounding.........................................................29
+Outline Dimensions............................................. 30
+Ordering Guide.................................................30
+Evaluation Boards............................................ 30
+REVISION HISTORY
+9/2024—Rev. B to Rev. C
+Change to Features Section............................................................................................................................ 1
+11/2023—Rev. A to Rev. B
+Added ADAU1860-1 (Universal)......................................................................................................................1
+Changes to General Description Section.........................................................................................................1
+9/2022—Rev. 0 to Rev. A
+Changes to Features Section.......................................................................................................................... 1
+Changes to Table 1..........................................................................................................................................4
+Changes to Typical Performance Characteristics Section.............................................................................20
+Changes to Theory of Operation Section.......................................................................................................27
+10/2021—Revision 0: Initial Version
+
+=== PDF PAGE 3 ===
+Data Sheet ADAU1860/ADAU1860-1
+FUNCTIONAL BLOCK DIAGRAM
+analog.com Rev. C | 3 of 30
+Figure 1.
+
+=== PDF PAGE 4 ===
+Data Sheet ADAU1860/ADAU1860-1
+SPECIFICATIONS
+analog.com Rev. C | 4 of 30
+Master clock = 24.576 MHz, Hibernate 1 mode, serial input sample rate = 48 kHz, measurement bandwidth = 20 Hz to 20 kHz, word width =
+24 bits, ambient temperature = 25°C, and outputs line loaded with 10 kΩ, unless otherwise noted.
+ANALOG PERFORMANCE SPECIFICATIONS
+Supply voltages: AVDD = HPVDD = IOVDD = 1.8 V, and DVDD = 0.9 V, unless otherwise noted.
+Table 1.
+Parameter Test Conditions/Comments Min Typ Max Unit
+ANALOG-TO-DIGITAL CONVERTERS (ADCs)
+ADC Resolution All ADCs 24 Bits
+Digital Gain Step 0.375 dB
+Digital Gain Range –71.25 +24 dB
+INPUT RESISTANCE (RIN)
+Single-Ended Line Input Nonvoice wake-up mode 9 kΩ
+Voice wake-up mode 18 kΩ
+Differential Line Input Nonvoice wake-up mode 36 kΩ
+Voice wake-up mode 36 kΩ
+Programmable Gain Amplifier (PGA) Single-Ended
+Inputs
+PGA high RIN, normal, 0 dB gain 20.6 kΩ
+PGA high RIN, normal, 24 dB gain 2.4 kΩ
+PGA low RIN, enhanced, 0 dB gain 10.3 kΩ
+PGA low RIN, enhanced, 24 dB gain 1.2 kΩ
+PGA high RIN, enhanced, 0 dB gain 20.6 kΩ
+PGA high RIN, enhanced, 24 dB gain 2.4 kΩ
+PGA Differential Inputs PGA high RIN, normal, 0 dB gain 41.2 kΩ
+PGA high RIN, normal, 24 dB gain 4.8 kΩ
+PGAlow RIN, enhanced, 0 dB gain 20.6 kΩ
+PGA low RIN, enhanced, 24 dB gain 2.4 kΩ
+PGA high RIN, enhanced, 0 dB gain 41.2 kΩ
+PGA high RIN, enhanced, 24 dB gain 4.8 kΩ
+SINGLE-ENDED LINE INPUT PGAx_EN = 0, and PGAx_SLEW_DIS = 1
+Full-Scale Input Voltage 0 dBFS 0.49 V rms
+0 dBFS 1.39 V p-p
+Dynamic Range1 20 Hz to 20 kHz, −60 dB input
+With A-Weighted Filter (RMS) Enhanced performance 103 dB
+Normal performance 103 dB
+Power saving 102 dB
+Voice wake up 99 dB
+With Flat 20 Hz to 20 kHz Filter Enhanced performance 98 dB
+Normal performance 98 dB
+Power saving 98 dB
+Voice wake up 96 dB
+Signal-to-Noise Ratio (SNR)2
+With A-Weighted Filter (RMS) Enhanced performance 102 dB
+Normal performance 102 dB
+Power saving 102 dB
+Voice wake up 98 dB
+With Flat 20 Hz to 20 kHz Filter Enhanced performance 98 dB
+Normal performance 98 dB
+Power saving 98 dB
+Voice wake up 95 dB
+
+=== PDF PAGE 5 ===
+Data Sheet ADAU1860/ADAU1860-1
+SPECIFICATIONS
+analog.com Rev. C | 5 of 30
+Table 1. (Continued)
+Parameter Test Conditions/Comments Min Typ Max Unit
+Interchannel Gain Mismatch 40 mdB
+Total Harmonic Distortion + Noise (THD + N)20 Hz to 20 kHz, −1 dB full-scale output
+Enhanced performance –78 dBFS
+Normal performance –78 dBFS
+Power saving –78 dBFS
+Voice wake up –78 dBFS
+Offset Error ±0.3 mV
+Gain Error ±0.2 dB
+Interchannel Isolation CM capacitor = 1 μF 100 dB
+Power Supply Rejection Ratio (PSRR) CM capacitor = 1 μF
+100 mV p-p at 1 kHz 60 dB
+100 mV p-p at 10 kHz 40 dB
+DIFFERENTIAL LINE INPUT PGAx_EN = 0, PGAx_SLEW_DIS = 1
+Full-Scale Input Voltage 0 dBFS 0.98 V rms
+0 dBFS 2.78 V p-p
+Dynamic Range1 20 Hz to 20 kHz, −60 dB input
+With A-Weighted Filter (RMS) Enhanced performance 106 dB
+Normal performance 106 dB
+Power saving 105 dB
+Voice wake up 100 dB
+With Flat 20 Hz to 20 kHz Filter Enhanced performance 104 dB
+Normal performance 104 dB
+Power saving 103 dB
+Voice wake up 98 dB
+SNR2
+With A-Weighted Filter (RMS) Enhanced performance 106 dB
+Normal performance 106 dB
+Power saving 104 dB
+Voice wake up 99 dB
+With Flat 20 Hz to 20 kHz Filter Enhanced performance 103 dB
+Normal performance 103 dB
+Power saving 102 dB
+Voice wake up 98 dB
+Interchannel Gain Mismatch 40 mdB
+THD + N 20 Hz to 20 kHz, −1 dB full-scale output
+Enhanced performance –95 dBFS
+Normal performance –95 dBFS
+Power saving –95 dBFS
+Voice wake up –95 dBFS
+Offset Error ±0.2 mV
+Gain Error ±0.2 dB
+Interchannel Isolation CM capacitor = 1 μF 100 dB
+PSRR CM capacitor = 1 μF
+100 mV p-p at 1 kHz 70 dB
+100 mV p-p at 10kHz 70 dB
+
+=== PDF PAGE 6 ===
+Data Sheet ADAU1860/ADAU1860-1
+SPECIFICATIONS
+analog.com Rev. C | 6 of 30
+Table 1. (Continued)
+Parameter Test Conditions/Comments Min Typ Max Unit
+SINGLE-ENDED PGA INPUT PGAx_EN = 1
+Full-Scale Input Voltage 0 dBFS 0.49 V rms
+0 dBFS 1.39 V p-p
+Dynamic Range1 20 Hz to 20 kHz, −60 dB input
+With A-Weighted Filter (RMS) Enhanced performance 100 dB
+Normal performance 100 dB
+Power saving 99 dB
+Voice wake up 97 dB
+With Flat 20 Hz to 20 kHz Filter Enhanced performance 96 dB
+Normal performance 96 dB
+Power saving 96 dB
+Voice wake up 94 dB
+SNR2
+With A-Weighted Filter (RMS) Enhanced performance 100 dB
+Normal performance 100 dB
+Power saving 99 dB
+Voice wake up 97 dB
+With Flat 20 Hz to 20 kHz Filter Enhanced performance 96 dB
+Normal performance 96 dB
+Power saving 96 dB
+Voice wake up 94 dB
+THD + N 20 Hz to 20 kHz, −1 dBFS
+Enhanced performance –78 dBFS
+Normal performance –78 dBFS
+Power saving –78 dBFS
+Voice wake up –78 dBFS
+PGA Gain Range 0 24 dB
+PGA Gain Variation
+With 0 dB Setting Standard deviation 0.05 dB
+With 24 dB Setting Standard deviation 0.15 dB
+Interchannel Gain Mismatch 40 mdB
+Offset Error 0.3 mV
+Gain Error ±0.2 dB
+Interchannel Isolation CM capacitor = 1 μF 83 dB
+PSRR CM capacitor = 1 μF
+100 mV p-p at 1 kHz 70 dB
+100 mV p-p at 10 kHz 50 dB
+DIFFERENTIAL PGA INPUT PGAx_EN = 1
+Full-Scale Input Voltage 0 dBFS 0.98 V rms
+0 dBFS 2.78 V p-p
+Dynamic Range1 20 Hz to 20 kHz, −60 dB input
+With A-Weighted Filter (RMS) Enhanced performance 103 dB
+Normal performance 103 dB
+Power saving 103 dB
+Voice wake up 97 dB
+With Flat 20 Hz to 20 kHz Filter Enhanced performance 101 dB
+Normal performance 101 dB
+Power saving 100 dB
+Voice wake up 96 dB
+
+=== PDF PAGE 7 ===
+Data Sheet ADAU1860/ADAU1860-1
+SPECIFICATIONS
+analog.com Rev. C | 7 of 30
+Table 1. (Continued)
+Parameter Test Conditions/Comments Min Typ Max Unit
+SNR2
+With A-Weighted Filter (RMS) Enhanced performance 102 dB
+Normal performance 102 dB
+Power saving 102 dB
+Voice wake up 97 dB
+With Flat 20 Hz to 20 kHz Filter Enhanced performance 100 dB
+Normal performance 100 dB
+Power saving 100 dB
+Voice wake up 95 dB
+THD + N 20 Hz to 20 kHz, −1 dBFS
+Enhanced performance –95 dBFS
+Normal performance –95 dBFS
+Power saving –95 dBFS
+Voice wake up –95 dBFS
+PGA Gain Range 0 24 dB
+PGA Gain Variation
+With 0 dB Setting Standard deviation 0.05 dB
+With 24 dB Setting Standard deviation 0.15 dB
+Interchannel Gain Mismatch 40 mdB
+Offset Error ±0.2 mV
+Gain Error ±0.2 dB
+Interchannel Isolation CM capacitor = 1 μF 100 dB
+PSRR CM capacitor = 1 μF
+100 mV p-p at 1 kHz 70 dB
+100 mV p-p at 10 kHz 70 dB
+DIGITAL-TO-ANALOG CONVERTERS (DACs)
+Internal Converter Resolution All digital-to-analog converters 24 Bits
+Digital Gain
+Step 0.375 dB
+Range –71.25 +24 dB
+Ramp Rate 4.5 dB/ms
+DAC DIFFERENTIAL OUTPUT Differential operation
+Full-Scale Output Voltage 0 dBFS to DAC 1.0 V rms
+Dynamic Range1 20 Hz to 20 kHz, −60 dB input
+With A-Weighted Filter (RMS) Enhanced performance 110 dB
+Normal performance 106 dB
+With Flat 20 Hz to 20 kHz Filter Enhanced performance 107 dB
+Normal performance 103 dB
+SNR2 20 Hz to 20 kHz
+With A-Weighted Filter (RMS) Enhanced performance 110 dB
+Normal performance 106 dB
+With Flat 20 Hz to 20 kHz Filter Enhanced performance 106 dB
+Normal performance 103 dB
+Output Noise 20 Hz to 20 kHz
+With A-Weighted Filter (RMS) 3.15 μV
+THD + N Level Headphone mode
+32 Ω Load –15 dBFS input, output power (POUT) = 1 mW, enhanced
+performace
+–96 dBV
+–15 dBFS input, POUT = 1 mW, normal performace –85 dBV
+
+=== PDF PAGE 8 ===
+Data Sheet ADAU1860/ADAU1860-1
+SPECIFICATIONS
+analog.com Rev. C | 8 of 30
+Table 1. (Continued)
+Parameter Test Conditions/Comments Min Typ Max Unit
+−1 dBFS input, enhanced performance –89 dBV
+−1 dBFS input, normal performance –80 dBV
+24 Ω Load −2 dBFS input, enhanced performance –89 dBV
+−2 dBFS input, normal performance –80 dBV
+16 Ω Load −3 dBFS input, enhanced performance –89 dBV
+−3 dBFS input, normal performance –80 dBV
+THD + N Ratio3 Headphone mode
+10 kΩ Load −1 dBFS input, normal performance −95 dB
+300 Ω Load −1 dBFS input, enhanced performance −93 dB
+600 Ω Load −1 dBFS input, enhanced performance −93 dB
+Headphone Output Power
+32 Ω Load AVDD = 1.8 V, <0.1% THD + N 30 mW
+24 Ω Load AVDD = 1.8 V, <0.1% THD + N 40 mW
+16 Ω Load AVDD = 1.8 V, <0.1% THD + N 50 mW
+Gain Error ±2.5 %
+DC Offset ±0.1 mV
+PSRR CM capacitor = 1 μF
+HPVDD 100 mV p-p at 1 kHz 85 dB
+100 mV p-p at 10 kHz 85 dB
+HPVDD_L (LDO Bypass) 100 mV p-p at 1 kHz 90 dB
+100 mV p-p at 10 kHz 90 dB
+AVDD Undervoltage Trip Point 1.5 V
+CM REFERENCE CM pin
+Output 0.85 V
+Source Impedance 5 kΩ
+PHASE LOCKED LOOP (PLL)
+Input Frequency After input prescale 0.03 36 MHz
+Output Frequency 24 49.152 100 MHz
+Fractional Limits Fractional mode, fraction part (numerator (N)/denominator
+(M))
+0.1 0.9
+Integer Limits Fractional mode, integer part 2 3072
+Lock Time 32 kHz input 6.5 ms
+24.576 MHz input 0.46 0.55 ms
+REGULATOR
+Line Regulation 1 mV/V
+Load Regulation 0.5 mV/mA
+1 Dynamic range is the ratio of the sum of noise and harmonic power in the band of interest with a −60 dBFS signal present to the full-scale power level in decibels.
+2 SNR is the ratio of the sum of all noise power in the band of interest with no signal present to the full-scale power level in decibels.
+3 25°C with DAC_MORE_FILT, DAC_LPM enabled with A-weighted filter used.
+CRYSTAL AMPLIFIER SPECIFICATIONS
+Supply voltages: AVDD = IOVDD = 1.8 V, and DVDD = 0.9 V, unless otherwise noted.
+Table 2.
+Parameter Min Typ Max Unit
+JITTER 270 500 ps
+FREQUENCY RANGE 1 36 MHz
+LOAD CAPACITANCE 20 pF
+
+=== PDF PAGE 9 ===
+Data Sheet ADAU1860/ADAU1860-1
+SPECIFICATIONS
+analog.com Rev. C | 9 of 30
+DIGITAL INPUT AND OUTPUT SPECIFICATIONS
+–40°C < TA < +85°C, and IOVDD = 1.1 V to 1.98 V, unless otherwise noted.
+Table 3.
+Parameter Symbols Test Conditions/Comments Min Typ Max Unit
+INPUT VOLTAGE
+High VIH 0.7 × IOVDD V
+Low VIL 0.3 × IOVDD V
+IIH IOVDD = 1.8 V, input high current (IIH) at VIH = 1.1 V 10 µA
+IIL Input low current (IIL) at VIL = 0.45 V 10 µA
+OUTPUT VOLTAGE HIGHVOH
+Drive Strength
+Low Output high current (IOH) = 1 mA 0.7 × IOVDD 0.83 × IOVDD V
+High IOH = 3 mA 0.7 × IOVDD 0.83 × IOVDD V
+OUTPUT VOLTAGE LOW VOL
+Drive Strength
+Low Output low current (IOL) = 1 mA 0.1 × IOVDD 0.3 × IOVDD V
+High Output low current (IOL) = 3 mA 0.1 × IOVDD 0.3 × IOVDD V
+INPUT CAPACITANCE 5 pF
+POWER SUPPLY SPECIFICATIONS
+Supply voltages: AVDD = HPVDD = IOVDD = 1.8 V and DVDD = 0.9 V, unless otherwise noted. PLL disabled, direct master clock. Digital
+input/output (I/O) lines loaded with 25 pF.
+Table 4.
+Parameter Test Conditions/Comments Min Typ Max Unit
+SUPPLIES
+AVDD Voltage 1.7 1.8 1.98 V
+DVDD Voltage 0.85 0.9 1.21 V
+IOVDD Voltage 1.1 1.8 1.98 V
+HPVDD Voltage 1.7 1.8 1.98 V
+HPVDD_L Voltage 1.2 HPVDD V
+POWER-DOWN CURRENT
+Supply voltages: AVDD = HPVDD = IOVDD = 1.8 V and DVDD = 0.9 V and was externally supplied. PLL and crystal oscillator was disabled and
+bypassed.
+Table 5.
+Parameter
+AVDD + HPVDD Current DVDD Current IOVDD Current HPVDD_L Current
+UnitMin Typ Max Min Typ Max Min Typ Max Min Typ Max
+POWER-DOWN CURRENT
+PD Pin Low (Hardware Power Down) 6.6 56.9 2.6 3 μA
+PWR_MODE = 00
+CM_KEEP_ALIVE = 0 11 258 21 3 μA
+CM_KEEP_ALIVE = 1 588 258 21 3 μA
+
+=== PDF PAGE 10 ===
+Data Sheet ADAU1860/ADAU1860-1
+SPECIFICATIONS
+analog.com Rev. C | 10 of 30
+TYPICAL POWER CONSUMPTION
+PLL bypassed with a master clock = 24.576 MHz (external oscillator). DVDD = 0.9 V, and AVDD = HPVDD = IOVDD = 1.8 V was supplied
+externally. Where applicable, ADC0 and ADC1 were run at 192 kHz, and ADC2 was run at 48 kHz. FastDSP™ was run at 192 kHz (biquad
+filters with 27-bit precision), and Tensilica DSP was run at 48 kHz. DAC was run at 192 kHz, and DAC_LPM = 0. One serial port input and
+output, configured as a slave, with a headphone load of 32 Ω was used. The DAC headphone amplifier (HPAMP) was in normal voltage mode.
+Quiescent current had no signal.
+In Table 6, ASRCI and ASRCO are the input and output ports of the asynchronous sample rate converters, FIFO is first in, first out, DMIC is the
+digital microphone, and PDM is the pulse density modulation.
+Table 6.
+ADC + PGA
+Channels
+DAC
+Channels
+ASRCI/
+ASRCO
+Channels
+FIFO and
+SRAM2
+FastDSP
+Instructions
+Equalizer
+Filters
+DMIC/PDM
+Channels
+Interpolator
+/ Decimator
+Channels
+AVDD +
+HPVDD
+Current
+(mA)
+DVDD
+Current
+(mA)
+IOVDD
+Current
+(mA)
+HPVDD_L
+Current
+(mA)
+0 1 1/0 N 0 13 0 0 0.99 1.09 0.15 0.003
+2 1 0 N 32 13 0 0 2.18 1.87 0.15 0.003
+2 1 1/0 N 32 13 0 0 2.18 2.54 0.15 0.003
+1 1 1/1 N 0 13 0 0 1.76 1.30 0.22 0.003
+3 1 1/3 N 32 13 0 0 2.58 3.04 0.315 0.003
+1 (Voice Wake
+Up)
+0 0 Y 0 0 0 0 1.46 1.56 0.15 0.003
+Typical active noise cancelling (ANC) settings (phone call with ANC). Master clock = 24.576 MHz (external oscillator and PLL bypassed). DVDD
+= 0.9 V, and AVDD = HPVDD = IOVDD = 1.8 V was supplied externally. The three ADCs were PGA enabled and configured for headphone
+input. The DAC was configured for differential headphone operation, and the DAC output was loaded with 32 Ω, and DAC_LPM = 0. One serial
+port input and output, configured as slave, was used. One input and three output ASRCs were used. FastDSP was run at 24.576 MHz,
+32 instructions (biquad filters with 27-bit precision) at 192 kHz. Tensilica DSP was bypassed, quiescent current had no signal, and the input
+signal level was –15 dBFS.
+Table 7.
+Operating
+Voltage
+Performance
+Setting Power Mode
+Typical Current (mA) Typical ADC
+THD + N,
+Differential
+Mode (dB FS)
+Typical Head-
+phone Output
+THD + N (dBV),
+1 mW Output
+AVDD +
+HPVDD DVDD IOVDD HPVDD_L
+Total Power
+Consumption
+(mW)
+AVDD =
+IOVDD = 1.8 V,
+DVDD = 0.9 V
+High Normal voltage3.04 3.06 0.316 0.003 8.8 –95 Not applicable
+No load
+7.87 3.06 0.315 0.003 17.49 –95 –96
+Low voltage 2.76 3.06 0.316 0.286 8.63 –95 Not applicable
+No load
+2.76 3.06 0.316 5.093 14.4 –95 –96
+Normal Normal voltage2.58 3.06 0.316 0.003 7.97 –95 Not applicable
+No load
+7.41 3.06 0.316 0.003 16.66 –95 –85
+Low voltage 2.32 3.06 0.316 0.257 7.8 –95 Not applicable
+No load
+2.32 3.06 0.316 5.071 13.58 –95 –85
+
+=== PDF PAGE 11 ===
+Data Sheet ADAU1860/ADAU1860-1
+SPECIFICATIONS
+analog.com Rev. C | 11 of 30
+DIGITAL FILTERS
+Table 8.
+Parameter Test Conditions/Comments Min Typ Max Unit
+ADC INPUT TO DAC OUTPUT PATH
+Pass-Band Ripple DC to 20 kHz, sampling frequency (fS) = 192 kHz
+(ADC_FCOMP = 1, and DAC_FCOMP = 1)
+±0.02 dB
+Group Delay fS = 192 kHz 12.9 µs
+fS = 384 kHz 7.5 µs
+fS = 768 kHz 5 µs
+SAMPLE RATE CONVERTER
+Pass Band FSYNC < 63 kHz 0.475 × fS kHz
+63 kHz < FSYNC < 112 kHz 0.4286 × fS kHz
+FSYNC > 112 kHz 0.2383 × fS kHz
+Audio Band Ripple 20 Hz to 20 kHz –0.1 +0.1 dB
+Input and Output Sample Frequency Range 7 224 kHz
+Dynamic Range ASRCx_LPM = 0 130 dB
+ASRCx_LPM = 1 130 dB
+ASRCx_LPM_II = 1 130 dB
+THD + Noise 20 Hz to 20 kHz, input is typical at 1 kHz and
+maximum at 20 kHz
+ASCRx_LPM = 0 –130 –120 dBFS
+ASCRx_LPM = 1 –120 –110 dBFS
+ASCRx_LPM_II = 1 –115 –90
+Start-Up Time to Lock 25 ms
+PDM OUTPUTS
+Dynamic Range 20 Hz to 20 kHz, with A-weighted filter 126 dBFS
+THD + N 20 Hz to 20 kHz, –6 dBFS input –125 dBFS
+DIGITAL TIMING SPECIFICATIONS
+−40°C < TA < +85°C, IOVDD = 1.1 V to 1.8 V, and DVDD = 0.9 V to 1.1 V, unless otherwise noted.
+Table 9.
+Parameter
+Limit
+Unit DescriptionMin Max
+MASTER CLOCK MCLKIN period
+tMPI 0.037 33.3 µs 30 kHz to 36 MHz input clock using PLL in integer mode
+tMPF 0.037 1.0 µs 30 kHz to 36 MHz input clock using PLL in fractional mode
+AUDIO SERIAL PORT
+tBL 18 ns BCLK_x low pulse width (master and slave modes)
+tBH 18 ns BCLK_x high pulse width (master and slave modes)
+fBCLK 0.512 24.576 MHz BCLK_x frequency
+tLS 3 ns FSYNC_x setup, time to BCLK_x rising (slave mode)
+tLH 5 ns FSYNC_x hold, time from BCLK_x rising (slave mode)
+fSYNC 8 7681 kHz FSYNC_x frequency
+tSS 3 ns SDATAI_x setup, time to BCLK_x rising (master and slave modes)
+tSH 10 ns SDATAI_x hold, time from BCLK_x rising (master and slave modes)
+tTS 6 ns BCLK_x falling to FSYNC_x timing skew (master mode)
+
+=== PDF PAGE 12 ===
+Data Sheet ADAU1860/ADAU1860-1
+SPECIFICATIONS
+analog.com Rev. C | 12 of 30
+Table 9. (Continued)
+Parameter
+Limit
+Unit DescriptionMin Max
+tSOD 0 16 ns SDATAO_x delay, time from BCLK_x falling (master and slave modes), IOVDD at
+1.62 V minimum
+0 32 ns SDATAO_x delay, time from BCLK_x falling (master and slave modes), IOVDD at
+1.1 V minimum
+tSOTD 0 16 ns BCLK_x falling to SDATAO_x driven in tristate mode
+tSOTX 0 16 ns BCLK_x falling to SDATAO_x tristated in tristate mode
+SERIAL PERIPHERAL INTEFACE (SPI)
+PORT
+fSCLK 24 MHz SCLK frequency
+tCCPL 15 ns SCLK pulse width low
+tCCPH 15 ns SCLK pulse width high
+tCLS 4 ns SS setup, time to SCLK rising
+tCLH 18 ns SS hold, time from SCLK rising
+tCLPH 10 ns SS pulse width high
+tCDS 8 ns MOSI setup, time to SCLK rising
+tCDH 6 ns MOSI hold, time from SCLK rising
+tCOD 17 ns MISO delay, time from SCLK falling
+tCOTS 24 ns MISO high-Z, time from SS rising
+I2C PORT
+fSCL 1 MHz SCL frequency
+tSCLH 0.26 µs SCL high
+tSCLL 0.5 µs SCL low
+tSCS 0.26 µs SCL rise setup time (to SDA falling), relevant for repeated start condition
+tSCR 120 ns SCL and SDA rise time, CLOAD = 400 pF
+tSCH 0.26 µs SCL fall hold time (from SDA falling), relevant for start condition
+tDS 50 ns SDA setup time (to SCL rising)
+tSCF 120 ns SCL and SDA fall time, CLOAD = 400 pF
+tBFT 0.5 µs SCL rise setup time (to SDA rising), relevant for stop condition
+QSPI
+fQCLK 502 MHz QSPIM_CLK frequency
+UART
+1.152 Mbps Baud rate
+GENERAL-PURPOSE INPUT/OUTPUT
+(GPIO) PINS
+tGIL 1.5 × 1/fS µs MPx input latency, time until high or low value is read by core
+tRLPW 20 ns PD low pulse width
+DIGITAL MICROPHONE
+tCF3 12 ns Digital microphone clock fall time
+tCR3 14 ns Digital microphone clock rise time
+tSETUP 10 ns Digital microphone data setup time
+tHOLD 3 ns Digital microphone data hold time
+
+=== PDF PAGE 13 ===
+Data Sheet ADAU1860/ADAU1860-1
+SPECIFICATIONS
+analog.com Rev. C | 13 of 30
+Table 9. (Continued)
+Parameter
+Limit
+Unit DescriptionMin Max
+PDM OUTPUT
+fPDM_CLK PDM clock frequency
+3.072 MHz 3 MHz setting
+6.144 MHz 6 MHz setting
+tCF3 12 ns Digital PDM clock output fall time
+tCR3 14 ns Digital PDM clock output rise time
+tHOLD 35 46 ns PDM data hold time
+1 Stereo, 16 bit per channel only at 768 kHz.
+2 Measured when IOVDD = 1.8 V house temperature.
+3 Digital microphone clock rise and fall times are measured at 2 mA drive strength with 25 pF load.
+Digital Timing Diagrams
+Figure 2. Serial Input Port Timing Diagram
+
+=== PDF PAGE 14 ===
+Data Sheet ADAU1860/ADAU1860-1
+SPECIFICATIONS
+analog.com Rev. C | 14 of 30
+Figure 3. Serial Output Port Timing Diagram
+Figure 4. SPI Port Timing Diagram
+Figure 5. I2C Port Timing Diagram
+
+=== PDF PAGE 15 ===
+Data Sheet ADAU1860/ADAU1860-1
+SPECIFICATIONS
+analog.com Rev. C | 15 of 30
+Figure 6. Digital Microphone Timing Diagram
+Figure 7. PDM Output Timing Diagram
+
+=== PDF PAGE 16 ===
+Data Sheet ADAU1860/ADAU1860-1
+ABSOLUTE MAXIMUM RATINGS
+analog.com Rev. C | 16 of 30
+Table 10.
+Parameter Rating
+Power Supply (AVDD, IOVDD, HPVDD, and
+HPVDD_L)
+–0.3 V to +1.98 V
+Digital Supply (DVDD) –0.3 V to +1.21 V
+Input Current (Except Supply Pins) ±20 mA
+Analog Input Voltage (Signal Pins) –0.3 V to AVDD + 0.3 V
+Digital Input Voltage (Signal Pins) –0.3 to IOVDD + 0.3 V
+Temperature
+Operating Range (Case) –40°C to +85°C
+Storage Range –65°C to +150°C
+Stresses at or above those listed under Absolute Maximum Ratings
+may cause permanent damage to the product. This is a stress
+rating only; functional operation of the product at these or any other
+conditions above those indicated in the operational section of this
+specification is not implied. Operation beyond the maximum operat-
+ing conditions for extended periods may affect product reliability.
+THERMAL RESISTANCE
+Thermal performance is directly linked to printed circuit board
+(PCB) design and operating environment. Careful attention to PCB
+thermal design is required.
+θJA and θJC are determined according to JESD-51-9 on a 4-layer
+PCB with natural convection cooling.
+Table 11. Thermal Resistance
+Package Type θJA1 θJC1 Unit
+CB-56-6 82.7 0.84 °C/W
+1 Thermal impedance simulated values are based on a JEDEC 2S2P thermal
+test board with two thermal vias. See JEDEC JESD-51.
+ELECTROSTATIC DISCHARGE (ESD) RATINGS
+The following ESD information is provided for handling of ESD-sen-
+sitive devices in an ESD protected area only. 
+Human body model (HBM) per ANSI/ESDA/JEDEC JS-001.
+Charged device model (CDM) per ANSI/ESDA/JEDEC JS-002.  
+ESD Ratings for the ADAU1860/ADAU1860-1
+Table 12. ADAU1860/ADAU1860-1, 56-Ball WLCSP
+ESD Model Withstand Threshold (V) Class
+HBM 1000 V 1C
+CDM 500 V C2A
+ESD CAUTION
+ESD (electrostatic discharge) sensitive device. Charged devi-
+ces and circuit boards can discharge without detection. Although
+this product features patented or proprietary protection circuitry,
+damage may occur on devices subjected to high energy ESD.
+Therefore, proper ESD precautions should be taken to avoid
+performance degradation or loss of functionality.
+
+=== PDF PAGE 17 ===
+Data Sheet ADAU1860/ADAU1860-1
+PIN CONFIGURATION AND FUNCTION DESCRIPTIONS
+analog.com Rev. C | 17 of 30
+Figure 8. Pin Configuration (Top View)
+Table 13. Pin Function Descriptions
+Ball No. Mnemonic Type1 Description
+A1 ROM_BOOT_MODE/MP21D_IO ROM Boot-Up Mode. Use Boot-Up Mode 1 when connecting to IOVDD and use Boot-Up Mode 2 when connecting
+to ground.
+Multipurpose I/O 21 (MP21).
+A2 HPVDD_L PWR Power Supply for the Internal Low Dropout (LDO) Regulator and Headphone Amplifier Power.
+A3 DVDD PWR Digital Core Supply. The digital supply can be generated from an on-board regulator or supplied directly from an
+external supply. In each case, decouple DVDD to DGND with a 1 μF and a 0.1 μF capacitor.
+A4 DGND PWR Digital Ground. The AGND and DGND pins can be tied directly together in a common ground plane.
+A5 TCK/MP22 D_IO JTAG Port Clock Input.
+Multipurpose I/O 22 (MP22).
+A6 TMS/MP23 D_IO JTAG Port Mode Selection.
+Multipurpose I/O 23 (MP23).
+A7 TDO/MP24 D_IO JTAG Port Data Output.
+MultipPurpose I/O 24 (MP24).
+A8 TDI/MP25 D_IO JTAG Port Data Input.
+MultipPurpose I/O 25 (MP25).
+B1 SDATAO_0/MP5 D_IO Serial Audio Port 0 Output Data (SDATAO_0).
+Multipurpose I/O 5 (MP5).
+B2 BCLK_0/MP3 D_IO Serial Audio Port 0 Bit Clock (BCLK_0).
+Multipurpose I/O 3 (MP3).
+B3 DVDD PWR Digital Core Supply. The digital supply can be generated from an on-board regulator or supplied directly from an
+external supply. In each case, decouple DVDD to DGND with a 1 uF and 0.1 μF capacitor.
+B4 DGND PWR Digital Ground. The AGND and DGND pins can be tied together in a common ground plane.
+
+=== PDF PAGE 18 ===
+Data Sheet ADAU1860/ADAU1860-1
+PIN CONFIGURATION AND FUNCTION DESCRIPTIONS
+analog.com Rev. C | 18 of 30
+Table 13. Pin Function Descriptions (Continued)
+Ball No. Mnemonic Type1 Description
+B5 IOVDD PWR Supply for Digital Input and Output Pins. The digital output pins are supplied from IOVDD, and this sets the highest
+input voltage that can be seen on the digital input pins. The current draw of IOVDD is variable because it is
+dependent on the loads of the digital outputs. Decouple IOVDD to DGND with a 0.1 μF capacitor at least.
+B6 XTALO A_OUT Crystal Clock Output. The XTALO pin is the output of the crystal amplifier and must not be used to provide a clock to
+other ICs in the system.
+B7 XTALI/MCLKIN D_IN Crystal Clock Input (XTALI).
+Master Clock Input (MCLKIN).
+B8 QSPIM_CLK/MP11 D_IO Quad Master SPI Clock (QSPIM_CLK).
+Multipurpose I/O 11 (MP11).
+C1 SDATAI_0/MP6 D_IO Serial Audio Port 0 Input Data (SDATAI_0).
+Multipurpose I/O 6 (MP6).
+C2 FSYNC_0/MP4 D_IO Serial Audio Port 0 Frame Sync/Left Right Clock (FSYNC_0).
+Multipurpose I/O 4 (MP4).
+C3 DMIC23/MP2 D_IO Digital Microphone Stereo Input 2 and Digital Microphone Stereo Input 3 (DMIC23).
+Multipurpose I/O 2 (MP2).
+C4 DMIC_CLK/MP0 D_IO Digital Microphone Clock Output.
+Multipurpose I/O 0 (MP0).
+C5 DMIC01/MP1 D_IO Digital Microphone Stereo Input 0 and Digital Microphone Stereo Input 1 (DMIC01).
+Multipurpose I/O 1 (MP1).
+C6 SDA/MISO/
+UART_CTRL_TX
+D_IO I2C Data (SDA). Th SDA pin is a bidirectional open-collector. The line connected to SDA must have a 2.0 kΩ pull-up
+resistor.
+SPI Data Output (MISO). This SPI data output is used for reading back registers and memory locations. MISO is
+tristated when an SPI read is not active.
+UART Control Port Data Transmit and Output (UART_CTRL_TX).
+C7 SCL/SCLK D_IO I2C Clock (SCL). The SCL pin is always an open-collector input when the device is in I2C control mode. The line
+connected to the SCL pin must have a 2.0 kΩ pull-up resistor.
+SPI Clock (SCLK). The SCLK pin can either run continuously or be gated off between SPI transactions.
+C8 QSPIM_SDIO0/MP13 D_IO Quad Master SPI Data I/O 0 (QSPIM_SDIO0).
+Multipurpose I/O 13 (MP13).
+D1 HPVDD_L PWR Headphone Amplifier Power, 1.2 V Analog Supply. Decouple the HPVDD_L pin to HPGND with a 10 μF capacitor.
+The PCB trace to HPVDD_L must be wider to supply the higher current necessary for driving the headphone
+outputs.
+D2 UART_COMM_TX/MP17D_IO Communication UART Port Data Transmit/Output (UART_COMM_TX).
+Multipurpose I/O 17 (MP17).
+D3 SDATAO_1/MP9 D_IO Serial Audio Port 1 Output Data (SDATAO_1).
+Multipurpose I/O 9 (MP9).
+D4 SDATAI_1/MP10 D_IO Serial Audio Port 1 Input Data (SDATAI_1).
+MultipPurpose I/O 10 (MP10).
+D5 BCLK_1/MP7 D_IO Serial Audio Port 1 Bit Clock (BCLK_1).
+Multipurpose I/O 7 (MP7).
+D6 ADDR0/SS D_IN I2C Address 0 (ADDR0).
+SPI Latch Signal (SS). SS must go low at the beginning of an SPI transaction and high at the end of a transaction.
+Each SPI transaction can take a different number of SCLK cycles to complete, depending on the address and
+read/write bit that are sent at the beginning of the SPI transaction.
+D7 ADDR1/MOSI/
+UART_CTRL_RX
+D_IN I2C Address 1 (ADDR1).
+SPI Data Input (MOSI).
+UART Control Port Data Receiver/Input (UART_CTRL_RX).
+D8 QSPIM_SDIO1/MP14 D_IO Quad Master SPI Data Input/Output 1 (QSPIM_SDIO1).
+Multipurpose I/O 14 (MP14).
+
+=== PDF PAGE 19 ===
+Data Sheet ADAU1860/ADAU1860-1
+PIN CONFIGURATION AND FUNCTION DESCRIPTIONS
+analog.com Rev. C | 19 of 30
+Table 13. Pin Function Descriptions (Continued)
+Ball No. Mnemonic Type1 Description
+E1 HPVDD PWR Headphone Amplifier Power, 1.8 V Analog Supply. Decouple the HPVDD pin to HPGND with a 10 μF capacitor. The
+PCB trace to HPVDD must be wider to supply the higher current necessary for driving the headphone outputs.
+E2 UART_COMM_RX/MP18D_IO Communication UART Port Data Receiver/Input (UART_COMM_RX).
+MultiPurpose I/O 18 (MP18).
+E3 IRQ/MP20 D_IO Interrupt Input/Output.
+MultipPurpose I/O 20 (MP20).
+E4 PD D_IO Active Low Power-Down. All digital and analog circuits are powered down. There is an internal pull-down resistor on
+the PD pin; therefore, the ADAU1860/ADAU1860-1 are held in power-down mode if the input signal is floating while
+power is applied to the supply pins.
+E5 FSYNC_1/MP8 D_IO Serial Audio Port 1 Frame Sync/Left Right Clock (FSYNC_1).
+MultiPurpose I/O 8 (MP8).
+E6 SELFBOOT/MP19 D_IO Self Boot. Set SELFBOOT up to IOVDD at power-up to enable self boot mode. Otherwise, set SELFBOOT to GND
+at start-up.
+Multipurpose I/O 19 (MP19).
+E7 QSPIM_SDIO3/MP16 D_IO Quad Master SPI Data Input/Output 3 (QSPIM_SDIO3).
+Multipurpose I/O 16 (MP16).
+E8 QSPIM_SDIO2/MP15 D_IO Quad Master SPI Data Input/Output 2 (QSPIM_SDIO2).
+MultipPurpose I/O 15 (MP15).
+F1 HPGND PWR Headphone Amplifier Ground.
+F2 HPOUTP A_OUT Headphone Output Noninverted.
+F3 REG_EN A_IN Regulator Enable. Tie to AVDD to enable regulator, and tie to ground to disable.
+F4 AINP2 A_IN ADC2 Noninverting Input.
+F5 AINP1 A_IN ADC1 Noninverting Input.
+F6 AINP0 A_IN ADC0 Noninverting Input.
+F7 AVDD PWR 1.8 V Analog Supply. Decouple AVDD to AGND with a 10 μF capacitor.
+F8 QSPIM_CS/MP12 D_IO Quad Master SPI Chip Select.
+Multipurpose I/O 12 (MP12).
+G1 HPOUTN A_OUT Headphone Output Inverted.
+G2 AVDD PWR 1.8 V Analog Supply. Decouple AVDD to AGND with a 10 μF capacitor.
+G3 AGND PWR Analog Ground. The AGND and DGND pins can be tied together in a common ground plane.
+G4 CM A_OUT Common-Mode Reference Fixed at 0.85 V Nominal. A 1 μF decoupling capacitor must be connected between CM
+and ground to reduce crosstalk between the ADCs and DACs. The material of the capacitors is not critical. CM can
+be used to bias external analog circuits as long as these circuits are not drawing current from CM (for example, the
+noninverting input of an op-amp).
+G5 AINN2 A_IN ADC2 Inverting Input.
+G6 AINN1 A_IN ADC1 Inverting Input.
+G7 AGND PWR Analog Ground. The AGND and DGND pins can be tied together in a common ground plane.
+G8 AINN0 A_IN ADC0 Inverting Input.
+1 D_IO means digital input/output, PWR means power, A_OUT means analog output, D_IN means digital input, and A_IN means analog input.
+
+=== PDF PAGE 20 ===
+Data Sheet ADAU1860/ADAU1860-1
+TYPICAL PERFORMANCE CHARACTERISTICS
+analog.com Rev. C | 20 of 30
+Figure 9. Frequency Response, fS = 48 kHz, −20 dBV Input, Signal Path =
+AINxx to SDATAO_x, Differential Mode, No PGA
+Figure 10. Frequency Response, fS = 48 kHz, −20 dBV Input, Signal Path =
+AINxx to SDATAO_x, Single-End Mode, No PGA
+Figure 11. Frequency Response, fS = 48 kHz, Signal Path = AINxx to
+SDATAO_x, Differential Mode, Output Relative to PGA Gain Settings (0 dB,
+10 dB, and 24 dB), ADCx_FCOMP Off
+Figure 12. Frequency Response, fS = 48 kHz, Signal Path = AINxx to
+SDATAO_x, Single-End Mode, Output Relative to PGA Gain Settings (0 dB,
+10 dB, and 24 dB), ADCx_FCOMP Off
+Figure 13. Fast Fourier Transform (FFT), No Signal, fS = 48 kHz, Signal Path =
+AINxx to SDATAO_x, Differential Mode, No PGA, and 10 dB PGAx_GAIN
+Figure 14. FFT, −1 dBV Input, −1 dBFS Output, fS = 48 kHz, Signal Path =
+AINxx to SDATAO_x, Differential Mode, No PGA
+
+=== PDF PAGE 21 ===
+Data Sheet ADAU1860/ADAU1860-1
+TYPICAL PERFORMANCE CHARACTERISTICS
+analog.com Rev. C | 21 of 30
+Figure 15. THD + N Level vs. Amplitude, fS = 48 kHz, Signal Path = AINxx to
+SDATAO_x
+Figure 16. Frequency Response, fS = 48 kHz, Signal Path = SDATAI_x to PDM
+Output
+Figure 17. FFT, No Signal, fS = 48 kHz Throughout, Signal Path = SDATAI_x to
+FastDSP to PDM Output
+Figure 18. FFT, −7 dBFS, fS = 48 kHz Throughout, Signal Path = SDATAI_x to
+FastDSP to PDM Output
+Figure 19. PSRR, Signal Path = AINxx to SDATAO_x, fS = 48 kHz, 100 mV p-p
+Ripple Input on AVDD, No PGA
+Figure 20. PSRR, Signal Path = AINxx to SDATAO_x, fS = 48 kHz, 100 mV p-p
+Ripple Input on AVDD, PGA = 0 dB
+
+=== PDF PAGE 22 ===
+Data Sheet ADAU1860/ADAU1860-1
+TYPICAL PERFORMANCE CHARACTERISTICS
+analog.com Rev. C | 22 of 30
+Figure 21. PSRR, Signal Path = AINxx to SDATAO_x, fS = 48 kHz, 100 mV p-p
+Ripple Input on AVDD, PGA = 10 dB
+Figure 22. PSRR, Signal Path = SDATAI_x to HPOUT, fS = 48 kHz, 100 mV p-p
+Ripple Input on HPVDD or HPVDD_L (LDO Bypass)
+Figure 23. FFT, No Signal, fS = 48 kHz, Signal Path = SDATAI_x to HPOUT,
+Headphone Mode, Load = 32 Ω
+Figure 24. FFT, No Signal, fS = 48 kHz, Signal Path = SDATAI_x to the Output
+of the DAC Working in Line Output Mode (LOUT), Load = 10 kΩ
+Figure 25. FFT, −1 dBFS, fS = 48 kHz, Signal Path = SDATAI_x to the Output of
+the DAC Working in Headphone Mode (HPOUT), Load = 32 Ω
+Figure 26. FFT, −1 dBFS, fS = 48 kHz, Signal Path = SDATAI_x to LOUT, Line
+Output Mode, Load = 10 kΩ
+
+=== PDF PAGE 23 ===
+Data Sheet ADAU1860/ADAU1860-1
+TYPICAL PERFORMANCE CHARACTERISTICS
+analog.com Rev. C | 23 of 30
+Figure 27. FFT, No Signal, fS = 768 kHz, Signal Path = SDATAI_x to
+Interpolator to FastDSP to HPOUT, Headphone Mode, Load = 32 Ω
+Figure 28. FFT, No Signal, fS = 768 kHz, Signal Path = SDATAI_x to
+Interpolator to FastDSP to LOUT, Line Output Mode, Load = 32 Ω
+Figure 29. FFT, −1 dBFS, fS = 768 kHz, Signal Path = SDATAI_x to Interpolator
+to FastDSP to HPOUT, Headphone Mode, Load = 32 Ω
+Figure 30. FFT, −1 dBFS, fS = 768 kHz, Signal Path = SDATAI_x to Interpolator
+to FastDSP to LOUT, Line Output Mode, Load = 10 kΩ
+Figure 31. THD + N Level vs. Input Amplitude, fS = 48 kHz, 16 Ω, 24 Ω, 32 Ω,
+or 10 kΩ(Normal), Signal Path = SDATAI_x to HPOUT/LOUT
+Figure 32. Relative Level vs. Frequency, fS = 48 kHz, Signal Path = SDATAI_x
+to HPOUT/LOUT, 16 Ω, 24 Ω, 32 Ω, or 10 kΩ
+
+=== PDF PAGE 24 ===
+Data Sheet ADAU1860/ADAU1860-1
+TYPICAL PERFORMANCE CHARACTERISTICS
+analog.com Rev. C | 24 of 30
+Figure 33. Relative Level vs. Frequency, fS = 768 kHz, Signal Path = SDATAI_x
+to Interpolator to FastDSP to HPOUT/LOUT, 16 Ω to 10 kΩ
+Figure 34. Relative Level vs. Frequency, fS = 48 kHz Throughout Except
+FastDSP = 768 kHz, Signal Path = SDATAI_x to ASRCI to Equalizer to
+Interpolator to FastDSP to Decimator to ASRCO to SDATAO_x
+Figure 35. FFT, No Signal, fS = 48 kHz Throughout Except FastDSP = 768 kHz,
+Signal Path = SDATAI_x to ASRCI to Equalizer to Interpolator to FastDSP to
+Decimator to ASRCO to SDATAO_x
+Figure 36. FFT, No Signal, fS = 48 kHz Throughout Except FastDSP = 768 kHz,
+Signal Path = SDATAI_x to Equalizer to Interpolator to FastDSP to Decimator
+to SDATAO_x
+Figure 37. FFT, –1 dBFS Input, fS = 48 kHz Throughout Except FastDSP =
+768 kHz, Signal Path = SDATAI_x to ASRCI to Equalizer to Interpolator to
+FastDSP to Decimator to ASRCO to SDATAO_x
+Figure 38. FFT, –1 dBFS Input, fS = 48 kHz Throughout Except FastDSP =
+768 kHz, Signal Path = SDATAI_x to Equalizer to Interpolator to FastDSP to
+Decimator to SDATAO_x
+
+=== PDF PAGE 25 ===
+Data Sheet ADAU1860/ADAU1860-1
+TYPICAL PERFORMANCE CHARACTERISTICS
+analog.com Rev. C | 25 of 30
+Figure 39. Group Delay (Smooth) vs. Frequency, fS = 48 kHz to 768 kHz,
+Differential Mode, Signal Path = AINxx to FastDSP to HPOUT/LOUT
+Figure 40. Group Delay (Smooth) vs. Frequency, fS = 48 kHz to 768 kHz,
+Single-End Mode, Signal Path = AINxx to FastDSP to HPOUT/LOUT
+Figure 41. FFT, No Signal, DMIC_CLK_RATE = 3.072 MHz and 6.144 MHz,
+Signal Path = DMICxx to SDATAO_x
+Figure 42. Relative Level vs. Frequency, DMIC_CLK_RATE = 3.072 MHz and
+6.144 MHz, Signal Path = DMICxx to SDATAO_x, FCOMP = EN
+Figure 43. FFT, –10 dBFS Input, DMIC_CLK_RATE = 3.072 MHz, Signal Path =
+DMICxx to SDATAO_x
+Figure 44. FFT, –10 dBFS Input, DMIC_CLK_RATE = 6.144 MHz, Signal Path =
+DMICxx to SDATAO_x
+
+=== PDF PAGE 26 ===
+Data Sheet ADAU1860/ADAU1860-1
+TYPICAL PERFORMANCE CHARACTERISTICS
+analog.com Rev. C | 26 of 30
+Figure 45. THD + N Level vs. Amplitude, −10 dBFS, DMIC_CLK_RATE =
+3.072 MHz and 6.144 MHz (Fifth-Order), Signal Path = DMICxx to SDATAO_x
+Figure 46. Relative Level vs. Frequency, Differential and Single-End Mode,
+Headphone and Line Output Mode, Load = 16 Ω to 10 kΩ, fS = 48 kHz and
+768 kHz, Signal Path = AIN0 to DAC
+Figure 47. THD + N Level vs. Amplitude, fS = 48 kHz to 768 kHz, Load = 10 kΩ
+and 32 Ω, Signal Path = AINx to HPOUT/LOUT
+Figure 48. FFT, –1 dBV Input, Differential Mode, Headphone Mode, Load =
+32 Ω, fS = 48 kHz to 768 kHz, Signal Path = AINx to HPOUT
+Figure 49. FFT, –1 dBV Input, Differential Mode, Line Output Mode, Load =
+10 kΩ, fS = 48 kHz to 768 kHz, Signal Path = AINx to LOUT
+Figure 50. FFT, No Signal, Differential Mode, Load = 32 Ω to 10 kΩ, fS =
+48 kHz to 768 kHz, Signal Path = AINx to HPOUT/LOUT
+
+=== PDF PAGE 27 ===
+Data Sheet ADAU1860/ADAU1860-1
+THEORY OF OPERATION
+analog.com Rev. C | 27 of 30
+The ADAU1860/ADAU1860-1 are low power audio codecs with an
+optimized audio processing core, making it ideal for noise canceling
+applications that require high quality audio, low power, small size,
+and low latency.
+The 3-channel ADC can achieve a 106 dB SNR. The DAC can
+achieve a 110 dB SNR and a −95 dB THD + N ratio. The two serial
+audio ports are compatible with I2S, left justified, right justified, and
+time division multiplexing (TDM) modes, with tristate for interfacing
+to digital audio data. The analog operating voltage is 1.8 V, and
+an optional internal regulator can be used to generate the digital
+supply voltage. If required, the regulator can be powered down,
+and the digital supply voltage can be supplied externally, which is
+determined by the REG_EN pin.
+The input signal path includes flexible configurations that can ac-
+cept differential or single-ended analog microphone inputs as well
+as up to eight digital microphone inputs. Each input signal has its
+own PGA for volume adjustment.
+The ADCs and DAC are high quality, 24-bit Σ-Δ converters that
+operate at a selectable 12 kHz to 768 kHz sampling rate, and the
+ADCs also support an 8 kHz or a 16 kHz sampling rate in voice
+wake-up mode. The ADCs and DAC have an optional high-pass
+filter with a cutoff frequency of 1 Hz, 4 Hz and 8 Hz, and fine step
+digital soft volume controls.
+The DAC output is capable of differentially driving a headphone
+earpiece speaker with 16 Ω impedance or higher. There is also the
+option to change to LOUT mode when the output is lightly loaded.
+The Tensilica HiFi 3z DSP core is optimized for low power audio
+processing. In addition, the Tensilica HiFi 3z DSP core allows the
+ADAU1860/ADAU1860-1 to provide flexible solutions to meet more
+complicated applications.
+The FastDSP core has a reduced instruction set that optimizes
+this codec for noise cancellation. The program and parameter
+random access memories (RAMs) can be loaded with custom audio
+processing signal flow built using the Lark Studio graphical user
+interface (GUI). The values stored in the parameter RAM control
+individual signal processing blocks.
+The ADAU1860/ADAU1860-1 also have a self boot function that
+can load the program and parameter RAMs of both cores along
+with the register settings on power-up using an external flash
+memory over the quad SPI. The external flash memory is fully
+memory mapped to the HiFi 3z DSP core bus fabric.
+Use the Lark Studio GUI to program and control the cores through
+the control port. Along with designing and tuning a signal flow,
+the GUI can configure all of the ADAU1860/ADAU1860-1 registers.
+The GUI allows anyone with digital or analog audio processing
+knowledge to design the DSP signal flow and export the flow to
+a target application. The interface also provides enough flexibility
+and programmability for an experienced DSP programmer to have
+control of the design. In the Lark Studio GUI, the user can connect
+graphical blocks (such as biquad filters, volume controls, and arith-
+metic operations), compile the design, and load the program and
+parameter files into the ADAU1860/ADAU1860-1 memory through
+the control port. The tool also allows the user to download the
+design to an external flash memory for self boot operation.
+The ADAU1860/ADAU1860-1 can generate the internal clocks from
+a wide range of input clocks by using the on-board bypassable
+fractional PLL. The PLL accepts inputs from 30 kHz to 36 MHz.
+For standalone operation, the clock can be generated using the
+on-board crystal oscillator.
+The ADAU1860/ADAU1860-1 are provided in a small, 56-ball,
+2.980 mm ×2.679 mm WLCSP.
+
+=== PDF PAGE 28 ===
+Data Sheet ADAU1860/ADAU1860-1
+SYSTEM BLOCK DIAGRAM
+analog.com Rev. C | 28 of 30
+Figure 51. ADAU1860/ADAU1860-1 System Block Diagram with Analog Microphones
+
+=== PDF PAGE 29 ===
+Data Sheet ADAU1860/ADAU1860-1
+APPLICATIONS INFORMATION
+analog.com Rev. C | 29 of 30
+POWER SUPPLY BYPASS CAPACITORS
+Bypass each analog and digital power supply pin to its nearest
+appropriate ground pin with a single 0.1 μF capacitor. In Figure 52,
+VDD refers to all power supplies (DVDD, IOVDD, AVDD, HPVDD,
+and HPVDD_L). Keep the connections to each side of the capacitor
+as short as possible, and route the trace on a single layer with no
+vias. For maximum effectiveness, place the capacitor equidistant
+from the power and ground pins or slightly closer to the power pin if
+equidistant placement is not possible. Make thermal connections to
+the ground planes on the far side of the capacitor.
+Bypass each supply signal on the PCB with a single bulk capacitor
+(10 μF to 47 μF).
+Figure 52. Recommended Power Supply Bypass Capacitor Layout
+LAYOUT
+The HPVDD and HPVDD_L supplies are for the headphone amplifi-
+ers. If the headphone amplifiers are enabled, the PCB traces to the
+HPVDD and HPVDD_L pins must be wider than the traces to the
+other pins to increase the current carrying capacity. Use a wider
+trace for the headphone output lines.
+GROUNDING
+Use a single ground plane in the application layout. Place compo-
+nents in an analog signal path away from digital signals.
+
+=== PDF PAGE 30 ===
+Data Sheet ADAU1860/ADAU1860-1
+OUTLINE DIMENSIONS
+©2021-2024 Analog Devices, Inc. All rights reserved. Trademarks and
+registered trademarks are the property of their respective owners.
+One Analog Way, Wilmington, MA 01887-2356, U.S.A.
+Rev. C | 30 of 30
+Figure 53. 56-Ball Wafer Level Chip Scale Package [WLCSP]
+(CB-56-6)
+Dimensions shown in millimeters
+Updated: March 11, 2023
+ORDERING GUIDE
+Model1 Temperature Range Package Description Packing Quantity
+Package
+Option
+ADAU1860BCBZRL2 -40°C to +85°C 56-Ball WLCSP (2.980 mm x 2.679 mm x 0.48
+mm)
+Reel, 5000 CB-56-6
+ADAU1860-1BCBZRL3 -40°C to +85°C 56-Ball WLCSP (2.980 mm x 2.679 mm x 0.48
+mm)
+Reel, 5000 CB-56-6
+1 Z = RoHS Compliant Part.
+2 Available for ordering by customer based in the People’s Republic of China (PRC).
+3 Available for ordering by customer based outside of PRC.
+EVALUATION BOARDS
+Model1 Description
+EVAL-ADAU1860EBZ Evaluation Board
+1 Z = RoHS Compliant Part.
+I2C refers to a communications protocol originally developed by Philips Semiconductors (now NXP Semiconductors).

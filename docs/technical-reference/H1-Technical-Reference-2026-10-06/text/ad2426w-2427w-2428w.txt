@@ -1,0 +1,140 @@
+
+=== PDF PAGE 1 ===
+Data Sheet
+A2B and the A2B logo are registered trademarks of Analog Devices, Inc.
+
+ Automotive Audio Bus A2B Transceiver
+            AD2426W/AD2427W/AD2428W
+Rev. Sp0                                                                                    Document Feedback
+Information furnished by Analog Devices is  believed to be accurate and reliable. 
+However, no responsibility is assumed by Analog Devices for its use, nor for any 
+infringements of patents or other rights of third parties that may result from its use. 
+Specifications subject to change without no tice. No license is granted by implication 
+or otherwise under any patent or patent rights of Analog Devices. Trademarks and 
+registered trademarks are the property of their respective owners.
+One Technology Way, P.O. Box 9106, Norwood, MA  02062-9106 U.S.A.
+Tel: 781.329.4700             ©2018 Analog Devices, Inc. All rights reserved.
+Technical Support www.analog.com
+A2B BUS FEATURES
+Line topology
+Single master, multiple slave
+Up to 15 m between nodes and up to 40 m overall cable 
+length 
+Communication over distance 
+Synchronous data
+Multichannel I
+2S/TDM to I2S/TDM
+Clock synchronous, phase aligned in all nodes
+Low latency slave to slave communication
+Control and status information I
+2C to I2C
+GPIO over distance
+Bus power or local power slave nodes
+Configurable with SigmaStudio graphical software tool
+Qualified for automotive applications
+A2B TRANSCEIVER FEATURES
+Configurable as A2B bus master or slave (AD2428W)
+I2C interface
+8-bit to 32-bit multichannel I2S/TDM interface
+I2S/TDM/PDM programmable data rate
+Up to 32 upstream and 32 downstream channels
+PDM inputs for 4 high dynamic range microphones on mas-
+ters or slaves
+Support for receiving I2S data on nodes with up to 4 PDM 
+microphones
+Unique ID register for each transceiver
+Support for crossover or straight-through cabling
+Programmable settings to optimize EMC performance
+APPLICATIONS
+Automotive audio communication link
+Active noise cancellation
+Microphone arrays for hands free and in car communication
+Figure 1. Functional Block Diagram
+A2B
+TRX B
+(Towards 
+Master)
+VREG1
+I2C
+PLL
+BCLK/PDMCLK
+DTX0/DTX1
+IRQ/IO0
+DRX0/DRX1
+SYNC
+SDA
+SCL
+ADR1/IO1/CLKOUT1
+IOVDD
+A2B
+TRX A
+(Towards 
+Last Slave)
+BCM
+AP
+ACM
+BN
+DVDD ATRXVDD/BTRXVDDPLLVDD
+VSS
+SWP
+VINVOUT1
+ADR2/IO2/CLKOUT2
+VREG2
+VOUT2
+VSSN
+AN
+BP
+SENSEDIAGNOSTICS® 
+I2S/TDM
+PDM
+IO7
+
+=== PDF PAGE 2 ===
+Rev. Sp0 | Page 2 of 2 | May 2018
+©2018 Analog Devices, Inc. All rights reserved. Trademarks and 
+registered trademarks are the property of their respective owners. 
+                                                                                                           D16813F-0-5/18(Sp0)
+AD2426W/AD2427W/AD2428W Data Sheet
+ I2C refers to a communications protocol originally developed by Philips Semiconductors (now NXP Semiconductors).
+GENERAL DESCRIPTION
+The Automotive Audio Bus (A2B®) provides a multichannel, 
+I2S/TDM link over distances of up to 15 m between nodes. It 
+embeds bidirectional synchronous pulse-code modulation 
+(PCM) data (for example, digital audio), clock, and synchroni-
+zation signals onto a single differential wire pair. A
+2B supports a 
+direct point to point connection and allows multiple, daisy-
+chained nodes at different locations to contribute and/or con-
+sume time division multiplexed channel content. 
+A2B is a single-master, multiple-slave system where the trans-
+ceiver chip at the host controller is the master. The master 
+generates clock, synchronization, and framing for all slave 
+nodes. The master A2B chip is programmable over a control bus 
+(I2C) for configuration and read back. An extension of this con-
+trol bus is embedded in the A2B data stream, which grants direct 
+access of registers and status information on slave transceivers 
+as well as I2C to I2C communication over distance. 
+The transceiver can connect directly to general-purpose digital 
+signal processors (DSPs), field-programmable gate arrays 
+(FPGAs), application specific integrated circuits (ASICs), 
+microphones, analog-to-digital converters (ADCs), digital-to-
+analog converters (DACs), and codecs through a multichannel 
+I2S/TDM interface. It also provides a PDM interface for direct 
+connection of up to four PDM digital microphones.
+Finally, the transceiver also supports an A2B bus powering fea-
+ture, where the master node supplies voltage and current to the 
+slave nodes over the same daisy-chained, twisted pair wire cable 
+as used for the communication link.
+Complete technical specifications are available for the A
+2B 
+transceiver. Contact your nearest Analog Devices sales office to 
+complete the nondisclosure agreement (NDA) required to 
+receive additional product information.
+Table 1. Product Comparison Guide
+Feature AD2426W AD2427W AD2428W
+Master capable No No Yes
+Functional TRX blocks A only A + B A + B
+I
+2S/TDM support No No Yes
+PDM microphone inputs 4 mics 4 mics 4 mics
+Max node to node cable length 15 m 15 m 15 m

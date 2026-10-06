@@ -1,0 +1,35 @@
+SPATIAL AUDIO FOR AIRCRAFT ORIENTATION — FUTURE REFERENCE
+Reviewed and archived 6 October 2026 for Stefan / Aerosense.
+
+SOURCE AND SCOPE
+Original: 3D Spatial Audio for Aircraft Orientation.docx. The document is a research-style synthesis titled Advancements in Integrated Sensor-Driven 3D Spatial Auditory Displays for the Mitigation of Spatial Disorientation and Controlled Flight into Terrain in Degraded Visual Environments. Author/publication date is not established by the body; bibliography reports access dates of 9 March 2026. Preserve as background research, not an approved H1 specification, validated safety case or patent opinion.
+Original copied unchanged and hash-verified; provenance.json records source and SHA-256. full-text.txt retains body text, tables in paragraph order and bibliography. Five embedded equation images are preserved in media/ and within original; plain-text extraction does not reproduce these equations. Original remains authoritative for formatting and mathematical notation.
+
+WHAT IT COVERS
+1. Motivation: supplementary nonvisual cues in degraded visual environments, spatial disorientation and workload. Distinguish communications separation, directional threat warnings, navigation cues and continuous attitude sonification: evidence for one does not automatically validate another.
+2. Psychoacoustics: interaural timing for lower-frequency azimuth, intensity/level differences for higher-frequency azimuth, pinna spectral cues for elevation/front-back discrimination. Source uses approximate boundaries of 1.5 kHz and 4 kHz. HRTF convolution creates binaural sources; externalization and individual anatomy are important. Distance cues include level, spectrum and direct/reverberant relationship.
+3. Sensor chain: aircraft AHRS/IMU supplies orientation, head tracking updates rendering. Discusses gyroscope/accelerometer/magnetometer fusion and integration with air data. Embedded equations describe accelerometer-based tilt. Their applicability under maneuver acceleration needs specific review before implementation; no flight-ready estimator is established here.
+4. Reference frames: earth-fixed cues versus aircraft-fixed cues versus head-fixed presentation. Maintaining a world-stable auditory horizon needs explicit frame definitions, head-to-aircraft alignment, sign conventions and synchronized updates. Document discusses inside-out/outside-in attitude mapping.
+5. Research examples: historical De Florez auditory bank cues, simulated helicopter DVE navigation, aircraft-referenced audio flight study, NASA-TLX workload and spatial release from masking. Bibliography mixes primary studies, manufacturer brochures, patents and secondary reporting; strength of evidence varies.
+6. Product/patent examples: Terma military spatial audio; Garmin communications/avionics examples; Boeing situational-awareness headset US20230252730A1 and claimed grant US12475654B2; Qualcomm US12120498B2; Bose EP3346729A1; Honeywell EP2434470; US5486821A artificial-horizon warning. These are research leads, not a freedom-to-operate conclusion or verified claim mapping. Some examples concern visual or maintenance systems rather than auditory attitude guidance.
+7. Hardware discussion: broad frequency response, low distortion, ANC/passive isolation, stable HRTF reproduction and communications fallback. Source presents Terma-related figures of 20 Hz–16 kHz, less than 0.5% distortion, up to 48 kHz sample rate. A separate table lists under 3 degrees azimuth / 10 degrees elevation, 22–48 kHz, under 50 ms motion-to-sound, 20–30 dB attenuation and approximately 512 MB storage. These are source assertions, not accepted H1 design targets.
+8. Human factors: workload, visual fixation, communication masking, sensory illusions, training and failure behavior. Claims of 15% fatal mishaps, 80% situational-awareness agreement and 1.5-second reaction improvement require examination of original study populations and conditions before external use.
+
+CONNECTION TO AEROSENSE
+Most directly relevant to VGSA: AeroNode supplies aircraft attitude, H1 supplies relative head orientation and binaural reproduction. Complements the July Audio Core reference and the H1 ADAU1860/A2B source library. It does not change selected hardware or implement a new feature.
+Keep separate requirements for local ANC latency, audio transport latency, sidetone and complete motion-to-sound latency. The under-50-ms table here and under-1-ms language in the earlier Audio Core document are not interchangeable validated budgets. Establish sensor acquisition, fusion, transport, buffering, HRTF processing and DAC contributions explicitly.
+A2B synchronization and ADAU1860 multichip synchronization are relevant candidate capabilities, not proof of complete system coherence. Individual HRTF fit, headset response, fit/seal variability, head-tracker drift and loss of tracking need evaluation.
+
+ISSUES TO RESOLVE BEFORE USING AS DESIGN AUTHORITY
+- Outside-in paragraph says sound moves in the direction of recovery but then gives left sound / right bank as its example. This is internally ambiguous. Do not implement control or cue signs from that sentence.
+- Attitude relative to gravity is not terrain clearance. Terrain/obstacle direction requires additional data; a sensor box supplying attitude alone does not establish ground-proximity awareness.
+- Source moves between communications separation, military threat cueing and attitude recovery. Preserve those distinctions when evaluating claimed benefits.
+- Manufacturer performance, patent ownership/status/scope and accident statistics have not been independently checked in this archival review.
+- Broad claims such as spatial audio being virtually impossible without ANC, replacing primary flight cues, or guaranteeing mitigation should not become product claims from this document alone.
+- Validate loss/stale data handling and communications priority; an incorrect stable cue can be misleading even when sound quality is excellent.
+
+FUTURE RESEARCH RETRIEVAL
+Start with bibliography in full-text.txt. Particularly relevant leads: USAARL 2025-17 operational gaps; USAARL 2025-32 multisensory cueing; NASA 20010044352 spatial sound; ICAS2016_0082 pilot-assistance study; DTIC ADA247825 reference-mode effects; Tennessee aircraft-referenced audio flight study; simulated helicopter DVE study. Retrieve and evaluate originals when making design/test decisions. No external citation or patent verification was performed in this task.
+
+RECOMMENDED FOLLOW-UP WHEN VGSA DESIGN RESUMES
+Define intended supplementary use, frame transforms and cue mapping; agree a measured latency budget; test head motion and aircraft motion independently in simulation; compare candidate HRTFs and cue designs; measure localization errors, reversals, workload and interference with comms; test sensor/clock/link failures. These are review suggestions, not newly approved project tasks.

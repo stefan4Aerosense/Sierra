@@ -1,0 +1,86 @@
+[
+  {
+    "file": "ad2426_27_28-silicon-anomalies.pdf",
+    "sha256": "fe44c505360188a340f83d7d4d85de70fe311ad06bd31158674e65fbc0728427",
+    "bytes": 208698,
+    "pages": 10,
+    "text_chars": 27560
+  },
+  {
+    "file": "ad2426w-2427w-2428w.pdf",
+    "sha256": "8a4a538c7f326a6d19b4345320d886647aac7fce481ed7e305b704f83d541fe2",
+    "bytes": 159147,
+    "pages": 2,
+    "text_chars": 4966
+  },
+  {
+    "file": "ad2428-automotive-safety-application-note.pdf",
+    "sha256": "137ccd5b7fdd0edfb7843cf6cabf20b3152720d8745279dfb8493e9cdefef64e",
+    "bytes": 660568,
+    "pages": 4,
+    "text_chars": 8405
+  },
+  {
+    "file": "ad242x-trm.pdf",
+    "sha256": "a32f6a1247a02a009ff85f05a63ab6b28428bbfd09c14d889fa73f61bb8220b7",
+    "bytes": 2761947,
+    "pages": 283,
+    "text_chars": 466420
+  },
+  {
+    "file": "adau1860.pdf",
+    "sha256": "bfa97062ca6e747340e7aa6bf1cc5402ab762cd9f33b5a2720a0478421ace85b",
+    "bytes": 2350806,
+    "pages": 30,
+    "text_chars": 47307
+  },
+  {
+    "file": "adau186x-hardware-reference-manual-ug-2257.pdf",
+    "sha256": "7c9b64be89d887d1594daa0e01881fa042cfa35b80788b04939062ef95fa58c2",
+    "bytes": 11575145,
+    "pages": 337,
+    "text_chars": 722695
+  },
+  {
+    "file": "EE419v01.pdf",
+    "sha256": "29cce52393753f732357e596a72ceaf7aa54a743b15444808b8a932f455c7277",
+    "bytes": 511812,
+    "pages": 10,
+    "text_chars": 14392
+  },
+  {
+    "file": "EE420v01.pdf",
+    "sha256": "096b39ba0b637ba0900a9958d06b43c72d9cd69adefec9d3d6a9f08171f61d53",
+    "bytes": 294305,
+    "pages": 7,
+    "text_chars": 9498
+  },
+  {
+    "file": "EE421v01.pdf",
+    "sha256": "d0ed78c3885895ad1011fc3cf222a2ea7023cecfe3b82167c5defa6bb08c9064",
+    "bytes": 382507,
+    "pages": 9,
+    "text_chars": 17752
+  },
+  {
+    "file": "ee459v01.pdf",
+    "sha256": "add93e0b9ac4548af5715ad0d55f326ad93d37a8c4c4d53162fb2158488b0604",
+    "bytes": 4973670,
+    "pages": 32,
+    "text_chars": 54668
+  },
+  {
+    "file": "EVAL-AD2428WD1BZ_Manual.pdf",
+    "sha256": "0ef89641cd7765700d4f10e51093502d6767bddb035d55645d2da55fb2108df0",
+    "bytes": 677553,
+    "pages": 40,
+    "text_chars": 48984
+  },
+  {
+    "file": "eval-adau1860-ug-2017.pdf",
+    "sha256": "1e4ae961c0af799f8f33cc4a178e4f90df2c926f6406e581a6daa21553ab4786",
+    "bytes": 6172328,
+    "pages": 26,
+    "text_chars": 35635
+  }
+]

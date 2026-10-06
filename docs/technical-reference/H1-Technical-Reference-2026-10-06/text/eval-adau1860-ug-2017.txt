@@ -1,0 +1,751 @@
+
+=== PDF PAGE 1 ===
+User Guide | EVAL-ADAU1860
+UG-2017
+Evaluating the ADAU1860 Three ADCs, One DAC, Low Power Codec with Audio DSPs
+PLEASE SEE THE LAST PAGE FOR AN IMPORTANT
+WARNING AND LEGAL TERMS AND CONDITIONS.
+Rev. A | 1 of 26
+EVALUATION KIT CONTENTS
+►EVAL-ADAU1860EBZ evaluation board
+►USB cable with micro-USB plug
+►mIDAS-Link emulator
+DOCUMENTS NEEDED
+►ADAU1860 data sheet
+►EVAL-ADAU1860EBZ user guide
+GENERAL DESCRIPTION
+This user guide explains the design and setup of the EVAL-
+ADAU1860EBZ evaluation board.
+The EVAL-ADAU1860EBZ provides access to all the analog and
+digital inputs and outputs on the ADAU1860. The ADAU1860 core
+is controlled by Analog Devices, Inc., Lark Studio™ software, which
+interfaces to the EVAL-ADAU1860EBZ via a USB connection. In
+addition, users can communicate and debug with the Tensilica HiFi
+3z DSP core through the JTAG port by using the mIDAS-Link
+emulator. The software development kit (SDK) is also provided by
+Analog Devices for code development.
+The EVAL-ADAU1860EBZ can be powered by the USB bus or by a
+single 5 V supply. These supply options are regulated to the voltag-
+es required on the EVAL-ADAU1860EBZ. The printed circuit board
+(PCB) is a 4-layer design, with a ground plane and a power plane
+on the inner layers. The EVAL-ADAU1860EBZ contains connectors
+for external microphones and speakers. The master clock can be
+provided externally or by the on-board 24.576 MHz oscillator.
+EVAL-ADAU1860EBZ BOARD PHOTOGRAPH
+Figure 1.
+Analog Devices is in the process of updating documentation to provide terminology and language that is culturally appropriate. This is a process
+with a wide scope and will be phased in as quickly as possible. Thank you for your patience.
+
+=== PDF PAGE 2 ===
+User Guide EVAL-ADAU1860
+TABLE OF CONTENTS
+analog.com Rev. A | 2 of 26
+Evaluation Kit Contents......................................... 1
+Documents Needed...............................................1
+General Description...............................................1
+EVAL-ADAU1860EBZ Board Photograph............. 1
+Evaluation Board Block Diagram...........................3
+Setting Up the Evaluation Board........................... 4
+Installing the Lark Studio Software.....................4
+Installing the USB Drivers.................................. 4
+Default Switch and Jumper Settings.................. 4
+Setting Up Communication in Software.................5
+Powering Up the Evaluation Board.................... 5
+Connecting the Audio Cables.............................5
+Creating a Basic Signal Flow............................. 5
+Using the Evaluation Board...................................9
+Power Supply..................................................... 9
+Control Port...................................................... 10
+Codec System.................................................. 11
+Audio Inputs and Outputs.................................11
+Serial Audio Interface.......................................12
+Other Interfaces................................................12
+Hardware Description..........................................13
+Jumpers............................................................13
+Evaluation Board Schematics and Artwork......... 15
+Ordering Information............................................24
+Bill of Materials.................................................24
+REVISION HISTORY
+11/2022—Rev. 0 to Rev. A
+Changes to Table 2..........................................................................................................................................9
+10/2021—Revision 0: Initial Version
+
+=== PDF PAGE 3 ===
+User Guide EVAL-ADAU1860
+EVALUATION BOARD BLOCK DIAGRAM
+analog.com Rev. A | 3 of 26
+Figure 2. EVAL-ADAU1860EBZ Board Block Diagram
+
+=== PDF PAGE 4 ===
+User Guide EVAL-ADAU1860
+SETTING UP THE EVALUATION BOARD
+analog.com Rev. A | 4 of 26
+INSTALLING THE LARK STUDIO SOFTWARE
+Download and install the latest version of Lark Studio by completing
+the following steps:
+1. Download the installer and run the executable file.
+2. Follow the prompts, including accepting the license agreement,
+to install the software.
+INSTALLING THE USB DRIVERS
+If the USB interface is not recognized by the Lark Studio software
+and PC, go to the Future Technology Devices International (FTDI)
+Chip official web page and download the relevant drivers.
+DEFAULT SWITCH AND JUMPER SETTINGS
+Table 1 shows the default switch and jumper settings.
+Table 1. Default Switch and Jumper Settings
+Jumper and Switch Connections Option Selected
+Pin 1 to Pin 2 of P17 AVDD and HPVDD supplied by 1.8 V on-board low dropout (LDO) regulator
+Pin 1 to Pin 2 of P48 and JP3 Removed IOVDD supplied by 1.8 V on-board LDO
+Pin 1 to Pin 2 of P19 and JP2 Connected HPVDD_L supplied by 1.3 V on-board LDO
+Pin 1 to Pin 2 of P18 and JP1 Connected DVDD supplied by 0.9 V on-board LDO
+Pin 2 to Pin 3 of P26 Self boot disabled
+Pin 2 to Pin 3 of P24 REG_EN disabled
+Pin 2 to Pin 3 of P29 ROM boot disabled
+S1 Down (SPI), Pin 2 to Pin 3 of P1, Pin 2 to Pin 3 of P4, Pin 2 to Pin 3 of P5, and
+Pin 2 to Pin 3 of P6
+SPI communication
+Pin 1 of S14 to GND and Pin 2 of S14 to GND I2C Address 0x64
+Pin 1 to Pin 2 of P8 and Pin 2 to Pin 3 of P27 to P27 The master clock source is the on-board, 24.576 MHz oscillator
+Pin 1 to Pin 2 of P104 and Pin 1 to Pin 2 of P105 ADC0 differential mode
+Pin 1 to Pin 2 of P12 and Pin 1 to Pin 2 of P14 ADC1 differential mode
+Pin 1 to Pin 2 of P13 and Pin 1 to Pin 2 of P15 ADC2 differential mode
+
+=== PDF PAGE 5 ===
+User Guide EVAL-ADAU1860
+SETTING UP COMMUNICATION IN SOFTWARE
+analog.com Rev. A | 5 of 26
+POWERING UP THE EVALUATION BOARD
+To power up the EVAL-ADAU1860EBZ evaluation board, connect
+the ribbon cable to P22 of the EVAL-ADAU1860EBZ.
+CONNECTING THE AUDIO CABLES
+Three channels of the microphone inputs support both differential
+and single-end modes. The headphone output is differential and
+is dc-coupled. The digital audio signal can be I2S or time division
+multiplexing (TDM) mode through the serial audio interface.
+CREATING A BASIC SIGNAL FLOW
+To create a basic signal flow in LARK Studio, follow these steps:
+1. Download and install Lark Studio from www.ana-
+log.com/ADAU1860.
+2. Start Lark Studio by double clicking the shortcut on the desktop.
+3. Click New Project from the Project menu, or click Create a
+New Project in the Welcome section to create a new project,
+as shown in Figure 3. The New Project window shows the
+Project Type options.
+4. Click on the Lark option for the ADAU1860 and then OK.
+5. Edit the file name, and save the file to a user specified location.
+6. Click on Target Connection in the left navigation panel, and
+configure the Connection settings panel that opens on the
+right to set up the connection. If the USB connects, Target
+Connected displays (see Figure 4).
+Figure 3. Create a New Project
+
+=== PDF PAGE 6 ===
+User Guide EVAL-ADAU1860
+SETTING UP COMMUNICATION IN SOFTWARE
+analog.com Rev. A | 6 of 26
+Figure 4. Connect with EVAL-ADAU1860EBZ
+Configure the Register Control, FastDSP, and EQ settings on
+the left navigation panel. Lark Register Control has multiple tabs
+that control different sections of the ADAU1860. Figure 5 shows
+the Power tab, which allows the user to power up or power down
+various blocks within the ADAU1860. When a block is powered up,
+that block can be configured.
+The Clock tab allows the phase-locked loop (PLL) to be used or
+bypassed. By register default, the PLL is disabled to save power.
+To generate a 24.576 MHz master clock, enable or disable the PLL
+according to the provided clock source. On the evaluation board,
+a 24.576 MHz oscillator and a crystal with same frequency are
+supplied. To configure an application, follow these steps:
+1. Select Hibernate1, BLOCKS_ON, and CM_BST_ON in the
+CHIP_PWR block in the Power tab, and then click Write (see
+Figure 5 ).
+2. With the default 24.576 MHz oscillator on board, select
+MCLK_FREQ_24P576 of MCLK_FREQ_INDEX and set
+PLL_FM_BYPASS to PLL_FM_BP in the Clock tab, then click
+on Write.
+3. Configure the other blocks.
+When a register value is changed, click the related Write button in
+a block to update a single register, or the Write this Page button
+below the tabs to update multiple registers. Click Write All after all
+register changes to avoid a configuration error.
+
+=== PDF PAGE 7 ===
+User Guide EVAL-ADAU1860
+SETTING UP COMMUNICATION IN SOFTWARE
+analog.com Rev. A | 7 of 26
+Figure 5. Register Configurations
+If FastDSP is required in the project, a schematic must be created
+with the desired path for the ADAU1860 as follows:
+1. Click FastDSP in the left navigation panel.
+2. In the left pane of the Lark FastDSP Schematic window, click
+an arrow to expand a folder.
+3. Select and drag an icon into the schematic window, for exam-
+ple, the ADC icon within the IO folder (see Figure 6). In
+this example, AIN1 and ASRCI0 are being routed to FastDSP
+Output 0 and Output 1 separately.
+4. To download the correct parameter generated from the sche-
+matic, set fs to be the same as the FastDSP source,
+FDSP_RATE_SOURCE, which is set in the FastDSP tab in
+the Lark Register Control window.
+5. Click Download to Target to write the parameter and command
+to FastDSP memory. After the download finishes, FastDSP is
+enabled and runs automatically.
+If the equalizer is required in the project, a configuration of the
+filters must be set for the ADAU1860 as follows:
+1. Click on EQ in the navigation panel.
+2. Select the filter numbers and relative filter parameters.
+3. Set fs to be same as the equalizer source, EQ_ROUTE, which
+is set in the EQ tab in the Lark RegisterControl window.
+4. Click Download to Target to write the parameter and command
+to equalizer memory. After the download finishes, the equalizer
+is enabled and runs automatically.
+If Tensilica HiFi 3z DSP (TDSP) is used, a hex file for the TDSP
+program code can be uploaded via Lark Studio as follows:
+1. Click TDSP Programming in the navigation panel.
+2. Select the hex file that will be uploaded.
+3. Click TDSP Program.
+4. After uploading is finished, type in the Reset Address for the
+program, and then click TDSP Reset. The TDSP then runs
+automatically with the uploaded program.
+For full details on the operation of Lark Studio, click Getting Start
+Guide from the Help menu of the Lark Studio graphical user
+interface (GUI).
+
+=== PDF PAGE 8 ===
+User Guide EVAL-ADAU1860
+SETTING UP COMMUNICATION IN SOFTWARE
+analog.com Rev. A | 8 of 26
+Figure 6. FastDSP Schematic Configuration
+
+=== PDF PAGE 9 ===
+User Guide EVAL-ADAU1860
+USING THE EVALUATION BOARD
+analog.com Rev. A | 9 of 26
+POWER SUPPLY
+Power can be supplied to the EVAL-ADAU1860EBZ in one of three
+following ways:
+1. Connecting the USB cable to P22.
+2. Connecting the 5 V dc power to P47.
+3. Connecting the isolated external power supply to P42 for AVDD
+and HPVDD, P43 for IOVDD, P45 for HPVDD_L, and P46 for
+DVDD.
+The FTDI 4232 is powered by an on-board LDO regulator with a 3.3
+V output.
+Table 2. Power Supply Jumper Setting
+Power Source
+On-Board LDO Regulator/Internal LDO Regulator External
+Jumper Settings Power Supply Voltage (V) Jumper Settings Port
+AVDD and HPVDDPin 1 to Pin 2 of P17 1.8 Pin 2 to Pin 3 of P17 P42
+IOVDD Pin 1 to Pin 2 of P48, JP3 removed1.8 Pin 2 to Pin 3 of P48, JP3 removedP43
+JP3 connected, P48 removed 1.8, connected to AVDD and HPVDD
+HPVDD_L Pin 1 to Pin 2 of P19, JP2 connected1.3 Pin 2 to Pin 3 of P19 P45
+Pin 1 to Pin 2 of P19, JP2 removed1.5
+DVDD Pin 2 to Pin 3 of P24 first, then Pin 1 to
+Pin 2 of P18, JP1 connected
+0.9 Pin 2 to Pin 3 of P18 P46
+Pin 2 to Pin 3 of P24 first, then Pin 1 to
+Pin 2 of P18, JP1 removed
+1.1
+P18 removed first, then Pin 1 to Pin 2 of
+P24 (ADAU1860 internal LDO enabled)
+0.9 (default, register controlled 0.85, 0.9,
+0.95, 1, 1.05, 1.1 options)
+
+=== PDF PAGE 10 ===
+User Guide EVAL-ADAU1860
+USING THE EVALUATION BOARD
+analog.com Rev. A | 10 of 26
+CONTROL PORT
+The EVAL-ADAU1860EBZ is configured to serial peripheral inter-
+face (SPI) mode by default. To operate the codec in I2C or universal
+asynchronous receiver/transmitter (UART) mode, see Table 3.
+Table 3. Control Port Jumper and Switch (S1) Settings
+Communication PortAddress Setting Jumper Settings Switch Settings
+SPI Not applicable Pin 2 to Pin 3 of P1, Pin 2 to Pin 3 of P4, Pin 2 to Pin 3 of P5, and Pin 2
+to Pin 3 of P6
+Down
+I2C S14, default 0x64 (00), 0x65 (01), 0x66 (10),
+0x67 (11)
+Pin 2 to Pin 3 of P1, Pin 2 to Pin 3 of P4, Pin 2 to Pin 3 of P5, and Pin 2
+to Pin 3 of P6
+Up
+UART Not applicable Pin 1 to Pin 2 of P1, Pin 1 to Pin 2 of P4, Pin 1 to Pin 2 of P5, and Pin 1
+to Pin 2 of P6
+
+=== PDF PAGE 11 ===
+User Guide EVAL-ADAU1860
+USING THE EVALUATION BOARD
+analog.com Rev. A | 11 of 26
+CODEC SYSTEM
+Clock Option
+The EVAL-ADAU1860EBZ has three options for providing a master
+clock to the ADAU1860. The first option is to provide an external
+MCLK signal directly to the MCLKIN pin of the codec from P3 and
+to disable the on-board oscillator by placing a jumper on P25. The
+second option is to use the on-board 24.576 MHz oscillator, and
+the third option is to use the on-board 24.576 MHz crystal. Refer to
+Table 4 to check the master clock settings.
+Table 4. Master Clock Jumper Settings
+Clock SourceJumper Settings External Port
+Oscillator Pin 1 to Pin 2 of P8, and Pin 2 to Pin 3 of P27Not applicable
+Crystal P8 removed, Pin 1 to Pin 2 of P27 Not applicable
+External MCLKPin 2 to Pin 3 of P8, and Pin 2 to Pin 3 of P27Pin 10 of P3
+Boot-Up Options
+There are two boot-up options for the EVAL-ADAU1860EBZ. Use
+P26 to select the boot-up options, which are self boot enabled or
+disabled. When self boot is enabled, the Tensilica HiFi 3z DSP core
+of the ADAU1860 loads the program from flash through QSPI™ with
+two ROM boot modes, which can be selected by P29.
+Power Down
+The EVAL-ADAU1860EBZ can power down all of the analog and
+digital circuits of the codec by pressing the S2 button or by placing
+a jumper on P28.
+AUDIO INPUTS AND OUTPUTS
+The EVAL-ADAU1860EBZ has multiple audio input and output
+options, including digital and analog. There are three analog inputs,
+one analog output, eight digital microphone channels, a 2-channel
+pulse density modulation (PDM) output, and two serial audio inter-
+face ports.
+Analog Inputs
+The three analog inputs (P9, P10, and P11) can be configured
+as microphone or line inputs, and all of the inputs are differential
+or single-ended. Each analog input can work with an optional
+programmable gain amplifier (PGA).
+Refer to Table 5 for the hardware configuration of the analog input
+signals. Note that the control register must be changed simultane-
+ously.
+Table 5. ADC Mode Jumper Settings
+ADC No. Mode Jumper Settings
+ADC0 Differential Pin 1 to Pin 2 of P104, and Pin 1 to Pin 2 of
+P105
+Single ends Pin 2 to Pin 3 of P104, and Pin 2 to Pin 3 of
+P105
+ADC1 Differential ends Pin 1 to Pin 2 of P12, and Pin 1 to Pin 2 of
+P14
+Single ends Pin 2 to Pin 3 of P12, and Pin 2 to Pin 3 of
+P14
+ADC2 Differential ends Pin 1 to Pin 2 of P13, and Pin 1 to Pin 2 of
+P15
+Single ends Pin 2 to Pin 3 of P13, and Pin 2 to Pin 3 of
+P15
+Analog Output
+The analog output (P30) can be set as a line output driver or as a
+headphone driver. In line output mode, the typical load is 10 kΩ. In
+headphone output mode, the typical loads are 16 Ω to 32 Ω. The
+load on the EVAL-ADAU1860EBZ is 32 Ω by default.
+Digital Microphone Inputs
+There are two default digital microphone (DMIC) interfaces on the
+EVAL-ADAU1860EBZ, P44 and P23. Note that Pin 1, Pin 3, Pin 5,
+Pin 7, and Pin 9 of P44 and Pin 2, Pin 4, Pin 6, Pin 8, and Pin 10 of
+P23 are GND.
+Table 6. DMIC Interface
+Function Pin Number and Pxx Value
+IOVDD Pin 2 of P44
+DMIC Clock 0 Pin 4 of P44
+DMIC Data 0 DMIC Data 1 Pin 6 of P44
+IOVDD Pin 1 of P23
+DMIC Clock 0 Pin 3 of P23
+DMIC Data 2 and DMIC Data 3 Pin 5 of P23
+PDM Outputs
+The PDM output is P7, and its recommended setting is to use the
+MP22 to MP25 pins as PDM outputs. Note that the MP22 to MP25
+pins must be set as PDM outputs in this case. See Table 7 for an
+example of this case. In addition, note that Pin 2, Pin 4, Pin 6, and
+Pin 8 of P7 are GND.
+Table 7. PDM Interface
+Function Pin Number and Px Value
+MP22: PDM_CLK Pin 1 of P7
+MP23: PDM0 Pin 3 of P7
+MP24: PDM_CLK Pin 5 of P7
+MP25: PDM1 Pin 7 of P7
+
+=== PDF PAGE 12 ===
+User Guide EVAL-ADAU1860
+USING THE EVALUATION BOARD
+analog.com Rev. A | 12 of 26
+SERIAL AUDIO INTERFACE
+Serial audio signals in I2S, left justified, right justified, or time
+division multiplexed (TDM) format are available via the serial audio
+interface headers (P2 and P3) to connect an external I2S- or
+TDM-compatible device. The IOVDD logic level is 1.8 V, and Pin 1,
+Pin 3, Pin 5, Pin 7, and Pin 9 of P2 and Pin 1, Pin 3, Pin 5, Pin 7,
+and Pin 9 of P3 are all grounded.
+Table 8. Serial Audio Interface
+Function Pin Number and Px Value
+I2S0 Data Out Pin 2 of P2
+I2S0 Data In Pin 4 of P2
+I2S0 Frame Clock Pin 6 of P2
+I2S0 Bit Clock Pin 8 of P2
+MP0 Pin 10 of P2
+I2S1 Data Out Pin 2 of P3
+I2S1 Data In Pin 4 of P3
+I2S1 Frame Clock Pin 6 of P3
+I2S1 Bit Clock Pin 8 of P3
+External MCLK Input Pin 10 of P3
+OTHER INTERFACES
+Other interfaces include the following:
+►JTAG
+►UART
+►Flash
+►Multipurpose pin
+The JTAG interface is P59. Use the mIDAS-Link emulator to com-
+municate with the Tensilica HiFi 3z DSP core.
+The UART interface is P21.
+An on-board flash S25FS128S-128 M bits interface is available.
+Use P49 to P54 to communicate with this flash from the ADAU1860
+by QSPI. In addition, use P55 to P58 to communicate with this flash
+from the SPI. P20 is also included to connect an external flash, if
+required.
+Note that all multipurpose pins (MP0 to MP25) can be controlled
+by S3 to S13 and S15 to S25 after the jumpers next to these Sx
+interfaces are connected.
+
+=== PDF PAGE 13 ===
+User Guide EVAL-ADAU1860
+HARDWARE DESCRIPTION
+analog.com Rev. A | 13 of 26
+JUMPERS
+Table 9 lists the connector and jack descriptions.
+Table 9. Connector and Jack Description
+Reference Designator Functional Name Description
+P1 ADDR1_MOSI/UART_RX Used to connect I2C Address 1 and SPI data input to the ADAU1860, or
+to connect UART data receiver to the ADAU1860.
+P2 Serial Audio Port 0 Input and output header for serial audio signals.
+P3 Serial Audio Port 1 Input and output header for serial audio signals.
+P4 ADDR0_SS/IOVDD Used to select ADDR0_SS or IOVDD for the ADAU1860. ADDR0 is I2C
+Address 0, and SS is the SPI latch signal.
+P5 SCL_SCLK/GND Used to select SCL_SCLK or GND for the ADAU1860. SCL is I2C clock,
+and SCLK is the SPI clock.
+P6 SDA_MISO/UART_TX Used to connect I2C data and SPI data output to the ADAU1860, or to
+connect the UART data transmitter to the ADAU1860.
+P7 PDM output interface Header that allows PDM interface devices to be connected to the EVAL-
+ADAU1860EBZ.
+P8 EXT_MCLK/oscillator Used to select between the on-board oscillator or an external clock signal
+to connect to the ADAU1860, and it must be used with P27.
+P9 Analog Input 0 Default differential input pins connection.
+P10 Analog Input 1 Default differential input pins connection.
+P11 Analog Input 2 Default differential input pins connection.
+P12 ADC1 input option Used to select single-ended input or differential input (AINP1 connects to
+GND).
+P13 ADC2 input option Used to select single-ended input or differential input (AINP2 connects to
+GND).
+P14 ADC1 input option Used to select single-ended input or differential input (AINP1 connects to
+CM).
+P15 ADC2 input option Used to select single-ended input or differential input (AINP2 connects to
+CM).
+P16 External headphone Header that allows external headphone loads to be connected to the
+EVAL-ADAU1860EBZ.
+P17 1.8V_LDO/EXT_AVDD Used to select between the external source or the 1.8 V on-board LDO
+regulator for the AVDD and HPVDD.
+P18 DVDD_LDO/EXT_DVDD Used to select between the external source or on-board LDO regulator for
+DVDD.
+P19 HPVDD_L_LDO/EXT_HPVDD_L Used to select between the external HPVDD_L source or the on-board
+LDO regulator for HPVDD_L.
+P20 External flash interface Header that connects the external flash to the ADAU1860. When using
+the external flash, connect P49 to P54 and disconnect P55 to P58.
+P21 UART interface UART communication with level shift.
+P22 USB interface USB 5 V power and communication.
+P23 DMIC Interface 2 Header that allows the external digital microphones to be connected to
+the EVAL-ADAU1860EBZ.
+P24 REG_EN Used to select AVDD or GND to REG_EN.
+P25 Oscillator disable Connect P25 to disable the oscillator.
+P26 SELFBOOT Used to select IOVDD or GND to SELEFBOOT_MP19.
+P27 XTALI/MCLKIN option Used to select the signal from P8 or the on-board crystal as the XTALI/
+MCLKIN.
+P29 ROM_BOOT_MODE Used to select IOVDD or GND to ROM_BOOT_MODE_MP21.
+P30 Headphone output Differential output.
+P42 EXT_AVDD Used to connect the external AVDD supply to the EVAL-ADAU1860EBZ.
+P43 EXT_IOVDD Used to connect the external IOVDD supply to the EVAL-ADAU1860EBZ.
+
+=== PDF PAGE 14 ===
+User Guide EVAL-ADAU1860
+HARDWARE DESCRIPTION
+analog.com Rev. A | 14 of 26
+Table 9. Connector and Jack Description (Continued)
+Reference Designator Functional Name Description
+P44 DMIC Interface 1 Header that allows the external digital microphones to be connected to
+the EVAL-ADAU1860EBZ.
+P45 EXT_HPVDD_L Used to connect the external HPVDD_L supply to the EVAL-
+ADAU1860EBZ.
+P46 EXT_DVDD Used to connect the external DVDD supply to the EVAL-ADAU1860EBZ.
+P47 EXT_5V Used to connect the external 5 V supply to the EVAL-ADAU1860EBZ.
+P48 IOVDD_LDO/EXT_IOVDD Used to select between the external source or on-board 1.8 V regulator
+for IOVDD.
+P49 QSPIM_CS_MP12 pin jumper Used to connect CS pin on the on-board flash to the MP12 pin on the
+ADAU1860.
+P50 QSPIM_CLK_MP11 pin jumper Used to connect the CLK pin on the on-board flash to the MP11 pin on the
+ADAU1860.
+P51 to P54 and P55 to P58 Flash jumper Used to connect ADAU1860 pins to the on-board flash. Connected P55
+to P58 and disconnected P49 to P54 for direct flash programing. Connect
+P49 to P54 and disconnected P55 to P58 when using the on-board flash.
+P59 JTAG interface JTAG communication.
+P60 UART_COMN_RX jumper Used to connect the UART data receiver to FT4232 (U14).
+P61 UART_COMN_TX jumper Used to connect the UART data transmitter to FT4232 (U14).
+P104 ADC0 input option Select single-ended input or differential input (AINP0 connects to GND).
+P105 ADC0 input option Select to single-ended input or differential input (AINP0 connects to CM).
+JP1 DVDD_LDO feedback Short JP1, DVDD_LDO is 0.9 V. Open JP1, and DVDD_LDO is 1.1 V.
+JP2 HPVDD_L_LDO feedback Short JP2, HPVDD_L_LDO is 1.3 V. Open JP2, and HPVDD_L_LDO is
+1.5 V.
+JP3 IOVDD jumper Used to connect IOVDD to AVDD.
+
+=== PDF PAGE 15 ===
+User Guide EVAL-ADAU1860
+EVALUATION BOARD SCHEMATICS AND ARTWORK
+analog.com Rev. A | 15 of 26
+Figure 7. EVAL-ADAU1860EBZ Schematics, Page 1
+
+=== PDF PAGE 16 ===
+User Guide EVAL-ADAU1860
+EVALUATION BOARD SCHEMATICS AND ARTWORK
+analog.com Rev. A | 16 of 26
+Figure 8. EVAL-ADAU1860EBZ Schematics, Page 2
+
+=== PDF PAGE 17 ===
+User Guide EVAL-ADAU1860
+EVALUATION BOARD SCHEMATICS AND ARTWORK
+analog.com Rev. A | 17 of 26
+Figure 9. EVAL-ADAU1860EBZ Schematics, Page 3
+
+=== PDF PAGE 18 ===
+User Guide EVAL-ADAU1860
+EVALUATION BOARD SCHEMATICS AND ARTWORK
+analog.com Rev. A | 18 of 26
+Figure 10. EVAL-ADAU1860EBZ Schematics, Page 4
+
+=== PDF PAGE 19 ===
+User Guide EVAL-ADAU1860
+EVALUATION BOARD SCHEMATICS AND ARTWORK
+analog.com Rev. A | 19 of 26
+Figure 11. EVAL-ADAU1860EBZ Schematics, Page 5
+
+=== PDF PAGE 20 ===
+User Guide EVAL-ADAU1860
+EVALUATION BOARD SCHEMATICS AND ARTWORK
+analog.com Rev. A | 20 of 26
+Figure 12. EVAL-ADAU1860EBZ Schematics, Page 6
+
+=== PDF PAGE 21 ===
+User Guide EVAL-ADAU1860
+EVALUATION BOARD SCHEMATICS AND ARTWORK
+analog.com Rev. A | 21 of 26
+Figure 13. EVAL-ADAU1860EBZ Schematics, Page 7
+Figure 14. EVAL-ADAU1860EBZ Schematics, Page 8
+
+=== PDF PAGE 22 ===
+User Guide EVAL-ADAU1860
+EVALUATION BOARD SCHEMATICS AND ARTWORK
+analog.com Rev. A | 22 of 26
+Figure 15. EVAL-ADAU1860EBZ Schematics, Page 9
+Figure 16. EVAL-ADAU1860EBZ Layer 1, Component Side
+ Figure 17. EVAL-ADAU1860EBZ Layer 2, Ground Plane
+
+=== PDF PAGE 23 ===
+User Guide EVAL-ADAU1860
+EVALUATION BOARD SCHEMATICS AND ARTWORK
+analog.com Rev. A | 23 of 26
+Figure 18. EVAL-ADAU1860EBZ Layer 3, Power Plane
+Figure 19. EVAL-ADAU1860EBZ Layer 4, Bottom Side
+
+=== PDF PAGE 24 ===
+User Guide EVAL-ADAU1860
+ORDERING INFORMATION
+analog.com Rev. A | 24 of 26
+BILL OF MATERIALS
+Table 10.
+Qty Reference Description Manufacturer Model Number
+1 A1 Microprocessors supervisory circuit in 4-lead SOT-143, logic
+low RESET output
+Analog Devices ADM811TARTZ
+18 BCLK0, BCLK1, FSYNC0, FSYNC1,
+SDI0, SDI1, SDO0, SDO1, TP1 to TP9,
+and TP20
+PCB connector, test points, white Keystone
+Electronics
+5002
+36 C1 to C18, C48, C52, C57 to C61, C63,
+C64, C70 to C75, and C77 to C79
+0.1 μF ceramic capacitors, 50 V, 10%, X7R, 0603, AEC-Q200Vishay VJ0603Y104KXAAC
+31X
+2 C19 and C20 22 pF ceramic capacitors, 50 V, 5%, X7R, 0603 AVX Corporation06035C220JAT2A
+6 C21 to C26 22 μF ceramic capacitors, 16 V, 10%, X5R, 1210 Murata GRM32ER61C226K
+E20L
+1 C27 150 pF ceramic capacitors, 50 V, 5%, C0G, 0603, AEC-Q200TDK CGA3E2NP01H151
+J080AA
+6 C28, C29, C31, C34, C36, and C371 μF ceramic capacitors, 6.3 V, 10%, X7R, 0402 Murata GRM155R70J105K
+A12D
+5 C30, C32, C35, C38, and C39 0.1 μF ceramic capacitors, 6.3 V, 10%, X7R, 0201 Yageo CC0201KRX7R5BB
+104
+3 C33, C40, and C41 10 μF ceramic capacitors, 6.3 V, 20%, X5R, 0402 Samsung CL05A106MQ5NUN
+C
+1 C42 10 μF ceramic capacitor, 10 V, 20%, X5R, 0603 Murata GRM188R61A106M
+E69D
+8 C43, C45, C47, C49 to C51, C53, and
+C55
+2.2 μF ceramic capacitors,10 V, 10%, X7R, 0603 Murata GRM188R71A225K
+E15D
+3 C44, C46, and C54 0.01 μF ceramic capacitors, 50 V, 10%, X7R, 0603Murata GRM188R71H103K
+A01D
+3 C56, C62, and C69 1 μF ceramic capacitors, 16 V, 10%, X7R, 0603, AEC-Q200,
+low equivalent series resistance (ESR)
+TDK CGA3E1X7R1C105
+K080AC
+2 C65 and C67 27 pF ceramic capacitors, 50 V, 5%, C0G, 0603 PHYCOMP
+(Yageo)
+AC0603JRNPO9BN
+270
+2 C66 and C68 4.7 μF ceramic capacitors, 16 V, 10%, X6S, 0603 Murata GRM188C81C475K
+E11D
+1 C76 3.3 μF ceramic capacitor, 16 V, 20%, X6S, 0603, low ESRTDK C1608X6S1C335M0
+80AC
+2 D1 and D2 Diodes, Schottky barrier rectifier Diodes, Inc. DFLS220L-7
+3 JP1 to JP3 Connector PCB, jumpers, male, two-position Amphenol, FCI 69157-102
+2 L1 and L2 100 nH inductors, surface mount Coilcraft 0603CS-R10XGLU
+19 P1, P4 to P6, P8, P12 to P15, P17 to
+P19, P24, P26, P27, P29, P48, P104,
+and P105
+Connector PCB, 3-position male headers, unshrouded, single
+row, 2.54 mm pitch, 3.05 mm solder tail
+Sullins PBC03SAAN
+4 P9 to P11 and P30 Connector PCB, 3.5 mm surface-mount audio jack stereosCUI SJ-3523-SMT-TR
+47 P16, P21, P25, P28, P31 to P43, P45 to
+P47, P49 to P58, and P60 to P76
+Connector PCB, 2-position male headers, unshrouded, single
+row, 2.54 mm pitch, 3.05 mm solder tail
+Sullins PBC02SAAN
+4 P2, P3, P23, and P44 Connector PCB, 10-position male headers, unshrouded, double
+row, 2.54 mm pitch, 3.05 solder tail
+Sullins PBC05DAAN
+2 P7 and P20 Connector PCB, headers, 9-pin, double row Harwin M20-9980445
+1 P22 Connector PCB, micro USB 2.0 Hirose ZX62-B-5PA(33)
+1 P59 Connector PCB, header, shrouded ST, 20-position, maleOmron or 3M XG4C-2031 /
+N2520-6003RB
+4 R1, R2, R8, and R9 2.4 kΩ resistors, surface-mounted device (SMD), 1%, 1/10 W,
+0603, AEC-Q200
+Panasonic ERJ-3EKF2401V
+19 R10 to R19, R26, and R29 to R360 Ω resistors, SMD, jumper, 1/10 W, 0603, AEC-Q200Panasonic ERJ-3GEY0R00V
+
+=== PDF PAGE 25 ===
+User Guide EVAL-ADAU1860
+ORDERING INFORMATION
+analog.com Rev. A | 25 of 26
+Table 10. (Continued)
+Qty Reference Description Manufacturer Model Number
+22 R3 to R5, R20, R21, R25, R27, and R75
+to R89
+10 kΩ resistors, SMD, 1%, 1/10 W, 0603, AEC-Q200Panasonic ERJ-3EKF1002V
+1 R23 49.9 Ω resistors, SMD, 1%, 1/10 W, 0603, AEC-Q200Panasonic ERJ-3EKF49R9V
+1 R28 100 Ω resistor, SMD, 1%, 1/10 W, 0603, AEC-Q200Panasonic ERJ-3EKF1000V
+1 R37 32 Ω resistor, TH, 0.1%, 1/2 W, 6.1 mm × 2.29 mm industrial
+precision
+Vishay CMF5532R000BHE
+K
+1 R49 12 kΩ resistor, SMD, 0.1%, 1/10 W, 0603, AEC-Q200, high
+reliability
+Panasonic ERA-3AEB123V
+7 R50, R60 to R62, and R72 to R7410 kΩ resistors, SMD, 5%, 1/10 W, 0603 Yageo RC0603JR-0710KL
+1 R51 1.27 kΩ resistor, SMD, 1%, 1/10 W, 0603, AEC-Q200Panasonic ERJ-3EKF1271V
+1 R52 7.5 kΩ resistor, SMD, 0.1%, 0.15 W, 0603, AEC-Q200, sulfur
+resistant
+Yageo AC0603DR-077K5L
+1 R53 2.49 kΩ resistor, SMD, 1%, 1/10 W, 0603 Yageo RC0603FR-072K49
+L
+1 R54 3 kΩ resistor, SMD, 1%, 1/10 W, 0603 Yageo RC0603FR-073KL
+7 R6, R7, R63, R67, R68, R70, and R712 kΩ resistors, SMD, 1%, 1/10 W, 0603 Yageo RC0603FR-072KL
+4 R56 to R59 100 kΩ resistors, SMD, 1%, 1/10 W, 0603 Bourns CR0603-
+FX-1003ELF
+1 R64 1 kΩ resistor, SMD, 1%, 1/10 W, 0603 Yageo RC0603FR-071KL
+1 R65 12 kΩ resistor, SMD, 1%, 1/4 W, 1206 Yageo RC1206FR-0712KL
+1 S1 Switch, slide, 4 pole double throw TE Connectivity MSS420004
+23 S2 to S13, and S15 to S25 Switches, tactile, 6 mm Gullwing, surface-mounted device
+(SMD)
+TE Connectivity
+LTD
+FSM6JSMA
+1 S14 Single position, single throw (SPST) switch, slide, 2-positionCTS Electronic
+Components
+219-2LPSTR
+1 S26 4-position switch, slide DIP CTS Electronic
+Components
+219-4LPST
+7 TP10 to TP16 Connector PCB, test points, black Keystone
+Electronics
+5001
+1 U1 IC, CMOS I2C bus repeater NXP
+Semiconductors
+PCA9517DP, 118
+1 U10 IC, 500 mA low dropout CMOS linear regulator with soft startAnalog Devices ADP1715ARMZ-1.8-
+R7
+1 U11 IC, 1.8 V, 128 M-bit, serial flash memory with dual/quad SPI
+and QPI
+Winbond W25Q128FWPIG
+9 U2 to U8, U12, and U13 IC, 1-bit translator Fairchild
+Semiconductor
+FXLP34P5X
+1 U14 IC, quad high speed USB to multipurpose UART, MPSSEFuture Technology
+Devices
+International LTD
+(FTDI)
+FT4232HQ-REEL
+1 U15 IC, three ADCs, one DAC, low power codec with audio DSPsAnalog Devices ADAU1860
+2 U16 and U17 IC, 500 mA low dropout CMOS linear regulator with soft startAnalog Devices ADP1715ARMZ-R7
+1 U18 IC, low voltage supervisory circuit with watchdog in 4-lead
+SC70
+Analog Devices ADM8616WCYAKS
+Z-RL7
+1 U19 IC, 500 mA low dropout CMOS linear regulator with soft startAnalog Devices ADP1715ARMZ-3.3-
+R7
+1 U20 IC, 1K microwire-compatible serial EEPROM Microchip
+Technology
+93AA46BT-I/OT
+1 U9 IC, 300 mA, low dropout CMOS linear regulator Analog Devices ADP1713AUJZ-1.8-
+R7
+
+=== PDF PAGE 26 ===
+User Guide EVAL-ADAU1860
+ORDERING INFORMATION
+ESD Caution
+ESD (electrostatic discharge) sensitive device. Charged devices and circuit boards can discharge without detection. Although this product features patented or proprietary
+protection circuitry, damage may occur on devices subjected to high energy ESD. Therefore, proper ESD precautions should be taken to avoid performance degradation or loss of
+functionality.
+Legal Terms and Conditions
+By using the evaluation board discussed herein (together with any tools, components documentation or support materials, the “Evaluation Board”), you are agreeing to be bound by the terms and
+conditions set forth below (“Agreement”) unless you have purchased the Evaluation Board, in which case the Analog Devices Standard Terms and Conditions of Sale shall govern. Do not use the
+Evaluation Board until you have read and agreed to the Agreement. Your use of the Evaluation Board shall signify your acceptance of the Agreement. This Agreement is made by and between you
+(“Customer”) and Analog Devices, Inc. (“ADI”), with its principal place of business at Subject to the terms and conditions of the Agreement, ADI hereby grants to Customer a free, limited, personal,
+temporary, non-exclusive, non-sublicensable, non-transferable license to use the Evaluation Board FOR EVALUATION PURPOSES ONLY. Customer understands and agrees that the Evaluation
+Board is provided for the sole and exclusive purpose referenced above, and agrees not to use the Evaluation Board for any other purpose. Furthermore, the license granted is expressly made
+subject to the following additional limitations: Customer shall not (i) rent, lease, display, sell, transfer, assign, sublicense, or distribute the Evaluation Board; and (ii) permit any Third Party to access
+the Evaluation Board. As used herein, the term “Third Party” includes any entity other than ADI, Customer, their employees, affiliates and in-house consultants. The Evaluation Board is NOT sold
+to Customer; all rights not expressly granted herein, including ownership of the Evaluation Board, are reserved by ADI. CONFIDENTIALITY. This Agreement and the Evaluation Board shall all be
+considered the confidential and proprietary information of ADI. Customer may not disclose or transfer any portion of the Evaluation Board to any other party for any reason. Upon discontinuation
+of use of the Evaluation Board or termination of this Agreement, Customer agrees to promptly return the Evaluation Board to ADI. ADDITIONAL RESTRICTIONS. Customer may not disassemble,
+decompile or reverse engineer chips on the Evaluation Board. Customer shall inform ADI of any occurred damages or any modifications or alterations it makes to the Evaluation Board, including
+but not limited to soldering or any other activity that affects the material content of the Evaluation Board. Modifications to the Evaluation Board must comply with applicable law, including but
+not limited to the RoHS Directive. TERMINATION. ADI may terminate this Agreement at any time upon giving written notice to Customer. Customer agrees to return to ADI the Evaluation Board
+at that time. LIMITATION OF LIABILITY. THE EVALUATION BOARD PROVIDED HEREUNDER IS PROVIDED “AS IS” AND ADI MAKES NO WARRANTIES OR REPRESENTATIONS OF ANY
+KIND WITH RESPECT TO IT. ADI SPECIFICALLY DISCLAIMS ANY REPRESENTATIONS, ENDORSEMENTS, GUARANTEES, OR WARRANTIES, EXPRESS OR IMPLIED, RELATED TO THE
+EVALUATION BOARD INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTY OF MERCHANTABILITY, TITLE, FITNESS FOR A PARTICULAR PURPOSE OR NONINFRINGEMENT OF
+INTELLECTUAL PROPERTY RIGHTS. IN NO EVENT WILL ADI AND ITS LICENSORS BE LIABLE FOR ANY INCIDENTAL, SPECIAL, INDIRECT, OR CONSEQUENTIAL DAMAGES RESULTING
+FROM CUSTOMER’S POSSESSION OR USE OF THE EVALUATION BOARD, INCLUDING BUT NOT LIMITED TO LOST PROFITS, DELAY COSTS, LABOR COSTS OR LOSS OF GOODWILL.
+ADI’S TOTAL LIABILITY FROM ANY AND ALL CAUSES SHALL BE LIMITED TO THE AMOUNT OF ONE HUNDRED US DOLLARS ($100.00). EXPORT. Customer agrees that it will not directly or
+indirectly export the Evaluation Board to another country, and that it will comply with all applicable United States federal laws and regulations relating to exports. GOVERNING LAW. This Agreement
+shall be governed by and construed in accordance with the substantive laws of the Commonwealth of Massachusetts (excluding conflict of law rules). Any legal action regarding this Agreement will
+be heard in the state or federal courts having jurisdiction in Suffolk County, Massachusetts, and Customer hereby submits to the personal jurisdiction and venue of such courts. The United Nations
+Convention on Contracts for the International Sale of Goods shall not apply to this Agreement and is expressly disclaimed.
+©2021-2022 Analog Devices, Inc. All rights reserved. Trademarks and
+registered trademarks are the property of their respective owners.
+One Analog Way, Wilmington, MA 01887-2356, U.S.A.
+Rev. A | 26 of 26
+Table 10. (Continued)
+Qty Reference Description Manufacturer Model Number
+1 Y1 IC, crystal clock oscillator, 24.5760 MHz AVX-Kyocera KC2520K24.5760C1
+0E00
+1 Y2 IC, crystal quartz, 12 pF, 50 Ω, 24.576 MHz ECS, Inc. ECS-245.7-12-33Q-
+JES-TR
+1 Y3 IC, crystal ceramic, 10 pF load capacitance, fundamental
+operation mode, 200 Ω ESR, 10 MHz
+Abracon
+Corporation
+ABM3B-12.000MHZ
+-10-1-U-T
+I2C refers to a communications protocol originally developed by Philips Semiconductors (now NXP Semiconductors).

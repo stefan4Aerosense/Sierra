@@ -1,0 +1,94 @@
+PART word/footer1.xml
+Aerosense Aviation (Pty) Ltd — ConfidentialAeroNode v1 Build Plan · Page 
+PART word/document.xml
+AeroNode™ v1 — Build & Bring-Up Plan
+Parallel tracks: software on OTS hardware + PCB in parallel
+Field
+Detail
+Owner
+Duran de Villiers — Aerosense Engineering
+Date
+25 June 2026
+Status
+Draft plan — for team alignment (Peter + Black Box)
+Objective
+Maximum velocity to a flying, data-generating prototype while de-risking the custom board in parallel
+Operating principle
+Decouple software cadence from hardware cadence. Peter develops the full stack on off-the-shelf (OTS) hardware starting now, with zero dependency on the PCB. Black Box runs the hardware track in parallel so we start hitting board-level snags early. The two tracks converge once the software is mature and the board is bring-up-ready. Neither track waits on the other.
+Why this is the fast path: a flying OTS testbed gives us real DSMA™ and synthetic-airspeed data and demo material immediately, while the custom board absorbs its inevitable first-spin iterations off the demo critical path.
+Track A — Software & flight testbed (OTS) · Peter, starts now
+Hardware-identical to the v1 design where it matters (STM32H7 + ADIS16470 + multi-IMU + heater + Pi). Use a CUAV X7+ Pro (or Pixhawk 6X) + Raspberry Pi 5 + u-blox M10 GPS.
+Step
+Owner
+Outcome
+Procure OTS kit (X7+ Pro, Pi 5, M10, bench PSU, test rig)
+Duran
+Hardware on the bench within days
+Stand up ArduPilot/ChibiOS build + flash toolchain
+Peter
+Reproducible build; RTOS familiarity
+Bring up EKF3 with 3 IMU lanes + heater config
+Peter
+Tuned EKF, lane voting, 45°C hold validated
+H7→Pi raw-IMU + state bridge at 500–1000 Hz
+Peter
+DSMA pipeline fed at target rate
+Prototype DSMA / synthetic-airspeed on Pi
+Peter
+Algorithms running on real logged data
+Bench → ground → progressive flight test
+Peter / Duran
+Real flight data; reusable hwdef + tuning
+Track B — Hardware / PCB (Black Box) · starts now, in parallel
+Two sub-steps run together. B1 de-risks the one subsystem a respin can’t cheaply fix; B2 starts the full board immediately so we surface integration bugs early — speed-first.
+B1 — IMU-cluster carrier daughterboard (fast spin)
+Just the 3-IMU cluster + heated island + foam cover on a small carrier.
+Validates: heated-island thermal hold, ADIS16470 BGA assembly/yield, bias stability, vibration response.
+Gate output: freeze the IMU-cluster layout once it passes — this block then drops into the full board verbatim.
+B2 — Full v1 PCB (EVT Rev A) — in parallel
+Schematic + layout: STM32H7, 3-IMU cluster, heater + MOSFET drive, per-IMU LDOs, separate SPI buses, Pi interface, M10 GPS, connectors.
+Order long-lead parts now (ADIS16470 — multi-week lead).
+Treat explicitly as a first-spin prototype expecting 2–3 revisions; the goal is to find snags, not to be right first time.
+Step
+Owner
+Outcome
+Order ADIS16470 + long-lead parts
+Duran / Black Box
+Lead time started, not blocking later
+Build & test B1 carrier daughterboard
+Black Box
+Thermal + BGA + bias validated; layout frozen
+v1 schematic + layout (B2)
+Aerosense eng + Black Box
+Rev A ready to fab [confirm: layout owner]
+Fab + assemble v1 Rev A
+Black Box
+First integrated board powered
+Track C — Convergence
+Port the OTS-validated software + hwdef onto v1 Rev A — bring-up is hours, not weeks, because the stack is already mature.
+Debug Rev A; spin Rev B/C as needed; carry flight testing from OTS onto the custom board.
+Converge toward the Alpha Flight prototype milestone.
+Gates & decisions
+Gates (don’t skip):
+Gate 1 — IMU carrier passes thermal + assembly before its layout is committed to the full board.
+Gate 2 — software stack stable on OTS before v1 Rev A bring-up, to keep board debug clean.
+Decisions needed from Duran now (each unblocks the board):
+Decision
+Note
+2 vs 3 IMU lanes
+3 preferred; 2 (ADIS16470 + ICM-42688-P) acceptable if area-constrained
+Heater rail voltage (5 V vs 12 V)
+Sets heater resistance + MOSFET choice
+Pi thermal placement
+Keep Pi compute module clear of the IMU island
+OTS controller (X7+ Pro vs Pixhawk 6X)
+Either works; X7+ Pro matches our ADIS16470 choice
+v1 layout ownership
+Aerosense vs Black Box — confirm
+This week — immediate actions
+Order OTS kit (X7+ Pro + Pi 5 + M10) so Peter starts immediately. (Duran)
+Place ADIS16470 + long-lead component order to start the clock. (Duran / Black Box)
+Kick off Track A: ArduPilot toolchain + first EKF3 bring-up. (Peter)
+Brief Black Box on the IMU-carrier daughterboard (B1) and request a fast quote/timeline. (Duran)
+Lock the five decisions above so B2 layout can start. (Duran)
+Note: v1 is a research & development build. AeroNode™ and its DSMA™/VGSA™ functions are experimental, advisory aids that augment pilot awareness and do not replace certified avionics.

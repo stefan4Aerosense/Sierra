@@ -1,0 +1,56 @@
+[
+  {
+    "file": "AeroNode Core Hardware Architecture.docx",
+    "sha256": "b7171dd131ac2ef47ace51dddc36eaad3c69154fad5d057acc08e4af687f3de3",
+    "bytes": 3022439,
+    "text_chars": 8518,
+    "embedded_media": [
+      "word/media/image2.png",
+      "word/media/image3.png",
+      "word/media/image1.png"
+    ]
+  },
+  {
+    "file": "AeroNode_IMU_FrontEnd_Design_Spec.docx",
+    "sha256": "266bd428c09936139ba082c82a0efe23d4479a7dafcf6f16f2efee43e269e4b1",
+    "bytes": 50661,
+    "text_chars": 16936,
+    "embedded_media": [
+      "word/media/image1.jpg"
+    ]
+  },
+  {
+    "file": "AeroNode_v1_Build_Plan.docx",
+    "sha256": "d279b7903be29fa8f0c20bc8c05a4f0c08ff9e1d24396ee822883985874ed860",
+    "bytes": 40741,
+    "text_chars": 4747,
+    "embedded_media": [
+      "word/media/image1.jpg"
+    ]
+  },
+  {
+    "file": "AeroNode_Heated_IMU_Module_Spec.docx",
+    "sha256": "236d34fae93896a27871efeb3aaefdaa5d4e34bc14b578ecd75612a27f47631f",
+    "bytes": 42205,
+    "text_chars": 5719,
+    "embedded_media": [
+      "word/media/image1.jpg"
+    ]
+  },
+  {
+    "file": "Aerosense_Audio_Core_Deep_Dive.pdf",
+    "sha256": "f8de11689ab5ea96767d16bdbae9cce6a39b204760a3685e130afc019ca5452b",
+    "bytes": 361329,
+    "text_chars": 26847,
+    "embedded_media": []
+  },
+  {
+    "file": "AeroNode_Audio_Capture_Spec.docx",
+    "sha256": "06a6131cae8aa57029538be73abe5a773fe4591b267c8f864604897027ebbdbc",
+    "bytes": 42716,
+    "text_chars": 6395,
+    "embedded_media": [
+      "word/media/image1.jpg"
+    ]
+  }
+]
