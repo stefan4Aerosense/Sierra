@@ -1,0 +1,4 @@
+Crash recovery - 7 October 2026
+Reopened housing v19 lacked round-entry features. Recreated centered curved entrance, local infill and 0.05 mm lip. Preserved existing OffsetFaces1 feature and original 24 mm scale. Housing v20 cloud completion confirmed; closed and reopened source to verify recovered features persisted.
+Microphone alignment restored in explicitly opened source document; v12 cloud completion confirmed. Cached assembly dependency document edits did not persist as a new cloud version, so source was opened directly and edited/saved there. Assembly references refreshed and save initiated.
+Before and completed local archives preserved. Entry contact verified separately. GitHub pending repository write access.

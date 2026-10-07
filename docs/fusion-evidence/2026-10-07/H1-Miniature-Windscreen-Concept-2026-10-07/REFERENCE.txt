@@ -1,0 +1,7 @@
+Miniature foam windscreen concept - 7 October 2026
+Created in the user-provided empty Fusion design. Saved as H1 - Miniature Foam Windscreen - Concept, Default Project / H1 - Windscreen Concepts. Fusion cloud version 1 confirmed complete.
+DPA DUA0560-inspired visual reference, not a dimensional reproduction: https://www.dpamicrophones.com/accessories/windscreens/dua0560?variant=174
+Provisional exterior: diameter 12 mm, length 18 mm, hemispherical nose radius 6 mm, rear shoulder radius 1.5 mm. Blind socket diameter 6 mm, total depth 12 mm including radius 3 mm rounded roof; entry radius 0.3 mm. Fit to actual H1 capsule not established.
+Primary component is the full windscreen. A second hidden component is a half-section for pocket inspection; toggle its visibility in the browser. Standalone F3D preserves both; STEP and STL export primary component only. STL is a shape sample, not functional acoustic foam. Appearance is a dark soft-rubber proxy; foam pores and acoustic behavior are not modeled. Actual part requires suitable microphone windscreen foam and acoustic testing.
+Verified primary body solid, 12 x 12 x 18 mm bounds, all three modeling features healthy. Initial export during save failed; retries completed successfully after cloud save finished. No existing headset geometry edited.
+Local backup complete. GitHub pending repository write permissions.

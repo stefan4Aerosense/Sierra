@@ -1,0 +1,17 @@
+H1 adjustable fabric band concepts - 7 October 2026
+
+Fusion document: H1 - Adjustable Fabric Band - Two Concepts
+Location: Default Project / H1 - Band Adjustment Concepts
+Created in the empty Untitled document supplied by the user. Existing H1 models were not edited. This standalone comparison has no external linked dependencies.
+
+Eight named components: A hook-and-loop and B reinforced holes with removable screw caps, each shown SHORT, MEDIUM, LONG and OPEN. Browser names and visible labels identify each. Orbit to see the return tail and separated parts. These are static settings/operation illustrations, not a flexible fabric simulation or animated mechanism.
+
+A: 20 mm wide, 1.2 mm nominal webbing passes through 22 mm clear frame slot, turns around crossbar and folds onto itself. Green represents hook and cyan loop. Continuous 40 mm example travel per end; minimum shown engagement is 17 mm long x 18 mm wide. Engagement strength, stitching and material thickness must be established by physical testing. Frames have 0.3 mm edge easing. Broad comfort segment is 40 mm wide. Hook/loop surfaces are schematic solid layers; fibers and stitches are not modeled. Open view approximates peeling with a rigid rotated return section.
+
+B: 20 mm x 2 mm reinforced tail, five pairs of 3.4 mm holes at 10 mm pitch. Two 3 mm shoulders locate a chosen pair. 6.5 mm removable slotted caps retain it. Short/medium/long use pairs 5/3/1. Screw threads and fastening details are schematic and require selection of real hardware. Reinforcement must be a suitably durable sewn or laminated end tab; holes should not be punched into unsupported ordinary woven fabric.
+
+Both examples show one end, intended to repeat symmetrically at the other end of the suspension band. Mounting tabs are example interfaces only. These are fit-development concepts, not production-ready parts or a full fitted headband. Final travel, overall fabric length, retained overlap, head clearance, mounting strength, comfort and clamp force require testing on the H1. Adjustment at both ends does not establish fit for every head size.
+
+Verified all eight components have solid bodies and no feature health warnings/errors. Saved in Fusion and exported standalone F3D and STEP. PNG comparison views included. Earlier empty document had no meaningful geometry to preserve.
+
+GitHub backup pending until repository write access allows commit/push.

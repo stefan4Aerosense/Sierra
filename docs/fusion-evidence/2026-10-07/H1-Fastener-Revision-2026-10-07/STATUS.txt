@@ -1,0 +1,7 @@
+REVERTED at user request 7 October 2026.
+Original sixteen perimeter screws restored with pre-revision transforms (maximum matrix difference 3.6e-15).
+Original assembly-local right shell visible again. Experimental right-shell reference removed.
+Added resin boss, insert pocket, clearance and flat-seat features removed from original left shell and both base source files; restored sources saved and assembly references refreshed. Assembly saved and exported as Assembly-Restored.f3d.
+Earlier microphone entry refinement preserved. Central screws and metal connector were not modified by the cancelled revision.
+Experimental separate M2 screw and right-shell source documents remain as unused history, not connected to the restored assembly. Candidate exports in this folder are superseded and must not be printed as the accepted design.
+Assembly archive may retain external dependencies; source BEFORE archives are also retained.

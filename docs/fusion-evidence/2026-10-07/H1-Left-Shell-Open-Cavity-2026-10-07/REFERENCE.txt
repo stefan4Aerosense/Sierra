@@ -1,0 +1,5 @@
+Left shell electronics cavity opening - 7 October 2026
+Modified the explicitly opened Earcup Shell Left V1.2 - OLD source, Latest (1) body. Its interior was hollow but closed by a 1.2 mm panel at local Z=10.8..12 mm. Cut only this panel using the right shell opening as reference (local Y mirrored and Z translated +50 mm). Retained the perimeter rim, existing internal contour, mounting posts and microphone port geometry above the panel.
+Before volume 18.072698828 cm3; after 10.853455486 cm3; removed 7.219243342 cm3. Result one solid lump, new cut healthy. Bounds unchanged: 90.42292088 x 90 x 24.2 mm. The reference right shell remains unchanged. This opens access; component fit was not validated because no component layout was supplied for this cavity.
+Left-Shell-Before.f3d preserves source with links; linked dependencies may require Fusion access. Completed source F3D likewise retains source structure. Left-Shell-Open-Cavity.step exports the modified shell component. Right-Shell-Reference.step preserves the comparison geometry. Interior screenshot included.
+GitHub backup pending repository write access.

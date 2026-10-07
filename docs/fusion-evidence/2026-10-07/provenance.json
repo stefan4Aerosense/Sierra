@@ -1,0 +1,323 @@
+{
+  "date": "2026-10-07",
+  "cad_backup_repository": "https://github.com/stefan4Aerosense/FusionChatGPT",
+  "cad_remote_status": "pending; local git index permission denied",
+  "artifacts": [
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Microphone-Housing-24mm-2026-10-07\\After.png",
+      "bytes": 89366,
+      "sha256": "93ad8030e787def3367f523e39b48f1507267754a03ceb85ab9242d6bd6b4d4d"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Microphone-Housing-24mm-2026-10-07\\Before.f3d",
+      "bytes": 522012,
+      "sha256": "90505871e279ad0a3475c44fb7014c48b291df98ced5db4915d22a376cbe2790"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Microphone-Housing-24mm-2026-10-07\\Housing-24mm.f3d",
+      "bytes": 410194,
+      "sha256": "2fa9289670a39f5da2c70c744a797e2cf440f28cb76da598b80d13841f65dd3d"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Microphone-Housing-24mm-2026-10-07\\Housing-24mm.step",
+      "bytes": 50782,
+      "sha256": "551c5bfc1de42aa92a45093cc00765ca8230f33be9ec72a239aff4890f2f5dd1"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Microphone-Housing-24mm-2026-10-07\\result.json",
+      "bytes": 364,
+      "sha256": "535ebc8a042eacf89fd9bbc96f406b7dfd62351d07cd03519e6e1dd5ce519870"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Shell-Mic-Opening-2026-10-07\\Before.f3d",
+      "bytes": 3982439,
+      "sha256": "df464ee2fde1edbf020dbe65ce12936e34bd8b3a8d0f7f0d654049f3e5fb3e5f"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Shell-Mic-Opening-2026-10-07\\NOTES.txt",
+      "bytes": 893,
+      "sha256": "a7253809199d008da6f99127e3f8d536dd40823a02ee702ed34362a4a55e48b6",
+      "kilo_path": "docs/fusion-evidence/2026-10-07/H1-Shell-Mic-Opening-2026-10-07/NOTES.txt"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Shell-Mic-Opening-2026-10-07\\Shell-Mic-Opening-Enlarged.f3d",
+      "bytes": 3055703,
+      "sha256": "37aeb03c7dd1e791e27dc5bdb4a40d54814d9fa43db7cbe96bafe8bfb9059cfc"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Shell-Mic-Opening-2026-10-07\\Shell-Mic-Opening-Enlarged.step",
+      "bytes": 433497,
+      "sha256": "8e5a6519d759486c4597e88630d646b8b666bcb12c1cb2bf1cd18287b8ee2a10"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Shell-Mic-Opening-2026-10-07\\verification.json",
+      "bytes": 1912,
+      "sha256": "6ac7d391f6a110a8fc21300df6e0a509f20ddac553bf5810629e8cadf66bfb56"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Adjusting-Screws-Before.f3d",
+      "bytes": 4280302,
+      "sha256": "4c9d90d00c064e0fabf424f58c77ae33e517d6e60608a8d83bca523a1d9ff655"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Assembly-Before-Reference-Updates.f3d",
+      "bytes": 2574481,
+      "sha256": "2cce3ca5f4013b45a9bcae0968874c8bfa4da76154a6187f5b9b2d8a8b8a350f"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Assembly-Restored.f3d",
+      "bytes": 2568267,
+      "sha256": "3abac91da8190eeddbb1eda3a933b5d2cf184f241f0004d0cdca8c47bba5df09"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Inner-Screws-Before.f3d",
+      "bytes": 1176035,
+      "sha256": "15838de1978dac2b1775dbc6f0e0d3ead67abfb8b5bb8c624e8ea1a451eaccff"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Left-Base-Before.f3d",
+      "bytes": 3971545,
+      "sha256": "c8fc2bf5b7dda024fbe9693b9f8bc820caa5205740ff5ac612c35da782f78a82"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Left-Base-Resin-M2.f3d",
+      "bytes": 4008678,
+      "sha256": "95d0764c077dbc8d7b98182f2116c8a99d445a7309a824879a3bc14a3d989d87"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Left-Shell-Before.f3d",
+      "bytes": 3053348,
+      "sha256": "a5ef7eb75c0e04206ec4cadc891ab87d6f99f6decc889bd0f0f4a30e342214f7"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Left-Shell-Resin-Before.f3d",
+      "bytes": 3059160,
+      "sha256": "175b44265fb2722dab2e840476baa86c18b26a432be88565b5e5102d2056f1fb"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Left-Shell-Resin-Candidate.f3d",
+      "bytes": 2967274,
+      "sha256": "459c3b9a6e03462b73c508cb424aec656b19059ae65e60c0804d0230f37d5521"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Left-Shell-Resin-M2.f3d",
+      "bytes": 3131711,
+      "sha256": "e616e475dfcc1e48fe1ecc1e86fa97ac39010a93ff5dfff3f1ee3efc8a77530f"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Perimeter-Screws-Before.f3d",
+      "bytes": 214527,
+      "sha256": "fe0fc912197711b8400f998fc1a5dade9dd8b049d8d19e1ce08fe522f512241b"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Right-Base-Before.f3d",
+      "bytes": 4447703,
+      "sha256": "4bbccb6b71db568bee9e1d1b278eac5a6e454e4d98ce5dedb5a06ba8f745a488"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Right-Base-Resin-M2.f3d",
+      "bytes": 4492067,
+      "sha256": "4058bd10f42225a56ccab82a0e738ca3ff23eabd7f245f9ac11e26b912b24560"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Right-Shell-Before.step",
+      "bytes": 227371,
+      "sha256": "ad8cbabeb0fb122ad1610725c71be8bde045f70d8abc43c55915edd786e9dd27"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Right-Shell-Resin-Candidate.f3d",
+      "bytes": 372443,
+      "sha256": "cf2aaa01ed8df7bd6e1afa8ce1c30960ccb6a24ad44f47d4ae2310c9e9d82bb5"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Right-Shell-Resin-M2.f3d",
+      "bytes": 464179,
+      "sha256": "9dca238a9a15a59fefed17ba318569d7188a41179058c148c2ebd0ecb6889ca1"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\Right-Shell-Source-Before.f3d",
+      "bytes": 623973,
+      "sha256": "c2cfd3f69deeee8c8ca5ca23c3064d183672f6347fa37f0f352749f1f90ab273"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Fastener-Revision-2026-10-07\\STATUS.txt",
+      "bytes": 931,
+      "sha256": "5b87a6059111a9c84903d5d4123d8e63b366c76a627cd51b263287f5ba51a9a4",
+      "kilo_path": "docs/fusion-evidence/2026-10-07/H1-Fastener-Revision-2026-10-07/STATUS.txt"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Mic-Crash-Recovery-2026-10-07\\Centered-Assembly.png",
+      "bytes": 176546,
+      "sha256": "f0203a149304a0e5b36993eac5812eb8ccc73a035ffb8c244a27ce92513a1157",
+      "kilo_path": "docs/fusion-evidence/2026-10-07/H1-Mic-Crash-Recovery-2026-10-07/Centered-Assembly.png"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Mic-Crash-Recovery-2026-10-07\\Housing-Recovered.f3d",
+      "bytes": 546266,
+      "sha256": "e57c1822b0374d3db0e4d84b673f4b67c7032c489c5efdf2a9f1912551dc4b2e"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Mic-Crash-Recovery-2026-10-07\\Housing-Recovered.step",
+      "bytes": 80372,
+      "sha256": "cb4edb13064c23ca327b3240d87d3a8a4b94765db2a8aeb11739140e9e25e6cd"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Mic-Crash-Recovery-2026-10-07\\Microphone-Before.f3d",
+      "bytes": 614201,
+      "sha256": "73b91c867ef035145717c933cdcbc433835aa65edd94d111a85d4bd6f189d3e7"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Mic-Crash-Recovery-2026-10-07\\Microphone-Recovered.f3d",
+      "bytes": 624205,
+      "sha256": "c784dfe2b0be85d9ad24c5762a7213bdf66f3a1fea2166c0394ce43bc2e25ae3"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Mic-Crash-Recovery-2026-10-07\\REFERENCE.txt",
+      "bytes": 730,
+      "sha256": "7c6f8af187fa3c802d034d20e9254551eff7b9bf6f8ef530ed55f059e35a2760",
+      "kilo_path": "docs/fusion-evidence/2026-10-07/H1-Mic-Crash-Recovery-2026-10-07/REFERENCE.txt"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Mic-Crash-Recovery-2026-10-07\\Reopened-Before-Recovery.f3d",
+      "bytes": 508582,
+      "sha256": "c63dc955a2e301ff7cc087d5217098feb7e632536d76863f0aff92c0c5c72f8c"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Left-Shell-Open-Cavity-2026-10-07\\Left-Cavity.png",
+      "bytes": 623807,
+      "sha256": "7b9970d862aab867d1a82e8a9f912ae7fb1ae57494759098dfaf227b75953726",
+      "kilo_path": "docs/fusion-evidence/2026-10-07/H1-Left-Shell-Open-Cavity-2026-10-07/Left-Cavity.png"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Left-Shell-Open-Cavity-2026-10-07\\Left-Shell-Before.f3d",
+      "bytes": 3056438,
+      "sha256": "7221840907ee10235793f4b0230de629825540d52c813e9cf5fdbdbb6b1a4cac"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Left-Shell-Open-Cavity-2026-10-07\\Left-Shell-Open-Cavity.f3d",
+      "bytes": 3098246,
+      "sha256": "e5f4fa8e78d34156f20f7593c8e392f9e8d575f81af83fe28746c34f2a7ed59c"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Left-Shell-Open-Cavity-2026-10-07\\Left-Shell-Open-Cavity.step",
+      "bytes": 449090,
+      "sha256": "993d3f3065002b93c1adfcbe79cc56e84800ae8ca81e16301886e3f2f031b95a"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Left-Shell-Open-Cavity-2026-10-07\\REFERENCE.txt",
+      "bytes": 1121,
+      "sha256": "d706ac564212cb3fafcc3b37003e807b7864f73c7ee3797efd643ffe9190c52d",
+      "kilo_path": "docs/fusion-evidence/2026-10-07/H1-Left-Shell-Open-Cavity-2026-10-07/REFERENCE.txt"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Left-Shell-Open-Cavity-2026-10-07\\Right-Shell-Reference.step",
+      "bytes": 225752,
+      "sha256": "5256f7d01a92362a329aacf8da6152a95423ffafac10d9e605693dab9174bc66"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Band-Adjustment-Concepts-2026-10-07\\Comparison-Overview.png",
+      "bytes": 283778,
+      "sha256": "70cd72515d92617015fbf0d0a800b9fbdc5097537de5a9ef8a1e7dd50da6a735"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Band-Adjustment-Concepts-2026-10-07\\Comparison-Top.png",
+      "bytes": 319098,
+      "sha256": "68f6814853d19efec966a51933f3a62521b7451c61014f58d800c32509302405"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Band-Adjustment-Concepts-2026-10-07\\H1-Band-Adjustment-Comparison.f3d",
+      "bytes": 658531,
+      "sha256": "abb409496fb6d5c41d9926ca62fb876159f073da865761bbf6964a78956c9da9"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Band-Adjustment-Concepts-2026-10-07\\H1-Band-Adjustment-Comparison.step",
+      "bytes": 724841,
+      "sha256": "09f41383958e86b5ebdb6539b92afeb9e8812ce889d7385af7d53cb160ea3917"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Band-Adjustment-Concepts-2026-10-07\\REFERENCE.txt",
+      "bytes": 2414,
+      "sha256": "9f8153bfe27cdae4d09a7f06d66543d3689800123727cf45f41205927ba66f8a",
+      "kilo_path": "docs/fusion-evidence/2026-10-07/H1-Band-Adjustment-Concepts-2026-10-07/REFERENCE.txt"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-ABS-Band-Clip-2026-10-07\\ABS-Clip-Base.step",
+      "bytes": 35560,
+      "sha256": "cc180f11ffb2b225489ccf6161eb9e7dd25ffbad7c8ad8260a17ab3fb051dbdf"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-ABS-Band-Clip-2026-10-07\\ABS-Clip-Base.stl",
+      "bytes": 54884,
+      "sha256": "d1e2b94f46d9bfa16d0d18638d721720da76f35bc06b40be97fb9c07e4242142"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-ABS-Band-Clip-2026-10-07\\ABS-Clip-Lid.step",
+      "bytes": 31177,
+      "sha256": "1f90e814e7bb138ec5ab89f57737dfc86a76ec2bddda296549530983e44a40d1"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-ABS-Band-Clip-2026-10-07\\ABS-Clip-Lid.stl",
+      "bytes": 123084,
+      "sha256": "a0d817c8f90403b5cd3d139dc9662dbbe4ee8d1a705ad51458304943fbdc7656"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-ABS-Band-Clip-2026-10-07\\ABS-Clip-Three-Views.png",
+      "bytes": 497399,
+      "sha256": "20fb6b985c6a631ee966406ca50b1a60933c9de01cfd1d2f75e055de3939145f"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-ABS-Band-Clip-2026-10-07\\Adjustable-Band-With-ABS-Clip.f3d",
+      "bytes": 838069,
+      "sha256": "08b808e4fd544549ab9787c141678c26b164ef4b1ed5e094324fdaeeb29f5326"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-ABS-Band-Clip-2026-10-07\\Adjustable-Band-With-ABS-Clip.step",
+      "bytes": 990178,
+      "sha256": "54c4c2d0bdf06699224136b39486cf805577e270cdc6f7d502199eb33a715d75"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-ABS-Band-Clip-2026-10-07\\All-Three-Concepts.png",
+      "bytes": 283037,
+      "sha256": "2882eef1ea3e9ba11c72955c3b6d4ff8e3b48349e7d068e570bcf90d2590228f",
+      "kilo_path": "docs/fusion-evidence/2026-10-07/H1-ABS-Band-Clip-2026-10-07/All-Three-Concepts.png"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-ABS-Band-Clip-2026-10-07\\Before-Clip-Addition.f3d",
+      "bytes": 658202,
+      "sha256": "51fba6ad4e76e8ac94eabd161319a17163e07f9f835da256c9ec61acb7510784"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-ABS-Band-Clip-2026-10-07\\REFERENCE.txt",
+      "bytes": 1781,
+      "sha256": "46eb04139a2488f15ae96c5cd8a186337f7d40ec2d44d3eba892d8cff5d80d84",
+      "kilo_path": "docs/fusion-evidence/2026-10-07/H1-ABS-Band-Clip-2026-10-07/REFERENCE.txt"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Miniature-Windscreen-Concept-2026-10-07\\Miniature-Windscreen-Shape-Sample.stl",
+      "bytes": 1391984,
+      "sha256": "1e866a0723526c94a1fae006f786e5e63968e149f8c93f70d8342b137c2f17d8"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Miniature-Windscreen-Concept-2026-10-07\\Miniature-Windscreen.f3d",
+      "bytes": 164143,
+      "sha256": "a897b83129b33e4853b6b81feb074baadcee199d375392213af73b23a9b5851c"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Miniature-Windscreen-Concept-2026-10-07\\Miniature-Windscreen.step",
+      "bytes": 11277,
+      "sha256": "20147b3af9babc71f8f4ce6ac2342b35b45717a8b90aa835ca510f9274914bc7"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Miniature-Windscreen-Concept-2026-10-07\\REFERENCE.txt",
+      "bytes": 1376,
+      "sha256": "78f63bf14bafa0e07ec55a4b382e34e825daa3c7ea63ad787aabd466098e4d3f",
+      "kilo_path": "docs/fusion-evidence/2026-10-07/H1-Miniature-Windscreen-Concept-2026-10-07/REFERENCE.txt"
+    },
+    {
+      "source": "C:\\Users\\Stefan\\Documents\\Codex\\2026-09-13\\so-x20\\outputs\\H1-Miniature-Windscreen-Concept-2026-10-07\\Windscreen-Concept.png",
+      "bytes": 96501,
+      "sha256": "13b5c5082ae9c50bc46b9695d14da471f66ac52d0c4168e054da837991f1b32a",
+      "kilo_path": "docs/fusion-evidence/2026-10-07/H1-Miniature-Windscreen-Concept-2026-10-07/Windscreen-Concept.png"
+    }
+  ]
+}
