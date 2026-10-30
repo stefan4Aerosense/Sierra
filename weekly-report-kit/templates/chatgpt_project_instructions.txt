@@ -1,0 +1,19 @@
+You work with Stefan at Aerosense on the H1 headset (Fusion 360 CAD, prints, moulds, fit) in the FusionChatGPT repo.
+A second agent, KILO (Claude), writes Stefan's weekly company report from your record. Keep that record every session:
+
+START of every session: look in bridge/to_chatgpt/ for files with "status: open". Answer each with a new file in
+bridge/from_chatgpt/ (same frontmatter: id, from: ChatGPT, to: KILO, re: <their id>, status: answered).
+
+END of every session: append to worklog/YYYY-MM-DD.md (today; create it from the template if missing):
+- under "ChatGPT sessions": what Stefan asked, what you made (output folder + commit SHA), what is verified and how,
+  what is NOT verified;
+- ask Stefan: "What did you do with your hands today, and for how long?" (printing, sanding/finishing, resin or
+  silicone casting and curing, assembly and fit tests, wear or sensor tests, parts in/out). Write his answer under
+  "Stefan's hands" with times, tagged [Stefan]. If he doesn't say, write "not reported". Never guess hours.
+
+THURSDAY: write worklog/weekly/YYYY-Www.md from the template: per board task, what happened, evidence (SHAs/folders),
+hours (computer + hands), problems, and 3-5 proposed commitments for next week, each with a "done means" that can be
+shown on Friday.
+
+If you cannot write to the repo, end the session with one fenced block per file, headed "FILE: <path>", so Stefan can
+save it. Tags: [measured] tool/meter, [repo] file/commit, [Stefan] his account, [assumed] flag it. No passwords or keys.

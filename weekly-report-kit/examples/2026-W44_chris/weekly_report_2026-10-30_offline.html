@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly report · Fri 30 Oct 2026 (offline)</title>
+<!--
+  AeroSense weekly report, week ending Fri 30 Oct 2026: offline fill-in copy for Chris Shenton (weekly-report kit, build_offline_form.py).
+  Styled with reports.aerosenseaviation.com's own stylesheet. Mode: the draft. Every field is editable.
+  Saves in this browser as you go. "Save file" downloads this page with your entries inside. Nothing is sent anywhere.
+-->
+<style>
+/* reports.aerosenseaviation.com/static/app.css, copied as it is (read 30 Oct 2026) */
+:root {
+--teal: #164559; --mid: #1F586C; --bright: #35859C; --ink: #1A1A1A; --muted: #5f6b70;
+--line: #d9e0e3; --bg: #f5f7f8; --card: #ffffff; --ok: #2e7d32; --warn: #b26a00; --bad: #b3261e;
+--font: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font: 16px/1.45 var(--font); color: var(--ink); background: var(--bg); }
+header.top { background: var(--teal); color: #fff; padding: 14px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+header.top h1 { font-size: 17px; margin: 0; font-weight: 600; letter-spacing: .2px; }
+header.top .who { margin-left: auto; font-size: 13px; opacity: .9; display: flex; gap: 10px; align-items: center; }
+header.top button { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.5); border-radius: 6px; padding: 4px 10px; font-size: 13px; cursor: pointer; }
+main { max-width: 860px; margin: 0 auto; padding: 16px 16px 120px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+h2 { font-size: 15px; color: var(--teal); margin: 0 0 8px; text-transform: uppercase; letter-spacing: .4px; }
+h3 { font-size: 16px; margin: 0 0 4px; font-weight: 600; }
+.sub { color: var(--muted); font-size: 13px; }
+.chip { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: #e7eef1; color: var(--teal); }
+.chip.ok { background: #e3f2e5; color: var(--ok); }
+.chip.warn { background: #fdf0dc; color: var(--warn); }
+.chip.bad { background: #fbe3e1; color: var(--bad); }
+.row { padding: 12px 0; border-top: 1px solid var(--line); }
+.row:first-of-type { border-top: 0; }
+.row .title { font-weight: 600; }
+.row .meta { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+.grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+@media (min-width: 640px) { .grid.two { grid-template-columns: 1fr 1fr; } .grid.three { grid-template-columns: 2fr 1fr 2fr; } }
+label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+input[type=text], input[type=url], input[type=number], select, textarea {
+width: 100%; font: inherit; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink);
+}
+textarea { min-height: 70px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--bright); outline-offset: 0; border-color: var(--bright); }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button { flex: 1 1 auto; min-width: 84px; padding: 9px 8px; border: 1px solid var(--line); background: #fff; border-radius: 8px; font: inherit; font-size: 14px; color: var(--ink); cursor: pointer; }
+.seg button.on { background: var(--teal); color: #fff; border-color: var(--teal); }
+.seg button.on.bad { background: var(--bad); border-color: var(--bad); }
+.seg button.on.warn { background: var(--warn); border-color: var(--warn); }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.btn { font: inherit; font-size: 14px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line); background: #fff; color: var(--teal); cursor: pointer; }
+.btn.primary { background: var(--teal); color: #fff; border-color: var(--teal); }
+.btn.small { font-size: 13px; padding: 6px 10px; }
+.btn[disabled] { opacity: .5; cursor: default; }
+.urls input { margin-bottom: 6px; }
+.err { color: var(--bad); font-size: 13px; }
+.errors { background: #fbe3e1; border: 1px solid #f1b9b4; color: var(--bad); border-radius: 8px; padding: 10px 12px; margin: 10px 0; }
+.errors li { margin: 2px 0; }
+.note { background: #eef5f7; border-left: 4px solid var(--bright); padding: 10px 12px; border-radius: 6px; margin-bottom: 14px; }
+.note .when { color: var(--muted); font-size: 12px; }
+.commit { padding: 10px 0; border-top: 1px solid var(--line); }
+.commit .met { font-weight: 600; }
+.met.yes { color: var(--ok); } .met.no { color: var(--bad); } .met.na { color: var(--muted); }
+.bar { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid var(--line); padding: 10px 16px; display: flex; gap: 10px; align-items: center; }
+.bar .status { font-size: 13px; color: var(--muted); flex: 1; }
+.toggle { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.total { font-weight: 600; }
+.muted { color: var(--muted); }
+.mb8 { margin-bottom: 8px; } .mt8 { margin-top: 8px; } .mt6 { margin-top: 6px; } .m0 { margin: 0; }
+.hidden { display: none; } .inline-seg { display: inline-flex; margin-left: 8px; }
+.flexrow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+/* offline-copy additions */
+.btn.on { background: var(--teal); color: #fff; border-color: var(--teal); }
+.btn.review.on { background: #fdf0dc; color: var(--warn); border-color: #f0c98a; }
+.count { font-size: 12px; color: var(--muted); text-align: right; margin-top: 2px; }
+.count.over { color: var(--bad); font-weight: 600; }
+textarea.notebox { min-height: 46px; }
+.prev .seg { display: inline-flex; margin: 6px 0 4px 8px; }
+.prev .seg button { min-width: 84px; }
+dialog { border: 1px solid var(--line); border-radius: 10px; padding: 0; width: min(780px, 94vw); }
+dialog .dh { background: var(--teal); color: #fff; padding: 12px 16px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+dialog .dh button { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.5); border-radius: 6px; padding: 4px 10px; font-size: 13px; cursor: pointer; }
+dialog .db { padding: 14px 16px; }
+dialog textarea { min-height: 340px; font: 12.5px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.ok-box { background: #e3f2e5; border: 1px solid #b9dcbe; color: var(--ok); border-radius: 8px; padding: 10px 12px; margin: 10px 0; }
+@media (max-width: 640px) { .bar { flex-wrap: wrap; } .bar .status { flex-basis: 100%; } }
+@media print {
+  header.top button, .bar, .actions .btn:not(.on), .addurl, #addCommit, .remove, .note .actions { display: none !important; }
+  body { background: #fff; } main { padding-bottom: 0; } .card { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Weekly report</h1><span class="chip warn">Due Fri 30 Oct, 16:00</span><span class="chip">Offline copy</span>
+  <div class="who"><span id="whoName">Chris Shenton</span><button type="button" id="resetDraft">Reset to draft</button><button type="button" id="clearAll">Clear</button></div>
+</header>
+
+<main>
+  <section class="card">
+    <h3>Week ending Friday 30 Oct 2026</h3>
+    <div class="sub">Due Fri 30 Oct, 16:00. Offline copy: saves in this browser as you go. <b>Save file</b> keeps a copy with your entries on your Mac.</div>
+  </section>
+
+  <div class="note">Pre-filled with the agent's draft (the same text as the copy-paste page). Change anything. If the online form breaks, finish here, press <b>Check report</b>, then send the summary or the saved file.
+    <div class="when">Built 2026-10-30 from the live form's fields and stylesheet.</div></div>
+
+  <section class="card prev">
+    <h2>Last week you committed to…</h2>
+    <div class="sub" id="prevCount"></div>
+    <div id="prevList"></div>
+  </section>
+
+  <section class="card">
+    <h2>A · My tasks</h2>
+    <div class="sub mb8">Live from the board (as of 30 Oct). One row per task you own. Done and Progressed need an evidence link.</div>
+    <div id="tasks"></div>
+  </section>
+
+  <section class="card">
+    <h2>B · This week</h2>
+    <div class="grid two">
+      <div><label for="otherHours">Other hours (not on a task)</label><input id="otherHours" type="number" min="0" step="0.25"></div>
+      <div><label for="otherWhat">What the other hours were</label><input id="otherWhat" type="text"><div class="count" id="otherWhatCount"></div></div>
+    </div>
+    <p class="total" id="total">Total hours: 0</p>
+    <label for="blockers">Blockers — what stopped or slowed you, and since when</label>
+    <textarea id="blockers" rows="7"></textarea>
+    <label for="duran" class="mt8">What you need from Duran — decisions, purchases, access</label>
+    <textarea id="duran" rows="8"></textarea>
+  </section>
+
+  <section class="card">
+    <h2>C · Next week's commitments</h2>
+    <div class="sub mb8">Three to five. Each one is something you can show on Friday.</div>
+    <div id="commits"></div>
+    <button class="btn small mt8" id="addCommit" type="button">+ Add a commitment</button>
+  </section>
+</main>
+
+<div class="bar">
+  <span class="status" id="status">Draft</span>
+  <button class="btn small" id="saveFile" type="button">Save file</button>
+  <button class="btn small" id="importBtn" type="button">Import .json</button>
+  <input type="file" id="importFile" accept="application/json,.json" class="hidden">
+  <button class="btn small" id="printBtn" type="button">Print / PDF</button>
+  <button class="btn primary" id="checkBtn" type="button">Check report</button>
+</div>
+
+<dialog id="out">
+  <div class="dh"><span>Your report: copy it or download it. Nothing has been sent.</span><button type="button" id="closeOut">Close</button></div>
+  <div class="db">
+    <div id="checks"></div>
+    <textarea id="outText" readonly></textarea>
+    <div class="actions">
+      <button class="btn primary" id="copyOut" type="button">Copy</button>
+      <button class="btn" id="dlMd" type="button">Download .md</button>
+      <button class="btn" id="dlJson" type="button">Download .json</button>
+      <button class="btn" id="dlHtml" type="button">Save file (.html)</button>
+    </div>
+  </div>
+</dialog>
+
+<script id="baked" type="application/json">null</script>
+<script id="data" type="application/json">{"draft": {"who": "Chris Shenton", "prev": ["no", null, null, "no", "no"], "tasks": [{"title": "WS4 — PPG proof-out in the foam earcup at the mastoid", "meta": "now · PilotSense · due 2026-10-22", "outcome": "No work", "links": [""], "hours": "0", "note": "No PPG work this week. The headset node that will carry the SparkFun heart-rate sensor is wired and its first stage (the LED rings) runs; the HR sensor is stage 2, next week. Nothing new from Stefan's lane (KILO) in the team repo.", "markDone": false, "review": false}, {"title": "Confirm ADAU1860-1 can drive H1 transducers, or specify an external amp", "meta": "now · H1 Headset · due 2026-11-30", "outcome": "Progressed", "links": ["https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#confirm-adau1860-1-can-drive-h1-transducers"], "hours": "1", "note": "A donor-headset driver played cleanly from the 1860 (26 Oct); not yet measured into 150/300/600 Ω. John measured the 1860's analog loop on our rig board: 94.5 µs at 48 kHz, 12.8 µs at 192 kHz (7.4× less), polarity inverted by the codec; unity gain and 0.012 % THD in the 1 Oct recordings. Mon 2 Nov John drives the cup's own driver from the 1860 (M8). Peter owns the amp call.", "markDone": false, "review": false}, {"title": "Evaluate IMU's", "meta": "now · DVNC · due 2026-11-30", "outcome": "Done", "links": ["https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#evaluate-imus"], "hours": "0", "note": "Closing: done last week on F02 + F03 (ICM-45686 = the production DVNC reference, John 21 Oct). John added the timing this week: vibration leads sound by at most ~1.4 ms on the one pair with no clock uncertainty, and the DEV-A/DEV-B capture clocks differ by 51.6 ppm (~90 ms per 30 min), so the next rig runs every codec on one clock.", "markDone": true, "review": false}, {"title": "Evaluate Microphones", "meta": "now · DVNC · due 2026-11-30", "outcome": "Done", "links": ["https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#evaluate-microphones"], "hours": "0", "note": "Closing: done last week (cabin mic = analogue IM68A130A, no I2S mic; John 21 Oct). This week John measured DVNC's ceiling at the pilot's ear on F03: 2.5–3.5 dBA over 20 Hz–1 kHz on both aircraft, ~85 % of in-band energy tonal, and proposes DVNC's band as 20 Hz–1 kHz, the same as ANC. The next step needs a mic inside the cup.", "markDone": true, "review": false}, {"title": "Run X-Plane + ArduPilot SITL campaign — characterise where the ArduPilot math falls short", "meta": "now · DSMA · due 2026-11-30", "outcome": "No work", "links": [""], "hours": "0", "note": "No SITL campaign work this week (the rig only made the VGSA 'Headphones on' lab reel). Still to settle on the rig before 1 Dec: one DSMA STALL rule (the fix is 8/8 on real stalls but adds 27 false STALLs on 62 rig stalls).", "markDone": false, "review": false}, {"title": "WS3 — Build the demo H1: donor internals in printed shells, passthrough audio proven", "meta": "next · H1 Headset · due 2026-11-13", "outcome": "Progressed", "links": ["https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#ws3-build-the-demo-h1"], "hours": "4", "note": "Two pieces toward the demo headset: a printed mount that joins a donor headband's metal tab to our ear cup (designed 26 Oct, PLA), and headset node HS01 on a XIAO ESP32-C6: both 16-LED rings run from a control page it serves over the office Wi-Fi (27 Oct); the heart-rate sensor and IMU, streaming to AERO-A, are next. A donor driver played from the 1860. Passthrough audio not started.", "markDone": false, "review": false}, {"title": "AeroNode auto-detects record start/stop and auto-pushes to AeroSync", "meta": "next · AeroSync · due 2026-11-30", "outcome": "No work", "links": [""], "hours": "0", "note": "No work this week: start/stop is still manual. The DEV-A recorder fixes (STARTs refused while grading) carry to before 1 Dec.", "markDone": false, "review": false}, {"title": "Bench-test relay-driven headset comms (relays + oscilloscope)", "meta": "next · H1 Headset · due 2026-11-30", "outcome": "No work", "links": [""], "hours": "0", "note": "No bench readings this week: the bench went to the two-1860 rig and the 1797 board. The procedure and record sheets (pinout, PTT contacts, ohms per earcup, A20 pigtail) are ready.", "markDone": false, "review": false}, {"title": "Initial data model for the AeroNode synchronous timeline", "meta": "next · AeroNode · due 2026-11-30", "outcome": "Done", "links": ["https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#initial-data-model-for-the-aeronode-synchronous-timeline"], "hours": "1", "note": "Done, closing. The model puts every IMU, both Pixhawks and DEV-A/DEV-B audio on one timeline (sync pulse + start/stop/mark) and held one clock on all four F03 flights (2.4–4.7 µs rms). This week: John measured what separate codec clocks cost (51.6 ppm) and the next rig runs both ears' codecs on one clock master. Peter's written review can go on the card once his access is set up.", "markDone": true, "review": false}, {"title": "Source a calibrated SPL meter", "meta": "next · Noise Cancelling · due 2026-11-30", "outcome": "Done", "links": ["https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W43_fleet_week_F03.md#source-a-calibrated-spl-meter"], "hours": "0", "note": "Closing: done last week (RS PRO DT-8852, Class 2, flew all four F03 flights; evidence in the W43 summary). Follow-up still open: check it against a 94 dB / 1 kHz calibrator.", "markDone": true, "review": false}, {"title": "Test AeroVault crash capture with the CM5-to-memory link severed", "meta": "next · AeroVault · due 2026-11-30", "outcome": "No work", "links": [""], "hours": "0", "note": "No work this week: the 10-minute test procedure is written and waits for a bench day.", "markDone": false, "review": false}, {"title": "Test DSMA SAFE/CAUTION cues in a real flight and log the cue output", "meta": "next · DSMA · due 2026-11-30", "outcome": "Done", "links": ["https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W43_fleet_week_F03.md#test-dsma-safecaution-cues-in-a-real-flight-and-log-the-cue-output"], "hours": "0", "note": "Closing: done last week. F03 flight 2 (16 Oct): DSMA live in the pilot's headset, every cue logged; CAUTION 15/10/5 and the beep before both stalls. STALL is a separate problem (rule fault, fix not yet proven on the rig) and stays open under 'Validate DSMA in real-world flight'.", "markDone": true, "review": false}, {"title": "Test the PureVoice concept using microphone and CM5", "meta": "next · PureVoice · due 2026-11-30", "outcome": "No work", "links": [""], "hours": "0", "note": "No work this week. Last week's commitment (re-run on the recorded ear mic P11 for both RV-8 flights and Huey 2) was not met and carries.", "markDone": false, "review": false}, {"title": "Validate DSMA in real-world flight on development hardware", "meta": "next · DSMA · due 2026-11-30", "outcome": "No work", "links": [""], "hours": "0", "note": "No work this week. Open for 1 Dec: the STALL rule (8/8 real stalls in replay, 27 false on 62 rig stalls), approach callouts, the aircraft weight, and a wired headset route (Bluetooth dropped 3 times on F03).", "markDone": false, "review": false}, {"title": "Validate the AeroVault high-G / shock trigger and crash data dump", "meta": "next · AeroVault · due 2026-11-30", "outcome": "No work", "links": [""], "hours": "0", "note": "No work this week. Still to do: a bench shock test of the impact trigger (12 g over 20 ms, armed above 30 kt with a GPS fix).", "markDone": false, "review": false}, {"title": "WS5 — Measure passive attenuation of the printed cup + cushion on the EARS Pro", "meta": "next · H1 Headset · due 2026-11-30", "outcome": "No work", "links": [""], "hours": "0", "note": "No attenuation figure yet. John has the cup, driver, mics, miniDSP EARS, RME and an ADAM A7X in the office on Mon 2 Nov for the secondary-path measurements; the printed cup's passive number could be taken on the same set-up.", "markDone": false, "review": false}, {"title": "Build the acoustic bench and measure baseline noise cancelling", "meta": "next · Noise Cancelling · due 2026-12-31", "outcome": "Progressed", "links": ["https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#build-the-acoustic-bench-and-measure-baseline-noise-cancelling"], "hours": "12", "note": "Bench rig for the demo's one-codec-per-ear audio: two ADAU1860s wired on DEV-A on one clock (27 Oct). Board B then failed at its codec (clock pins open at U15, no I²C on two hosts); support case open with ADI, board A works. ADAU1797 eval board mapped from 80 microscope photos; a new Pi 4 drives it over SPI (build sheet, firmware, 11-step guide). John's M0–M12 run sheet and loop delay on our board; S(z) on Mon 2 Nov.", "markDone": false, "review": false}], "otherHours": "17", "otherWhat": "Company videos: VGSA investor film v7–v10, F03 social posts, RV-8 engine reel; fleet admin and this report.", "blockers": "- ADAU1860 board B failed (since 27 Oct): its codec lost its clock pins and stopped answering I²C. Support case open with Analog Devices; the one-codec-per-ear rig waits on a replacement board.\n- ADAU1797 eval board has no public schematic (since 21 Oct): mapped from photos instead; its switch and jumper functions are still unknown.\n- The 1 Dec fixes did not move this week (all since 16 Oct): the DSMA STALL rule is unproven on the rig; AERO-A storage stalls (its disk is now 93 % full) and the 6X GPS gate; a wired headset route to replace Bluetooth; the Huey radio getting into DEV-A's I2S; DEV-B power, with FOXTROT (its agent) idle since 14 Oct.\n- Peter's access to the boxes (SSH key, Tailscale), since 22 Sep.", "duran": "1. A replacement EVAL-ADAU1860EBZ if Analog Devices won't swap board B (AAQSO6P): the demo's two-codec layout needs two working boards.\n2. Approve Chris's shopping spreadsheet when it lands (printer, CM5s for dev and for the BlackBox board, audio adapter). (carried)\n3. Sign the pre-flight checklist v1 and pick the GPS gate: 6 or 8 satellites. (carried; the Preflight page still flags it)\n4. Record the aircraft weight (crew + fuel) on every test flight: DSMA's stall speed moves ~3 kt per 10 % of weight. (carried)\n5. Your debrief of F03 flight 2: how the CAUTION calls and the beep sounded in the A30, and whether VGSA was too chatty. (carried)\n6. Decide DSMA on a normal approach for 1 Dec: a ~65 kt RV-8 approach sits within 5 kt of the 59 kt line. (carried)\n7. Aircraft time for a 10 s keyed-VHF ground test on the RV-8 and the Huey with DEV-A recording. (carried)", "commits": [{"task": "__other", "text": "Bring up the ADAU1797 eval board on the Pi 4 (dev-c)", "day": "Fri", "done": "Chip IDs read back over SPI, the chip boots and its PLL locks, and two IM73 mics in → speaker out play on a loopback (ALFA's 11-step guide)."}, {"task": "Build the acoustic bench and measure baseline noise cancelling", "text": "", "day": "Mon", "done": "With John on Mon 2 Nov: the cup's secondary path S(z) measured (M8: 1860 DAC → driver → feedback mic → ADC) and the feed-forward timing margin (M12), numbers in John's run sheet."}, {"task": "WS3 — Build the demo H1: donor internals in printed shells, passthrough audio proven", "text": "", "day": "Thu", "done": "Headset node HS01 stage 2: the heart-rate sensor and IMU wired and streaming to AERO-A over MQTT, beside the working LED rings."}, {"task": "__other", "text": "AERO-A 1 Dec fixes: storage stalls and the GPS gate", "day": "Fri", "done": "AERO-A cleared (disk 93 % full) and writing each row once: a 30-min recording with no logger gap over 1 s; the GPS gate (3-D fix, 6+ satellites, HDOP ≤ 2 for 60 s) in the pre-flight check."}], "savedAt": 0}, "prev": [{"text": "AERO-A writes each row once; a 30-min recording with no logger gap over 1 s and no DSMA gap over 0.5 s; the GPS gate (3-D fix, 6+ satellites, HDOP ≤ 2 for 60 s) in the pre-flight check.", "done": "Improved Aero-A (new wiring to audio board that fixes some issues) plus some solutions to the GPS (rebooting the pixhawk)", "task": null, "day": "Fri"}, {"text": "Bench-test relay-driven headset comms (relays + oscilloscope)", "done": "pinout, PTT contacts, ohms per earcup, mic type; the A20 pigtail toned out. Testing different headsets for VGSA and DMSA.", "task": "Bench-test relay-driven headset comms (relays + oscilloscope)", "day": "Fri"}, {"text": "Test the PureVoice concept using microphone and CM5", "done": "PureVoice re-run offline on the recorded ear mic (P11) for both RV-8 flights and Huey 2, word error rates reported beside what it logged in flight.", "task": "Test the PureVoice concept using microphone and CM5", "day": "Fri"}, {"text": "Fix DEV-A recorder START/grading bugs before the 1 Dec flight and some audio pathways.", "done": "Aerovault recording audio cleanly from 1860.", "task": null, "day": "Fri"}, {"text": "Secure the AeroSync server: off-box backups, report files behind the login, package updates", "done": "Clean secure production ready server", "task": null, "day": "Fri"}], "noteMax": 500, "labelMax": 120, "person": "Chris Shenton"}</script>
+<script>
+(() => {
+  const PRISTINE = "<!doctype html>\n" + document.documentElement.outerHTML;   // this page before any rendering, for "Save file"
+  const DATA = JSON.parse(document.getElementById("data").textContent);
+  const BAKED = JSON.parse(document.getElementById("baked").textContent);
+  const OUTCOMES = ["Done", "Progressed", "Blocked", "No work"], DAYS = ["—", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  const KEY = "aerosense-weekly-report-offline-2026-10-30-Chris_Shenton-draft";
+  const $ = (s, r = document) => r.querySelector(s);
+  const clone = o => JSON.parse(JSON.stringify(o));
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const num = v => { const x = parseFloat(v); return isFinite(x) ? x : 0; };
+  const blank = () => {
+    const s = clone(DATA.draft);
+    s.prev = s.prev.map(() => null);
+    s.tasks.forEach(t => Object.assign(t, { outcome: "", links: [""], hours: "", note: "", markDone: false, review: false }));
+    Object.assign(s, { otherHours: "", otherWhat: "", blockers: "", duran: "", commits: [{ task: "", text: "", day: "—", done: "" }, { task: "", text: "", day: "—", done: "" }, { task: "", text: "", day: "—", done: "" }] });
+    return s;
+  };
+
+  let state = clone(DATA.draft), source = "the draft";
+  try {
+    const local = JSON.parse(localStorage.getItem(KEY) || "null");
+    const cands = [[BAKED, "the saved file"], [local, "this browser"]].filter(([s]) => s && Array.isArray(s.tasks));
+    cands.sort((a, b) => (b[0].savedAt || 0) - (a[0].savedAt || 0));
+    if (cands.length) { state = cands[0][0]; source = cands[0][1]; }
+  } catch (e) {
+    if (BAKED && Array.isArray(BAKED.tasks)) { state = BAKED; source = "the saved file"; }
+  }
+
+  let timer = null;
+  function save() {
+    state.savedAt = Date.now();
+    $("#status").textContent = "Unsaved…";
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      try { localStorage.setItem(KEY, JSON.stringify(state)); $("#status").textContent = "Saved in this browser · " + new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }); }
+      catch (e) { $("#status").textContent = "This browser won't keep it: use Save file"; }
+    }, 300);
+  }
+
+  // ---- last week's commitments
+  function prevMet(i) {
+    const p = DATA.prev[i];
+    if (p.task) { const t = state.tasks.find(x => x.title === p.task); return t && t.outcome === "Done" ? "yes" : "no"; }
+    return state.prev[i] || null;
+  }
+  function renderPrev() {
+    const n = DATA.prev.filter((_, i) => prevMet(i) === "yes").length;
+    $("#prevCount").textContent = `${n} of ${DATA.prev.length} met. A task counts as met when its outcome this week is Done.`;
+    $("#prevList").innerHTML = DATA.prev.map((p, i) => {
+      const m = prevMet(i);
+      const right = p.task
+        ? `<span class="met ${m === "yes" ? "yes" : "no"}">${m === "yes" ? "Met" : "Not met"}</span>`
+        : `<span class="seg" data-p="${i}"><button type="button" data-v="yes" class="${m === "yes" ? "on" : ""}">Met</button><button type="button" data-v="no" class="${m === "no" ? "on bad" : "bad"}">Not met</button></span>`;
+      return `<div class="commit"><b>${esc(p.text)}</b> <span class="muted">· due ${esc(p.day || "Fri")} ·</span> ${right}<div class="sub">Done means: ${esc(p.done)}</div></div>`;
+    }).join("");
+  }
+
+  // ---- A · tasks
+  function count(len, max) { return `<div class="count ${len > max ? "over" : ""}">${len}/${max}${len > max ? " · the site keeps only the first " + max : ""}</div>`; }
+  function renderTasks() {
+    $("#tasks").innerHTML = state.tasks.map((t, i) => `
+      <div class="row" data-i="${i}">
+        <div class="title">${esc(t.title)}</div>
+        <div class="meta">${esc(t.meta)}</div>
+        <label>Outcome this week</label>
+        <div class="seg">${OUTCOMES.map(o => `<button type="button" data-o="${o}" class="${t.outcome === o ? "on" : ""} ${o === "Blocked" ? "bad" : o === "No work" ? "warn" : ""}">${o}</button>`).join("")}</div>
+        <div class="grid three mt8">
+          <div><label>Evidence links</label><div class="urls">${t.links.map((u, k) => `<input type="url" data-l="${k}" value="${esc(u)}" placeholder="https://…">`).join("")}</div>
+            <button type="button" class="btn small addurl">+ link</button></div>
+          <div><label>Hours</label><input type="number" min="0" step="0.25" data-f="hours" value="${esc(t.hours)}"></div>
+          <div><label>Note</label><textarea class="notebox" data-f="note" rows="2" placeholder="One line. Required if Blocked.">${esc(t.note)}</textarea><span class="ncount">${count(t.note.length, DATA.noteMax)}</span></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn small ${t.markDone ? "on" : ""}" data-t="markDone">Mark task done</button>
+          <button type="button" class="btn small review ${t.review ? "on" : ""}" data-t="review">Flag needs review</button>
+        </div>
+      </div>`).join("");
+    document.querySelectorAll("textarea.notebox").forEach(grow);
+  }
+  function grow(t) { t.style.height = "auto"; t.style.height = (t.scrollHeight + 2) + "px"; }
+
+  // ---- C · commitments
+  function taskOptions(sel) {
+    const opts = ["", ...state.tasks.map(t => t.title), "__other"];
+    return opts.map(v => `<option value="${esc(v)}" ${v === sel ? "selected" : ""}>${v === "" ? "— pick a task —" : v === "__other" ? "Something not on the board…" : esc(v)}</option>`).join("");
+  }
+  function renderCommits() {
+    $("#commits").innerHTML = state.commits.map((c, i) => `
+      <div class="commit" data-c="${i}">
+        <div class="grid two">
+          <div><label>Task</label><select data-cf="task">${taskOptions(c.task)}</select>
+            <input type="text" class="mt6 ctext ${c.task === "__other" ? "" : "hidden"}" data-cf="text" value="${esc(c.text)}" placeholder="What is it?"></div>
+          <div><label>Due day</label><select data-cf="day">${DAYS.map(d => `<option ${c.day === d ? "selected" : ""}>${d}</option>`).join("")}</select></div>
+        </div>
+        <label class="mt8">Done means…</label><textarea data-cf="done" rows="2">${esc(c.done)}</textarea>
+        <div class="actions"><button type="button" class="btn small remove">Remove</button></div>
+      </div>`).join("");
+  }
+
+  function total() {
+    const t = state.tasks.reduce((s, x) => s + num(x.hours), 0) + num(state.otherHours);
+    $("#total").textContent = "Total hours: " + (Math.round(t * 100) / 100);
+  }
+  function renderB() {
+    ["otherHours", "otherWhat", "blockers", "duran"].forEach(k => { $("#" + k).value = state[k] ?? ""; });
+    $("#otherWhatCount").outerHTML = `<div class="count" id="otherWhatCount"></div>`;
+    labelCount(); total();
+  }
+  function labelCount() { const n = (state.otherWhat || "").length; $("#otherWhatCount").className = "count" + (n > DATA.labelMax ? " over" : ""); $("#otherWhatCount").textContent = `${n}/${DATA.labelMax}${n > DATA.labelMax ? " · the site keeps only the first " + DATA.labelMax : ""}`; }
+  function renderAll() { $("#whoName").textContent = state.who || DATA.person; renderPrev(); renderTasks(); renderB(); renderCommits(); }
+
+  // ---- events
+  document.addEventListener("input", e => {
+    const el = e.target, row = el.closest(".row"), com = el.closest(".commit[data-c]");
+    if (row) {
+      const t = state.tasks[+row.dataset.i];
+      if (el.dataset.f) t[el.dataset.f] = el.value;
+      if (el.dataset.l !== undefined) t.links[+el.dataset.l] = el.value;
+      if (el.dataset.f === "hours") total();
+      if (el.dataset.f === "note") { grow(el); row.querySelector(".ncount").innerHTML = count(el.value.length, DATA.noteMax); }
+    } else if (com) {
+      state.commits[+com.dataset.c][el.dataset.cf] = el.value;
+    } else if (["otherHours", "otherWhat", "blockers", "duran"].includes(el.id)) {
+      state[el.id] = el.value; if (el.id === "otherHours") total(); if (el.id === "otherWhat") labelCount();
+    } else return;
+    save();
+  });
+  document.addEventListener("change", e => {
+    const el = e.target, com = el.closest(".commit[data-c]");
+    if (com && el.dataset.cf) {
+      const c = state.commits[+com.dataset.c]; c[el.dataset.cf] = el.value;
+      if (el.dataset.cf === "task") com.querySelector(".ctext").classList.toggle("hidden", el.value !== "__other");
+      save();
+    }
+  });
+  document.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    const row = b.closest(".row"), pseg = b.closest("[data-p]");
+    if (pseg) { const i = +pseg.dataset.p; state.prev[i] = state.prev[i] === b.dataset.v ? null : b.dataset.v; renderPrev(); save(); return; }
+    if (row && b.dataset.o) { const t = state.tasks[+row.dataset.i]; t.outcome = t.outcome === b.dataset.o ? "" : b.dataset.o;
+      row.querySelectorAll(".seg button").forEach(x => x.classList.toggle("on", x.dataset.o === t.outcome)); renderPrev(); save(); return; }
+    if (row && b.classList.contains("addurl")) { const t = state.tasks[+row.dataset.i]; t.links.push(""); const box = row.querySelector(".urls");
+      box.insertAdjacentHTML("beforeend", `<input type="url" data-l="${t.links.length - 1}" placeholder="https://…">`); box.lastElementChild.focus(); save(); return; }
+    if (row && b.dataset.t) { const t = state.tasks[+row.dataset.i]; t[b.dataset.t] = !t[b.dataset.t]; b.classList.toggle("on", t[b.dataset.t]); save(); return; }
+    if (b.classList.contains("remove")) { state.commits.splice(+b.closest(".commit").dataset.c, 1); renderCommits(); save(); return; }
+  });
+  $("#addCommit").addEventListener("click", () => { state.commits.push({ task: "", text: "", day: "—", done: "" }); renderCommits(); save(); });
+  function armed(btn, label, fn) {
+    let on = false;
+    btn.addEventListener("click", () => {
+      if (!on) { on = true; btn.textContent = label + "?"; setTimeout(() => { on = false; btn.textContent = btn.dataset.label; }, 3000); return; }
+      on = false; btn.textContent = btn.dataset.label; fn();
+    });
+    btn.dataset.label = btn.textContent;
+  }
+  armed($("#resetDraft"), "Replace everything with the draft", () => { state = clone(DATA.draft); renderAll(); save(); $("#status").textContent = "Reset to the draft"; });
+  armed($("#clearAll"), "Clear every field", () => { state = blank(); renderAll(); save(); $("#status").textContent = "Cleared"; });
+  $("#printBtn").addEventListener("click", () => window.print());
+
+  // ---- save, export, import
+  function download(name, text, type) {
+    const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  }
+  function savedPage() {
+    state.savedAt = Date.now();
+    const json = JSON.stringify(state).replace(/</g, "\\u003c");
+    const open = '<script id="baked" type="application/json">';
+    const i = PRISTINE.indexOf(open), j = PRISTINE.indexOf("</" + "script>", i);
+    return PRISTINE.slice(0, i + open.length) + json + PRISTINE.slice(j);
+  }
+  const stamp = () => { const d = new Date(); return d.toISOString().slice(0, 10) + "_" + String(d.getHours()).padStart(2, "0") + String(d.getMinutes()).padStart(2, "0"); };
+  const saveHtml = () => { download(`weekly_report_Chris_Shenton_2026-10-30_saved_${stamp()}.html`, savedPage(), "text/html"); $("#status").textContent = "Saved a copy to your Downloads"; save(); };
+  $("#saveFile").addEventListener("click", saveHtml);
+  $("#dlHtml").addEventListener("click", saveHtml);
+  $("#importBtn").addEventListener("click", () => $("#importFile").click());
+  $("#importFile").addEventListener("change", async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try { const s = JSON.parse(await f.text()); if (!Array.isArray(s.tasks)) throw new Error("not a report"); state = s; renderAll(); save(); $("#status").textContent = "Imported " + f.name; }
+    catch (err) { $("#status").textContent = "Couldn't read " + f.name + ": " + err.message; }
+    e.target.value = "";
+  });
+
+  // ---- check: the live form's rules, plus the site's silent length limits
+  function checks() {
+    const errs = [], warns = [];
+    state.tasks.forEach(t => {
+      if (!t.outcome) errs.push(`"${t.title}": pick an outcome.`);
+      if ((t.outcome === "Done" || t.outcome === "Progressed") && !t.links.some(u => u.trim())) errs.push(`"${t.title}": Done and Progressed need an evidence link.`);
+      if (t.outcome === "Blocked" && !t.note.trim()) errs.push(`"${t.title}": a note is required if Blocked.`);
+      if (t.note.length > DATA.noteMax) warns.push(`"${t.title}": note is ${t.note.length} characters; the site keeps the first ${DATA.noteMax}.`);
+      if (t.markDone && t.outcome !== "Done") warns.push(`"${t.title}": Mark task done is on but the outcome isn't Done.`);
+    });
+    DATA.prev.forEach((p, i) => { if (!p.task && !state.prev[i]) errs.push(`Last week: pick Met or Not met for "${p.text.slice(0, 60)}…".`); });
+    const real = state.commits.filter(c => c.task && (c.task !== "__other" || c.text.trim()));
+    if (real.length < 3 || real.length > 5) errs.push(`Commitments: three to five (you have ${real.length}).`);
+    state.commits.forEach((c, i) => { if (c.task && (!c.done.trim() || c.day === "—")) errs.push(`Commitment ${i + 1}: add a due day and what done means.`); });
+    if ((state.otherWhat || "").length > DATA.labelMax) warns.push(`"What the other hours were" is ${state.otherWhat.length} characters; the site keeps the first ${DATA.labelMax}.`);
+    return { errs, warns };
+  }
+  function summary() {
+    const L = [], tot = state.tasks.reduce((s, x) => s + num(x.hours), 0) + num(state.otherHours);
+    L.push(`# Weekly report: ${state.who || DATA.person}, week ending Fri 30 Oct 2026`, "");
+    L.push("## Last week you committed to…", "");
+    DATA.prev.forEach((p, i) => { const m = prevMet(i); L.push(`- ${p.text} · ${m === "yes" ? "Met" : m === "no" ? "Not met" : "—"}`, `  Done means: ${p.done}`); });
+    L.push("", "## A · My tasks", "");
+    state.tasks.forEach((t, i) => {
+      L.push(`### ${i + 1}. ${t.title}`, t.meta, `- Outcome: ${t.outcome || "—"}`, `- Hours: ${t.hours || 0}`);
+      const ls = t.links.filter(u => u.trim()); L.push(`- Evidence: ${ls.length ? ls.join(" , ") : "—"}`, `- Note: ${t.note || "—"}`);
+      if (t.markDone) L.push("- Mark task done: yes"); if (t.review) L.push("- Flag needs review: yes");
+      L.push("");
+    });
+    L.push("## B · This week", "", `- Other hours (not on a task): ${state.otherHours || 0}`, `- What the other hours were: ${state.otherWhat || "—"}`, `- Total hours: ${Math.round(tot * 100) / 100}`, "");
+    L.push("### Blockers — what stopped or slowed you, and since when", state.blockers || "—", "");
+    L.push("### What you need from Duran — decisions, purchases, access", state.duran || "—", "");
+    L.push("## C · Next week's commitments", "");
+    state.commits.filter(c => c.task).forEach((c, i) => L.push(`${i + 1}. ${c.task === "__other" ? (c.text || "(not on the board)") + " (not on the board)" : c.task} · due ${c.day} · done means: ${c.done || "—"}`));
+    return L.join("\n");
+  }
+  $("#checkBtn").addEventListener("click", () => {
+    const { errs, warns } = checks();
+    $("#checks").innerHTML = (errs.length ? `<ul class="errors">${errs.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : `<div class="ok-box">Passes the live form's checks.</div>`)
+      + (warns.length ? `<ul class="errors" style="background:#fdf0dc;border-color:#f0c98a;color:var(--warn)">${warns.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : "");
+    $("#outText").value = summary(); $("#out").showModal();
+  });
+  $("#closeOut").addEventListener("click", () => $("#out").close());
+  $("#copyOut").addEventListener("click", async e => {
+    const t = $("#outText").value;
+    try { await navigator.clipboard.writeText(t); } catch (_) { $("#outText").select(); document.execCommand("copy"); }
+    e.target.textContent = "Copied"; setTimeout(() => (e.target.textContent = "Copy"), 1400);
+  });
+  $("#dlMd").addEventListener("click", () => download("weekly_report_Chris_Shenton_2026-10-30.md", summary(), "text/markdown"));
+  $("#dlJson").addEventListener("click", () => download("weekly_report_Chris_Shenton_2026-10-30.json", JSON.stringify(state, null, 1), "application/json"));
+
+  renderAll();
+  $("#status").textContent = source === "the draft" ? "the draft · not changed yet" : "Restored from " + source;
+})();
+</script>
+</body>
+</html>

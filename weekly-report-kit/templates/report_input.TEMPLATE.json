@@ -1,0 +1,38 @@
+{
+ "schema": "aerosense-weekly-report-input/1",
+ "person": "FIRSTNAME LASTNAME (as the site shows it)",
+ "week_ending": "YYYY-MM-DD",
+ "due": "Fri D Mon, 16:00",
+ "sources_line": "built by <CALLSIGN> from the report site, the board, Preflight, <repos> and <person>'s work log",
+ "evidence_page": {
+  "url": "https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/reports/<person>/<CALLSIGN>_YYYY-Www_week.md",
+  "label": "reports/<person>/<CALLSIGN>_YYYY-Www_week.md (team repo)",
+  "local_md": "evidence_page_YYYY-Www.md"
+ },
+ "glance": [
+  {"area": "<area>", "status": "green", "text": "<one line>"}
+ ],
+ "last_week": [
+  {"text": "<last week's commitment, as the site shows it>", "done_means": "<as the site shows it>", "task_title": null, "pick": "not met", "reading": "<what the record shows>"}
+ ],
+ "rows": [
+  {"title": "<exact row title from the site>", "meta": "now · <technology> · due YYYY-MM-DD", "outcome": "Progressed", "hours": 0,
+   "evidence": ["<evidence_page.url>#<anchor>"], "mark_done": false, "note": "<= 500 characters"}
+ ],
+ "other_hours": {"hours": 0, "label": "<= 120 characters", "detail": "<longer, for the person only>"},
+ "blockers": "- <what> (since <date>)",
+ "needs_from_duran": "1. <decision / purchase / access>",
+ "commitments": [
+  {"task": "<exact row title>", "text": "", "due_day": "Fri", "done_means": "<something you can show on Friday>"},
+  {"task": "OTHER", "text": "<not on the board>", "due_day": "Fri", "done_means": "<...>"},
+  {"task": "<exact row title>", "text": "", "due_day": "Fri", "done_means": "<...>"}
+ ],
+ "board": {
+  "close": [],
+  "suggest_close": [],
+  "comments": [{"card": "<exact card title>", "outcome": "Progressed", "comment": "<what physically exists now, the evidence, what's next>"}],
+  "new_cards": []
+ },
+ "calls": ["<decisions only the person can make>"],
+ "measured": "<the hours floor and how it was measured>"
+}

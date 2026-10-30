@@ -1,0 +1,373 @@
+{
+ "schema": "aerosense-weekly-report-input/1",
+ "person": "Chris Shenton",
+ "week_ending": "2026-10-30",
+ "due": "Fri 30 Oct, 16:00",
+ "sources_line": "built by GOLF from the report site and the board's own data, the Preflight page, every lane's commits for 24–30 Oct and John's reports",
+ "evidence_page": {
+  "url": "https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md",
+  "label": "chris/golf/2026-W44_fleet_week.md (team repo)",
+  "local_md": "evidence_page_2026-W44.md"
+ },
+ "glance": [
+  {
+   "area": "Audio bench",
+   "status": "amber",
+   "text": "Two ADAU1860s wired on one clock (the demo's one-codec-per-ear layout); board B failed at its codec, with ADI support. 1797 board mapped and its Pi 4 ready."
+  },
+  {
+   "area": "John's bench (our board)",
+   "status": "green",
+   "text": "1860 loop delay 94.5 µs at 48 kHz, 12.8 µs at 192 kHz; DVNC ceiling 2.5–3.5 dBA at the ear; S(z) on Mon 2 Nov."
+  },
+  {
+   "area": "Headset",
+   "status": "amber",
+   "text": "HS01 node: LED rings running on Wi-Fi; HR + IMU next. Headband-to-cup mount printed."
+  },
+  {
+   "area": "1 Dec fixes",
+   "status": "red",
+   "text": "Did not move: DSMA STALL rule, AERO-A storage (disk 93 % full) and GPS gate, wired headset route, Huey radio into DEV-A, DEV-B power."
+  },
+  {
+   "area": "Last week's commitments",
+   "status": "red",
+   "text": "0 of 5 met (the bench went to the two-1860 rig and the 1797 board)."
+  },
+  {
+   "area": "Videos (company)",
+   "status": "green",
+   "text": "VGSA film v10; F03 social posts round 1; RV-8 x-ray engine reel."
+  },
+  {
+   "area": "Task board",
+   "status": "amber",
+   "text": "Quiet since 23 Oct: no comment, chat or card move from anyone (read 30 Oct). Five of your cards close today."
+  }
+ ],
+ "last_week": [
+  {
+   "text": "AERO-A writes each row once; a 30-min recording with no logger gap over 1 s and no DSMA gap over 0.5 s; the GPS gate (3-D fix, 6+ satellites, HDOP ≤ 2 for 60 s) in the pre-flight check.",
+   "done_means": "Improved Aero-A (new wiring to audio board that fixes some issues) plus some solutions to the GPS (rebooting the pixhawk)",
+   "task_title": null,
+   "pick": "not met",
+   "reading": "Not met. No AERO-A storage or GPS work this week; its disk is now 93 % full (ALFA, 28 Oct). The 1860 → AERO-A audio wiring is planned, not built."
+  },
+  {
+   "text": "Bench-test relay-driven headset comms (relays + oscilloscope)",
+   "done_means": "pinout, PTT contacts, ohms per earcup, mic type; the A20 pigtail toned out. Testing different headsets for VGSA and DMSA.",
+   "task_title": "Bench-test relay-driven headset comms (relays + oscilloscope)",
+   "pick": null,
+   "reading": "Not met. No bench readings: the bench went to the two-1860 rig and the 1797 board."
+  },
+  {
+   "text": "Test the PureVoice concept using microphone and CM5",
+   "done_means": "PureVoice re-run offline on the recorded ear mic (P11) for both RV-8 flights and Huey 2, word error rates reported beside what it logged in flight.",
+   "task_title": "Test the PureVoice concept using microphone and CM5",
+   "pick": null,
+   "reading": "Not met. No PureVoice work this week."
+  },
+  {
+   "text": "Fix DEV-A recorder START/grading bugs before the 1 Dec flight and some audio pathways.",
+   "done_means": "Aerovault recording audio cleanly from 1860.",
+   "task_title": null,
+   "pick": "not met",
+   "reading": "Not met. DEV-A's week went to the two-1860 rig (board B failed). No recorder fixes landed (ECHO's list unchanged)."
+  },
+  {
+   "text": "Secure the AeroSync server: off-box backups, report files behind the login, package updates",
+   "done_means": "Clean secure production ready server",
+   "task_title": null,
+   "pick": "not met",
+   "reading": "Not met. No server change since 22 Oct (BRAVO's write-up: package updates and off-box backups still open)."
+  }
+ ],
+ "rows": [
+  {
+   "title": "WS4 — PPG proof-out in the foam earcup at the mastoid",
+   "meta": "now · PilotSense · due 2026-10-22",
+   "outcome": "No work",
+   "hours": 0,
+   "evidence": [],
+   "mark_done": false,
+   "note": "No PPG work this week. The headset node that will carry the SparkFun heart-rate sensor is wired and its first stage (the LED rings) runs; the HR sensor is stage 2, next week. Nothing new from Stefan's lane (KILO) in the team repo."
+  },
+  {
+   "title": "Confirm ADAU1860-1 can drive H1 transducers, or specify an external amp",
+   "meta": "now · H1 Headset · due 2026-11-30",
+   "outcome": "Progressed",
+   "hours": 1,
+   "evidence": [
+    "https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#confirm-adau1860-1-can-drive-h1-transducers"
+   ],
+   "mark_done": false,
+   "note": "A donor-headset driver played cleanly from the 1860 (26 Oct); not yet measured into 150/300/600 Ω. John measured the 1860's analog loop on our rig board: 94.5 µs at 48 kHz, 12.8 µs at 192 kHz (7.4× less), polarity inverted by the codec; unity gain and 0.012 % THD in the 1 Oct recordings. Mon 2 Nov John drives the cup's own driver from the 1860 (M8). Peter owns the amp call."
+  },
+  {
+   "title": "Evaluate IMU's",
+   "meta": "now · DVNC · due 2026-11-30",
+   "outcome": "Done",
+   "hours": 0,
+   "evidence": [
+    "https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#evaluate-imus"
+   ],
+   "mark_done": true,
+   "note": "Closing: done last week on F02 + F03 (ICM-45686 = the production DVNC reference, John 21 Oct). John added the timing this week: vibration leads sound by at most ~1.4 ms on the one pair with no clock uncertainty, and the DEV-A/DEV-B capture clocks differ by 51.6 ppm (~90 ms per 30 min), so the next rig runs every codec on one clock."
+  },
+  {
+   "title": "Evaluate Microphones",
+   "meta": "now · DVNC · due 2026-11-30",
+   "outcome": "Done",
+   "hours": 0,
+   "evidence": [
+    "https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#evaluate-microphones"
+   ],
+   "mark_done": true,
+   "note": "Closing: done last week (cabin mic = analogue IM68A130A, no I2S mic; John 21 Oct). This week John measured DVNC's ceiling at the pilot's ear on F03: 2.5–3.5 dBA over 20 Hz–1 kHz on both aircraft, ~85 % of in-band energy tonal, and proposes DVNC's band as 20 Hz–1 kHz, the same as ANC. The next step needs a mic inside the cup."
+  },
+  {
+   "title": "Run X-Plane + ArduPilot SITL campaign — characterise where the ArduPilot math falls short",
+   "meta": "now · DSMA · due 2026-11-30",
+   "outcome": "No work",
+   "hours": 0,
+   "evidence": [],
+   "mark_done": false,
+   "note": "No SITL campaign work this week (the rig only made the VGSA 'Headphones on' lab reel). Still to settle on the rig before 1 Dec: one DSMA STALL rule (the fix is 8/8 on real stalls but adds 27 false STALLs on 62 rig stalls)."
+  },
+  {
+   "title": "WS3 — Build the demo H1: donor internals in printed shells, passthrough audio proven",
+   "meta": "next · H1 Headset · due 2026-11-13",
+   "outcome": "Progressed",
+   "hours": 4,
+   "evidence": [
+    "https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#ws3-build-the-demo-h1"
+   ],
+   "mark_done": false,
+   "note": "Two pieces toward the demo headset: a printed mount that joins a donor headband's metal tab to our ear cup (designed 26 Oct, PLA), and headset node HS01 on a XIAO ESP32-C6: both 16-LED rings run from a control page it serves over the office Wi-Fi (27 Oct); the heart-rate sensor and IMU, streaming to AERO-A, are next. A donor driver played from the 1860. Passthrough audio not started."
+  },
+  {
+   "title": "AeroNode auto-detects record start/stop and auto-pushes to AeroSync",
+   "meta": "next · AeroSync · due 2026-11-30",
+   "outcome": "No work",
+   "hours": 0,
+   "evidence": [],
+   "mark_done": false,
+   "note": "No work this week: start/stop is still manual. The DEV-A recorder fixes (STARTs refused while grading) carry to before 1 Dec."
+  },
+  {
+   "title": "Bench-test relay-driven headset comms (relays + oscilloscope)",
+   "meta": "next · H1 Headset · due 2026-11-30",
+   "outcome": "No work",
+   "hours": 0,
+   "evidence": [],
+   "mark_done": false,
+   "note": "No bench readings this week: the bench went to the two-1860 rig and the 1797 board. The procedure and record sheets (pinout, PTT contacts, ohms per earcup, A20 pigtail) are ready."
+  },
+  {
+   "title": "Initial data model for the AeroNode synchronous timeline",
+   "meta": "next · AeroNode · due 2026-11-30",
+   "outcome": "Done",
+   "hours": 1,
+   "evidence": [
+    "https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#initial-data-model-for-the-aeronode-synchronous-timeline"
+   ],
+   "mark_done": true,
+   "note": "Done, closing. The model puts every IMU, both Pixhawks and DEV-A/DEV-B audio on one timeline (sync pulse + start/stop/mark) and held one clock on all four F03 flights (2.4–4.7 µs rms). This week: John measured what separate codec clocks cost (51.6 ppm) and the next rig runs both ears' codecs on one clock master. Peter's written review can go on the card once his access is set up."
+  },
+  {
+   "title": "Source a calibrated SPL meter",
+   "meta": "next · Noise Cancelling · due 2026-11-30",
+   "outcome": "Done",
+   "hours": 0,
+   "evidence": [
+    "https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W43_fleet_week_F03.md#source-a-calibrated-spl-meter"
+   ],
+   "mark_done": true,
+   "note": "Closing: done last week (RS PRO DT-8852, Class 2, flew all four F03 flights; evidence in the W43 summary). Follow-up still open: check it against a 94 dB / 1 kHz calibrator."
+  },
+  {
+   "title": "Test AeroVault crash capture with the CM5-to-memory link severed",
+   "meta": "next · AeroVault · due 2026-11-30",
+   "outcome": "No work",
+   "hours": 0,
+   "evidence": [],
+   "mark_done": false,
+   "note": "No work this week: the 10-minute test procedure is written and waits for a bench day."
+  },
+  {
+   "title": "Test DSMA SAFE/CAUTION cues in a real flight and log the cue output",
+   "meta": "next · DSMA · due 2026-11-30",
+   "outcome": "Done",
+   "hours": 0,
+   "evidence": [
+    "https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W43_fleet_week_F03.md#test-dsma-safecaution-cues-in-a-real-flight-and-log-the-cue-output"
+   ],
+   "mark_done": true,
+   "note": "Closing: done last week. F03 flight 2 (16 Oct): DSMA live in the pilot's headset, every cue logged; CAUTION 15/10/5 and the beep before both stalls. STALL is a separate problem (rule fault, fix not yet proven on the rig) and stays open under 'Validate DSMA in real-world flight'."
+  },
+  {
+   "title": "Test the PureVoice concept using microphone and CM5",
+   "meta": "next · PureVoice · due 2026-11-30",
+   "outcome": "No work",
+   "hours": 0,
+   "evidence": [],
+   "mark_done": false,
+   "note": "No work this week. Last week's commitment (re-run on the recorded ear mic P11 for both RV-8 flights and Huey 2) was not met and carries."
+  },
+  {
+   "title": "Validate DSMA in real-world flight on development hardware",
+   "meta": "next · DSMA · due 2026-11-30",
+   "outcome": "No work",
+   "hours": 0,
+   "evidence": [],
+   "mark_done": false,
+   "note": "No work this week. Open for 1 Dec: the STALL rule (8/8 real stalls in replay, 27 false on 62 rig stalls), approach callouts, the aircraft weight, and a wired headset route (Bluetooth dropped 3 times on F03)."
+  },
+  {
+   "title": "Validate the AeroVault high-G / shock trigger and crash data dump",
+   "meta": "next · AeroVault · due 2026-11-30",
+   "outcome": "No work",
+   "hours": 0,
+   "evidence": [],
+   "mark_done": false,
+   "note": "No work this week. Still to do: a bench shock test of the impact trigger (12 g over 20 ms, armed above 30 kt with a GPS fix)."
+  },
+  {
+   "title": "WS5 — Measure passive attenuation of the printed cup + cushion on the EARS Pro",
+   "meta": "next · H1 Headset · due 2026-11-30",
+   "outcome": "No work",
+   "hours": 0,
+   "evidence": [],
+   "mark_done": false,
+   "note": "No attenuation figure yet. John has the cup, driver, mics, miniDSP EARS, RME and an ADAM A7X in the office on Mon 2 Nov for the secondary-path measurements; the printed cup's passive number could be taken on the same set-up."
+  },
+  {
+   "title": "Build the acoustic bench and measure baseline noise cancelling",
+   "meta": "next · Noise Cancelling · due 2026-12-31",
+   "outcome": "Progressed",
+   "hours": 12,
+   "evidence": [
+    "https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#build-the-acoustic-bench-and-measure-baseline-noise-cancelling"
+   ],
+   "mark_done": false,
+   "note": "Bench rig for the demo's one-codec-per-ear audio: two ADAU1860s wired on DEV-A on one clock (27 Oct). Board B then failed at its codec (clock pins open at U15, no I²C on two hosts); support case open with ADI, board A works. ADAU1797 eval board mapped from 80 microscope photos; a new Pi 4 drives it over SPI (build sheet, firmware, 11-step guide). John's M0–M12 run sheet and loop delay on our board; S(z) on Mon 2 Nov."
+  }
+ ],
+ "other_hours": {
+  "hours": 17,
+  "label": "Company videos: VGSA investor film v7–v10, F03 social posts, RV-8 engine reel; fleet admin and this report.",
+  "detail": "VGSA investor demo film v7 → v10 with BRAVO's 3-D sound stage (Mon, ~5 h). F03 social posts: 21 ideas with 37 numbers checked, HOTEL's first four reels, DELTA's 'Headphones on' reel (Wed–Thu, ~4 h). RV-8 x-ray engine reel with CHARLIE, BRAVO and ECHO (Wed–Thu, ~5 h). Fleet admin: agent check-ins, INDIA's self-test fix, the W44 page and this report (~3 h)."
+ },
+ "blockers": "- ADAU1860 board B failed (since 27 Oct): its codec lost its clock pins and stopped answering I²C. Support case open with Analog Devices; the one-codec-per-ear rig waits on a replacement board.\n- ADAU1797 eval board has no public schematic (since 21 Oct): mapped from photos instead; its switch and jumper functions are still unknown.\n- The 1 Dec fixes did not move this week (all since 16 Oct): the DSMA STALL rule is unproven on the rig; AERO-A storage stalls (its disk is now 93 % full) and the 6X GPS gate; a wired headset route to replace Bluetooth; the Huey radio getting into DEV-A's I2S; DEV-B power, with FOXTROT (its agent) idle since 14 Oct.\n- Peter's access to the boxes (SSH key, Tailscale), since 22 Sep.",
+ "needs_from_duran": "1. A replacement EVAL-ADAU1860EBZ if Analog Devices won't swap board B (AAQSO6P): the demo's two-codec layout needs two working boards.\n2. Approve Chris's shopping spreadsheet when it lands (printer, CM5s for dev and for the BlackBox board, audio adapter). (carried)\n3. Sign the pre-flight checklist v1 and pick the GPS gate: 6 or 8 satellites. (carried; the Preflight page still flags it)\n4. Record the aircraft weight (crew + fuel) on every test flight: DSMA's stall speed moves ~3 kt per 10 % of weight. (carried)\n5. Your debrief of F03 flight 2: how the CAUTION calls and the beep sounded in the A30, and whether VGSA was too chatty. (carried)\n6. Decide DSMA on a normal approach for 1 Dec: a ~65 kt RV-8 approach sits within 5 kt of the 59 kt line. (carried)\n7. Aircraft time for a 10 s keyed-VHF ground test on the RV-8 and the Huey with DEV-A recording. (carried)",
+ "commitments": [
+  {
+   "task": "OTHER",
+   "text": "Bring up the ADAU1797 eval board on the Pi 4 (dev-c)",
+   "due_day": "Fri",
+   "done_means": "Chip IDs read back over SPI, the chip boots and its PLL locks, and two IM73 mics in → speaker out play on a loopback (ALFA's 11-step guide)."
+  },
+  {
+   "task": "Build the acoustic bench and measure baseline noise cancelling",
+   "text": "",
+   "due_day": "Mon",
+   "done_means": "With John on Mon 2 Nov: the cup's secondary path S(z) measured (M8: 1860 DAC → driver → feedback mic → ADC) and the feed-forward timing margin (M12), numbers in John's run sheet."
+  },
+  {
+   "task": "WS3 — Build the demo H1: donor internals in printed shells, passthrough audio proven",
+   "text": "",
+   "due_day": "Thu",
+   "done_means": "Headset node HS01 stage 2: the heart-rate sensor and IMU wired and streaming to AERO-A over MQTT, beside the working LED rings."
+  },
+  {
+   "task": "OTHER",
+   "text": "AERO-A 1 Dec fixes: storage stalls and the GPS gate",
+   "due_day": "Fri",
+   "done_means": "AERO-A cleared (disk 93 % full) and writing each row once: a 30-min recording with no logger gap over 1 s; the GPS gate (3-D fix, 6+ satellites, HDOP ≤ 2 for 60 s) in the pre-flight check."
+  }
+ ],
+ "board": {
+  "close": [
+   "Evaluate IMU's",
+   "Evaluate Microphones",
+   "Source a calibrated SPL meter",
+   "Test DSMA SAFE/CAUTION cues in a real flight and log the cue output",
+   "Initial data model for the AeroNode synchronous timeline"
+  ],
+  "suggest_close": [
+   {
+    "title": "Record flight data for new Microphones and IMUs",
+    "why": "John / Duran's card: the data was recorded on F02 and F03 (six flights)"
+   }
+  ],
+  "comments": [
+   {
+    "card": "Evaluate IMU's",
+    "outcome": "Done → Complete",
+    "comment": "30 Oct: closing. The evaluation was done last week on F02 + F03; the ICM-45686 is the production DVNC vibration reference (John, 21 Oct).\nJohn added the timing this week:\n- vibration leads sound by at most ~1.4 ms on the one sensor pair with no clock uncertainty (both through one ADAU1372);\n- DEV-A and DEV-B capture clocks differ by 51.6 ppm (~90 ms per 30 min), so the next rig runs every codec on one clock;\n- DEV-B's ADXL354 has a constant 148 µs delay and can stand in as the timing reference the ICM-45686 lacks.\nEvidence: chris/golf/2026-W44_fleet_week.md; reports/john/2026-10-26_imu_audio_timebase.html (team repo)."
+   },
+   {
+    "card": "Evaluate Microphones",
+    "outcome": "Done → Complete",
+    "comment": "30 Oct: closing. Done last week: the cabin mic is the analogue IM68A130A into the ADAU1372, no I2S mic (John, 21 Oct).\nThis week John measured what DVNC can do at the pilot's ear on F03: 2.5–3.5 dBA over 20 Hz–1 kHz on both aircraft (only 0.5–2.0 dBA over 20–250 Hz), with ~85 % of in-band energy tonal. He proposes DVNC's band as 20 Hz–1 kHz, the same as ANC's.\nNext step (on the DVNC cards): the same calculation on a mic inside the cup.\nEvidence: reports/john/2026-10-29_dvnc_measured_ceiling_and_band.html (team repo)."
+   },
+   {
+    "card": "Source a calibrated SPL meter",
+    "outcome": "Done → Complete",
+    "comment": "30 Oct: closing. Done last week: the RS PRO DT-8852 (Class 2, ±1.4 dB) flew all four F03 flights, live into AERO-A and in its own memory (they agree within 0.24 dB).\nFollow-up kept open in the report's needs: check it against a 94 dB / 1 kHz calibrator. Evidence: chris/golf/2026-W43_fleet_week_F03.md."
+   },
+   {
+    "card": "Test DSMA SAFE/CAUTION cues in a real flight and log the cue output",
+    "outcome": "Done → Complete",
+    "comment": "30 Oct: closing. Done last week: F03 flight 2 (16 Oct) ran DSMA live in the pilot's headset with every cue logged; CAUTION 15/10/5 and the beep came before both stalls (CAUTION 15 13–16 s ahead).\nSTALL never played: that is a rule fault on the box, carried on \"Validate DSMA in real-world flight on development hardware\" until one rule passes both the 8 real stalls and the sim rig. Evidence: chris/golf/2026-W43_fleet_week_F03.md."
+   },
+   {
+    "card": "Initial data model for the AeroNode synchronous timeline",
+    "outcome": "Done → Complete",
+    "comment": "30 Oct (Chris): Done, closing.\n- The working model puts every IMU, both Pixhawks and the DEV-A/DEV-B audio on one timeline from a sync pulse and start/stop/mark commands; it held one clock on all four F03 flights (2.4–4.7 µs rms).\n- John's analysis places every sample on UTC and corrects the 3.891 s start offset and the 51.6 ppm clock difference between the boxes (reports/john/2026-10-26_imu_audio_timebase.html).\n- The next rig runs every codec on one clock master (two-1860 build, 27 Oct).\n@Peter your written review is still welcome here once your access (SSH key, Tailscale) is set up."
+   },
+   {
+    "card": "Build the acoustic bench and measure baseline noise cancelling",
+    "outcome": "Progressed",
+    "comment": "30 Oct: bench rig for the demo's one-codec-per-ear audio.\n- Two ADAU1860s wired on DEV-A on one clock (1860-B on 1860-A's BCLK/FSYNC), 27 Oct. Board B then failed: BCLK0 shorted to ground, then BCLK0/FSYNC0 open at the codec U15, no I²C on two hosts. Support case open with Analog Devices; board A works.\n- ADAU1797 eval board (no public schematic) mapped from 80 microscope photos; a new Pi 4 (dev-c) drives it over SPI: build sheet, test firmware and an 11-step bring-up guide.\n- @John's bench on our board A: loop delay 94.5 µs at 48 kHz, 12.8 µs at 192 kHz (7.4× less), polarity inverted by the codec.\nNext: S(z) (M8) and the feed-forward margin (M12) with John on Mon 2 Nov. Evidence: chris/golf/2026-W44_fleet_week.md."
+   },
+   {
+    "card": "Confirm ADAU1860-1 can drive H1 transducers, or specify an external amp",
+    "outcome": "Progressed",
+    "comment": "30 Oct: a donor-headset driver played cleanly from the 1860 (26 Oct), not yet measured into 150/300/600 Ω.\nJohn measured the 1860's analog path: unity gain and clean in the 1 Oct recordings (+0.011 dB, 0.012 % THD), and a loop delay of 94.5 / 42.9 / 12.8 µs at 48 / 96 / 192 kHz on our rig board (reports/john/2026-10-28_adau1860_loop_delay_and_sample_rate.html).\nM8 on Mon 2 Nov drives the cup's own driver from the 1860. @Peter the external-amp call stays yours."
+   },
+   {
+    "card": "WS3 — Build the demo H1: donor internals in printed shells, passthrough audio proven",
+    "outcome": "Progressed",
+    "comment": "30 Oct: two pieces toward the demo headset.\n- A printed mount that joins a donor headband's metal tab to our ear cup (designed 26 Oct, PLA).\n- Headset node HS01 (XIAO ESP32-C6): both 16-LED rings run from a control page it serves over the office Wi-Fi (27 Oct). Next week: the heart-rate sensor and IMU, streaming to AERO-A over MQTT.\n- A donor driver played from the 1860.\nPassthrough audio not started. Evidence: chris/golf/2026-W44_fleet_week.md."
+   }
+  ],
+  "new_cards": [
+   {
+    "title": "Replace the failed EVAL-ADAU1860EBZ (board B, AAQSO6P) and rebuild the two-1860 rig on one clock",
+    "owner": "Chris",
+    "why": "Board B's codec failed on 27 Oct; support case open with ADI. Check BCLK0/FSYNC0 read ~115 kΩ to ground before wiring the new board."
+   },
+   {
+    "title": "Bring up the EVAL-ADAU1797ADZ on the Pi 4 (dev-c), then move it to the CM5",
+    "owner": "Chris",
+    "why": "Mapped from photos, firmware and an 11-step guide ready; nothing on the board covers the 1797 yet."
+   },
+   {
+    "title": "Headset node HS01: heart rate, IMU and LED rings on one ESP32-C6, streaming to AERO-A",
+    "owner": "Chris",
+    "why": "Stage 1 (LED rings on Wi-Fi) runs; no card covers the headset node."
+   }
+  ]
+ },
+ "calls": [
+  "After you submit, check the five Done cards left the board. If any is still open, press its Complete button (not Edit).",
+  "Every report row links to the new W44 page in the team repo (published today with your yes), so Duran can open each one.",
+  "0 of 5 commitments met: the relay bench, PureVoice re-run, DEV-A recorder and server work carry. Keep them on the board or drop some?",
+  "FOXTROT (DEV-B) has been idle since 14 Oct, and DEV-B's power fault is unresolved. A message to it needs your yes.",
+  "32 days to the 1 Dec demo flight, and none of the 1 Dec fixes moved this week. Next week has the AERO-A fixes as one commitment.",
+  "Peter's access to the boxes (SSH key, Tailscale) has been open since 22 Sep. Preflight still lists it."
+ ],
+ "measured": "Measured with your agents 24–30 Oct: about 19 h of prompts (merged across all agents, gaps over 20 min not counted; the A320 sim's 3.3 h left out). Bench time with your hands on the boards comes on top: wiring on Tue, probing on Tue–Wed, the microscope photos on Wed."
+}
