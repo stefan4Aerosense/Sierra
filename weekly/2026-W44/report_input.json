@@ -1,0 +1,75 @@
+{
+ "schema": "aerosense-weekly-report-input/1",
+ "person": "Stefan Kruger",
+ "week_ending": "2026-10-30",
+ "due": "Fri 30 Oct, 16:00",
+ "sources_line": "built by KILO from the report site (read 12:12), FusionChatGPT commits 24–30 Oct, Codex's W44 work log (fe4c73c), Chris's W44 team-repo page and Stefan's answers",
+ "evidence_page": {
+  "url": "https://github.com/stefan4Aerosense/FusionChatGPT/tree/99df1ca05b51889d9203ccebe1ec03e22e69d6d9/outputs/Weekly-Report-2026-10-30",
+  "label": "FusionChatGPT outputs/Weekly-Report-2026-10-30 (private repo: Duran needs access)"
+ },
+ "glance": [
+  {"area": "WS1 Rev-C assembly", "status": "green", "text": "Pillow adapter, board + battery mounts and USB-C opening designed, printed and trial-fitted. Flex-tail clearance and the full release still open."},
+  {"area": "WS4 PPG", "status": "amber", "text": "Sensor housing sewn onto the cushion; no reliable pulse with skin contact yet. Decoder fix built, not yet tested live."},
+  {"area": "WS2 manufacturing", "status": "green", "text": "Mould box printed; silicone and release agent ordered; casting this weekend. Costed BOM not started."},
+  {"area": "WS3 donor headset", "status": "amber", "text": "Donor headset fully torn down; Chris is assembling its components for the demo H1."},
+  {"area": "WS5", "status": "red", "text": "No work on the seal test (due 6 Nov) or passive attenuation."},
+  {"area": "Last week's commitments", "status": "red", "text": "0 of 3 met: all three progressed but none finished."}
+ ],
+ "last_week": [
+  {"text": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "done_means": "The full design with all changes in place", "task_title": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "pick": null,
+   "reading": "Not met. Adapter, board mounts and USB-C opening done and trial-fitted, but the full Rev-C design is not complete (flex clearance, strap)."},
+  {"text": "WS4 — PPG proof-out in the foam earcup at the mastoid", "done_means": "The 2 different sensors installed in 2 pillows both right and left and measure heart rate", "task_title": "WS4 — PPG proof-out in the foam earcup at the mastoid", "pick": null,
+   "reading": "Not met. One sensor housing sewn onto a cushion; no reliable heart-rate reading yet."},
+  {"text": "WS3 — Build the demo H1: donor internals in printed shells, passthrough audio proven", "done_means": "a newer version of the headset, hopefully with actual components in and LED's", "task_title": "WS3 — Build the demo H1: donor internals in printed shells, passthrough audio proven", "pick": null,
+   "reading": "Not met. Donor headset torn down; components are with Chris and not yet in the printed shells."}
+ ],
+ "rows": [
+  {"title": "WS3 — Buy, tear down and measure the donor headset", "meta": "now · H1 Headset · due 2026-10-14", "outcome": "Progressed", "hours": 0,
+   "evidence": ["https://github.com/Aerosense-Aviation/Aerosense-Dev-Team-Sync/blob/main/chris/golf/2026-W44_fleet_week.md#the-two-1860-rig-on-dev-a"], "mark_done": false,
+   "note": "Donor headset fully torn down. Its driver already plays cleanly from the ADAU1860 on Chris's bench (26 Oct, see Chris's W44 page). Chris is now assembling the donor components so they can be built into our printed H1 shells. A written record of the donor measurements is not published yet."},
+  {"title": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "meta": "now · H1 Headset · due 2026-10-22", "outcome": "Progressed", "hours": 16,
+   "evidence": ["https://github.com/stefan4Aerosense/FusionChatGPT/tree/99df1ca05b51889d9203ccebe1ec03e22e69d6d9/outputs/Weekly-Report-2026-10-30", "https://github.com/stefan4Aerosense/FusionChatGPT/tree/c680b603b1bde6f49f7ec8ca71ba02a7df6c190b/outputs/BLE-Full-Removable-Mounts-2026-10-28"], "mark_done": false,
+   "note": "Pillow adapter redesigned and printed to fit the right earcup. MAXSensorBLE board and battery mounted inside the cup on removable brackets, with ribbon clearance and an external USB-C opening (CAD 28 Oct). Trial assembly printed and fitted; a USB-C cable connects through the shell (photos 30 Oct). Strap spring-insert concept drawn. Open: CAD flags a clash with the unmeasured flex tail; retention, strap material and the full Rev-C release."},
+  {"title": "WS4 — PPG proof-out in the foam earcup at the mastoid", "meta": "now · PilotSense · due 2026-10-22", "outcome": "Progressed", "hours": 8,
+   "evidence": ["https://github.com/stefan4Aerosense/FusionChatGPT/tree/99df1ca05b51889d9203ccebe1ec03e22e69d6d9/outputs/Weekly-Report-2026-10-30"], "mark_done": false,
+   "note": "MAX86171 lane. Sensor housing redesigned and sewn onto the Logitech cushion; board measured for CAD. Finger/ear tests: no pulse with skin contact, the waveform only moves when the finger lifts (photos 07-08). HR app decoder fixed so a saturated channel no longer drops the good ones; build and self-tests pass, not yet tested live. No reliable HR at the mastoid yet; formal protocol not started."},
+  {"title": "WS3 — Flight-representative H1 worn and working in the aircraft (1 Dec demo)", "meta": "now · H1 Headset · due 2026-12-01", "outcome": "No work", "hours": 0, "evidence": [], "mark_done": false,
+   "note": "No direct work this week. It depends on the demo H1 build (donor components being assembled by Chris) and the WS1 Rev-C assembly, which progressed."},
+  {"title": "WS5 — Spectacle-arm seal test", "meta": "next · H1 Headset · due 2026-11-06", "outcome": "No work", "hours": 0, "evidence": [], "mark_done": false,
+   "note": "No work this week: the week went to WS1, WS4 and WS2. Due 6 Nov."},
+  {"title": "WS3 — Build the demo H1: donor internals in printed shells, passthrough audio proven", "meta": "next · H1 Headset · due 2026-11-13", "outcome": "No work", "hours": 0, "evidence": [], "mark_done": false,
+   "note": "Waiting for Chris to finish assembling the donor headset components; then they go into the printed shells. The WS1 adapter and board mounts are ready to receive them."},
+  {"title": "WS2 — H1 manufacturing plan and full BOM", "meta": "next · H1 Headset · due 2026-11-30", "outcome": "Progressed", "hours": 6,
+   "evidence": ["https://github.com/stefan4Aerosense/FusionChatGPT/tree/49f9b1a76dfbca1496367d7e9b0a7a52d6cc62e6/outputs/Weekly-Report-2026-10-30/WS2-Manufacturing"], "mark_done": false,
+   "note": "Mould box designed and printed for the first clear-resin cover trial (27 Oct). Silicone and release agent ordered; silicone due 30 Oct, mould and cast planned 31 Oct-1 Nov. Sourcing firmer stretch webbing for the strap (Arcade Atlas as reference; SA lead Weavetech, no quote yet). Still open: costed BOM at qty 10/100, suppliers, lead times, Duran's sign-off."},
+  {"title": "WS5 — Measure passive attenuation of the printed cup + cushion on the EARS Pro", "meta": "next · H1 Headset · due 2026-11-30", "outcome": "No work", "hours": 0, "evidence": [], "mark_done": false,
+   "note": "No work this week: the week went to WS1, WS4 and WS2."}
+ ],
+ "other_hours": {"hours": 0, "label": "", "detail": "Nothing reported off the board. Add time here if you want to count the weekly-report and bridge setup."},
+ "blockers": "- WS4: no reliable pulse from the MAX86171 with skin contact (since 29 Oct); decoder fix built, not yet tested live.\n- WS3 demo build: waiting on Chris's assembly of the donor components (in progress).",
+ "needs_from_duran": "None new this week.",
+ "commitments": [
+  {"task": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "text": "", "due_day": "Fri", "done_means": "Board retention and real flex-tail clearance checked in the printed cup; photos and remaining issues recorded."},
+  {"task": "WS4 — PPG proof-out in the foam earcup at the mastoid", "text": "", "due_day": "Fri", "done_means": "Updated HR app tested with skin contact; raw session saved and the result reported, even if it fails."},
+  {"task": "WS2 — H1 manufacturing plan and full BOM", "text": "", "due_day": "Fri", "done_means": "Weekend silicone mould and resin cast documented: photos, materials, defects."},
+  {"task": "OTHER", "text": "WS2: first H1 BOM draft", "due_day": "Fri", "done_means": "BOM draft lists every known part and supplier, with unknown cost and lead-time fields marked."}
+ ],
+ "board": {
+  "close": [],
+  "suggest_close": [],
+  "comments": [
+   {"card": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "outcome": "Progressed", "comment": "Printed pillow adapter + right earcup now hold the MAXSensorBLE board and battery on removable brackets, with a USB-C opening; trial assembly fitted and a cable connects through the shell (photos in FusionChatGPT outputs/Weekly-Report-2026-10-30). Next: check retention and the real flex-tail clearance (CAD shows a clash with the unmeasured envelope)."},
+   {"card": "WS4 — PPG proof-out in the foam earcup at the mastoid", "outcome": "Progressed", "comment": "Sensor housing sewn onto the Logitech cushion. With skin contact the MAX86171 shows no pulse yet; the HR app decoder was fixed so one saturated channel no longer drops the others, not yet tested live. Next: test the updated app with contact and save the raw session."},
+   {"card": "WS2 — H1 manufacturing plan and full BOM", "outcome": "Progressed", "comment": "Mould box printed for the first clear-resin cover trial; silicone and release agent ordered, casting 31 Oct-1 Nov. Strap webbing being sourced (no quote yet). Next: document the cast and start the costed BOM."}
+  ],
+  "new_cards": []
+ },
+ "calls": [
+  "WS3 donor teardown hours are set to 0. Put in your real time if you did the teardown this week.",
+  "The evidence links go to FusionChatGPT, a private repo. Either add Duran as a collaborator, or let KILO publish a team-repo evidence page and re-point the links (after today).",
+  "The board-linked commitments score themselves: last week's three are Not met because none of those rows is Done.",
+  "Preflight was not re-read today. Last known open asks for you: band thickness/alloy to Metalforge; window material, Lemo and strap choices for Duran."
+ ],
+ "measured": "Hours are Stefan's estimates (WS1 16 h, WS4 8 h, WS2 6 h). The measured floor is 3.0 h (activity_hours.py: FusionChatGPT commit times + KILO sessions, 23 Oct 16:00 to 30 Oct 12:30). Commits miss printing, sewing, fitting and testing."
+}

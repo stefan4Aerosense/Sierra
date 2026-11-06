@@ -1,0 +1,57 @@
+{
+ "schema": "aerosense-weekly-report-input/1",
+ "person": "Stefan Kruger",
+ "week_ending": "2026-11-06",
+ "due": "Fri 6 Nov, 16:00",
+ "sources_line": "built by KILO from the report site (read 15:11), FusionChatGPT commits 30 Oct–6 Nov, Codex's daily logs and W45 summary, and Stefan's answers",
+ "evidence_page": {
+  "url": "https://github.com/stefan4Aerosense/FusionChatGPT/tree/main/worklog",
+  "label": "FusionChatGPT worklog (private repo: Duran needs access)"
+ },
+ "glance": [
+  {"area": "WS2 mould + resin", "status": "green", "text": "Two-part silicone mould poured (3 and 4 Nov), demoulded, keys fit; first KRISTAL 50 resin cover injected Thu, curing."},
+  {"area": "WS1 LED mounts", "status": "green", "text": "LED-ring snap clips and cable passages on both earcups; parts printing. Viewer on assembly v243."},
+  {"area": "WS4 PPG", "status": "amber", "text": "8 headset-worn recordings; BPM present 84 % still, 27 % moving. No reference device yet."},
+  {"area": "WS3 / WS5", "status": "red", "text": "No work: donor parts are with John for tests; WS5 seal test (due today) not started."},
+  {"area": "Last week's commitments", "status": "amber", "text": "0 of 4 met by the site's rule; mould and app work done, resin cast and BOM not finished."}
+ ],
+ "last_week": [
+  {"text": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "done_means": "Board retention and real flex-tail clearance checked in the printed cup; photos and remaining issues recorded.", "task_title": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "pick": null, "reading": "Not met. Week went to LED-ring mounts; flex-tail clearance not checked."},
+  {"text": "WS4 — PPG proof-out in the foam earcup at the mastoid", "done_means": "Updated HR app tested with skin contact; raw session saved and the result reported, even if it fails.", "task_title": "WS4 — PPG proof-out in the foam earcup at the mastoid", "pick": null, "reading": "Done in substance: updated app tested worn in the headset, 8 raw sessions saved (30 Oct, 3 Nov). Scores Not met because the card isn't Done."},
+  {"text": "WS2 — H1 manufacturing plan and full BOM", "done_means": "Weekend silicone mould and resin cast documented: photos, materials, defects.", "task_title": "WS2 — H1 manufacturing plan and full BOM", "pick": null, "reading": "Mostly: silicone mould done and documented with photos/videos; resin cast injected Thu, not yet demoulded."},
+  {"text": "WS2: first H1 BOM draft", "done_means": "BOM draft lists every known part and supplier, with unknown cost and lead-time fields marked.", "task_title": null, "pick": "not met", "reading": "Not met. No BOM draft this week."}
+ ],
+ "rows": [
+  {"title": "WS3 — Buy, tear down and measure the donor headset", "meta": "now · H1 Headset · due 2026-10-14", "outcome": "No work", "hours": 0, "evidence": [], "mark_done": false,
+   "note": "No work by me this week. The torn-down donor parts are with John, who is using them to run tests."},
+  {"title": "WS4 — PPG proof-out in the foam earcup at the mastoid", "meta": "now · PilotSense · due 2026-11-05", "outcome": "Progressed", "hours": 3,
+   "evidence": ["https://github.com/stefan4Aerosense/FusionChatGPT/tree/50504e542491472f27476dbc0385503dd533da47/outputs/HR-Reconnect-Fix-2026-10-30"], "mark_done": false,
+   "note": "HR app reconnect bug fixed (7fb6614). 8 recordings with the MAX86171 in the pillow, headset worn (30 Oct, 3 Nov). 3 Nov: BPM present in 84% of rows still (median 101), 27% moving (median 97), 81% left tilt (median 49.5, suspect), 90% right tilt (median 94). No reference device yet, so accuracy is unproven. Next: record still + movement beside a reference."},
+  {"title": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "meta": "now · H1 Headset · due 2026-11-09", "outcome": "Progressed", "hours": 6,
+   "evidence": ["https://github.com/stefan4Aerosense/FusionChatGPT/tree/c30c7334d56dd22858d33b3e5a3dfe77555fe921/outputs/Left-LED-Matching-2026-11-05"], "mark_done": false,
+   "note": "WS2812 16-LED ring mounts on both earcups: slim snap clips, glue sockets and cable passages (5 Nov); parts printing, fit not checked yet. CAD viewer updated to assembly v243. Traced 066 earcup source and found the V5 flat band; band measured for CX Steel strip samples. Open: flex-tail clearance, full parametric 066 rebuild."},
+  {"title": "WS3 — Flight-representative H1 worn and working in the aircraft (1 Dec demo)", "meta": "now · H1 Headset · due 2026-12-01", "outcome": "No work", "hours": 0, "evidence": [], "mark_done": false,
+   "note": "No direct work this week. Depends on the demo H1 build; donor parts are with John for tests. WS1 LED mounts and WS2 clear cover progressed toward it."},
+  {"title": "WS5 — Spectacle-arm seal test", "meta": "next · H1 Headset · due 2026-11-06", "outcome": "No work", "hours": 0, "evidence": [], "mark_done": false,
+   "note": "Not started: the week went to the WS2 mould and resin cover. Due date (6 Nov) missed; needs a new date."},
+  {"title": "WS3 — Build the demo H1: donor internals in printed shells, passthrough audio proven", "meta": "next · H1 Headset · due 2026-11-13", "outcome": "No work", "hours": 0, "evidence": [], "mark_done": false,
+   "note": "Donor internals are with John, who is using them for tests. Shells are ready to receive them once they come back."},
+  {"title": "WS2 — H1 manufacturing plan and full BOM", "meta": "next · H1 Headset · due 2026-11-30", "outcome": "Progressed", "hours": 26,
+   "evidence": ["https://github.com/stefan4Aerosense/FusionChatGPT/tree/200b3307af9851025ff441828d9a2326e5605c59/outputs/Mould-Central-Sprue-2026-11-04"], "mark_done": false,
+   "note": "Clear-cover mould: redesigned, reprinted and assembled (2 Nov); Mold Star 15 silicone halves poured 3 and 4 Nov with sprue and vents; demoulded 5 Nov, keys fit. First KRISTAL 50 resin cover injected 5 Nov, curing. Backup printed cover sanded 120-1200 grit. Strap: TPU insert at Sewing Hub, CX Steel samples (quote pending). Open: demould + clarity, costed BOM."},
+  {"title": "WS5 — Measure passive attenuation of the printed cup + cushion on the EARS Pro", "meta": "next · H1 Headset · due 2026-11-30", "outcome": "No work", "hours": 0, "evidence": [], "mark_done": false,
+   "note": "No work this week: the week went to the WS2 mould and resin cover."}
+ ],
+ "other_hours": {"hours": 0, "label": "", "detail": "Fusion training package, video renames and viewer controls were Codex time, not counted."},
+ "blockers": "- WS4: no reference HR device for accuracy checks (since 3 Nov).\n- WS3: donor parts with John for tests (since this week).",
+ "needs_from_duran": "1. New due date for WS5 spectacle-arm seal test (was 6 Nov).",
+ "commitments": [
+  {"task": "WS2 — H1 manufacturing plan and full BOM", "text": "", "due_day": "Fri", "done_means": "First resin cover demoulded, photographed and fit-checked; actual result and defects recorded."},
+  {"task": "OTHER", "text": "WS2: backup printed cover finishing trial", "due_day": "Fri", "done_means": "Polished backup cover documented with clarity photographs."},
+  {"task": "WS4 — PPG proof-out in the foam earcup at the mastoid", "text": "", "due_day": "Fri", "done_means": "Still and movement recordings taken beside a reference HR device; results and limits written up."},
+  {"task": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "text": "", "due_day": "Fri", "done_means": "Saved flat band's dimensions and ends compared with the latest assembly before steel fabrication."}
+ ],
+ "board": {"close": [], "suggest_close": [], "comments": [], "new_cards": []},
+ "calls": ["Hours: WS2 26, WS1 6, WS4 3 as Stefan gave them.", "Evidence links go to FusionChatGPT (private); Duran needs access."],
+ "measured": "Logged to Codex: Mon 12 h, Wed ~6 h, Thu ~8 h 55 min; Tue and Fri not logged. Split by Stefan."
+}

@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly report · Fri 6 Nov 2026 (as submitted, offline backup)</title>
+<!--
+  AeroSense weekly report, week ending Fri 6 Nov 2026: offline fill-in copy for Stefan Kruger (weekly-report kit, build_offline_form.py).
+  Styled with reports.aerosenseaviation.com's own stylesheet. Mode: the submitted report. Every field is editable.
+  Saves in this browser as you go. "Save file" downloads this page with your entries inside. Nothing is sent anywhere.
+-->
+<style>
+/* reports.aerosenseaviation.com/static/app.css, copied as it is (read 30 Oct 2026) */
+:root {
+--teal: #164559; --mid: #1F586C; --bright: #35859C; --ink: #1A1A1A; --muted: #5f6b70;
+--line: #d9e0e3; --bg: #f5f7f8; --card: #ffffff; --ok: #2e7d32; --warn: #b26a00; --bad: #b3261e;
+--font: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font: 16px/1.45 var(--font); color: var(--ink); background: var(--bg); }
+header.top { background: var(--teal); color: #fff; padding: 14px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+header.top h1 { font-size: 17px; margin: 0; font-weight: 600; letter-spacing: .2px; }
+header.top .who { margin-left: auto; font-size: 13px; opacity: .9; display: flex; gap: 10px; align-items: center; }
+header.top button { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.5); border-radius: 6px; padding: 4px 10px; font-size: 13px; cursor: pointer; }
+main { max-width: 860px; margin: 0 auto; padding: 16px 16px 120px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+h2 { font-size: 15px; color: var(--teal); margin: 0 0 8px; text-transform: uppercase; letter-spacing: .4px; }
+h3 { font-size: 16px; margin: 0 0 4px; font-weight: 600; }
+.sub { color: var(--muted); font-size: 13px; }
+.chip { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: #e7eef1; color: var(--teal); }
+.chip.ok { background: #e3f2e5; color: var(--ok); }
+.chip.warn { background: #fdf0dc; color: var(--warn); }
+.chip.bad { background: #fbe3e1; color: var(--bad); }
+.row { padding: 12px 0; border-top: 1px solid var(--line); }
+.row:first-of-type { border-top: 0; }
+.row .title { font-weight: 600; }
+.row .meta { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+.grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+@media (min-width: 640px) { .grid.two { grid-template-columns: 1fr 1fr; } .grid.three { grid-template-columns: 2fr 1fr 2fr; } }
+label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+input[type=text], input[type=url], input[type=number], select, textarea {
+width: 100%; font: inherit; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink);
+}
+textarea { min-height: 70px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--bright); outline-offset: 0; border-color: var(--bright); }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button { flex: 1 1 auto; min-width: 84px; padding: 9px 8px; border: 1px solid var(--line); background: #fff; border-radius: 8px; font: inherit; font-size: 14px; color: var(--ink); cursor: pointer; }
+.seg button.on { background: var(--teal); color: #fff; border-color: var(--teal); }
+.seg button.on.bad { background: var(--bad); border-color: var(--bad); }
+.seg button.on.warn { background: var(--warn); border-color: var(--warn); }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.btn { font: inherit; font-size: 14px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line); background: #fff; color: var(--teal); cursor: pointer; }
+.btn.primary { background: var(--teal); color: #fff; border-color: var(--teal); }
+.btn.small { font-size: 13px; padding: 6px 10px; }
+.btn[disabled] { opacity: .5; cursor: default; }
+.urls input { margin-bottom: 6px; }
+.err { color: var(--bad); font-size: 13px; }
+.errors { background: #fbe3e1; border: 1px solid #f1b9b4; color: var(--bad); border-radius: 8px; padding: 10px 12px; margin: 10px 0; }
+.errors li { margin: 2px 0; }
+.note { background: #eef5f7; border-left: 4px solid var(--bright); padding: 10px 12px; border-radius: 6px; margin-bottom: 14px; }
+.note .when { color: var(--muted); font-size: 12px; }
+.commit { padding: 10px 0; border-top: 1px solid var(--line); }
+.commit .met { font-weight: 600; }
+.met.yes { color: var(--ok); } .met.no { color: var(--bad); } .met.na { color: var(--muted); }
+.bar { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid var(--line); padding: 10px 16px; display: flex; gap: 10px; align-items: center; }
+.bar .status { font-size: 13px; color: var(--muted); flex: 1; }
+.toggle { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.total { font-weight: 600; }
+.muted { color: var(--muted); }
+.mb8 { margin-bottom: 8px; } .mt8 { margin-top: 8px; } .mt6 { margin-top: 6px; } .m0 { margin: 0; }
+.hidden { display: none; } .inline-seg { display: inline-flex; margin-left: 8px; }
+.flexrow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+/* offline-copy additions */
+.btn.on { background: var(--teal); color: #fff; border-color: var(--teal); }
+.btn.review.on { background: #fdf0dc; color: var(--warn); border-color: #f0c98a; }
+.count { font-size: 12px; color: var(--muted); text-align: right; margin-top: 2px; }
+.count.over { color: var(--bad); font-weight: 600; }
+textarea.notebox { min-height: 46px; }
+.prev .seg { display: inline-flex; margin: 6px 0 4px 8px; }
+.prev .seg button { min-width: 84px; }
+dialog { border: 1px solid var(--line); border-radius: 10px; padding: 0; width: min(780px, 94vw); }
+dialog .dh { background: var(--teal); color: #fff; padding: 12px 16px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+dialog .dh button { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.5); border-radius: 6px; padding: 4px 10px; font-size: 13px; cursor: pointer; }
+dialog .db { padding: 14px 16px; }
+dialog textarea { min-height: 340px; font: 12.5px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.ok-box { background: #e3f2e5; border: 1px solid #b9dcbe; color: var(--ok); border-radius: 8px; padding: 10px 12px; margin: 10px 0; }
+@media (max-width: 640px) { .bar { flex-wrap: wrap; } .bar .status { flex-basis: 100%; } }
+@media print {
+  header.top button, .bar, .actions .btn:not(.on), .addurl, #addCommit, .remove, .note .actions { display: none !important; }
+  body { background: #fff; } main { padding-bottom: 0; } .card { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Weekly report</h1><span class="chip ok">Submitted · on time</span><span class="chip">Offline copy</span>
+  <div class="who"><span id="whoName">Stefan Kruger</span><button type="button" id="resetDraft">Reset to submitted</button><button type="button" id="clearAll">Clear</button></div>
+</header>
+
+<main>
+  <section class="card">
+    <h3>Week ending Friday 6 Nov 2026</h3>
+    <div class="sub">Submitted 2026-11-06 15:24 · revision 1. Offline copy: saves in this browser as you go. <b>Save file</b> keeps a copy with your entries on your Mac.</div>
+  </section>
+
+  <div class="note">Your answers as submitted (Submitted 2026-11-06 15:24 · revision 1), read back from the site. If you need a revision while the online form is down, edit here, press <b>Check report</b>, and send the summary or the saved file.
+    <div class="when">Built 2026-11-06 from the live form's fields and stylesheet.</div></div>
+
+  <section class="card prev">
+    <h2>Last week you committed to…</h2>
+    <div class="sub" id="prevCount"></div>
+    <div id="prevList"></div>
+  </section>
+
+  <section class="card">
+    <h2>A · My tasks</h2>
+    <div class="sub mb8">Live from the board (as of 6 Nov). One row per task you own. Done and Progressed need an evidence link.</div>
+    <div id="tasks"></div>
+  </section>
+
+  <section class="card">
+    <h2>B · This week</h2>
+    <div class="grid two">
+      <div><label for="otherHours">Other hours (not on a task)</label><input id="otherHours" type="number" min="0" step="0.25"></div>
+      <div><label for="otherWhat">What the other hours were</label><input id="otherWhat" type="text"><div class="count" id="otherWhatCount"></div></div>
+    </div>
+    <p class="total" id="total">Total hours: 0</p>
+    <label for="blockers">Blockers — what stopped or slowed you, and since when</label>
+    <textarea id="blockers" rows="7"></textarea>
+    <label for="duran" class="mt8">What you need from Duran — decisions, purchases, access</label>
+    <textarea id="duran" rows="8"></textarea>
+  </section>
+
+  <section class="card">
+    <h2>C · Next week's commitments</h2>
+    <div class="sub mb8">Three to five. Each one is something you can show on Friday.</div>
+    <div id="commits"></div>
+    <button class="btn small mt8" id="addCommit" type="button">+ Add a commitment</button>
+  </section>
+</main>
+
+<div class="bar">
+  <span class="status" id="status">Draft</span>
+  <button class="btn small" id="saveFile" type="button">Save file</button>
+  <button class="btn small" id="importBtn" type="button">Import .json</button>
+  <input type="file" id="importFile" accept="application/json,.json" class="hidden">
+  <button class="btn small" id="printBtn" type="button">Print / PDF</button>
+  <button class="btn primary" id="checkBtn" type="button">Check report</button>
+</div>
+
+<dialog id="out">
+  <div class="dh"><span>Your report: copy it or download it. Nothing has been sent.</span><button type="button" id="closeOut">Close</button></div>
+  <div class="db">
+    <div id="checks"></div>
+    <textarea id="outText" readonly></textarea>
+    <div class="actions">
+      <button class="btn primary" id="copyOut" type="button">Copy</button>
+      <button class="btn" id="dlMd" type="button">Download .md</button>
+      <button class="btn" id="dlJson" type="button">Download .json</button>
+      <button class="btn" id="dlHtml" type="button">Save file (.html)</button>
+    </div>
+  </div>
+</dialog>
+
+<script id="baked" type="application/json">null</script>
+<script id="data" type="application/json">{"draft": {"who": "Stefan Kruger", "prev": [null, null, null, null], "tasks": [{"title": "WS3 — Buy, tear down and measure the donor headset", "meta": "now · H1 Headset · due 2026-10-14", "outcome": "No work", "links": [""], "hours": "0", "note": "No work by me this week. The torn-down donor parts are with John, who is using them to run tests.", "markDone": false, "review": false}, {"title": "WS4 — PPG proof-out in the foam earcup at the mastoid", "meta": "now · PilotSense · due 2026-11-05", "outcome": "Progressed", "links": ["https://github.com/stefan4Aerosense/FusionChatGPT/tree/50504e542491472f27476dbc0385503dd533da47/outputs/HR-Reconnect-Fix-2026-10-30"], "hours": "8", "note": "HR app reconnect bug fixed (7fb6614). 8 recordings with the MAX86171 in the pillow, headset worn (30 Oct, 3 Nov). 3 Nov: BPM present in 84% of rows still (median 101), 27% moving (median 97), 81% left tilt (median 49.5, suspect), 90% right tilt (median 94). No reference device yet, so accuracy is unproven. Next: record still + movement beside a reference.", "markDone": false, "review": false}, {"title": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "meta": "now · H1 Headset · due 2026-11-09", "outcome": "Progressed", "links": ["https://github.com/stefan4Aerosense/FusionChatGPT/tree/c30c7334d56dd22858d33b3e5a3dfe77555fe921/outputs/Left-LED-Matching-2026-11-05"], "hours": "8", "note": "WS2812 16-LED ring mounts on both earcups: slim snap clips, glue sockets and cable passages (5 Nov); parts printing, fit not checked yet. CAD viewer updated to assembly v243. Traced 066 earcup source and found the V5 flat band; band measured for CX Steel strip samples. Open: flex-tail clearance, full parametric 066 rebuild.", "markDone": false, "review": false}, {"title": "WS3 — Flight-representative H1 worn and working in the aircraft (1 Dec demo)", "meta": "now · H1 Headset · due 2026-12-01", "outcome": "No work", "links": [""], "hours": "0", "note": "No direct work this week. Depends on the demo H1 build; donor parts are with John for tests. WS1 LED mounts and WS2 clear cover progressed toward it.", "markDone": false, "review": false}, {"title": "WS5 — Spectacle-arm seal test", "meta": "next · H1 Headset · due 2026-11-06", "outcome": "No work", "links": [""], "hours": "0", "note": "Not started: the week went to the WS2 mould and resin cover. Due date (6 Nov) missed; needs a new date.", "markDone": false, "review": false}, {"title": "WS3 — Build the demo H1: donor internals in printed shells, passthrough audio proven", "meta": "next · H1 Headset · due 2026-11-13", "outcome": "No work", "links": [""], "hours": "0", "note": "Donor internals are with John, who is using them for tests. Shells are ready to receive them once they come back.", "markDone": false, "review": false}, {"title": "WS2 — H1 manufacturing plan and full BOM", "meta": "next · H1 Headset · due 2026-11-30", "outcome": "Progressed", "links": ["https://github.com/stefan4Aerosense/FusionChatGPT/tree/200b3307af9851025ff441828d9a2326e5605c59/outputs/Mould-Central-Sprue-2026-11-04"], "hours": "26", "note": "Clear-cover mould: redesigned, reprinted and assembled (2 Nov); Mold Star 15 silicone halves poured 3 and 4 Nov with sprue and vents; demoulded 5 Nov, keys fit. First KRISTAL 50 resin cover injected 5 Nov, curing. Backup printed cover sanded 120-1200 grit. Strap: TPU insert at Sewing Hub, CX Steel samples (quote pending). Open: demould + clarity, costed BOM.", "markDone": false, "review": false}, {"title": "WS5 — Measure passive attenuation of the printed cup + cushion on the EARS Pro", "meta": "next · H1 Headset · due 2026-11-30", "outcome": "No work", "links": [""], "hours": "0", "note": "No work this week: the week went to the WS2 mould and resin cover.", "markDone": false, "review": false}], "otherHours": "12", "otherWhat": "3D printing and re-printing components for the best fit, this includes all sanding down and hand work that was done to t", "blockers": "Waited for the Silicone to arrive and to cure, aswell as the Resin Cast", "duran": "Decision on whether we will buy a more clear resin to 3D print, or the resin cast.. Still waiting on the resin to cure, will have an answer by Saturday ", "commits": [{"task": "WS4 — PPG proof-out in the foam earcup at the mastoid", "text": "", "day": "Fri", "done": "That both sensors are working on the ears, currently we only have one working "}, {"task": "WS2 — H1 manufacturing plan and full BOM", "text": "", "day": "Mon", "done": "Fully built headset that looks just like the renders"}, {"task": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "text": "", "day": "Wed", "done": "All the files in place for the current build that is in progress"}], "savedAt": 0}, "prev": [{"text": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "done": "Board retention and real flex-tail clearance checked in the printed cup; photos and remaining issues recorded.", "task": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "day": "Fri"}, {"text": "WS4 — PPG proof-out in the foam earcup at the mastoid", "done": "Updated HR app tested with skin contact; raw session saved and the result reported, even if it fails.", "task": "WS4 — PPG proof-out in the foam earcup at the mastoid", "day": "Fri"}, {"text": "WS2 — H1 manufacturing plan and full BOM", "done": "Weekend silicone mould and resin cast documented: photos, materials, defects.", "task": "WS2 — H1 manufacturing plan and full BOM", "day": "Fri"}, {"text": "WS2: first H1 BOM draft", "done": "BOM draft lists every known part and supplier, with unknown cost and lead-time fields marked.", "task": null, "day": "Fri"}], "noteMax": 500, "labelMax": 120, "person": "Stefan Kruger"}</script>
+<script>
+(() => {
+  const PRISTINE = "<!doctype html>\n" + document.documentElement.outerHTML;   // this page before any rendering, for "Save file"
+  const DATA = JSON.parse(document.getElementById("data").textContent);
+  const BAKED = JSON.parse(document.getElementById("baked").textContent);
+  const OUTCOMES = ["Done", "Progressed", "Blocked", "No work"], DAYS = ["—", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  const KEY = "aerosense-weekly-report-offline-2026-11-06-Stefan_Kruger-submitted-r1";
+  const $ = (s, r = document) => r.querySelector(s);
+  const clone = o => JSON.parse(JSON.stringify(o));
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const num = v => { const x = parseFloat(v); return isFinite(x) ? x : 0; };
+  const blank = () => {
+    const s = clone(DATA.draft);
+    s.prev = s.prev.map(() => null);
+    s.tasks.forEach(t => Object.assign(t, { outcome: "", links: [""], hours: "", note: "", markDone: false, review: false }));
+    Object.assign(s, { otherHours: "", otherWhat: "", blockers: "", duran: "", commits: [{ task: "", text: "", day: "—", done: "" }, { task: "", text: "", day: "—", done: "" }, { task: "", text: "", day: "—", done: "" }] });
+    return s;
+  };
+
+  let state = clone(DATA.draft), source = "the submitted report";
+  try {
+    const local = JSON.parse(localStorage.getItem(KEY) || "null");
+    const cands = [[BAKED, "the saved file"], [local, "this browser"]].filter(([s]) => s && Array.isArray(s.tasks));
+    cands.sort((a, b) => (b[0].savedAt || 0) - (a[0].savedAt || 0));
+    if (cands.length) { state = cands[0][0]; source = cands[0][1]; }
+  } catch (e) {
+    if (BAKED && Array.isArray(BAKED.tasks)) { state = BAKED; source = "the saved file"; }
+  }
+
+  let timer = null;
+  function save() {
+    state.savedAt = Date.now();
+    $("#status").textContent = "Unsaved…";
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      try { localStorage.setItem(KEY, JSON.stringify(state)); $("#status").textContent = "Saved in this browser · " + new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }); }
+      catch (e) { $("#status").textContent = "This browser won't keep it: use Save file"; }
+    }, 300);
+  }
+
+  // ---- last week's commitments
+  function prevMet(i) {
+    const p = DATA.prev[i];
+    if (p.task) { const t = state.tasks.find(x => x.title === p.task); return t && t.outcome === "Done" ? "yes" : "no"; }
+    return state.prev[i] || null;
+  }
+  function renderPrev() {
+    const n = DATA.prev.filter((_, i) => prevMet(i) === "yes").length;
+    $("#prevCount").textContent = `${n} of ${DATA.prev.length} met. A task counts as met when its outcome this week is Done.`;
+    $("#prevList").innerHTML = DATA.prev.map((p, i) => {
+      const m = prevMet(i);
+      const right = p.task
+        ? `<span class="met ${m === "yes" ? "yes" : "no"}">${m === "yes" ? "Met" : "Not met"}</span>`
+        : `<span class="seg" data-p="${i}"><button type="button" data-v="yes" class="${m === "yes" ? "on" : ""}">Met</button><button type="button" data-v="no" class="${m === "no" ? "on bad" : "bad"}">Not met</button></span>`;
+      return `<div class="commit"><b>${esc(p.text)}</b> <span class="muted">· due ${esc(p.day || "Fri")} ·</span> ${right}<div class="sub">Done means: ${esc(p.done)}</div></div>`;
+    }).join("");
+  }
+
+  // ---- A · tasks
+  function count(len, max) { return `<div class="count ${len > max ? "over" : ""}">${len}/${max}${len > max ? " · the site keeps only the first " + max : ""}</div>`; }
+  function renderTasks() {
+    $("#tasks").innerHTML = state.tasks.map((t, i) => `
+      <div class="row" data-i="${i}">
+        <div class="title">${esc(t.title)}</div>
+        <div class="meta">${esc(t.meta)}</div>
+        <label>Outcome this week</label>
+        <div class="seg">${OUTCOMES.map(o => `<button type="button" data-o="${o}" class="${t.outcome === o ? "on" : ""} ${o === "Blocked" ? "bad" : o === "No work" ? "warn" : ""}">${o}</button>`).join("")}</div>
+        <div class="grid three mt8">
+          <div><label>Evidence links</label><div class="urls">${t.links.map((u, k) => `<input type="url" data-l="${k}" value="${esc(u)}" placeholder="https://…">`).join("")}</div>
+            <button type="button" class="btn small addurl">+ link</button></div>
+          <div><label>Hours</label><input type="number" min="0" step="0.25" data-f="hours" value="${esc(t.hours)}"></div>
+          <div><label>Note</label><textarea class="notebox" data-f="note" rows="2" placeholder="One line. Required if Blocked.">${esc(t.note)}</textarea><span class="ncount">${count(t.note.length, DATA.noteMax)}</span></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn small ${t.markDone ? "on" : ""}" data-t="markDone">Mark task done</button>
+          <button type="button" class="btn small review ${t.review ? "on" : ""}" data-t="review">Flag needs review</button>
+        </div>
+      </div>`).join("");
+    document.querySelectorAll("textarea.notebox").forEach(grow);
+  }
+  function grow(t) { t.style.height = "auto"; t.style.height = (t.scrollHeight + 2) + "px"; }
+
+  // ---- C · commitments
+  function taskOptions(sel) {
+    const opts = ["", ...state.tasks.map(t => t.title), "__other"];
+    return opts.map(v => `<option value="${esc(v)}" ${v === sel ? "selected" : ""}>${v === "" ? "— pick a task —" : v === "__other" ? "Something not on the board…" : esc(v)}</option>`).join("");
+  }
+  function renderCommits() {
+    $("#commits").innerHTML = state.commits.map((c, i) => `
+      <div class="commit" data-c="${i}">
+        <div class="grid two">
+          <div><label>Task</label><select data-cf="task">${taskOptions(c.task)}</select>
+            <input type="text" class="mt6 ctext ${c.task === "__other" ? "" : "hidden"}" data-cf="text" value="${esc(c.text)}" placeholder="What is it?"></div>
+          <div><label>Due day</label><select data-cf="day">${DAYS.map(d => `<option ${c.day === d ? "selected" : ""}>${d}</option>`).join("")}</select></div>
+        </div>
+        <label class="mt8">Done means…</label><textarea data-cf="done" rows="2">${esc(c.done)}</textarea>
+        <div class="actions"><button type="button" class="btn small remove">Remove</button></div>
+      </div>`).join("");
+  }
+
+  function total() {
+    const t = state.tasks.reduce((s, x) => s + num(x.hours), 0) + num(state.otherHours);
+    $("#total").textContent = "Total hours: " + (Math.round(t * 100) / 100);
+  }
+  function renderB() {
+    ["otherHours", "otherWhat", "blockers", "duran"].forEach(k => { $("#" + k).value = state[k] ?? ""; });
+    $("#otherWhatCount").outerHTML = `<div class="count" id="otherWhatCount"></div>`;
+    labelCount(); total();
+  }
+  function labelCount() { const n = (state.otherWhat || "").length; $("#otherWhatCount").className = "count" + (n > DATA.labelMax ? " over" : ""); $("#otherWhatCount").textContent = `${n}/${DATA.labelMax}${n > DATA.labelMax ? " · the site keeps only the first " + DATA.labelMax : ""}`; }
+  function renderAll() { $("#whoName").textContent = state.who || DATA.person; renderPrev(); renderTasks(); renderB(); renderCommits(); }
+
+  // ---- events
+  document.addEventListener("input", e => {
+    const el = e.target, row = el.closest(".row"), com = el.closest(".commit[data-c]");
+    if (row) {
+      const t = state.tasks[+row.dataset.i];
+      if (el.dataset.f) t[el.dataset.f] = el.value;
+      if (el.dataset.l !== undefined) t.links[+el.dataset.l] = el.value;
+      if (el.dataset.f === "hours") total();
+      if (el.dataset.f === "note") { grow(el); row.querySelector(".ncount").innerHTML = count(el.value.length, DATA.noteMax); }
+    } else if (com) {
+      state.commits[+com.dataset.c][el.dataset.cf] = el.value;
+    } else if (["otherHours", "otherWhat", "blockers", "duran"].includes(el.id)) {
+      state[el.id] = el.value; if (el.id === "otherHours") total(); if (el.id === "otherWhat") labelCount();
+    } else return;
+    save();
+  });
+  document.addEventListener("change", e => {
+    const el = e.target, com = el.closest(".commit[data-c]");
+    if (com && el.dataset.cf) {
+      const c = state.commits[+com.dataset.c]; c[el.dataset.cf] = el.value;
+      if (el.dataset.cf === "task") com.querySelector(".ctext").classList.toggle("hidden", el.value !== "__other");
+      save();
+    }
+  });
+  document.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    const row = b.closest(".row"), pseg = b.closest("[data-p]");
+    if (pseg) { const i = +pseg.dataset.p; state.prev[i] = state.prev[i] === b.dataset.v ? null : b.dataset.v; renderPrev(); save(); return; }
+    if (row && b.dataset.o) { const t = state.tasks[+row.dataset.i]; t.outcome = t.outcome === b.dataset.o ? "" : b.dataset.o;
+      row.querySelectorAll(".seg button").forEach(x => x.classList.toggle("on", x.dataset.o === t.outcome)); renderPrev(); save(); return; }
+    if (row && b.classList.contains("addurl")) { const t = state.tasks[+row.dataset.i]; t.links.push(""); const box = row.querySelector(".urls");
+      box.insertAdjacentHTML("beforeend", `<input type="url" data-l="${t.links.length - 1}" placeholder="https://…">`); box.lastElementChild.focus(); save(); return; }
+    if (row && b.dataset.t) { const t = state.tasks[+row.dataset.i]; t[b.dataset.t] = !t[b.dataset.t]; b.classList.toggle("on", t[b.dataset.t]); save(); return; }
+    if (b.classList.contains("remove")) { state.commits.splice(+b.closest(".commit").dataset.c, 1); renderCommits(); save(); return; }
+  });
+  $("#addCommit").addEventListener("click", () => { state.commits.push({ task: "", text: "", day: "—", done: "" }); renderCommits(); save(); });
+  function armed(btn, label, fn) {
+    let on = false;
+    btn.addEventListener("click", () => {
+      if (!on) { on = true; btn.textContent = label + "?"; setTimeout(() => { on = false; btn.textContent = btn.dataset.label; }, 3000); return; }
+      on = false; btn.textContent = btn.dataset.label; fn();
+    });
+    btn.dataset.label = btn.textContent;
+  }
+  armed($("#resetDraft"), "Replace everything with the submitted report", () => { state = clone(DATA.draft); renderAll(); save(); $("#status").textContent = "Reset to the submitted report"; });
+  armed($("#clearAll"), "Clear every field", () => { state = blank(); renderAll(); save(); $("#status").textContent = "Cleared"; });
+  $("#printBtn").addEventListener("click", () => window.print());
+
+  // ---- save, export, import
+  function download(name, text, type) {
+    const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  }
+  function savedPage() {
+    state.savedAt = Date.now();
+    const json = JSON.stringify(state).replace(/</g, "\\u003c");
+    const open = '<script id="baked" type="application/json">';
+    const i = PRISTINE.indexOf(open), j = PRISTINE.indexOf("</" + "script>", i);
+    return PRISTINE.slice(0, i + open.length) + json + PRISTINE.slice(j);
+  }
+  const stamp = () => { const d = new Date(); return d.toISOString().slice(0, 10) + "_" + String(d.getHours()).padStart(2, "0") + String(d.getMinutes()).padStart(2, "0"); };
+  const saveHtml = () => { download(`weekly_report_Stefan_Kruger_2026-11-06_saved_${stamp()}.html`, savedPage(), "text/html"); $("#status").textContent = "Saved a copy to your Downloads"; save(); };
+  $("#saveFile").addEventListener("click", saveHtml);
+  $("#dlHtml").addEventListener("click", saveHtml);
+  $("#importBtn").addEventListener("click", () => $("#importFile").click());
+  $("#importFile").addEventListener("change", async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try { const s = JSON.parse(await f.text()); if (!Array.isArray(s.tasks)) throw new Error("not a report"); state = s; renderAll(); save(); $("#status").textContent = "Imported " + f.name; }
+    catch (err) { $("#status").textContent = "Couldn't read " + f.name + ": " + err.message; }
+    e.target.value = "";
+  });
+
+  // ---- check: the live form's rules, plus the site's silent length limits
+  function checks() {
+    const errs = [], warns = [];
+    state.tasks.forEach(t => {
+      if (!t.outcome) errs.push(`"${t.title}": pick an outcome.`);
+      if ((t.outcome === "Done" || t.outcome === "Progressed") && !t.links.some(u => u.trim())) errs.push(`"${t.title}": Done and Progressed need an evidence link.`);
+      if (t.outcome === "Blocked" && !t.note.trim()) errs.push(`"${t.title}": a note is required if Blocked.`);
+      if (t.note.length > DATA.noteMax) warns.push(`"${t.title}": note is ${t.note.length} characters; the site keeps the first ${DATA.noteMax}.`);
+      if (t.markDone && t.outcome !== "Done") warns.push(`"${t.title}": Mark task done is on but the outcome isn't Done.`);
+    });
+    DATA.prev.forEach((p, i) => { if (!p.task && !state.prev[i]) errs.push(`Last week: pick Met or Not met for "${p.text.slice(0, 60)}…".`); });
+    const real = state.commits.filter(c => c.task && (c.task !== "__other" || c.text.trim()));
+    if (real.length < 3 || real.length > 5) errs.push(`Commitments: three to five (you have ${real.length}).`);
+    state.commits.forEach((c, i) => { if (c.task && (!c.done.trim() || c.day === "—")) errs.push(`Commitment ${i + 1}: add a due day and what done means.`); });
+    if ((state.otherWhat || "").length > DATA.labelMax) warns.push(`"What the other hours were" is ${state.otherWhat.length} characters; the site keeps the first ${DATA.labelMax}.`);
+    return { errs, warns };
+  }
+  function summary() {
+    const L = [], tot = state.tasks.reduce((s, x) => s + num(x.hours), 0) + num(state.otherHours);
+    L.push(`# Weekly report: ${state.who || DATA.person}, week ending Fri 6 Nov 2026`, "");
+    L.push("## Last week you committed to…", "");
+    DATA.prev.forEach((p, i) => { const m = prevMet(i); L.push(`- ${p.text} · ${m === "yes" ? "Met" : m === "no" ? "Not met" : "—"}`, `  Done means: ${p.done}`); });
+    L.push("", "## A · My tasks", "");
+    state.tasks.forEach((t, i) => {
+      L.push(`### ${i + 1}. ${t.title}`, t.meta, `- Outcome: ${t.outcome || "—"}`, `- Hours: ${t.hours || 0}`);
+      const ls = t.links.filter(u => u.trim()); L.push(`- Evidence: ${ls.length ? ls.join(" , ") : "—"}`, `- Note: ${t.note || "—"}`);
+      if (t.markDone) L.push("- Mark task done: yes"); if (t.review) L.push("- Flag needs review: yes");
+      L.push("");
+    });
+    L.push("## B · This week", "", `- Other hours (not on a task): ${state.otherHours || 0}`, `- What the other hours were: ${state.otherWhat || "—"}`, `- Total hours: ${Math.round(tot * 100) / 100}`, "");
+    L.push("### Blockers — what stopped or slowed you, and since when", state.blockers || "—", "");
+    L.push("### What you need from Duran — decisions, purchases, access", state.duran || "—", "");
+    L.push("## C · Next week's commitments", "");
+    state.commits.filter(c => c.task).forEach((c, i) => L.push(`${i + 1}. ${c.task === "__other" ? (c.text || "(not on the board)") + " (not on the board)" : c.task} · due ${c.day} · done means: ${c.done || "—"}`));
+    return L.join("\n");
+  }
+  $("#checkBtn").addEventListener("click", () => {
+    const { errs, warns } = checks();
+    $("#checks").innerHTML = (errs.length ? `<ul class="errors">${errs.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : `<div class="ok-box">Passes the live form's checks.</div>`)
+      + (warns.length ? `<ul class="errors" style="background:#fdf0dc;border-color:#f0c98a;color:var(--warn)">${warns.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : "");
+    $("#outText").value = summary(); $("#out").showModal();
+  });
+  $("#closeOut").addEventListener("click", () => $("#out").close());
+  $("#copyOut").addEventListener("click", async e => {
+    const t = $("#outText").value;
+    try { await navigator.clipboard.writeText(t); } catch (_) { $("#outText").select(); document.execCommand("copy"); }
+    e.target.textContent = "Copied"; setTimeout(() => (e.target.textContent = "Copy"), 1400);
+  });
+  $("#dlMd").addEventListener("click", () => download("weekly_report_Stefan_Kruger_2026-11-06.md", summary(), "text/markdown"));
+  $("#dlJson").addEventListener("click", () => download("weekly_report_Stefan_Kruger_2026-11-06.json", JSON.stringify(state, null, 1), "application/json"));
+
+  renderAll();
+  $("#status").textContent = source === "the submitted report" ? "the submitted report · not changed yet" : "Restored from " + source;
+})();
+</script>
+</body>
+</html>
