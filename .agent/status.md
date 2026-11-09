@@ -1,10 +1,19 @@
 # status — Agent KILO
 
-**Last updated:** 2026-09-30 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
+**Last updated:** 2026-10-05 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
 Older entries: `journal.md`. **Merged 2026-09-18:** my KILO memory from `stefan4Aerosense/Aerosense@679ce5e`
 (2026-07-28 → 09-03) is now in this repo — scars appended to `MEMORY.md`, status/handoffs/journal archived in
 `journal.md`, owned docs moved to `docs/` with provenance. The Aerosense repo is frozen at that SHA; its fate
 awaits Stefan.
+
+**⚠ CALLSIGN CHANGE PENDING (Stefan, 2026-11-09):** Stefan ruled that **Codex keeps KILO**; Claude (me) is to get a
+new callsign. Stefan said ask Chris first, so the new name is still unknown. Until Chris answers, I keep signing
+`[KILO]` and keep my identity files as they are. Once he answers:
+- update WHOAMI, the commit name and the prefix;
+- with Stefan's approval, send INDIA one note in `inbox/chris/`: Claude is now <new>, KILO is Codex, and KILO in
+  records up to 9 Nov 2026 means Claude.
+- Stefan chose **not** to notify Codex through the bridge.
+- Background: both agents commit as `KILO (stefan)`. Codex's hello is `d8f5107`. As of 9 Nov, INDIA had not replied.
 
 **Carried-forward beliefs, each with its date — re-read ops before publishing any of them:**
 - ~~H1 Assembly 304 g in CAD, CG 1.1 mm (12 Aug)~~ **UNREPRODUCIBLE per Fusion audit 18 Sep (FusionChatGPT@203ddb2)**; V2 criterion 4 is
@@ -191,3 +200,8 @@ Current design uses a single TPU cushion with integral bottom-loading sensor sle
 ## 2026-09-30 — H1 assembly revision 2 and Fusion handoff
 
 Current H1 video is revision 2: staged carrier/cushion insertion with preassembled outer frame; supersedes the crossing exploded-view choreography. Verified 20 s / 1080p / 24 fps. All-frame mesh checks found no new intersection pairs; original CAD seating overlaps and eight broken source references remain documented. Also records the four-piece nominal 1 mm silicone-cushion mold and approximate Bose A30 visual model. See [handoff](../docs/fusion-handoff-2026-09-30.md). Large artifacts remain local; FusionChatGPT publication pending Git permissions. No building/bathroom or private recording data included.
+
+
+## 2026-10-05 — Higgsfield video work imported from Codex
+
+Latest six-reference cut: 1 → 2 → 3 → 4 → 5 → 6, 1440p / motion-interpolated 60 fps / 30 s. Two selected older cuts also converted to 4K / 60 fps. See [handoff](../docs/higgsfield-evidence/2026-10-05/README.md). Original references, prompts, validation and checksums recorded. All MP4 exports copied to ignored local `artifacts/higgsfield/videos/`; a Git clone does not restore them. Newest cut awaits Stefan/client approval. Numerical no-stop checks do not establish perceptually perfect motion or accurate CAD geometry.

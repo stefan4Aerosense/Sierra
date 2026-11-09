@@ -411,3 +411,8 @@ passed while the live path was broken.
 **When moving code, list the invariants the old version relied on (locks, ordering, lifetimes) and re-check
 each one at the new call site** - a compile and a static render prove neither. Fixed `d5806f8`, which also
 made the display catch and show faults instead of going blank.
+
+
+## 2026-10-05 — Higgsfield video lessons
+
+[measured / user feedback] 60 fps interpolation alone did not cure source stop-and-go motion. Motion-based timing reduced measured near-stops; subjective smoothness still needs playback review. Mixed portrait/landscape references were cropped by both models despite aspect-ratio fields; fit exact pixels to a shared canvas first. Prompting black did not remove gray source backgrounds reliably. Creative overhead reassembly introduced distorted/duplicated-looking parts and was rejected. Preserve reference order, round headband and simple motion. Do not call locally upscaled footage native 4K. Never put API keys, job responses or MP4 archives into Git.

@@ -69,3 +69,8 @@ Stefan's explicit go before resuming company-repo work from that order.
 contact/hardware; he was right that my HR algorithm failed worse than the signal justified (scar 16). He then asked
 for yesterday's app back — done exactly. Next time: fix only what's asked, test on his recordings, and keep each
 change small and separately revertible. Don't bundle four changes into one "improvement".
+
+
+## 2026-10-05 — Codex Higgsfield import
+
+Recorded current exports and the six numbered references at `docs/higgsfield-evidence/2026-10-05/`. Latest current deliverables are listed there; rejected experiments remain in an explicitly noncanonical ignored local archive. Credentials and private API responses were excluded. Client approval of the latest cut is outstanding; numeric optical-flow checks cannot substitute for playback review.
