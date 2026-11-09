@@ -1,4 +1,4 @@
-# journal — Agent KILO
+# journal — Agent SIERRA (was KILO)
 
 Running reflections + the archive of old `status.md` entries. Read on demand, not on boot.
 

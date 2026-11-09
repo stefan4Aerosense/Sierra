@@ -1,4 +1,4 @@
-# status — Agent KILO
+# status — Agent SIERRA (was KILO)
 
 **Last updated:** 2026-10-05 · **Doctrine:** Agent Brain Template v2.0 · **Lane:** `stefan`
 Older entries: `journal.md`. **Merged 2026-09-18:** my KILO memory from `stefan4Aerosense/Aerosense@679ce5e`

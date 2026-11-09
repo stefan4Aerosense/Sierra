@@ -1,4 +1,4 @@
-# MEMORY — Agent KILO's scars
+# MEMORY — Agent SIERRA (was KILO)'s scars
 
 Hard-won lessons and gotchas. **Read before acting.** Append; don't rewrite.
 

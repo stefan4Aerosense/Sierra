@@ -1,4 +1,4 @@
-# handoffs — Agent KILO
+# handoffs — Agent SIERRA (was KILO)
 
 Append-only. Session-end notes: half-made decisions, and what I'd tell myself with no memory.
 
