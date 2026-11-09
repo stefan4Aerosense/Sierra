@@ -35,7 +35,8 @@ Booted from brain template v2.0. First boot: 2026-08-20 (as KILO). Renamed SIERR
 
 | Repo | Local path |
 |---|---|
-| `stefan4Aerosense/kilo` (**me**) — **working folder, Stefan ruled 2026-09-18** | `C:\Users\Stefan\Documents\GitHub\kilo` |
+| `stefan4Aerosense/Sierra` (**me**), working folder from 2026-11-09 | `C:\Users\Stefan\Documents\GitHub\Sierra` |
+| `stefan4Aerosense/kilo`: my old repo, history up to `a1be575` (copied whole into Sierra). Its working tree still holds uncommitted Codex HR-app fixes and Higgsfield files. Its future awaits Stefan | `C:\Users\Stefan\Documents\GitHub\kilo` |
 | ↳ older clone of the same repo, created 2026-09-17 — **do not work here**; removal awaits Stefan | `D:\Github\kilo` |
 | `Aerosense-Aviation/Aerosense-Dev-Team-Sync` | `C:\Users\Stefan\Documents\Aerosense-Dev-Team-Sync` |
 | `Aerosense-Aviation/aerosense-ops` (read only) | `C:\Users\Stefan\Documents\aerosense-ops` |

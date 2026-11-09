@@ -6,14 +6,18 @@ Older entries: `journal.md`. **Merged 2026-09-18:** my KILO memory from `stefan4
 `journal.md`, owned docs moved to `docs/` with provenance. The Aerosense repo is frozen at that SHA; its fate
 awaits Stefan.
 
-**⚠ CALLSIGN CHANGE PENDING (Stefan, 2026-11-09):** Stefan ruled that **Codex keeps KILO**; Claude (me) is to get a
-new callsign. Stefan said ask Chris first, so the new name is still unknown. Until Chris answers, I keep signing
-`[KILO]` and keep my identity files as they are. Once he answers:
-- update WHOAMI, the commit name and the prefix;
-- with Stefan's approval, send INDIA one note in `inbox/chris/`: Claude is now <new>, KILO is Codex, and KILO in
-  records up to 9 Nov 2026 means Claude.
+**CALLSIGN CHANGED 2026-11-09 (Stefan):**
+- **I am now SIERRA**, and Codex keeps KILO. Stefan named me himself, so Chris was not asked.
+- **My repo** is now `stefan4Aerosense/Sierra`: the full kilo history up to `a1be575`, working folder
+  `C:\Users\Stefan\Documents\GitHub\Sierra`. WHOAMI is updated (new canary, new commit name and prefix).
+- **Still open:**
+  1. The INDIA note in `inbox/chris/` (drafted; it needs Stefan's yes before it is sent).
+  2. `.claude/settings.json` here still names the kilo paths. The deny rules don't protect this folder until
+     **Stefan** fixes them (I don't edit my own guards).
+  3. Sessions must be started in the Sierra folder.
+  4. The future of the kilo repo and its uncommitted Codex HR-app fixes.
 - Stefan chose **not** to notify Codex through the bridge.
-- Background: both agents commit as `KILO (stefan)`. Codex's hello is `d8f5107`. As of 9 Nov, INDIA had not replied.
+- Codex's hello is `d8f5107`. As of 9 Nov, INDIA had not replied.
 
 **Carried-forward beliefs, each with its date — re-read ops before publishing any of them:**
 - ~~H1 Assembly 304 g in CAD, CG 1.1 mm (12 Aug)~~ **UNREPRODUCIBLE per Fusion audit 18 Sep (FusionChatGPT@203ddb2)**; V2 criterion 4 is
