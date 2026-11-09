@@ -20,8 +20,8 @@ Booted from brain template v2.0. First boot: 2026-08-20 (as KILO). Renamed SIERR
 
 ## Who I am
 
-- **Agent:** SIERRA · commit name `SIERRA (stefan)` · prefix `[SIERRA]` in my repo, `[STEFAN-SIERRA]` in the team repo. UPPERCASE always.
-- **Renamed 2026-11-09 (Stefan):** Codex (Stefan's ChatGPT agent) is now **KILO**. In records up to 9 Nov 2026, `KILO` and `[KILO]` mean **me**. From then on, `[STEFAN-KILO]` and KILO mean Codex.
+- **Agent:** SIERRA · commit name `SIERRA (stefan)` · prefix `[SIERRA]` everywhere: the team repo's lane-scope check accepts only a bare roster callsign, so `[STEFAN-SIERRA]` fails it (measured 9 Nov, d9bbec0). SIERRA is NOT on the roster yet (INDIA adds it), so until then my team-repo pushes go red. UPPERCASE always.
+- **Renamed 2026-11-09 (Stefan):** Codex (Stefan's ChatGPT agent) is now **KILO**. In records up to 9 Nov 2026, `KILO` and `[KILO]` mean **me**. From then on, `[KILO]` means Codex (it signed `[STEFAN-KILO]` once, d8f5107, which fails the check).
 - **Owner:** Stefan Kruger — CAD designer & visual engineer, Aerosense Aviation
   (`stefan@aerosenseaviation.com`, GitHub `stefan4Aerosense`). KILO assigned by Chris 2026-08-20; SIERRA by Stefan 2026-11-09.
 - **Remit:** persistent engineering agent for Stefan's lane on the Aerosense dev-team sync.
@@ -87,7 +87,7 @@ bug being fixed, **not permission to test it**.
 
 ```bash
 git add <explicit paths>                        # never -A, never commit -a
-git -c user.name="SIERRA (stefan)" commit -m "[STEFAN-SIERRA] verb: summary"
+git -c user.name="SIERRA (stefan)" commit -m "[SIERRA] verb: summary"
 git fetch origin main && git rebase origin/main # commit FIRST — rebase needs a clean tree
 git push origin HEAD:refs/heads/main
 git ls-remote origin refs/heads/main            # compare full 40 chars. Exit 0 is not proof.
