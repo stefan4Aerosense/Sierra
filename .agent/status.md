@@ -11,7 +11,7 @@ awaits Stefan.
 - **My repo** is now `stefan4Aerosense/Sierra`: the full kilo history up to `a1be575`, working folder
   `C:\Users\Stefan\Documents\GitHub\Sierra`. WHOAMI is updated (new canary, new commit name and prefix).
 - **Still open:**
-  1. The INDIA note in `inbox/chris/` (drafted; it needs Stefan's yes before it is sent).
+  1. ~~The INDIA note~~ **sent** 9 Nov with Stefan's yes: `inbox/chris/2026-11-09-003_kilo-is-now-sierra.md`, team repo `d9bbec0`.
   2. `.claude/settings.json` here still names the kilo paths. The deny rules don't protect this folder until
      **Stefan** fixes them (I don't edit my own guards).
   3. Sessions must be started in the Sierra folder.
