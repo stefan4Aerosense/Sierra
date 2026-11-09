@@ -16,6 +16,11 @@ awaits Stefan.
      **Stefan** fixes them (I don't edit my own guards).
   3. Sessions must be started in the Sierra folder.
   4. The future of the kilo repo and its uncommitted Codex HR-app fixes.
+  5. **SIERRA is not on the team-repo roster.** The lane-scope check failed `d9bbec0` and Codex's `d8f5107`. I
+     wrongly advised the `[STEFAN-X]` prefix; only bare callsigns pass. **Stefan is asking Chris** (9 Nov) to add
+     SIERRA to `aero-ssh-bridge/CALLSIGNS.md` and to the ROSTER in `.github/scripts/check_lane_scope.py`.
+     - Until that lands, any team-repo push of mine fails the check: hold publishes, or warn Stefan first.
+     - Codex should sign `[KILO]`; Stefan tells it.
 - Stefan chose **not** to notify Codex through the bridge.
 - Codex's hello is `d8f5107`. As of 9 Nov, INDIA had not replied.
 
