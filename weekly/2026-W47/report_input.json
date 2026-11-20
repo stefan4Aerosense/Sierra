@@ -1,0 +1,45 @@
+{
+ "schema": "aerosense-weekly-report-input/1",
+ "person": "Stefan Kruger",
+ "week_ending": "2026-11-20",
+ "due": "Fri 20 Nov, 16:00",
+ "sources_line": "built by SIERRA (Claude) from the report site and board (read 13:48), Duran's #cad-design notes, Codex's Fusion commits and daily logs 13–20 Nov, the team repo, and Stefan's answers",
+ "evidence_page": {
+  "url": "https://dash.aerosenseaviation.com/d/h1-e9c1a269/",
+  "label": "H1 3-D showroom on the company VPS (sign-in), updated by Codex to Stefan's 19–20 Nov STEP"
+ },
+ "glance": [
+  {"area": "H1 CAD for Duran", "status": "green", "text": "All 6 of Duran's 18 Nov changes done 20 Nov and ready for his review (H1 - Clean Visible Assembly; screenshots in #cad-design)."},
+  {"area": "Demo H1 rebuild", "status": "amber", "text": "Re-dated to 27 Nov. Two resin cups printed today; strap at the sewing hub; new LEDs have no arrival date."},
+  {"area": "Baby Cheese (DEV-B) case", "status": "green", "text": "Designed and printed; Chris built it out on 18 Nov and it flew on 19 Nov. ~10 h, no card of mine."},
+  {"area": "Last week's commitments", "status": "amber", "text": "WS1 CAD changes done; the 3D-printed H1 is still being rebuilt; pillows go to the sewing hub, not made in house."}
+ ],
+ "last_week": [
+  {"text": "WS1 — H1 Rev-C master assembly: final, fully dressed virtual headset", "done_means": "By Fri 20 Nov, all the CAD changes Duran asked for are ready for Duran to review.", "task_title": null, "pick": null, "reading": "Met in substance: all six changes reported done 20 Nov 08:17 on the WS1 card and in #cad-design. WS1 is now in NEXT, so it has no row this week; how the site scores it is unknown."},
+  {"text": "WS2 — H1 manufacturing plan and full BOM", "done_means": "Latest version of the 3D printed H1 Model ", "task_title": null, "pick": null, "reading": "Not yet: two new resin cups printed 20 Nov; the rebuilt demo H1 is due 27 Nov. WS2 has no row this week."},
+  {"text": "Progress on the New double layered pillows", "done_means": "Methods that can be used to make them in house as they are quite tricky to manufacture ourselves ", "task_title": null, "pick": "not met", "reading": "Not met [Stefan]: the pillows are going to the sewing hub rather than being made in house."}
+ ],
+ "rows": [
+  {"title": "WS3 — Build the demo H1: donor internals in printed shells, passthrough audio proven", "meta": "now · H1 Headset · due 2026-11-27", "outcome": "Progressed", "hours": 20,
+   "evidence": ["https://dash.aerosenseaviation.com/d/h1-e9c1a269/"], "mark_done": false,
+   "note": "CAD for the demo rebuild (WS1 work; WS1 moved to next today): all 6 of Duran's 18 Nov changes done 20 Nov: band closer with shorter soft joints, bigger radii, rounded LED holders, mic boom fits, dual rear cable exits, biometrics placeholder. Ready for his review in H1 - Clean Visible Assembly. Also: stronger knob click, taller index teeth, band at a 7.3 mm cup gap, TPU stretch band trials. 2 resin cups printed 20 Nov; strap at sewing hub. Target 27 Nov."},
+  {"title": "WS3 — Flight-representative H1 worn and working in the aircraft (1 Dec demo)", "meta": "now · H1 Headset · due 2026-12-01", "outcome": "No work", "hours": 0, "evidence": [], "mark_done": false,
+   "note": "No direct work. Fed by the demo H1 rebuild (due 27 Nov). Still open: passthrough audio, comms and ANC in the cups, and Duran's call on printed or production-intent shells."}
+ ],
+ "other_hours": {"hours": 5, "label": "Baby Cheese (DEV-B) enclosure: designed and printed the case; flew 19 Nov. ~10 h spent, 5 h cap", "detail": "Cheeseboard work 16–18 Nov: battery, fan, PiPower, IMU27 and Flash 5 models, a new enclosure, a hinged access door, a cable-tie side mount and a build guide for Chris. The card 'Baby Cheese enclosure' waits on Duran; if he accepts it, those hours can go on a row."},
+ "blockers": "- New LEDs for the demo H1 have no arrival date (the old LEDs are fitted for now).\n- The strap and the pillows depend on the sewing hub's turnaround.",
+ "needs_from_duran": "1. Review the CAD changes (H1 - Clean Visible Assembly) and send any further changes.\n2. Accept or decline the Baby Cheese enclosure card, so that work has a row instead of other hours.",
+ "commitments": [
+  {"task": "WS3 — Build the demo H1: donor internals in printed shells, passthrough audio proven", "text": "", "due_day": "Fri", "done_means": "Demo H1 rebuilt with Duran's changes: resin cups sanded and sprayed, strap back from the sewing hub, LEDs fitted, assembled; photos."},
+  {"task": "OTHER", "text": "TPU stretch band print test", "due_day": "Wed", "done_means": "95A TPU oval-cell and thick-wave bands printed; stretch and strength compared on the headset; photos and the pick recorded."},
+  {"task": "OTHER", "text": "WS1: changes from Duran's CAD review", "due_day": "Fri", "done_means": "Every change Duran asks for after reviewing the 20 Nov CAD done and reported back in #cad-design."}
+ ],
+ "board": {"close": [], "suggest_close": [], "comments": [], "new_cards": []},
+ "calls": [
+  "The H1 CAD hours sit on the WS3 demo-build row, as you chose: WS1 is in NEXT, so it has no row. Say so to Duran if he asks.",
+  "Other hours: the Baby Cheese case took ~10 h but the site caps other hours at 5 h, so 5 h is entered. Total on the form: 25 h.",
+  "Codex's Fusion backup is not on GitHub: its checkout is 67 commits ahead of FusionChatGPT origin (last push Mon 16 Nov 09:13). Ask Codex to push.",
+  "Last week's report (W46) was reviewed 'Below expectation' by Duran on 16 Nov, with no written feedback."
+ ],
+ "measured": "Commit-time floor 9.3 h (activity_hours.py, Codex's Fusion commits 13 Nov 16:35 to 20 Nov 14:15; Monday's 39 log entries had only 4 commits, so the floor under-counts). Split by Stefan: H1 20 h, enclosure 10 h (5 h entered)."
+}
