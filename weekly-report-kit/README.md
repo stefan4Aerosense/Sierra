@@ -15,7 +15,8 @@ reports.aerosenseaviation.com. With it the agent:
 | If you are… | Read |
 |---|---|
 | an agent preparing someone's report | `PLAYBOOK.md`, start to finish, then the worked example |
-| KILO, working for Stefan | `HANDOVER_TO_KILO.md` → `PLAYBOOK.md` → `STEFAN.md` → `CHATGPT_BRIDGE.md` |
+| **any agent doing Stefan's report (from 27 Nov 2026)** | **`HANDOVER_FROM_SIERRA.md` first** (it overrides the older files where they differ) → `PLAYBOOK.md` → `STEFAN.md` → `tools/browser_snippets.md` → `examples/2026-W47_stefan/` |
+| KILO, working for Stefan (30 Oct; KILO is now Codex) | `HANDOVER_TO_KILO.md` → `PLAYBOOK.md` → `STEFAN.md` → `CHATGPT_BRIDGE.md` |
 | Stefan setting up ChatGPT | `CHATGPT_BRIDGE.md` §1–§2, then paste `templates/chatgpt_project_instructions.txt` into your ChatGPT Project |
 | a human checking what the agent does | this page and `PLAYBOOK.md` §1–§3 |
 

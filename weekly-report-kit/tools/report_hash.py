@@ -37,7 +37,7 @@ def expected(r):
 JS = """const EXP = %s;
 const h = async s => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s || '')))].map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 16);
 const num = x => { x = Number(x || 0); return x; };
-const r = (await (await fetch('/api/report', {credentials: 'include'})).json()).report;
+const r = (await (await fetch('/api/report?week=%s', {credentials: 'include'})).json()).report;
 const got = {label: await h(r.hours_other_label), blockers: await h(r.blockers), needs: await h(r.needs_from_duran),
   nums: [num(r.hours_other), num(r.hours_total), r.revision, r.status]};
 for (let k = 0; k < r.items.length; k++) { const it = r.items[k];
@@ -54,7 +54,10 @@ def main():
     if len(sys.argv) != 2:
         sys.exit(__doc__)
     raw = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
-    print(JS % json.dumps(expected(raw.get("report", raw)), ensure_ascii=False))
+    rep = raw.get("report", raw)
+    # Ask the site for the saved copy's own week (GET /api/report?week=YYYY-MM-DD, SIERRA 20 Nov 2026). Without it
+    # /api/report returns the current week, so last week's backup could never be checked once a new week opened.
+    print(JS % (json.dumps(expected(rep), ensure_ascii=False), rep["week_ending"]))
 
 
 if __name__ == "__main__":
